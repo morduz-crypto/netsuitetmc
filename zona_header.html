@@ -73,6 +73,19 @@
       user-select:none; -webkit-user-drag:none;
     }
 
+    /* ✅ Recorte para mostrar SOLO el header */
+    .crop-header{
+      height: 120px;       /* ajusta si quieres: 105–140px */
+      overflow: hidden;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .img-crop{
+      width:100%;
+      height:auto;
+      display:block;
+      transform: translateY(0px); /* si necesitas subir/bajar: -8px, -12px, etc */
+    }
+
     .hotspot{
       position:absolute;
       border:2px solid var(--hint);
@@ -115,7 +128,6 @@
       line-height:1.45;
     }
 
-    /* Bloques con imágenes */
     .grid{
       display:grid;
       grid-template-columns: 1fr;
@@ -169,29 +181,34 @@
       <a class="btn" href="index.html">← Volver</a>
     </div>
 
-    <!-- Imagen grande base para ubicar el header -->
+    <!-- ✅ SOLO se ve el header (recorte) -->
     <div class="card">
-      <div class="stage">
-        <img src="netsuite_home.png" alt="Captura Home NetSuite"/>
+      <div class="stage crop-header">
+        <img src="netsuite_home.png" alt="Captura Home NetSuite" class="img-crop"/>
 
-        <!-- Resaltado general del header -->
-        <div class="hotspot" style="left:0%; top:0%; width:100%; height:11%; border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.10);"></div>
+        <!-- Resaltado general del header (100% del recorte) -->
+        <div class="hotspot"
+             style="left:0%; top:0%; width:100%; height:100%; border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.10);">
+        </div>
 
         <!-- Subzonas del header (solo hover, sin click) -->
         <div class="hotspot"
-          style="left:0%; top:0%; width:34%; height:11%;"
+          style="left:0%; top:0%; width:34%; height:100%;"
           data-title="Izquierda: Logo / ambiente / atajos"
-          data-desc="Aquí normalmente verás el logo (TMC) y, según configuración, accesos rápidos. También suele estar el atajo de creación rápida (icono de hoja con +)."></div>
+          data-desc="Logo TMC, indicador de ambiente (Producción o SANDBOX) y accesos rápidos (incluye el botón de hojita con + para crear cosas rápido).">
+        </div>
 
         <div class="hotspot"
-          style="left:34%; top:0%; width:41%; height:11%;"
+          style="left:34%; top:0%; width:41%; height:100%;"
           data-title="Centro: Buscador global"
-          data-desc="Busca registros, transacciones y entidades dentro del ecosistema NetSuite. Sirve para ir directo sin navegar menús."></div>
+          data-desc="Busca registros, transacciones y entidades dentro de NetSuite. Útil para ir directo sin navegar por menús.">
+        </div>
 
         <div class="hotspot"
-          style="left:75%; top:0%; width:25%; height:11%;"
+          style="left:75%; top:0%; width:25%; height:100%;"
           data-title="Derecha: Ayuda / Comentarios / Usuario y rol"
-          data-desc="Ayuda abre documentación de NetSuite. Comentarios permite enviar feedback al proveedor. En el nombre puedes ver el rol activo, cambiar rol (si aplica) y cerrar sesión."></div>
+          data-desc="Ayuda abre documentación de NetSuite. Comentarios permite enviar feedback/satisfacción. En el nombre puedes ver tu rol activo, cambiar rol (si aplica) y cerrar sesión.">
+        </div>
       </div>
     </div>
 
@@ -208,59 +225,53 @@
         <div class="warning">
           <strong>⚠️ Ojo con SANDBOX:</strong> SANDBOX es nuestro <strong>ambiente de pruebas</strong>.
           Sirve para validar cambios sin afectar la operación real.  
-          Si haces “vainas” acá, estás probando… pero igual evita confusiones: confirma siempre el ambiente antes de ejecutar acciones importantes 😅
+          Si haces vainas acá estás probando 😅 — igual confirma el ambiente antes de ejecutar acciones importantes.
         </div>
 
         <div class="divider"></div>
 
         <h2>Ejemplos visuales del Header</h2>
         <p class="small">
-          Estas imágenes son guía para reconocer cada elemento. (Si cambias los nombres de archivo, ajusta los <code>src</code>.)
+          Estas imágenes ayudan a reconocer cada elemento del header.
         </p>
 
         <div class="grid">
-          <!-- Producción -->
           <div class="shot">
             <img src="header_prod.png" alt="Header en Producción (ejemplo)"/>
             <div class="cap">
               <p class="title">1) Producción (ambiente real)</p>
               <p class="text">
-                Verás el header normal con el logo de TMC. Este es el ambiente donde las acciones impactan datos reales.
+                Verás el header normal con el logo de TMC. En este ambiente las acciones impactan datos reales.
               </p>
             </div>
           </div>
 
-          <!-- Sandbox -->
           <div class="shot">
             <img src="header_sandbox.png" alt="Header en SANDBOX (ejemplo)"/>
             <div class="cap">
               <p class="title">2) SANDBOX (ambiente de pruebas)</p>
               <p class="text">
-                En SANDBOX aparece el indicador <strong>SANDBOX</strong>. Úsalo para probar procesos, formularios o configuraciones sin afectar la operación real.
+                En SANDBOX aparece el indicador <strong>SANDBOX</strong>. Úsalo para probar procesos, formularios o configuraciones sin afectar producción.
               </p>
             </div>
           </div>
 
-          <!-- Quick Add menu -->
           <div class="shot">
             <img src="quickadd_menu.png" alt="Menú de creación rápida (hojita con +)"/>
             <div class="cap">
               <p class="title">3) Atajo “+” (creación rápida)</p>
               <p class="text">
-                El icono de la <strong>hojita con +</strong> permite crear rápidamente elementos comunes (ej. Evento, Llamada telefónica, Tarea, Cliente, Contacto, Factura…).
-                Esto acelera el trabajo diario.
+                El icono de la <strong>hojita con +</strong> permite crear rápidamente elementos comunes (Evento, Llamada, Tarea, Cliente, Contacto, Factura, etc.).
               </p>
             </div>
           </div>
 
-          <!-- Quick Add config -->
           <div class="shot">
             <img src="quickadd_config.png" alt="Configuración de la barra nueva / personalización"/>
             <div class="cap">
               <p class="title">4) Personalización del “+” (qué aparece en el menú)</p>
               <p class="text">
-                Esta pantalla permite decidir qué opciones se muestran en el menú de creación rápida y en qué orden.
-                Es útil para adaptar el sistema a cada rol / equipo.
+                Aquí se define qué opciones se muestran en el menú de creación rápida y en qué orden. Útil para adaptar el sistema a cada rol/equipo.
               </p>
             </div>
           </div>
@@ -268,12 +279,12 @@
 
         <div class="divider"></div>
 
-        <h2>Notas importantes</h2>
+        <h2>Notas rápidas</h2>
         <ul>
-          <li><strong>Buscador global:</strong> te permite buscar “cualquier cosa” dentro de NetSuite (registros, transacciones, entidades). Ideal para ir rápido sin navegar por menús.</li>
-          <li><strong>Ayuda:</strong> abre la biblioteca/documentación oficial de NetSuite para guiarte en procesos y funcionalidades.</li>
-          <li><strong>Comentarios:</strong> sirve para enviar feedback/satisfacción al proveedor NetSuite (cuando aplique).</li>
-          <li><strong>Usuario / Rol:</strong> en el nombre puedes ver tu rol activo; si tienes más de un rol, normalmente puedes cambiarlo desde ahí. También puedes <strong>cerrar sesión</strong>.</li>
+          <li><strong>Buscador global:</strong> te permite buscar “cualquier cosa” dentro de NetSuite; también existen atajos (por ejemplo, usando <strong>%</strong> según configuración/roles) para acelerar navegación.</li>
+          <li><strong>Ayuda:</strong> te lleva a la biblioteca de información/documentación de NetSuite.</li>
+          <li><strong>Comentarios:</strong> sirve para enviar retroalimentación/satisfacción al proveedor NetSuite.</li>
+          <li><strong>Usuario / Rol:</strong> desde el nombre puedes ver el rol activo; si tienes más de un rol, puedes cambiarlo (cuando aplique) y también cerrar sesión.</li>
         </ul>
       </div>
     </div>
