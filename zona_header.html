@@ -115,7 +115,6 @@
 
     .content{ padding:14px 16px; }
     .content h2{ margin:0 0 8px; font-size:16px; }
-    .content h3{ margin:14px 0 6px; font-size:14px; }
     .content p{ margin:0 0 10px; color:var(--subtext); line-height:1.45; }
     .content ul{ margin:0 0 10px 18px; color:var(--subtext); }
     .content li{ margin-bottom:6px; }
@@ -131,8 +130,6 @@
       line-height:1.45;
     }
 
-    .divider{ height:1px; background: rgba(0,0,0,.06); margin: 12px 0; }
-
     .area{
       border:1px solid rgba(0,0,0,.06);
       border-radius:14px;
@@ -140,20 +137,13 @@
       background:#fafafa;
       margin-top:10px;
     }
-    .area .kicker{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+    .kicker{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
       margin-bottom:6px;
     }
     .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight:800;
-      color:#111827;
-      font-size:13px;
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:800; color:#111827; font-size:13px;
     }
     .chip{
       font-size:11px;
@@ -163,8 +153,22 @@
       background:#fff;
       color:#111827;
     }
-    .area p{ margin:0 0 8px; }
-    .area .bullets{ margin:0 0 0 18px; }
+
+    .shot{
+      margin-top:10px;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:12px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .shot img{ width:100%; display:block; }
+    .shot .cap{
+      padding:10px 12px;
+      border-top:1px solid rgba(0,0,0,.06);
+      color:#374151;
+      font-size:12.5px;
+      line-height:1.45;
+    }
   </style>
 </head>
 
@@ -172,20 +176,20 @@
   <div class="wrap">
     <div class="topbar">
       <div style="width:100%;">
-        <h1>Zona 1 — Barra superior (Header) <span class="pill">v4</span></h1>
-        <div class="meta">Pasa el mouse por cada área del header. Abajo está la explicación completa por Área (1–6).</div>
+        <h1>Zona 1 — Barra superior (Header) <span class="pill">v5</span></h1>
+        <div class="meta">Pasa el mouse por cada área del header. Abajo está el detalle por Área (1–6).</div>
 
         <div class="intro">
-          Al entrar a NetSuite, esta barra superior te permite ubicarte y trabajar rápido:
-          <strong>confirmar ambiente</strong>, <strong>buscar</strong>, crear con atajos (<strong>+</strong>),
-          acceder a <strong>Ayuda</strong>, enviar <strong>Comentarios</strong> y gestionar tu sesión (<strong>usuario/rol</strong>).
+          La barra superior se mantiene visible en la mayoría de pantallas de NetSuite y se usa para:
+          <strong>identificar el ambiente</strong>, <strong>buscar</strong> información, crear con atajos (<strong>+</strong>),
+          acceder a <strong>Ayuda</strong>, enviar <strong>Comentarios</strong> y gestionar la sesión (<strong>usuario/rol</strong>).
         </div>
       </div>
 
       <a class="btn" href="index.html">← Volver</a>
     </div>
 
-    <!-- Imagen principal: header -->
+    <!-- Header principal -->
     <div class="card">
       <div class="stage">
         <img src="header_prod.png" alt="Header NetSuite"/>
@@ -196,52 +200,46 @@
                     border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.08);">
         </div>
 
-        <!-- 6 Áreas (ajusta porcentajes si quieres afinar) -->
-        <!-- Área 1: Logo + ambiente -->
+        <!-- 6 Áreas (ajusta porcentajes si necesitas afinar) -->
         <div class="hotspot"
              style="left:0%; top:0%; width:20%; height:100%;"
              data-title="Área 1 — Logo y ambiente (PROD / SANDBOX)"
-             data-desc="Aquí ves el logo (TMC) y puedes identificar si estás en Producción o en SANDBOX (pruebas).">
+             data-desc="Logo institucional y señalización del ambiente donde estás trabajando (Producción o SANDBOX).">
         </div>
 
-        <!-- Área 2: Buscador -->
         <div class="hotspot"
              style="left:20%; top:0%; width:46%; height:100%;"
              data-title="Área 2 — Buscador global"
-             data-desc="Búsqueda rápida dentro de NetSuite. Con % activa el modo predictivo (sin Enter).">
+             data-desc="Búsqueda rápida dentro de NetSuite. Con % se activa el modo predictivo (sin Enter).">
         </div>
 
-        <!-- Área 3: Atajo + -->
         <div class="hotspot"
              style="left:66%; top:0%; width:6%; height:100%;"
              data-title="Área 3 — Atajos (hojita con +)"
-             data-desc="Crea rápido: Evento, Llamada, Tarea, Cliente, Contacto, Factura, etc. Se puede personalizar.">
+             data-desc="Creación rápida de registros frecuentes. Puede personalizarse por rol.">
         </div>
 
-        <!-- Área 4: Ayuda -->
         <div class="hotspot"
              style="left:72%; top:0%; width:8%; height:100%;"
              data-title="Área 4 — Ayuda"
-             data-desc="Acceso a la biblioteca/documentación oficial de NetSuite. Útil para aprender y resolver dudas.">
+             data-desc="Acceso a documentación oficial de NetSuite (artículos y guías).">
         </div>
 
-        <!-- Área 5: Comentarios -->
         <div class="hotspot"
              style="left:80%; top:0%; width:9%; height:100%;"
              data-title="Área 5 — Comentarios"
-             data-desc="Envía feedback/satisfacción sobre el sistema al proveedor NetSuite (cuando aplique).">
+             data-desc="Canal de retroalimentación/satisfacción sobre el sistema (cuando aplique).">
         </div>
 
-        <!-- Área 6: Usuario / rol -->
         <div class="hotspot"
              style="left:89%; top:0%; width:11%; height:100%;"
              data-title="Área 6 — Usuario, roles y sesión"
-             data-desc="Aquí puedes ver tu usuario/rol, cambiar rol (si aplica), cambiar de cuenta/ambiente y cerrar sesión.">
+             data-desc="Información del usuario, rol activo, cambio de rol/cuenta y cierre de sesión.">
         </div>
       </div>
     </div>
 
-    <!-- Explicación completa por áreas -->
+    <!-- Detalle por áreas -->
     <div class="card" style="margin-top:12px;">
       <div class="content">
         <h2>Detalle por Área (1–6)</h2>
@@ -251,16 +249,26 @@
           <div class="kicker">
             <div class="tag">Área 1 — Logo y ambiente <span class="chip">PROD / SANDBOX</span></div>
           </div>
+
           <p>
-            Esta zona te ayuda a confirmar rápidamente dónde estás trabajando. En <strong>Producción</strong> (PROD) los cambios son reales.
-            En <strong>SANDBOX</strong> estás en pruebas.
+            Esta zona permite identificar el ambiente en el que estás trabajando:
+            <strong>Producción</strong> (operación real) o <strong>SANDBOX</strong> (ambiente de pruebas).
           </p>
-          <ul class="bullets">
-            <li><strong>Producción:</strong> impacta datos reales (operación).</li>
-            <li><strong>SANDBOX:</strong> ambiente de pruebas. Suele mostrar el texto <strong>SANDBOX</strong> en el header.</li>
+
+          <ul>
+            <li><strong>Producción:</strong> los cambios impactan información real.</li>
+            <li><strong>SANDBOX:</strong> ambiente destinado a pruebas y validaciones.</li>
           </ul>
+
+          <div class="shot">
+            <img src="header_sandbox.png" alt="Ejemplo de header en SANDBOX"/>
+            <div class="cap">
+              <strong>Así se ve en SANDBOX:</strong> aparece el indicador <strong>SANDBOX</strong> en el header.
+            </div>
+          </div>
+
           <div class="warning">
-            <strong>⚠️ Regla de oro:</strong> antes de “hacer vainas”, confirma si estás en SANDBOX o PROD 😅
+            <strong>Recomendación:</strong> antes de ejecutar acciones operativas, confirma el ambiente (Producción vs SANDBOX).
           </div>
         </div>
 
@@ -269,18 +277,25 @@
           <div class="kicker">
             <div class="tag">Área 2 — Buscador global <span class="chip">búsqueda rápida</span></div>
           </div>
+
           <p>
-            El buscador global te permite encontrar información sin navegar por menús: clientes, proveedores, transacciones, reportes, etc.
+            El buscador global permite encontrar registros y documentos sin navegar por menús
+            (clientes, proveedores, transacciones, reportes, etc.).
           </p>
-          <ul class="bullets">
-            <li><strong>Normal:</strong> escribe y presiona <strong>Enter</strong> para buscar.</li>
-            <li><strong>Modo rápido con %:</strong> escribe <code>%</code> + <strong>mínimo 3 letras</strong> (ej. <code>%far</code>) y el sistema muestra resultados <strong>mientras escribes</strong> (sin Enter).</li>
-            <li>Verás dos bloques: <strong>Resultados de búsqueda global</strong> y <strong>Resultados de página actual</strong>.</li>
-            <li>Si no aparece en los primeros resultados, usa <strong>“Mostrar todos los resultados”</strong>.</li>
+
+          <ul>
+            <li><strong>Búsqueda normal:</strong> escribe el término y presiona <strong>Enter</strong>.</li>
+            <li><strong>Modo predictivo con %:</strong> escribe <code>%</code> + al menos <strong>3 caracteres</strong> (ej. <code>%far</code>). El sistema muestra resultados <strong>mientras escribes</strong>, sin necesidad de presionar Enter.</li>
+            <li>Se muestran dos secciones: <strong>Resultados de búsqueda global</strong> y <strong>Resultados de página actual</strong>.</li>
+            <li>Si no aparece lo que necesitas en los primeros resultados, usa <strong>“Mostrar todos los resultados”</strong>.</li>
           </ul>
-          <p style="margin-top:8px;">
-            <strong>Tip práctico:</strong> el <code>%</code> sirve para moverte más rápido cuando ya sabes más o menos qué estás buscando.
-          </p>
+
+          <div class="shot">
+            <img src="search_percent.png" alt="Ejemplo de búsqueda con % en NetSuite"/>
+            <div class="cap">
+              <strong>Así se ve el modo predictivo:</strong> con <code>%</code> el sistema sugiere resultados a medida que escribes.
+            </div>
+          </div>
         </div>
 
         <!-- Área 3 -->
@@ -288,13 +303,29 @@
           <div class="kicker">
             <div class="tag">Área 3 — Atajos (hojita con +) <span class="chip">crear rápido</span></div>
           </div>
+
           <p>
-            La hojita con <strong>+</strong> abre un menú para crear registros frecuentes sin pasar por menús.
+            El ícono de la hojita con <strong>+</strong> abre un menú de <strong>creación rápida</strong> para registros frecuentes.
           </p>
-          <ul class="bullets">
+
+          <ul>
             <li>Ejemplos: Evento, Llamada telefónica, Tarea, Cliente, Contacto, Factura…</li>
-            <li>Se puede <strong>personalizar</strong> para que cada rol vea solo lo que necesita (y en el orden correcto).</li>
+            <li>Puede <strong>personalizarse</strong> para mostrar solo las opciones necesarias por rol/equipo.</li>
           </ul>
+
+          <div class="shot">
+            <img src="quickadd_menu.png" alt="Menú de creación rápida (hojita con +)"/>
+            <div class="cap">
+              <strong>Así se ve el menú del +:</strong> lista de accesos rápidos para crear registros.
+            </div>
+          </div>
+
+          <div class="shot">
+            <img src="quickadd_config.png" alt="Configuración del menú del +"/>
+            <div class="cap">
+              <strong>Personalización:</strong> puedes incluir/excluir opciones y definir el orden en que aparecen.
+            </div>
+          </div>
         </div>
 
         <!-- Área 4 -->
@@ -302,12 +333,14 @@
           <div class="kicker">
             <div class="tag">Área 4 — Ayuda <span class="chip">documentación</span></div>
           </div>
+
           <p>
-            El botón <strong>Ayuda</strong> te lleva a la biblioteca de información de NetSuite: artículos, guías y recursos oficiales.
+            La opción <strong>Ayuda</strong> lleva a la documentación oficial de NetSuite: artículos, guías y recursos de soporte.
           </p>
-          <ul class="bullets">
-            <li>Útil para usuarios nuevos (terminología y navegación).</li>
-            <li>Útil para resolver dudas puntuales del sistema.</li>
+
+          <ul>
+            <li>Útil para entender conceptos del sistema y resolver dudas frecuentes.</li>
+            <li>Recomendado como primer punto de consulta para usuarios nuevos.</li>
           </ul>
         </div>
 
@@ -316,12 +349,11 @@
           <div class="kicker">
             <div class="tag">Área 5 — Comentarios <span class="chip">feedback</span></div>
           </div>
+
           <p>
-            La opción <strong>Comentarios</strong> permite enviar retroalimentación/satisfacción sobre el sistema al proveedor de NetSuite (cuando aplique).
+            La opción <strong>Comentarios</strong> permite enviar retroalimentación o calificaciones relacionadas con el sistema,
+            de acuerdo con las funcionalidades habilitadas por NetSuite.
           </p>
-          <ul class="bullets">
-            <li>No afecta procesos operativos; es un canal de feedback.</li>
-          </ul>
         </div>
 
         <!-- Área 6 -->
@@ -329,14 +361,23 @@
           <div class="kicker">
             <div class="tag">Área 6 — Usuario / roles / sesión <span class="chip">seguridad y contexto</span></div>
           </div>
+
           <p>
-            Esta zona muestra tu nombre y el rol activo. También es donde gestionas tu sesión.
+            Desde el nombre de usuario puedes ver el <strong>rol activo</strong> y acceder a opciones de sesión.
           </p>
-          <ul class="bullets">
-            <li><strong>Ver mis roles:</strong> si tienes varios roles, aquí puedes cambiar de rol.</li>
-            <li><strong>Switch to another account:</strong> cambia entre cuentas/ambientes (por ejemplo, PROD vs SB) si lo tienes habilitado.</li>
-            <li><strong>Cerrar sesión:</strong> finaliza tu sesión de NetSuite.</li>
+
+          <ul>
+            <li><strong>Ver mis roles:</strong> cambiar el rol (si tienes más de uno asignado).</li>
+            <li><strong>Switch to another account:</strong> cambiar a otra cuenta/ambiente (si está habilitado).</li>
+            <li><strong>Cerrar sesión:</strong> finalizar la sesión actual.</li>
           </ul>
+
+          <div class="shot">
+            <img src="user_menu.png" alt="Menú de usuario / roles en NetSuite"/>
+            <div class="cap">
+              <strong>Así se ve el menú del usuario:</strong> opciones de rol, cuenta/ambiente y cierre de sesión.
+            </div>
+          </div>
         </div>
 
       </div>
