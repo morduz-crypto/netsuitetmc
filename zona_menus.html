@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Zona 2 — Menú principal por módulos</title>
+  <title>Zona 2 — Menú principal (íconos + módulos)</title>
 
   <style>
     :root{
@@ -16,6 +16,9 @@
       --muted:#4b5563;
       --text:#111827;
       --subtext:#374151;
+
+      --info-bg: rgba(0, 123, 255, .08);
+      --info-bd: rgba(0, 123, 255, .22);
     }
     *{ box-sizing:border-box; }
     body{
@@ -32,7 +35,7 @@
       margin-bottom:12px;
     }
     h1{ font-size:18px; margin:0; font-weight:800; letter-spacing:.2px; }
-    .meta{ font-size:12px; color:var(--muted); margin-top:4px; }
+    .meta{ font-size:12px; color:var(--muted); margin-top:4px; line-height:1.35; }
 
     .btn{
       display:inline-flex; align-items:center; gap:8px;
@@ -50,13 +53,13 @@
       overflow:hidden;
     }
 
-    /* ✅ Solo barra (no gigante) */
+    /* Solo franja */
     .stage{ position:relative; padding:12px; background:#fff; }
     .stage img{
       display:block;
       width:auto;
       max-width:100%;
-      max-height:120px;     /* controla la altura de la barra */
+      max-height:120px;
       margin:0 auto;
       user-select:none; -webkit-user-drag:none;
       border-radius:10px;
@@ -78,7 +81,7 @@
     }
 
     .tooltip{
-      position: fixed; z-index: 9999; max-width: 440px;
+      position: fixed; z-index: 9999; max-width: 480px;
       padding: 10px 12px; border-radius: 12px;
       background: rgba(255,255,255,.98);
       box-shadow: 0 18px 40px rgba(0,0,0,.20);
@@ -90,11 +93,33 @@
 
     .content{ padding:14px 16px; }
     .content h2{ margin:0 0 8px; font-size:16px; }
+    .content h3{ margin:14px 0 8px; font-size:14px; }
     .content p{ margin:0 0 10px; color:var(--subtext); line-height:1.45; }
     .content ul{ margin:0 0 10px 18px; color:var(--subtext); }
     .content li{ margin-bottom:6px; }
 
-    /* Mini shots opcionales */
+    .callout{
+      background:var(--info-bg);
+      border:1px solid var(--info-bd);
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--subtext);
+      margin:10px 0 0;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .steps{
+      margin:8px 0 0;
+      padding:10px 12px;
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:12px;
+      background:#fafafa;
+    }
+    .steps ol{ margin:0 0 0 18px; padding:0; }
+    .steps li{ margin:6px 0; }
+
+    /* Capturas controladas */
     .shot{
       margin-top:10px;
       border:1px solid rgba(0,0,0,.08);
@@ -106,7 +131,7 @@
       display:block;
       width:auto;
       max-width:100%;
-      max-height:220px;
+      max-height:320px;
       margin:10px auto 0;
       border-radius:10px;
       border:1px solid rgba(0,0,0,.06);
@@ -134,92 +159,141 @@
   <div class="wrap">
     <div class="topbar">
       <div style="width:100%;">
-        <h1>Zona 2 — Menú principal por módulos</h1>
-        <div class="meta">Esta barra es la navegación principal: accesos rápidos + módulos (menús).</div>
+        <h1>Zona 2 — Menú principal (íconos + módulos)</h1>
+        <div class="meta">
+          Aquí se navega por NetSuite: <strong>íconos rápidos</strong> (recientes/favoritos/home) + <strong>menús por módulos</strong>.
+          Pasa el mouse para ver qué hace cada parte.
+        </div>
       </div>
       <a class="btn" href="index.html">← Volver</a>
     </div>
 
-    <!-- ✅ Solo la barra -->
+    <!-- Barra (solo franja) -->
     <div class="card">
       <div class="stage">
-        <!-- TU ARCHIVO -->
-        <img id="barImg" src="menu_bar.png" alt="Barra de menú principal NetSuite"/>
+        <img src="menu_bar.png" alt="Barra principal NetSuite (menús)"/>
 
-        <!-- Hotspots (ajusta % si tu recorte queda diferente) -->
-        <!-- Reloj -->
+        <!-- Ajusta estos hotspots si tu recorte cambia -->
         <div class="hotspot"
-             style="left:24px; top:22px; width:40px; height:40px;"
+             style="left:26px; top:22px; width:40px; height:40px;"
              data-title="Reloj — Recientes"
-             data-desc="Acceso a elementos usados recientemente (por ejemplo: transacciones, listas o búsquedas que abriste hace poco).">
+             data-desc="Lista de las últimas páginas/registros/reportes que abriste. Ideal para volver sin buscar de nuevo.">
         </div>
 
-        <!-- Estrella -->
         <div class="hotspot"
-             style="left:74px; top:22px; width:40px; height:40px;"
+             style="left:78px; top:22px; width:40px; height:40px;"
              data-title="Estrella — Favoritos"
-             data-desc="Tus accesos favoritos. Normalmente se usan para guardar rutas frecuentes (por rol/usuario).">
+             data-desc="Guarda accesos directos personales (búsquedas e informes frecuentes).">
         </div>
 
-        <!-- Home -->
         <div class="hotspot"
-             style="left:124px; top:22px; width:40px; height:40px;"
+             style="left:130px; top:22px; width:40px; height:40px;"
              data-title="Casita — Home"
-             data-desc="Te devuelve a la pantalla de inicio (Home) desde cualquier parte del sistema.">
+             data-desc="Vuelve al Home. Desde el Home se accede a Preferencias del usuario (configuración personal).">
         </div>
 
-        <!-- Menús por módulos -->
         <div class="hotspot"
-             style="left:170px; top:18px; width: calc(100% - 190px); height:46px;"
+             style="left:178px; top:18px; width: calc(100% - 198px); height:46px;"
              data-title="Menús por módulos"
-             data-desc="Navegación por áreas del sistema: Actividades, Pagos, Transacciones, Listas, Informes, Configuración, etc. Al pasar el mouse se despliega el menú."
-        ></div>
+             data-desc="Acceso a procesos agrupados (Transacciones, Listas, Informes…). Al pasar el mouse se despliegan submenús.">
+        </div>
       </div>
     </div>
 
     <!-- Explicación -->
     <div class="card" style="margin-top:12px;">
       <div class="content">
-        <h2>¿Qué hace cada ícono?</h2>
 
+        <h2>Cómo funcionan los menús (lo importante)</h2>
+        <p>
+          NetSuite organiza la navegación por <strong>módulos</strong>. Cada módulo agrupa pantallas relacionadas, por ejemplo:
+        </p>
         <ul>
-          <li><strong>Reloj (Recientes):</strong> te muestra accesos a páginas o registros que usaste recientemente. Sirve para volver rápido sin navegar por menús.</li>
-          <li><strong>Estrella (Favoritos):</strong> lista de accesos guardados como favoritos. Ideal para rutas repetitivas (por ejemplo, una búsqueda guardada o un reporte que abres a diario).</li>
-          <li><strong>Casita (Home):</strong> vuelve a la pantalla principal de NetSuite (Home).</li>
+          <li><strong>Transacciones:</strong> documentos operativos (órdenes, facturas, pagos, recibos…).</li>
+          <li><strong>Listas:</strong> catálogos maestros (Clientes, Proveedores, Artículos, Empleados…).</li>
+          <li><strong>Informes:</strong> reportes estándar y guardados.</li>
+          <li><strong>Configuración:</strong> opciones administrativas (si el rol lo permite).</li>
         </ul>
 
-        <h2>Menú principal (módulos)</h2>
-        <p>
-          A la derecha de los íconos está la barra de <strong>módulos</strong>. Cada módulo agrupa acciones relacionadas.
-          Por ejemplo:
-        </p>
+        <div class="callout">
+          <strong>Nota:</strong> los menús visibles dependen del <strong>rol</strong> y permisos del usuario.
+          Por eso, dos personas pueden ver módulos distintos.
+        </div>
 
-        <ul>
-          <li><strong>Actividades:</strong> tareas, llamadas, eventos, seguimiento.</li>
-          <li><strong>Pagos:</strong> acciones relacionadas con pagos y su control (según permisos).</li>
-          <li><strong>Transacciones:</strong> procesos operativos (cotizaciones, órdenes, facturas, etc. según rol).</li>
-          <li><strong>Listas:</strong> catálogos maestros (clientes, artículos, empleados, etc. según permisos).</li>
-          <li><strong>Informes:</strong> reportes estándar y reportes guardados.</li>
-          <li><strong>Configuración:</strong> opciones administrativas (solo roles autorizados).</li>
-        </ul>
+        <h3>¿Cómo “abro” un menú?</h3>
+        <div class="steps">
+          <ol>
+            <li>Pasa el mouse por encima del módulo (ej.: <strong>Listas</strong>).</li>
+            <li>Se despliega el <strong>submenú</strong> con opciones agrupadas.</li>
+            <li>Haz clic en la opción que necesitas y entras a la pantalla / formulario.</li>
+          </ol>
+        </div>
 
-        <p>
-          <strong>Importante:</strong> lo que ves en esta barra depende del <strong>rol</strong>.
-          Por eso, dos usuarios pueden tener menús distintos.
-        </p>
-
-        <!-- OPCIONAL -->
+        <!-- Captura del hover de menú -->
         <div class="shot">
-          <img src="menu_hover_example.png" alt="Ejemplo de menú desplegado (hover)"/>
+          <img src="menu_hover_listas.png" alt="Ejemplo: Listas desplegado (submenú)"/>
           <div class="cap">
-            (Opcional) Ejemplo: al pasar el mouse sobre un módulo, se despliegan sub-opciones.
+            <strong>Ejemplo (recomendado):</strong> así se ve cuando el módulo <strong>Listas</strong> despliega opciones.
+            Aquí normalmente encuentras catálogos como <em>Clientes, Proveedores, Artículos…</em><br/>
+            <em>Archivo:</em> <code>menu_hover_listas.png</code>
           </div>
         </div>
 
-        <p style="margin-top:10px;">
-          Si quieres que quede aún más exacto, dime el ancho aproximado de tu recorte (o pásame el <code>menu_bar.png</code>)
-          y te dejo los hotspots con porcentajes perfectos.
+        <div class="shot">
+          <img src="menu_hover_transacciones.png" alt="Ejemplo: Transacciones desplegado (submenú)"/>
+          <div class="cap">
+            <strong>Ejemplo (opcional):</strong> el módulo <strong>Transacciones</strong> agrupa documentos operativos (ventas, compras, pagos, etc.).<br/>
+            <em>Archivo:</em> <code>menu_hover_transacciones.png</code>
+          </div>
+        </div>
+
+        <h2 style="margin-top:14px;">⭐ Favoritos (Estrella) — Accesos directos personales</h2>
+        <p>
+          La ⭐ guarda accesos directos para ti (no para toda la compañía). Útil para <strong>búsquedas guardadas</strong> e <strong>informes</strong> que consultas todo el tiempo.
         </p>
+
+        <h3>Cómo agregar un favorito</h3>
+        <div class="steps">
+          <ol>
+            <li>Entra a la pantalla que quieres guardar (ej.: un informe o una búsqueda guardada).</li>
+            <li>Pasa el mouse sobre la ⭐ y selecciona <strong>“Agregar acceso directo”</strong>.</li>
+            <li>Pon un <strong>Nombre</strong> claro (para que lo encuentres fácil).</li>
+            <li>Opcional: marca <strong>“Abrir en una nueva ventana”</strong> si quieres que se abra aparte.</li>
+            <li>Guarda. Desde ese momento lo verás al pasar por la ⭐.</li>
+          </ol>
+        </div>
+
+        <div class="shot">
+          <img src="favoritos_add_shortcut.png" alt="Agregar acceso directo"/>
+          <div class="cap">
+            <strong>Ventana “Agregar acceso directo”:</strong>
+            <ul>
+              <li><strong>Nombre:</strong> como se mostrará en tu lista de favoritos.</li>
+              <li><strong>Abrir en una nueva ventana:</strong> recomendado para reportes/búsquedas que consultas mientras trabajas en otra cosa.</li>
+              <li><strong>Guardar:</strong> queda asociado a tu usuario.</li>
+            </ul>
+            <em>Archivo:</em> <code>favoritos_add_shortcut.png</code>
+          </div>
+        </div>
+
+        <h2 style="margin-top:14px;">🏠 Home (Casita) — Preferencias del usuario</h2>
+        <p>
+          La casita te devuelve al <strong>Home</strong>. Desde ahí se entra a <strong>Establecer preferencias</strong>, donde cada usuario puede ajustar opciones personales.
+        </p>
+        <ul>
+          <li>Son ajustes por usuario: <strong>no le cambian nada a los demás</strong>.</li>
+          <li>Sirve, por ejemplo, para ajustar apariencia/tema (según permisos).</li>
+        </ul>
+
+        <div class="shot">
+          <img src="preferencias_apariencia.png" alt="Establecer preferencias - Apariencia"/>
+          <div class="cap">
+            <strong>Ejemplo:</strong> “Establecer preferencias” permite cambios personales del usuario.
+            Esto puede ayudar a diferenciar visualmente ambientes como <strong>SANDBOX</strong> vs <strong>Producción</strong> (según opciones habilitadas).<br/>
+            <em>Archivo:</em> <code>preferencias_apariencia.png</code>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -272,3 +346,4 @@
   </script>
 </body>
 </html>
+
