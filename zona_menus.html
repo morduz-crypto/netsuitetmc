@@ -19,6 +19,9 @@
 
       --info-bg: rgba(0, 123, 255, .08);
       --info-bd: rgba(0, 123, 255, .22);
+
+      --warn-bg: rgba(245, 158, 11, .10);
+      --warn-bd: rgba(245, 158, 11, .28);
     }
     *{ box-sizing:border-box; }
     body{
@@ -81,7 +84,7 @@
     }
 
     .tooltip{
-      position: fixed; z-index: 9999; max-width: 480px;
+      position: fixed; z-index: 9999; max-width: 520px;
       padding: 10px 12px; border-radius: 12px;
       background: rgba(255,255,255,.98);
       box-shadow: 0 18px 40px rgba(0,0,0,.20);
@@ -109,6 +112,17 @@
       line-height:1.45;
     }
 
+    .warning{
+      background:var(--warn-bg);
+      border:1px solid var(--warn-bd);
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--subtext);
+      margin:10px 0 0;
+      font-size:13px;
+      line-height:1.45;
+    }
+
     .steps{
       margin:8px 0 0;
       padding:10px 12px;
@@ -119,7 +133,7 @@
     .steps ol{ margin:0 0 0 18px; padding:0; }
     .steps li{ margin:6px 0; }
 
-    /* Capturas controladas */
+    /* Capturas controladas (NO gigantes) */
     .shot{
       margin-top:10px;
       border:1px solid rgba(0,0,0,.08);
@@ -176,20 +190,20 @@
         <!-- Ajusta estos hotspots si tu recorte cambia -->
         <div class="hotspot"
              style="left:26px; top:22px; width:40px; height:40px;"
-             data-title="Reloj — Recientes"
-             data-desc="Lista de las últimas páginas/registros/reportes que abriste. Ideal para volver sin buscar de nuevo.">
+             data-title="⏱️ Reloj — Recientes"
+             data-desc="Muestra las últimas páginas/registros/reportes que abriste. Sirve para volver rápido sin volver a navegar por el menú.">
         </div>
 
         <div class="hotspot"
              style="left:78px; top:22px; width:40px; height:40px;"
-             data-title="Estrella — Favoritos"
-             data-desc="Guarda accesos directos personales (búsquedas e informes frecuentes).">
+             data-title="⭐ Estrella — Favoritos"
+             data-desc="Guarda accesos directos personales (por ejemplo: búsquedas guardadas e informes). Lo que guardes aquí solo lo ves tú.">
         </div>
 
         <div class="hotspot"
              style="left:130px; top:22px; width:40px; height:40px;"
-             data-title="Casita — Home"
-             data-desc="Vuelve al Home. Desde el Home se accede a Preferencias del usuario (configuración personal).">
+             data-title="🏠 Casita — Home"
+             data-desc="Te lleva al Home. Desde el Home puedes entrar a Establecer preferencias (configuración personal del usuario).">
         </div>
 
         <div class="hotspot"
@@ -204,23 +218,23 @@
     <div class="card" style="margin-top:12px;">
       <div class="content">
 
-        <h2>Cómo funcionan los menús (lo importante)</h2>
+        <h2>Menús por módulos (cómo se entiende)</h2>
         <p>
-          NetSuite organiza la navegación por <strong>módulos</strong>. Cada módulo agrupa pantallas relacionadas, por ejemplo:
+          NetSuite organiza la navegación por <strong>módulos</strong>. Cada módulo agrupa pantallas relacionadas:
         </p>
         <ul>
           <li><strong>Transacciones:</strong> documentos operativos (órdenes, facturas, pagos, recibos…).</li>
           <li><strong>Listas:</strong> catálogos maestros (Clientes, Proveedores, Artículos, Empleados…).</li>
-          <li><strong>Informes:</strong> reportes estándar y guardados.</li>
+          <li><strong>Informes:</strong> reportes estándar y reportes guardados.</li>
           <li><strong>Configuración:</strong> opciones administrativas (si el rol lo permite).</li>
         </ul>
 
         <div class="callout">
-          <strong>Nota:</strong> los menús visibles dependen del <strong>rol</strong> y permisos del usuario.
+          <strong>Importante:</strong> los menús visibles dependen del <strong>rol</strong> y permisos del usuario.
           Por eso, dos personas pueden ver módulos distintos.
         </div>
 
-        <h3>¿Cómo “abro” un menú?</h3>
+        <h3>¿Cómo se abre un menú?</h3>
         <div class="steps">
           <ol>
             <li>Pasa el mouse por encima del módulo (ej.: <strong>Listas</strong>).</li>
@@ -233,23 +247,23 @@
         <div class="shot">
           <img src="menu_hover_listas.png" alt="Ejemplo: Listas desplegado (submenú)"/>
           <div class="cap">
-            <strong>Ejemplo (recomendado):</strong> así se ve cuando el módulo <strong>Listas</strong> despliega opciones.
-            Aquí normalmente encuentras catálogos como <em>Clientes, Proveedores, Artículos…</em><br/>
-            <em>Archivo:</em> <code>menu_hover_listas.png</code>
+            <strong>Ejemplo:</strong> al pasar el mouse por <strong>Listas</strong> aparece el submenú.
+            Aquí normalmente encuentras catálogos como <em>Clientes, Proveedores, Artículos…</em>
           </div>
         </div>
 
+        <!-- Opcional -->
         <div class="shot">
           <img src="menu_hover_transacciones.png" alt="Ejemplo: Transacciones desplegado (submenú)"/>
           <div class="cap">
-            <strong>Ejemplo (opcional):</strong> el módulo <strong>Transacciones</strong> agrupa documentos operativos (ventas, compras, pagos, etc.).<br/>
-            <em>Archivo:</em> <code>menu_hover_transacciones.png</code>
+            <strong>Ejemplo (opcional):</strong> <strong>Transacciones</strong> agrupa documentos operativos (ventas, compras, pagos, etc.).
           </div>
         </div>
 
         <h2 style="margin-top:14px;">⭐ Favoritos (Estrella) — Accesos directos personales</h2>
         <p>
-          La ⭐ guarda accesos directos para ti (no para toda la compañía). Útil para <strong>búsquedas guardadas</strong> e <strong>informes</strong> que consultas todo el tiempo.
+          La ⭐ sirve para guardar accesos directos <strong>solo para ti</strong>. Es especialmente útil para
+          <strong>búsquedas guardadas</strong> e <strong>informes</strong> que necesitas abrir rápido.
         </p>
 
         <h3>Cómo agregar un favorito</h3>
@@ -257,40 +271,41 @@
           <ol>
             <li>Entra a la pantalla que quieres guardar (ej.: un informe o una búsqueda guardada).</li>
             <li>Pasa el mouse sobre la ⭐ y selecciona <strong>“Agregar acceso directo”</strong>.</li>
-            <li>Pon un <strong>Nombre</strong> claro (para que lo encuentres fácil).</li>
+            <li>Escribe un <strong>Nombre</strong> claro (así lo reconoces después).</li>
             <li>Opcional: marca <strong>“Abrir en una nueva ventana”</strong> si quieres que se abra aparte.</li>
-            <li>Guarda. Desde ese momento lo verás al pasar por la ⭐.</li>
+            <li>Haz clic en <strong>Guardar</strong>. Desde ese momento lo verás al pasar por la ⭐.</li>
           </ol>
         </div>
 
         <div class="shot">
           <img src="favoritos_add_shortcut.png" alt="Agregar acceso directo"/>
           <div class="cap">
-            <strong>Ventana “Agregar acceso directo”:</strong>
+            <strong>“Agregar acceso directo”:</strong>
             <ul>
-              <li><strong>Nombre:</strong> como se mostrará en tu lista de favoritos.</li>
-              <li><strong>Abrir en una nueva ventana:</strong> recomendado para reportes/búsquedas que consultas mientras trabajas en otra cosa.</li>
+              <li><strong>Nombre:</strong> cómo se mostrará el favorito en tu lista.</li>
+              <li><strong>Abrir en una nueva ventana:</strong> útil para reportes/búsquedas que consultas mientras trabajas en otra pantalla.</li>
               <li><strong>Guardar:</strong> queda asociado a tu usuario.</li>
             </ul>
-            <em>Archivo:</em> <code>favoritos_add_shortcut.png</code>
           </div>
         </div>
 
         <h2 style="margin-top:14px;">🏠 Home (Casita) — Preferencias del usuario</h2>
         <p>
-          La casita te devuelve al <strong>Home</strong>. Desde ahí se entra a <strong>Establecer preferencias</strong>, donde cada usuario puede ajustar opciones personales.
+          La casita te devuelve al <strong>Home</strong>. Desde ahí puedes entrar a <strong>Establecer preferencias</strong>,
+          donde cada usuario ajusta opciones personales (no afectan a otros usuarios).
         </p>
-        <ul>
-          <li>Son ajustes por usuario: <strong>no le cambian nada a los demás</strong>.</li>
-          <li>Sirve, por ejemplo, para ajustar apariencia/tema (según permisos).</li>
-        </ul>
+
+        <div class="warning">
+          <strong>Tip práctico:</strong> en la pestaña <strong>Apariencia</strong> puedes cambiar el <strong>tema/color</strong>.
+          Esto ayuda a diferenciar visualmente <strong>Producción</strong> vs <strong>SANDBOX</strong> (por ejemplo, usar colores distintos).
+          El cambio queda guardado <strong>solo para tu usuario</strong>.
+        </div>
 
         <div class="shot">
           <img src="preferencias_apariencia.png" alt="Establecer preferencias - Apariencia"/>
           <div class="cap">
-            <strong>Ejemplo:</strong> “Establecer preferencias” permite cambios personales del usuario.
-            Esto puede ayudar a diferenciar visualmente ambientes como <strong>SANDBOX</strong> vs <strong>Producción</strong> (según opciones habilitadas).<br/>
-            <em>Archivo:</em> <code>preferencias_apariencia.png</code>
+            <strong>Establecer preferencias → Apariencia:</strong> puedes ajustar el tema/color del entorno, entre otras opciones.
+            Estos cambios son personales y quedan guardados para tu usuario.
           </div>
         </div>
 
@@ -346,4 +361,3 @@
   </script>
 </body>
 </html>
-
