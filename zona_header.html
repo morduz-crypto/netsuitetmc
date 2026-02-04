@@ -12,8 +12,10 @@
       --accent: #111827;
       --card: #ffffff;
       --bg: #f3f4f6;
+
       --warn-bg: rgba(245, 158, 11, .12);
       --warn-bd: rgba(245, 158, 11, .35);
+
       --info-bg: rgba(0, 123, 255, .10);
       --info-bd: rgba(0, 123, 255, .25);
     }
@@ -25,9 +27,18 @@
     }
     a{ color:#1d4ed8; text-decoration:none; font-weight:700; }
     a:hover{ text-decoration:underline; }
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      background: rgba(0,0,0,.04);
+      border: 1px solid rgba(0,0,0,.06);
+      padding: 1px 6px;
+      border-radius: 8px;
+    }
+
     .wrap{ max-width:1200px; margin:0 auto; }
 
-    .header{
+    .topbar{
       display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
       margin-bottom:12px;
     }
@@ -73,19 +84,6 @@
       user-select:none; -webkit-user-drag:none;
     }
 
-    /* ✅ Recorte para mostrar SOLO el header */
-    .crop-header{
-      height: 120px;       /* ajusta si quieres: 105–140px */
-      overflow: hidden;
-      border-bottom: 1px solid rgba(0,0,0,.06);
-    }
-    .img-crop{
-      width:100%;
-      height:auto;
-      display:block;
-      transform: translateY(0px); /* si necesitas subir/bajar: -8px, -12px, etc */
-    }
-
     .hotspot{
       position:absolute;
       border:2px solid var(--hint);
@@ -101,7 +99,7 @@
     }
 
     .tooltip{
-      position: fixed; z-index: 9999; max-width: 380px;
+      position: fixed; z-index: 9999; max-width: 420px;
       padding: 10px 12px; border-radius: 12px;
       background: rgba(255,255,255,.98);
       box-shadow: 0 18px 40px rgba(0,0,0,.20);
@@ -113,9 +111,10 @@
 
     .content{ padding:14px 16px; }
     .content h2{ margin:0 0 8px; font-size:16px; }
+    .content h3{ margin:14px 0 6px; font-size:14px; }
     .content p{ margin:0 0 10px; color:#374151; line-height:1.45; }
     .content ul{ margin:0 0 10px 18px; color:#374151; }
-    .small{ font-size:12px; color:#6b7280; }
+    .content li{ margin-bottom:6px; }
 
     .warning{
       background: var(--warn-bg);
@@ -128,6 +127,8 @@
       line-height:1.45;
     }
 
+    .divider{ height:1px; background: rgba(0,0,0,.06); margin: 12px 0; }
+
     .grid{
       display:grid;
       grid-template-columns: 1fr;
@@ -136,7 +137,6 @@
     @media (min-width: 980px){
       .grid{ grid-template-columns: 1fr 1fr; }
     }
-
     .shot{
       border:1px solid rgba(0,0,0,.08);
       border-radius:12px;
@@ -161,131 +161,177 @@
       color:#374151;
     }
 
-    .divider{ height:1px; background: rgba(0,0,0,.06); margin: 12px 0; }
+    .note{
+      background:#f9fafb;
+      border:1px solid rgba(0,0,0,.06);
+      padding:10px 12px;
+      border-radius:12px;
+      color:#374151;
+      font-size:13px;
+      line-height:1.45;
+      margin:10px 0 0;
+    }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <div class="header">
+    <div class="topbar">
       <div style="width:100%;">
         <h1>Zona 1 — Barra superior (Header) <span class="pill">v3</span></h1>
-        <div class="meta">Pasa el mouse por cada zona del header para ver qué hace.</div>
+        <div class="meta">Pasa el mouse por cada subzona para ver qué es. Abajo tienes la explicación completa.</div>
 
         <div class="intro">
-          Esta barra se muestra en la mayoría de pantallas de NetSuite. Te ayuda a <strong>identificar el ambiente</strong>,
-          <strong>buscar</strong> dentro del sistema y <strong>administrar tu sesión</strong> (usuario/rol, ayuda, comentarios, etc.).
+          Esta barra aparece en la mayoría de pantallas de NetSuite y sirve para:
+          <strong>identificar el ambiente</strong>, <strong>buscar</strong> rápidamente dentro del sistema,
+          y <strong>gestionar tu sesión</strong> (usuario/rol, ayuda, comentarios, etc.).
         </div>
       </div>
 
       <a class="btn" href="index.html">← Volver</a>
     </div>
 
-    <!-- ✅ SOLO se ve el header (recorte) -->
+    <!-- ✅ Imagen principal: SOLO el header -->
     <div class="card">
-      <div class="stage crop-header">
-        <img src="netsuite_home.png" alt="Captura Home NetSuite" class="img-crop"/>
+      <div class="stage">
+        <img src="header_prod.png" alt="Header NetSuite (Producción)"/>
 
-        <!-- Resaltado general del header (100% del recorte) -->
+        <!-- Resaltado general del header -->
         <div class="hotspot"
              style="left:0%; top:0%; width:100%; height:100%; border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.10);">
         </div>
 
-        <!-- Subzonas del header (solo hover, sin click) -->
+        <!-- Subzonas del header (hover) -->
         <div class="hotspot"
           style="left:0%; top:0%; width:34%; height:100%;"
           data-title="Izquierda: Logo / ambiente / atajos"
-          data-desc="Logo TMC, indicador de ambiente (Producción o SANDBOX) y accesos rápidos (incluye el botón de hojita con + para crear cosas rápido).">
+          data-desc="Logo TMC, (si aplica) indicador de ambiente como SANDBOX y accesos rápidos como el botón de hojita con + para crear cosas rápido.">
         </div>
 
         <div class="hotspot"
           style="left:34%; top:0%; width:41%; height:100%;"
           data-title="Centro: Buscador global"
-          data-desc="Busca registros, transacciones y entidades dentro de NetSuite. Útil para ir directo sin navegar por menús.">
+          data-desc="Busca registros, transacciones y entidades dentro de NetSuite. Puedes usar búsquedas directas o búsquedas con prefijos como 'proveedor:' para filtrar el tipo de resultado.">
         </div>
 
         <div class="hotspot"
           style="left:75%; top:0%; width:25%; height:100%;"
           data-title="Derecha: Ayuda / Comentarios / Usuario y rol"
-          data-desc="Ayuda abre documentación de NetSuite. Comentarios permite enviar feedback/satisfacción. En el nombre puedes ver tu rol activo, cambiar rol (si aplica) y cerrar sesión.">
+          data-desc="Ayuda abre la documentación de NetSuite. Comentarios permite enviar feedback. En el nombre puedes ver tu usuario/rol, cambiar rol (si aplica) y cerrar sesión.">
         </div>
       </div>
     </div>
 
+    <!-- Explicación completa -->
     <div class="card" style="margin-top:12px;">
       <div class="content">
-        <h2>Qué cubre esta zona</h2>
+        <h2>Explicación completa (por partes)</h2>
+
+        <h3>1) Logo TMC + Ambiente (Producción vs SANDBOX)</h3>
+        <p>
+          A la izquierda normalmente verás el <strong>logo de TMC</strong>. Este header te ayuda a confirmar
+          en qué ambiente estás trabajando.
+        </p>
         <ul>
-          <li><strong>Identificación del ambiente:</strong> saber si estás en Producción o en <strong>SANDBOX</strong> (pruebas).</li>
-          <li><strong>Búsqueda global:</strong> encontrar rápidamente clientes, facturas, órdenes, ítems, etc.</li>
-          <li><strong>Atajos:</strong> creación rápida (icono de hoja con <strong>+</strong>) y accesos frecuentes.</li>
-          <li><strong>Contexto de sesión:</strong> usuario, rol, ayuda y comentarios.</li>
+          <li><strong>Producción:</strong> es el ambiente real. Lo que hagas aquí impacta datos reales.</li>
+          <li><strong>SANDBOX:</strong> es el ambiente de pruebas. Se identifica porque aparece el texto <strong>SANDBOX</strong> en el header.</li>
         </ul>
 
         <div class="warning">
-          <strong>⚠️ Ojo con SANDBOX:</strong> SANDBOX es nuestro <strong>ambiente de pruebas</strong>.
-          Sirve para validar cambios sin afectar la operación real.  
-          Si haces vainas acá estás probando 😅 — igual confirma el ambiente antes de ejecutar acciones importantes.
+          <strong>⚠️ Ojo con SANDBOX:</strong> SANDBOX es para probar sin dañar producción… pero igual no te confíes:
+          confirma el ambiente antes de hacer cosas “peligrosas” (crear, borrar, aprobar, etc.) 😅
         </div>
 
         <div class="divider"></div>
 
-        <h2>Ejemplos visuales del Header</h2>
-        <p class="small">
-          Estas imágenes ayudan a reconocer cada elemento del header.
+        <h3>2) Buscador global (cómo buscar “cualquier cosa”)</h3>
+        <p>
+          El <strong>buscador global</strong> te permite encontrar información sin navegar por menús. Sirve para ubicar rápidamente
+          <strong>clientes</strong>, <strong>proveedores</strong>, <strong>facturas</strong>, <strong>órdenes</strong>, <strong>ítems</strong>, etc.
         </p>
+
+        <ul>
+          <li><strong>Búsqueda directa:</strong> escribe un nombre o número y presiona Enter (ej. un número de factura o el nombre de un cliente).</li>
+          <li><strong>Usar “%” como atajo:</strong> en muchos roles/configuraciones, escribir <code>%</code> abre/filtra accesos de búsqueda rápida (tipo “comandos”). Úsalo cuando quieras moverte rápido sin mouse.</li>
+          <li><strong>Búsqueda por tipo con prefijos:</strong> puedes filtrar el tipo de resultado escribiendo algo como:
+            <ul>
+              <li><code>proveedor: lab</code> → enfoca la búsqueda en proveedores.</li>
+              <li><code>cliente: clinica</code> → enfoca la búsqueda en clientes.</li>
+              <li><code>factura: 12345</code> → enfoca la búsqueda en facturas por número.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="note">
+          <strong>Tip:</strong> el buscador es tu mejor amigo para usuarios nuevos. Si no sabes dónde está algo en el menú,
+          búscalo y entra directo.
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>3) Hojita con “+” (creación rápida) y personalización</h3>
+        <p>
+          El icono de la <strong>hojita con +</strong> sirve para <strong>crear cosas rápido</strong> sin ir a los menús.
+          Por ejemplo: Evento, Llamada, Tarea, Cliente, Contacto, Factura, etc.
+        </p>
+        <ul>
+          <li>Es útil para el día a día cuando ya sabes qué necesitas crear.</li>
+          <li>Se puede <strong>personalizar</strong> para que salgan solo las opciones que tu rol usa (y en el orden que prefieras).</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3>4) Ayuda, Comentarios y Usuario/Rol</h3>
+        <ul>
+          <li><strong>Ayuda:</strong> te lleva a la biblioteca/documentación oficial de NetSuite (guías, artículos, etc.).</li>
+          <li><strong>Comentarios:</strong> sirve para enviar retroalimentación o satisfacción al proveedor NetSuite (cuando aplique).</li>
+          <li><strong>Nombre del usuario / rol:</strong> desde ahí normalmente puedes:
+            <ul>
+              <li>Ver el <strong>rol activo</strong> (por ejemplo: Administrador, Auxiliar, etc.).</li>
+              <li><strong>Cambiar de rol</strong> si tienes más de uno asignado.</li>
+              <li><strong>Cerrar sesión</strong>.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h2>Imágenes de referencia</h2>
+        <p class="small">Estas capturas refuerzan lo anterior (producción/sandbox y el menú del “+”).</p>
 
         <div class="grid">
           <div class="shot">
             <img src="header_prod.png" alt="Header en Producción (ejemplo)"/>
             <div class="cap">
-              <p class="title">1) Producción (ambiente real)</p>
-              <p class="text">
-                Verás el header normal con el logo de TMC. En este ambiente las acciones impactan datos reales.
-              </p>
+              <p class="title">Producción (ambiente real)</p>
+              <p class="text">Header típico con logo TMC. Acciones impactan datos reales.</p>
             </div>
           </div>
 
           <div class="shot">
             <img src="header_sandbox.png" alt="Header en SANDBOX (ejemplo)"/>
             <div class="cap">
-              <p class="title">2) SANDBOX (ambiente de pruebas)</p>
-              <p class="text">
-                En SANDBOX aparece el indicador <strong>SANDBOX</strong>. Úsalo para probar procesos, formularios o configuraciones sin afectar producción.
-              </p>
+              <p class="title">SANDBOX (ambiente de pruebas)</p>
+              <p class="text">Se ve el indicador <strong>SANDBOX</strong>. Úsalo para pruebas sin afectar producción.</p>
             </div>
           </div>
 
           <div class="shot">
             <img src="quickadd_menu.png" alt="Menú de creación rápida (hojita con +)"/>
             <div class="cap">
-              <p class="title">3) Atajo “+” (creación rápida)</p>
-              <p class="text">
-                El icono de la <strong>hojita con +</strong> permite crear rápidamente elementos comunes (Evento, Llamada, Tarea, Cliente, Contacto, Factura, etc.).
-              </p>
+              <p class="title">Menú del “+” (creación rápida)</p>
+              <p class="text">Crear rápido Evento, Llamada, Tarea, Cliente, Contacto, Factura…</p>
             </div>
           </div>
 
           <div class="shot">
-            <img src="quickadd_config.png" alt="Configuración de la barra nueva / personalización"/>
+            <img src="quickadd_config.png" alt="Configuración / personalización del menú del +"/>
             <div class="cap">
-              <p class="title">4) Personalización del “+” (qué aparece en el menú)</p>
-              <p class="text">
-                Aquí se define qué opciones se muestran en el menú de creación rápida y en qué orden. Útil para adaptar el sistema a cada rol/equipo.
-              </p>
+              <p class="title">Personalización del “+”</p>
+              <p class="text">Define qué opciones salen y en qué orden, según rol/equipo.</p>
             </div>
           </div>
         </div>
-
-        <div class="divider"></div>
-
-        <h2>Notas rápidas</h2>
-        <ul>
-          <li><strong>Buscador global:</strong> te permite buscar “cualquier cosa” dentro de NetSuite; también existen atajos (por ejemplo, usando <strong>%</strong> según configuración/roles) para acelerar navegación.</li>
-          <li><strong>Ayuda:</strong> te lleva a la biblioteca de información/documentación de NetSuite.</li>
-          <li><strong>Comentarios:</strong> sirve para enviar retroalimentación/satisfacción al proveedor NetSuite.</li>
-          <li><strong>Usuario / Rol:</strong> desde el nombre puedes ver el rol activo; si tienes más de un rol, puedes cambiarlo (cuando aplique) y también cerrar sesión.</li>
-        </ul>
       </div>
     </div>
   </div>
