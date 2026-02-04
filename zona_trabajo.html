@@ -3,80 +3,102 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Zona 3 — Área de trabajo (dashboard + formularios)</title>
-  <style>
-:root{
-  --hint: rgba(0, 123, 255, .14);
-  --hint-strong: rgba(0, 123, 255, .28);
-  --accent: #111827;
-  --card: #ffffff;
-  --bg: #f3f4f6;
-}
-*{ box-sizing:border-box; }
-body{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  margin:0; padding:18px; background:var(--bg); color:#111827;
-}
-a{ color:#1d4ed8; text-decoration:none; }
-a:hover{ text-decoration:underline; }
-.wrap{ max-width:1200px; margin:0 auto; }
-.header{
-  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px;
-}
-h1{ font-size:18px; margin:0; }
-.meta{ font-size:12px; color:#4b5563; }
-.pill{
-  display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
-  background:#eef2ff; color:#3730a3; border:1px solid rgba(55,48,163,.15); margin-left:6px;
-}
-.card{
-  background:var(--card);
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,.06);
-  overflow:hidden;
-}
-.stage{ position:relative; }
-.stage img{ width:100%; height:auto; display:block; user-select:none; -webkit-user-drag:none; }
-.hotspot{
-  position:absolute; border:2px solid var(--hint); background:transparent; border-radius:12px; cursor:pointer;
-  transition: background .12s ease, border-color .12s ease, transform .12s ease;
-}
-.hotspot:hover{ background:var(--hint); border-color:var(--hint-strong); transform: translateY(-1px); }
-.tooltip{
-  position: fixed; z-index: 9999; max-width: 360px;
-  padding: 10px 12px; border-radius: 12px;
-  background: rgba(255,255,255,.98);
-  box-shadow: 0 18px 40px rgba(0,0,0,.20);
-  border: 1px solid rgba(0,0,0,.08);
-  display: none; pointer-events: none;
-}
-.tooltip .t{ font-weight:700; margin-bottom:4px; font-size:13px; }
-.tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
-.btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
-  border:1px solid rgba(0,0,0,.1);
-}
-.btn:hover{ opacity:.92; text-decoration:none; }
-.content{ padding:14px 16px; }
-.content h2{ margin:0 0 8px; font-size:16px; }
-.content p{ margin:0 0 10px; color:#374151; line-height:1.45; }
-.content ul{ margin:0 0 10px 18px; color:#374151; }
-.small{ font-size:12px; color:#6b7280; }
-.callout{
-  background:#f9fafb; border:1px solid rgba(0,0,0,.06);
-  padding:10px 12px; border-radius:12px; color:#374151; font-size:13px; margin:10px 0 0;
-}
-</style>
-</head>
-<body>
+  <title>Zona 3 — Área de trabajo (Home/Dashboard + formularios)</title>
 
+  <style>
+    :root{
+      --hint: rgba(0, 123, 255, .14);
+      --hint-strong: rgba(0, 123, 255, .28);
+      --accent: #111827;
+      --card: #ffffff;
+      --bg: #f3f4f6;
+      --muted:#4b5563;
+      --text:#111827;
+      --subtext:#374151;
+
+      --info-bg: rgba(0,123,255,.08);
+      --info-bd: rgba(0,123,255,.22);
+    }
+    *{ box-sizing:border-box; }
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin:0; padding:18px; background:var(--bg); color:var(--text);
+    }
+    a{ color:#1d4ed8; text-decoration:none; font-weight:700; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{ max-width:1200px; margin:0 auto; }
+    .header{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:12px;
+    }
+    h1{ font-size:18px; margin:0; font-weight:800; letter-spacing:.2px; }
+    .meta{ font-size:12px; color:var(--muted); margin-top:4px; line-height:1.35; }
+
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
+      border:1px solid rgba(0,0,0,.1);
+      white-space:nowrap;
+    }
+    .btn:hover{ opacity:.92; text-decoration:none; }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:12px;
+      box-shadow:0 10px 25px rgba(0,0,0,.06);
+      overflow:hidden;
+    }
+
+    .stage{ position:relative; }
+    .stage img{ width:100%; height:auto; display:block; user-select:none; -webkit-user-drag:none; }
+
+    .hotspot{
+      position:absolute;
+      border:2px solid var(--hint);
+      background:transparent;
+      border-radius:12px;
+      cursor:default;
+      transition: background .12s ease, border-color .12s ease, transform .12s ease;
+    }
+    .hotspot:hover{ background:var(--hint); border-color:var(--hint-strong); transform: translateY(-1px); }
+
+    .tooltip{
+      position: fixed; z-index: 9999; max-width: 420px;
+      padding: 10px 12px; border-radius: 12px;
+      background: rgba(255,255,255,.98);
+      box-shadow: 0 18px 40px rgba(0,0,0,.20);
+      border: 1px solid rgba(0,0,0,.08);
+      display: none; pointer-events: none;
+    }
+    .tooltip .t{ font-weight:800; margin-bottom:4px; font-size:13px; }
+    .tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
+
+    .content{ padding:14px 16px; }
+    .content h2{ margin:0 0 8px; font-size:16px; }
+    .content h3{ margin:14px 0 8px; font-size:14px; }
+    .content p{ margin:0 0 10px; color:var(--subtext); line-height:1.45; }
+    .content ul{ margin:0 0 10px 18px; color:var(--subtext); }
+    .content li{ margin-bottom:6px; }
+
+    .callout{
+      background:var(--info-bg);
+      border:1px solid var(--info-bd);
+      padding:10px 12px; border-radius:12px;
+      color:var(--subtext); font-size:13px; line-height:1.45;
+      margin:10px 0 0;
+    }
+  </style>
+</head>
+
+<body>
 <div class="wrap">
   <div class="header">
     <div>
-      <h1>Zona 3 — Área de trabajo (dashboard + formularios)</h1>
-      <div class="meta">Hover = sub‑secciones · Click = más detalle</div>
+      <h1>Zona 3 — Área de trabajo (Home/Dashboard + formularios)</h1>
+      <div class="meta">
+        Esta es la zona principal donde interactúas con NetSuite: Home (dashboard), formularios, listas, búsquedas e informes.
+      </div>
     </div>
     <a class="btn" href="index.html">← Volver</a>
   </div>
@@ -84,17 +106,77 @@ h1{ font-size:18px; margin:0; }
   <div class="card">
     <div class="stage">
       <img src="netsuite_home.png" alt="Captura Home NetSuite"/>
-      <div class="hotspot" style="left:0%; top:17.5%; width:100%; height:82.5%; border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.12); cursor: default;"></div>
-      <div class="hotspot" style="left:36%; top:17.5%; width:64%; height:4.5%;" data-title="Menú del dashboard" data-desc="Visualización / personalizar / diseño del Home." data-href="comp_trabajo_menudash.html"></div>
-<div class="hotspot" style="left:0%; top:22%; width:100%; height:78%;" data-title="Contenido principal" data-desc="Portlets, formularios y resultados." data-href="comp_trabajo_contenido.html"></div>
+
+      <!-- Marco general zona de trabajo (ajusta si necesitas) -->
+      <div class="hotspot"
+           style="left:0%; top:17.5%; width:100%; height:82.5%;
+                  border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.10);">
+      </div>
+
+      <!-- Controles del Home -->
+      <div class="hotspot"
+           style="left:36%; top:17.5%; width:64%; height:4.5%;"
+           data-title="Controles del Home (Dashboard)"
+           data-desc="Opciones del Home como Visualización, Personalizar y Diseño. Se usan para ajustar cómo se muestra el dashboard (según permisos).">
+      </div>
+
+      <!-- Contenido principal -->
+      <div class="hotspot"
+           style="left:0%; top:22%; width:100%; height:78%;"
+           data-title="Área de trabajo"
+           data-desc="Aquí ves el contenido principal: portlets del dashboard (Home) o, cuando navegas, formularios, búsquedas, listas e informes.">
+      </div>
     </div>
   </div>
 
   <div class="card" style="margin-top:12px;">
     <div class="content">
-      <p>Aquí es donde el usuario ve y opera: dashboard, portlets, resultados y formularios.</p><p>En esta zona normalmente vas a ver tanto el Home (portlets) como cualquier pantalla que abras: registros maestros, transacciones y entidades.</p>
-      <h2>Qué cubre esta zona</h2>
-      <ul><li>Dashboard de inicio (portlets, KPIs, recordatorios).</li><li>Formularios de NetSuite (registros, transacciones, entidades).</li><li>Resultados de búsquedas, listas y páginas de proceso.</li></ul>
+
+      <h2>¿Qué es el Home (Dashboard)?</h2>
+      <p>
+        Cuando das clic en la <strong>casita 🏠</strong>, NetSuite te lleva al <strong>Home</strong>, también llamado <strong>Dashboard</strong>.
+        Piensa en el dashboard como un <strong>tablero de inicio</strong> con bloques de información.
+      </p>
+
+      <h3>¿Qué son los portlets?</h3>
+      <p>
+        Los <strong>portlets</strong> son los “bloques” dentro del dashboard: KPIs, recordatorios, gráficos, búsquedas rápidas o reportes.
+        Se usan para tener información clave a la vista sin entrar a menús.
+      </p>
+
+      <div class="callout">
+        <strong>Importante:</strong> dependiendo del rol, el dashboard puede venir <strong>preconfigurado</strong> (igual para el equipo)
+        o permitir <strong>personalización por usuario</strong> (cada persona lo ajusta a su gusto: mover, agregar o quitar portlets).
+      </div>
+
+      <h2 style="margin-top:14px;">Cuando sales del Home: formularios, búsquedas e informes</h2>
+      <p>
+        Si navegas por los menús (Transacciones, Listas, Informes…) o usas el buscador global, esa misma zona se convierte en tu
+        <strong>área de trabajo</strong>. Aquí es donde:
+      </p>
+
+      <ul>
+        <li>abres <strong>formularios</strong> para crear/editar información (clientes, facturas, órdenes, etc.).</li>
+        <li>ves <strong>listas</strong> y <strong>resultados</strong> de búsquedas (con filtros y columnas).</li>
+        <li>consultas <strong>informes</strong> y reportes guardados.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Resumen:</strong> Zona 3 es “la pantalla donde trabajas”. Puede verse como <strong>Dashboard</strong> (cuando estás en Home)
+        o como <strong>formularios/resultados</strong> (cuando navegas o buscas).
+      </div>
+
+      <!-- IMÁGENES OPCIONALES (si las quieres, tú las creas y las agregas)
+      <div class="callout" style="margin-top:12px;">
+        Si quieres dejarlo más visual, puedes agregar estas capturas:
+        <ul style="margin:8px 0 0 18px;">
+          <li><code>dashboard_portlets.png</code> — ejemplo de portlets (KPIs/recordatorios).</li>
+          <li><code>formulario_ejemplo.png</code> — ejemplo de un formulario (Cliente / Factura).</li>
+          <li><code>busqueda_resultados.png</code> — ejemplo de resultados de una búsqueda guardada.</li>
+        </ul>
+      </div>
+      -->
+
     </div>
   </div>
 </div>
@@ -111,6 +193,7 @@ h1{ font-size:18px; margin:0; }
   const ttDesc  = document.getElementById('ttDesc');
 
   function show(e, title, desc){
+    if(!title && !desc) return;
     ttTitle.textContent = title || '';
     ttDesc.textContent  = desc  || '';
     tooltip.style.display = 'block';
@@ -134,10 +217,6 @@ h1{ font-size:18px; margin:0; }
     hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
     hs.addEventListener('mousemove', (e) => move(e));
     hs.addEventListener('mouseleave', hide);
-    hs.addEventListener('click', () => {
-      const href = hs.dataset.href;
-      if (href) window.location.href = href;
-    });
   });
   window.addEventListener('scroll', hide, { passive: true });
 })();
