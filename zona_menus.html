@@ -4,143 +4,271 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Zona 2 — Menú principal por módulos</title>
+
   <style>
-:root{
-  --hint: rgba(0, 123, 255, .14);
-  --hint-strong: rgba(0, 123, 255, .28);
-  --accent: #111827;
-  --card: #ffffff;
-  --bg: #f3f4f6;
-}
-*{ box-sizing:border-box; }
-body{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  margin:0; padding:18px; background:var(--bg); color:#111827;
-}
-a{ color:#1d4ed8; text-decoration:none; }
-a:hover{ text-decoration:underline; }
-.wrap{ max-width:1200px; margin:0 auto; }
-.header{
-  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px;
-}
-h1{ font-size:18px; margin:0; }
-.meta{ font-size:12px; color:#4b5563; }
-.pill{
-  display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
-  background:#eef2ff; color:#3730a3; border:1px solid rgba(55,48,163,.15); margin-left:6px;
-}
-.card{
-  background:var(--card);
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,.06);
-  overflow:hidden;
-}
-.stage{ position:relative; }
-.stage img{ width:100%; height:auto; display:block; user-select:none; -webkit-user-drag:none; }
-.hotspot{
-  position:absolute; border:2px solid var(--hint); background:transparent; border-radius:12px; cursor:pointer;
-  transition: background .12s ease, border-color .12s ease, transform .12s ease;
-}
-.hotspot:hover{ background:var(--hint); border-color:var(--hint-strong); transform: translateY(-1px); }
-.tooltip{
-  position: fixed; z-index: 9999; max-width: 360px;
-  padding: 10px 12px; border-radius: 12px;
-  background: rgba(255,255,255,.98);
-  box-shadow: 0 18px 40px rgba(0,0,0,.20);
-  border: 1px solid rgba(0,0,0,.08);
-  display: none; pointer-events: none;
-}
-.tooltip .t{ font-weight:700; margin-bottom:4px; font-size:13px; }
-.tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
-.btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
-  border:1px solid rgba(0,0,0,.1);
-}
-.btn:hover{ opacity:.92; text-decoration:none; }
-.content{ padding:14px 16px; }
-.content h2{ margin:0 0 8px; font-size:16px; }
-.content p{ margin:0 0 10px; color:#374151; line-height:1.45; }
-.content ul{ margin:0 0 10px 18px; color:#374151; }
-.small{ font-size:12px; color:#6b7280; }
-.callout{
-  background:#f9fafb; border:1px solid rgba(0,0,0,.06);
-  padding:10px 12px; border-radius:12px; color:#374151; font-size:13px; margin:10px 0 0;
-}
-</style>
+    :root{
+      --hint: rgba(0, 123, 255, .14);
+      --hint-strong: rgba(0, 123, 255, .28);
+      --accent: #111827;
+      --card: #ffffff;
+      --bg: #f3f4f6;
+
+      --muted:#4b5563;
+      --text:#111827;
+      --subtext:#374151;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin:0; padding:18px; background:var(--bg); color:var(--text);
+    }
+    a{ color:#1d4ed8; text-decoration:none; font-weight:700; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{ max-width:1200px; margin:0 auto; }
+
+    .topbar{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+      margin-bottom:12px;
+    }
+    h1{ font-size:18px; margin:0; font-weight:800; letter-spacing:.2px; }
+    .meta{ font-size:12px; color:var(--muted); margin-top:4px; }
+
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
+      border:1px solid rgba(0,0,0,.1);
+      white-space:nowrap;
+    }
+    .btn:hover{ opacity:.92; text-decoration:none; }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:12px;
+      box-shadow:0 10px 25px rgba(0,0,0,.06);
+      overflow:hidden;
+    }
+
+    /* ✅ Solo barra (no gigante) */
+    .stage{ position:relative; padding:12px; background:#fff; }
+    .stage img{
+      display:block;
+      width:auto;
+      max-width:100%;
+      max-height:120px;     /* controla la altura de la barra */
+      margin:0 auto;
+      user-select:none; -webkit-user-drag:none;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .hotspot{
+      position:absolute;
+      border:2px solid var(--hint);
+      background:transparent;
+      border-radius:12px;
+      cursor:default;
+      transition: background .12s ease, border-color .12s ease, transform .12s ease;
+    }
+    .hotspot:hover{
+      background:var(--hint);
+      border-color:var(--hint-strong);
+      transform: translateY(-1px);
+    }
+
+    .tooltip{
+      position: fixed; z-index: 9999; max-width: 440px;
+      padding: 10px 12px; border-radius: 12px;
+      background: rgba(255,255,255,.98);
+      box-shadow: 0 18px 40px rgba(0,0,0,.20);
+      border: 1px solid rgba(0,0,0,.08);
+      display: none; pointer-events: none;
+    }
+    .tooltip .t{ font-weight:800; margin-bottom:4px; font-size:13px; }
+    .tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
+
+    .content{ padding:14px 16px; }
+    .content h2{ margin:0 0 8px; font-size:16px; }
+    .content p{ margin:0 0 10px; color:var(--subtext); line-height:1.45; }
+    .content ul{ margin:0 0 10px 18px; color:var(--subtext); }
+    .content li{ margin-bottom:6px; }
+
+    /* Mini shots opcionales */
+    .shot{
+      margin-top:10px;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:12px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .shot img{
+      display:block;
+      width:auto;
+      max-width:100%;
+      max-height:220px;
+      margin:10px auto 0;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .shot .cap{
+      padding:10px 12px;
+      border-top:1px solid rgba(0,0,0,.06);
+      color:#374151;
+      font-size:12.5px;
+      line-height:1.45;
+    }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      background: rgba(0,0,0,.04);
+      border: 1px solid rgba(0,0,0,.06);
+      padding: 1px 6px;
+      border-radius: 8px;
+    }
+  </style>
 </head>
+
 <body>
-
-<div class="wrap">
-  <div class="header">
-    <div>
-      <h1>Zona 2 — Menú principal por módulos</h1>
-      <div class="meta">Hover = sub‑secciones · Click = más detalle</div>
+  <div class="wrap">
+    <div class="topbar">
+      <div style="width:100%;">
+        <h1>Zona 2 — Menú principal por módulos</h1>
+        <div class="meta">Esta barra es la navegación principal: accesos rápidos + módulos (menús).</div>
+      </div>
+      <a class="btn" href="index.html">← Volver</a>
     </div>
-    <a class="btn" href="index.html">← Volver</a>
+
+    <!-- ✅ Solo la barra -->
+    <div class="card">
+      <div class="stage">
+        <!-- TU ARCHIVO -->
+        <img id="barImg" src="menu_bar.png" alt="Barra de menú principal NetSuite"/>
+
+        <!-- Hotspots (ajusta % si tu recorte queda diferente) -->
+        <!-- Reloj -->
+        <div class="hotspot"
+             style="left:24px; top:22px; width:40px; height:40px;"
+             data-title="Reloj — Recientes"
+             data-desc="Acceso a elementos usados recientemente (por ejemplo: transacciones, listas o búsquedas que abriste hace poco).">
+        </div>
+
+        <!-- Estrella -->
+        <div class="hotspot"
+             style="left:74px; top:22px; width:40px; height:40px;"
+             data-title="Estrella — Favoritos"
+             data-desc="Tus accesos favoritos. Normalmente se usan para guardar rutas frecuentes (por rol/usuario).">
+        </div>
+
+        <!-- Home -->
+        <div class="hotspot"
+             style="left:124px; top:22px; width:40px; height:40px;"
+             data-title="Casita — Home"
+             data-desc="Te devuelve a la pantalla de inicio (Home) desde cualquier parte del sistema.">
+        </div>
+
+        <!-- Menús por módulos -->
+        <div class="hotspot"
+             style="left:170px; top:18px; width: calc(100% - 190px); height:46px;"
+             data-title="Menús por módulos"
+             data-desc="Navegación por áreas del sistema: Actividades, Pagos, Transacciones, Listas, Informes, Configuración, etc. Al pasar el mouse se despliega el menú."
+        ></div>
+      </div>
+    </div>
+
+    <!-- Explicación -->
+    <div class="card" style="margin-top:12px;">
+      <div class="content">
+        <h2>¿Qué hace cada ícono?</h2>
+
+        <ul>
+          <li><strong>Reloj (Recientes):</strong> te muestra accesos a páginas o registros que usaste recientemente. Sirve para volver rápido sin navegar por menús.</li>
+          <li><strong>Estrella (Favoritos):</strong> lista de accesos guardados como favoritos. Ideal para rutas repetitivas (por ejemplo, una búsqueda guardada o un reporte que abres a diario).</li>
+          <li><strong>Casita (Home):</strong> vuelve a la pantalla principal de NetSuite (Home).</li>
+        </ul>
+
+        <h2>Menú principal (módulos)</h2>
+        <p>
+          A la derecha de los íconos está la barra de <strong>módulos</strong>. Cada módulo agrupa acciones relacionadas.
+          Por ejemplo:
+        </p>
+
+        <ul>
+          <li><strong>Actividades:</strong> tareas, llamadas, eventos, seguimiento.</li>
+          <li><strong>Pagos:</strong> acciones relacionadas con pagos y su control (según permisos).</li>
+          <li><strong>Transacciones:</strong> procesos operativos (cotizaciones, órdenes, facturas, etc. según rol).</li>
+          <li><strong>Listas:</strong> catálogos maestros (clientes, artículos, empleados, etc. según permisos).</li>
+          <li><strong>Informes:</strong> reportes estándar y reportes guardados.</li>
+          <li><strong>Configuración:</strong> opciones administrativas (solo roles autorizados).</li>
+        </ul>
+
+        <p>
+          <strong>Importante:</strong> lo que ves en esta barra depende del <strong>rol</strong>.
+          Por eso, dos usuarios pueden tener menús distintos.
+        </p>
+
+        <!-- OPCIONAL -->
+        <div class="shot">
+          <img src="menu_hover_example.png" alt="Ejemplo de menú desplegado (hover)"/>
+          <div class="cap">
+            (Opcional) Ejemplo: al pasar el mouse sobre un módulo, se despliegan sub-opciones.
+          </div>
+        </div>
+
+        <p style="margin-top:10px;">
+          Si quieres que quede aún más exacto, dime el ancho aproximado de tu recorte (o pásame el <code>menu_bar.png</code>)
+          y te dejo los hotspots con porcentajes perfectos.
+        </p>
+      </div>
+    </div>
   </div>
 
-  <div class="card">
-    <div class="stage">
-      <img src="netsuite_home.png" alt="Captura Home NetSuite"/>
-      <div class="hotspot" style="left:0%; top:11%; width:100%; height:6.5%; border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.12); cursor: default;"></div>
-      
-    </div>
+  <!-- Tooltip -->
+  <div class="tooltip" id="tooltip" role="tooltip">
+    <div class="t" id="ttTitle"></div>
+    <div class="d" id="ttDesc"></div>
   </div>
 
-  <div class="card" style="margin-top:12px;">
-    <div class="content">
-      <p>Esta barra es la navegación principal. Aquí eliges a qué módulo/proceso vas (por ejemplo: Transacciones, Informes, etc.).</p><p>Los ítems visibles dependen del rol; por eso, dos usuarios pueden ver menús distintos.</p>
-      <h2>Qué cubre esta zona</h2>
-      <ul><li>Entrar a procesos (ventas, compras, inventario, cartera, etc.).</li><li>Ir a listas y búsquedas guardadas.</li><li>Abrir reportes y analítica.</li><li>Acceder a configuración (si el rol lo permite).</li></ul>
-    </div>
-  </div>
-</div>
+  <script>
+    (function(){
+      const tooltip = document.getElementById('tooltip');
+      const ttTitle = document.getElementById('ttTitle');
+      const ttDesc  = document.getElementById('ttDesc');
 
-<div class="tooltip" id="tooltip" role="tooltip">
-  <div class="t" id="ttTitle"></div>
-  <div class="d" id="ttDesc"></div>
-</div>
+      function show(e, title, desc){
+        if(!title && !desc) return;
+        ttTitle.textContent = title || '';
+        ttDesc.textContent  = desc  || '';
+        tooltip.style.display = 'block';
+        move(e);
+      }
+      function hide(){ tooltip.style.display = 'none'; }
 
-<script>
-(function(){
-  const tooltip = document.getElementById('tooltip');
-  const ttTitle = document.getElementById('ttTitle');
-  const ttDesc  = document.getElementById('ttDesc');
+      function move(e){
+        const pad = 14;
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        const r = tooltip.getBoundingClientRect();
 
-  function show(e, title, desc){
-    ttTitle.textContent = title || '';
-    ttDesc.textContent  = desc  || '';
-    tooltip.style.display = 'block';
-    move(e);
-  }
-  function hide(){ tooltip.style.display = 'none'; }
-  function move(e){
-    const pad = 14;
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    const r = tooltip.getBoundingClientRect();
-    let x = e.clientX + pad;
-    let y = e.clientY + pad;
-    if (x + r.width  > vw - 8) x = e.clientX - r.width - pad;
-    if (y + r.height > vh - 8) y = e.clientY - r.height - pad;
-    tooltip.style.left = Math.max(8, x) + 'px';
-    tooltip.style.top  = Math.max(8, y) + 'px';
-  }
+        let x = e.clientX + pad;
+        let y = e.clientY + pad;
 
-  document.querySelectorAll('.hotspot').forEach(hs => {
-    hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
-    hs.addEventListener('mousemove', (e) => move(e));
-    hs.addEventListener('mouseleave', hide);
-    hs.addEventListener('click', () => {
-      const href = hs.dataset.href;
-      if (href) window.location.href = href;
-    });
-  });
-  window.addEventListener('scroll', hide, { passive: true });
-})();
-</script>
+        if (x + r.width  > vw - 8) x = e.clientX - r.width - pad;
+        if (y + r.height > vh - 8) y = e.clientY - r.height - pad;
 
+        tooltip.style.left = Math.max(8, x) + 'px';
+        tooltip.style.top  = Math.max(8, y) + 'px';
+      }
+
+      document.querySelectorAll('.hotspot').forEach(hs => {
+        hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
+        hs.addEventListener('mousemove', (e) => move(e));
+        hs.addEventListener('mouseleave', hide);
+      });
+
+      window.addEventListener('scroll', hide, { passive: true });
+    })();
+  </script>
 </body>
 </html>
