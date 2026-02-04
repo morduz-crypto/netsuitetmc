@@ -23,6 +23,7 @@
       --warn-bg: rgba(245, 158, 11, .10);
       --warn-bd: rgba(245, 158, 11, .28);
     }
+
     *{ box-sizing:border-box; }
     body{
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -56,32 +57,41 @@
       overflow:hidden;
     }
 
-    /* Franja */
+    /* ===== Barra recortada (franja) ===== */
     .stage{
       position:relative;
       padding:12px;
       background:#fff;
     }
 
-    /* IMPORTANTE: forzamos que la imagen SI SE VEA (sin quedar en 0px) */
-    .stage img{
-      display:block;
-      width:100%;
+    /* Marco de la imagen: proporción estable para hotspots en % */
+    .bar-frame{
+      position:relative;
       max-width:1100px;
-      height:auto;
-      max-height:140px;   /* evita gigantismo */
-      object-fit:contain;
       margin:0 auto;
-      user-select:none; -webkit-user-drag:none;
-      border-radius:10px;
+      border-radius:12px;
       border:1px solid rgba(0,0,0,.06);
+      background:#fff;
+      overflow:hidden;
+      /* Ajusta el ratio si tu recorte es más alto/bajo */
+      aspect-ratio: 10 / 1.2; /* franja */
+    }
+
+    .bar-frame img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      user-select:none; -webkit-user-drag:none;
       background:#fff;
     }
 
-    /* Si no carga, se muestra un placeholder decente */
+    /* Fallback si no carga */
     .img-fallback{
       display:none;
-      margin-top:10px;
+      margin:10px auto 0;
+      max-width:1100px;
       padding:10px 12px;
       border-radius:12px;
       border:1px dashed rgba(0,0,0,.18);
@@ -89,14 +99,6 @@
       background:#fafafa;
       font-size:13px;
       line-height:1.45;
-    }
-    .img-fallback code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      background: rgba(0,0,0,.04);
-      border: 1px solid rgba(0,0,0,.06);
-      padding: 1px 6px;
-      border-radius: 8px;
     }
 
     .hotspot{
@@ -163,7 +165,6 @@
     .steps ol{ margin:0 0 0 18px; padding:0; }
     .steps li{ margin:6px 0; }
 
-    /* Capturas controladas */
     .shot{
       margin-top:10px;
       border:1px solid rgba(0,0,0,.08);
@@ -204,50 +205,47 @@
       <a class="btn" href="index.html">← Volver</a>
     </div>
 
-    <!-- Barra (solo franja) -->
+    <!-- Barra recortada -->
     <div class="card">
-      <div class="stage" id="stage">
-        <img id="menuImg" src="menu_bar.png" alt="Barra principal NetSuite (menú + íconos)"/>
+      <div class="stage">
+        <div class="bar-frame" id="barFrame">
+          <img id="menuImg" src="menu_bar.png" alt="Barra principal NetSuite (menú + íconos)"/>
+
+          <!-- Hotspots en % (se escalan perfecto con la imagen) -->
+          <!-- AJUSTA SOLO si tu recorte cambia mucho -->
+
+          <!-- Recientes (reloj) -->
+          <div class="hotspot"
+               style="left:2.6%; top:15%; width:4.8%; height:70%;"
+               data-title="⏱️ Recientes"
+               data-desc="Lista de lo último que abriste (páginas, registros, reportes). Ideal para volver rápido sin buscar de nuevo.">
+          </div>
+
+          <!-- Favoritos (estrella) -->
+          <div class="hotspot"
+               style="left:8.0%; top:15%; width:4.8%; height:70%;"
+               data-title="⭐ Favoritos"
+               data-desc="Guarda accesos directos personales. Ideal para informes y búsquedas guardadas que usas frecuentemente.">
+          </div>
+
+          <!-- Home (casita) -->
+          <div class="hotspot"
+               style="left:13.4%; top:15%; width:4.8%; height:70%;"
+               data-title="🏠 Home"
+               data-desc="Clic: vuelve al Home (dashboard). Hover: despliega opciones rápidas, como 'Establecer preferencias'.">
+          </div>
+
+          <!-- Menús por módulos -->
+          <div class="hotspot"
+               style="left:19.0%; top:10%; width:79.0%; height:80%;"
+               data-title="Menús por módulos"
+               data-desc="Acceso a procesos agrupados (Transacciones, Listas, Informes…). Al pasar el mouse se despliegan submenús.">
+          </div>
+        </div>
 
         <div class="img-fallback" id="imgFallback">
-          <strong>No se encontró la imagen</strong> <code>menu_bar.png</code>.<br/>
-          Verifica que:
-          <ul style="margin:8px 0 0 18px;">
-            <li>El archivo esté en la <strong>misma carpeta</strong> que este HTML.</li>
-            <li>El nombre sea exactamente <code>menu_bar.png</code> (ojo mayúsculas/minúsculas).</li>
-            <li>Si lo moviste a otra carpeta, ajusta el <code>src</code> (ej.: <code>img/menu_bar.png</code>).</li>
-          </ul>
-        </div>
-
-        <!-- Hotspots (coordenadas en px para que sea más estable con imagen recortada) -->
-        <!-- Ajusta left/top si tu recorte cambia un poquito -->
-
-        <!-- 1) Recientes (reloj) -->
-        <div class="hotspot"
-             style="left:35px; top:10px; width:44px; height:60px;"
-             data-title="⏱️ Recientes"
-             data-desc="Muestra lo último que abriste (páginas, registros, reportes). Sirve para volver rápido sin buscar otra vez.">
-        </div>
-
-        <!-- 2) Favoritos (estrella) -->
-        <div class="hotspot"
-             style="left:90px; top:10px; width:44px; height:60px;"
-             data-title="⭐ Favoritos"
-             data-desc="Guarda accesos directos personales. Ideal para informes y búsquedas guardadas que usas frecuentemente.">
-        </div>
-
-        <!-- 3) Home (casita) -->
-        <div class="hotspot"
-             style="left:146px; top:10px; width:44px; height:60px;"
-             data-title="🏠 Home"
-             data-desc="Te devuelve a la pantalla de inicio. Desde Home puedes acceder a 'Establecer preferencias' (configuración personal).">
-        </div>
-
-        <!-- 4) Menús por módulos -->
-        <div class="hotspot"
-             style="left:190px; top:10px; width: calc(100% - 196px); height:60px;"
-             data-title="Menús por módulos"
-             data-desc="Navegación por procesos (Transacciones, Listas, Informes, Configuración…). Al pasar el mouse se despliegan submenús.">
+          <strong>No se encontró la imagen</strong> <code>menu_bar.png</code>.
+          Verifica que esté en la misma carpeta de este HTML y que el nombre coincida exactamente.
         </div>
       </div>
     </div>
@@ -258,7 +256,7 @@
 
         <h2>Menús por módulos</h2>
         <p>
-          NetSuite organiza el sistema por <strong>módulos</strong>. Cada módulo agrupa opciones relacionadas:
+          NetSuite organiza la navegación por <strong>módulos</strong>. Cada módulo agrupa opciones relacionadas:
         </p>
         <ul>
           <li><strong>Transacciones:</strong> documentos operativos (órdenes, facturas, pagos, recibos…).</li>
@@ -268,8 +266,7 @@
         </ul>
 
         <div class="callout">
-          Los menús visibles dependen del <strong>rol</strong> y los permisos del usuario.
-          Por eso, dos personas pueden ver módulos distintos.
+          Los menús visibles dependen del <strong>rol</strong> y los permisos del usuario. Por eso, dos personas pueden ver módulos distintos.
         </div>
 
         <h3>Cómo abrir un menú</h3>
@@ -284,35 +281,32 @@
         <div class="shot">
           <img src="menu_hover_listas.png" alt="Ejemplo: Listas desplegado (submenú)"/>
           <div class="cap">
-            <strong>Ejemplo:</strong> submenú al pasar por <strong>Listas</strong>. Aquí normalmente están catálogos como
-            <em>Clientes, Proveedores, Artículos…</em>
+            <strong>Ejemplo:</strong> al pasar por <strong>Listas</strong> se despliegan opciones como <em>Clientes, Proveedores, Artículos…</em>
           </div>
         </div>
 
         <div class="shot">
           <img src="menu_hover_transacciones.png" alt="Ejemplo: Transacciones desplegado (submenú)"/>
           <div class="cap">
-            <strong>Ejemplo (opcional):</strong> submenú de <strong>Transacciones</strong> para documentos operativos (ventas, compras, pagos, etc.).
+            <strong>Ejemplo (opcional):</strong> <strong>Transacciones</strong> agrupa documentos operativos (ventas, compras, pagos, etc.).
           </div>
         </div>
 
         <h2 style="margin-top:14px;">⏱️ Recientes (Reloj)</h2>
         <p>
-          El reloj muestra lo que abriste recientemente. Es útil cuando estás trabajando en varios registros y quieres regresar a uno
-          sin volver a buscarlo o navegar menús.
+          El reloj muestra lo último que abriste. Útil cuando estás trabajando en varios registros y necesitas volver a uno rápido.
         </p>
 
         <div class="shot">
           <img src="recientes_menu.png" alt="Menú de Recientes en NetSuite"/>
           <div class="cap">
-            <strong>Así se ve Recientes:</strong> al pasar el mouse o hacer clic, aparece una lista con accesos a lo último que abriste.
+            <strong>Así se ve Recientes:</strong> al abrirlo aparece una lista con accesos a lo que usaste recientemente.
           </div>
         </div>
 
         <h2 style="margin-top:14px;">⭐ Favoritos (Estrella) — Accesos directos personales</h2>
         <p>
-          La estrella guarda accesos directos <strong>solo para tu usuario</strong>. Muy útil para reportes, búsquedas guardadas
-          o pantallas a las que necesitas entrar seguido.
+          La estrella guarda accesos directos <strong>solo para tu usuario</strong>. Muy útil para reportes, búsquedas guardadas y pantallas frecuentes.
         </p>
 
         <h3>Cómo agregar un favorito</h3>
@@ -321,8 +315,8 @@
             <li>Entra a la pantalla que quieres guardar (por ejemplo, un informe o una búsqueda guardada).</li>
             <li>Pasa el mouse sobre la ⭐ y selecciona <strong>“Agregar acceso directo”</strong>.</li>
             <li>Escribe un <strong>Nombre</strong> claro.</li>
-            <li>Opcional: marca <strong>“Abrir en una nueva ventana”</strong> si quieres que se abra en otra pestaña/ventana.</li>
-            <li>Haz clic en <strong>Guardar</strong>. Desde ese momento aparecerá al pasar el mouse por la ⭐.</li>
+            <li>Opcional: marca <strong>“Abrir en una nueva ventana”</strong>.</li>
+            <li>Haz clic en <strong>Guardar</strong>. Desde ese momento aparecerá al abrir la ⭐.</li>
           </ol>
         </div>
 
@@ -331,30 +325,39 @@
           <div class="cap">
             <strong>Agregar acceso directo:</strong>
             <ul>
-              <li><strong>Nombre:</strong> cómo verás el favorito.</li>
-              <li><strong>Abrir en una nueva ventana:</strong> útil para reportes/búsquedas que consultas mientras trabajas en otra pantalla.</li>
+              <li><strong>Nombre:</strong> cómo verás el favorito en tu lista.</li>
+              <li><strong>Abrir en una nueva ventana:</strong> útil para reportes/búsquedas que quieres consultar mientras trabajas en otra pantalla.</li>
               <li><strong>Guardar:</strong> queda asociado a tu usuario.</li>
             </ul>
           </div>
         </div>
 
         <div class="shot">
-          <img src="favoritos_list.png" alt="Lista de favoritos al pasar por la estrella"/>
+          <img src="favoritos_list.png" alt="Lista de favoritos en NetSuite"/>
           <div class="cap">
-            <strong>Después de guardar:</strong> al pasar por la ⭐ verás tu lista de accesos directos.
+            <strong>Después de guardar:</strong> al abrir la ⭐ verás tu lista de accesos directos.
           </div>
         </div>
 
-        <h2 style="margin-top:14px;">🏠 Home (Casita) — Preferencias del usuario</h2>
+        <h2 style="margin-top:14px;">🏠 Home (Casita) — Home y Preferencias</h2>
         <p>
-          La casita te devuelve al <strong>Home</strong>. Desde Home puedes entrar a <strong>Establecer preferencias</strong>,
-          donde cada usuario configura opciones personales (no afectan a otros usuarios).
+          La casita tiene dos comportamientos:
         </p>
+        <ul>
+          <li><strong>Clic:</strong> te lleva al <strong>Home</strong> (dashboard / página principal).</li>
+          <li><strong>Hover (pasar el mouse):</strong> despliega opciones rápidas; una de ellas es <strong>Establecer preferencias</strong>.</li>
+        </ul>
 
         <div class="warning">
-          En la pestaña <strong>Apariencia</strong> puedes cambiar el <strong>tema/color</strong>. Esto sirve para diferenciar visualmente
-          <strong>Producción</strong> vs <strong>SANDBOX</strong> (por ejemplo, un color para PROD y otro para SB). El cambio queda guardado
-          <strong>solo para tu usuario</strong>.
+          En <strong>Establecer preferencias → Apariencia</strong> puedes cambiar el <strong>tema/color</strong>.
+          Esto sirve para diferenciar visualmente <strong>Producción</strong> vs <strong>SANDBOX</strong>. El cambio queda guardado <strong>solo para tu usuario</strong>.
+        </div>
+
+        <div class="shot">
+          <img src="home_menu_preferencias.png" alt="Menú de Home con opción de Establecer preferencias"/>
+          <div class="cap">
+            <strong>Hover sobre la casita:</strong> se despliegan opciones rápidas, incluyendo <strong>Establecer preferencias</strong>.
+          </div>
         </div>
 
         <div class="shot">
@@ -383,7 +386,6 @@
       const img = document.getElementById('menuImg');
       const fallback = document.getElementById('imgFallback');
 
-      // Si no carga la imagen, mostramos el fallback (esto te evita “pantalla en blanco”)
       img.addEventListener('error', () => {
         fallback.style.display = 'block';
       });
