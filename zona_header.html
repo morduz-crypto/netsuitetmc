@@ -82,10 +82,14 @@
       overflow:hidden;
     }
 
+    /* Header principal: mantener full width para que los hotspots queden exactos */
     .stage{ position:relative; }
     .stage img{
-      width:100%; height:auto; display:block;
-      user-select:none; -webkit-user-drag:none;
+      width:100%;
+      height:auto;
+      display:block;
+      user-select:none;
+      -webkit-user-drag:none;
     }
 
     .hotspot{
@@ -154,6 +158,7 @@
       color:#111827;
     }
 
+    /* ✅ Miniaturas (no gigantes) */
     .shot{
       margin-top:10px;
       border:1px solid rgba(0,0,0,.08);
@@ -161,7 +166,15 @@
       overflow:hidden;
       background:#fff;
     }
-    .shot img{ width:100%; display:block; }
+    .shot img{
+      display:block;
+      width:auto;
+      max-width:100%;
+      max-height:220px;     /* ajusta 180–260 si quieres */
+      margin:10px auto 0;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,.06);
+    }
     .shot .cap{
       padding:10px 12px;
       border-top:1px solid rgba(0,0,0,.06);
@@ -200,7 +213,7 @@
                     border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.08);">
         </div>
 
-        <!-- 6 Áreas (ajusta porcentajes si necesitas afinar) -->
+        <!-- 6 Áreas -->
         <div class="hotspot"
              style="left:0%; top:0%; width:20%; height:100%;"
              data-title="Área 1 — Logo y ambiente (PROD / SANDBOX)"
@@ -210,7 +223,7 @@
         <div class="hotspot"
              style="left:20%; top:0%; width:40%; height:100%;"
              data-title="Área 2 — Buscador global"
-             data-desc="Búsqueda rápida dentro de NetSuite. Con % se activa el modo predictivo (sin Enter).">
+             data-desc="Búsqueda rápida dentro de NetSuite. Puedes usar % y también prefijos tipo 'empleado:' o 'orden de venta:' para limitar resultados.">
         </div>
 
         <div class="hotspot"
@@ -280,14 +293,32 @@
 
           <p>
             El buscador global permite encontrar registros y documentos sin navegar por menús
-            (clientes, proveedores, transacciones, reportes, etc.).
+            (clientes, proveedores, empleados, transacciones, reportes, etc.).
           </p>
 
           <ul>
             <li><strong>Búsqueda normal:</strong> escribe el término y presiona <strong>Enter</strong>.</li>
-            <li><strong>Modo predictivo con %:</strong> escribe <code>%</code> + al menos <strong>3 caracteres</strong> (ej. <code>%far</code>). El sistema muestra resultados <strong>mientras escribes</strong>, sin necesidad de presionar Enter.</li>
-            <li>Se muestran dos secciones: <strong>Resultados de búsqueda global</strong> y <strong>Resultados de página actual</strong>.</li>
-            <li>Si no aparece lo que necesitas en los primeros resultados, usa <strong>“Mostrar todos los resultados”</strong>.</li>
+
+            <li>
+              <strong>Modo predictivo con %:</strong> escribe <code>%</code> + al menos <strong>3 caracteres</strong>
+              (ej. <code>%far</code>). El sistema muestra resultados <strong>mientras escribes</strong>, sin necesidad de presionar Enter.
+            </li>
+
+            <li>
+              <strong>Buscar por tipo (para limitar resultados):</strong>
+              escribe el tipo + <code>:</code> y luego el texto a buscar. Ejemplos:
+              <ul style="margin-top:6px;">
+                <li><code>empleado: camila</code></li>
+                <li><code>proveedor: acme</code></li>
+                <li><code>cliente: clinica</code></li>
+                <li><code>orden de venta: 12345</code></li>
+                <li><code>factura: INV</code></li>
+              </ul>
+            </li>
+
+            <li>
+              Si no aparece lo que necesitas en los primeros resultados, usa <strong>“Mostrar todos los resultados”</strong>.
+            </li>
           </ul>
 
           <div class="shot">
