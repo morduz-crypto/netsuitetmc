@@ -3,146 +3,327 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Zona 1 — Barra superior (header)</title>
+  <title>Zona 1 — Barra superior (Header)</title>
+
   <style>
-:root{
-  --hint: rgba(0, 123, 255, .14);
-  --hint-strong: rgba(0, 123, 255, .28);
-  --accent: #111827;
-  --card: #ffffff;
-  --bg: #f3f4f6;
-}
-*{ box-sizing:border-box; }
-body{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  margin:0; padding:18px; background:var(--bg); color:#111827;
-}
-a{ color:#1d4ed8; text-decoration:none; }
-a:hover{ text-decoration:underline; }
-.wrap{ max-width:1200px; margin:0 auto; }
-.header{
-  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px;
-}
-h1{ font-size:18px; margin:0; }
-.meta{ font-size:12px; color:#4b5563; }
-.pill{
-  display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
-  background:#eef2ff; color:#3730a3; border:1px solid rgba(55,48,163,.15); margin-left:6px;
-}
-.card{
-  background:var(--card);
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,.06);
-  overflow:hidden;
-}
-.stage{ position:relative; }
-.stage img{ width:100%; height:auto; display:block; user-select:none; -webkit-user-drag:none; }
-.hotspot{
-  position:absolute; border:2px solid var(--hint); background:transparent; border-radius:12px; cursor:pointer;
-  transition: background .12s ease, border-color .12s ease, transform .12s ease;
-}
-.hotspot:hover{ background:var(--hint); border-color:var(--hint-strong); transform: translateY(-1px); }
-.tooltip{
-  position: fixed; z-index: 9999; max-width: 360px;
-  padding: 10px 12px; border-radius: 12px;
-  background: rgba(255,255,255,.98);
-  box-shadow: 0 18px 40px rgba(0,0,0,.20);
-  border: 1px solid rgba(0,0,0,.08);
-  display: none; pointer-events: none;
-}
-.tooltip .t{ font-weight:700; margin-bottom:4px; font-size:13px; }
-.tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
-.btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
-  border:1px solid rgba(0,0,0,.1);
-}
-.btn:hover{ opacity:.92; text-decoration:none; }
-.content{ padding:14px 16px; }
-.content h2{ margin:0 0 8px; font-size:16px; }
-.content p{ margin:0 0 10px; color:#374151; line-height:1.45; }
-.content ul{ margin:0 0 10px 18px; color:#374151; }
-.small{ font-size:12px; color:#6b7280; }
-.callout{
-  background:#f9fafb; border:1px solid rgba(0,0,0,.06);
-  padding:10px 12px; border-radius:12px; color:#374151; font-size:13px; margin:10px 0 0;
-}
-</style>
+    :root{
+      --hint: rgba(0, 123, 255, .14);
+      --hint-strong: rgba(0, 123, 255, .28);
+      --accent: #111827;
+      --card: #ffffff;
+      --bg: #f3f4f6;
+      --warn-bg: rgba(245, 158, 11, .12);
+      --warn-bd: rgba(245, 158, 11, .35);
+      --info-bg: rgba(0, 123, 255, .10);
+      --info-bd: rgba(0, 123, 255, .25);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin:0; padding:18px; background:var(--bg); color:#111827;
+    }
+    a{ color:#1d4ed8; text-decoration:none; font-weight:700; }
+    a:hover{ text-decoration:underline; }
+    .wrap{ max-width:1200px; margin:0 auto; }
+
+    .header{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+      margin-bottom:12px;
+    }
+    h1{ font-size:18px; margin:0; font-weight:800; letter-spacing:.2px; }
+    .meta{ font-size:12px; color:#4b5563; margin-top:4px; }
+
+    .pill{
+      display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
+      background:#eef2ff; color:#3730a3; border:1px solid rgba(55,48,163,.15); margin-left:6px;
+      vertical-align:middle;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
+      border:1px solid rgba(0,0,0,.1);
+      white-space:nowrap;
+    }
+    .btn:hover{ opacity:.92; text-decoration:none; }
+
+    .intro{
+      margin-top:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      background: var(--info-bg);
+      border: 1px solid var(--info-bd);
+      color:#111827;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:12px;
+      box-shadow:0 10px 25px rgba(0,0,0,.06);
+      overflow:hidden;
+    }
+
+    .stage{ position:relative; }
+    .stage img{
+      width:100%; height:auto; display:block;
+      user-select:none; -webkit-user-drag:none;
+    }
+
+    .hotspot{
+      position:absolute;
+      border:2px solid var(--hint);
+      background:transparent;
+      border-radius:12px;
+      cursor:default;
+      transition: background .12s ease, border-color .12s ease, transform .12s ease;
+    }
+    .hotspot:hover{
+      background:var(--hint);
+      border-color:var(--hint-strong);
+      transform: translateY(-1px);
+    }
+
+    .tooltip{
+      position: fixed; z-index: 9999; max-width: 380px;
+      padding: 10px 12px; border-radius: 12px;
+      background: rgba(255,255,255,.98);
+      box-shadow: 0 18px 40px rgba(0,0,0,.20);
+      border: 1px solid rgba(0,0,0,.08);
+      display: none; pointer-events: none;
+    }
+    .tooltip .t{ font-weight:800; margin-bottom:4px; font-size:13px; }
+    .tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
+
+    .content{ padding:14px 16px; }
+    .content h2{ margin:0 0 8px; font-size:16px; }
+    .content p{ margin:0 0 10px; color:#374151; line-height:1.45; }
+    .content ul{ margin:0 0 10px 18px; color:#374151; }
+    .small{ font-size:12px; color:#6b7280; }
+
+    .warning{
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-bd);
+      padding:10px 12px;
+      border-radius:12px;
+      color:#111827;
+      margin:10px 0 0;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    /* Bloques con imágenes */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .shot{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:12px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .shot img{ width:100%; display:block; }
+    .shot .cap{
+      padding:10px 12px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+    .shot .cap .title{
+      font-weight:800;
+      margin:0 0 6px;
+      font-size:13px;
+      color:#111827;
+    }
+    .shot .cap .text{
+      margin:0;
+      font-size:12.5px;
+      line-height:1.45;
+      color:#374151;
+    }
+
+    .divider{ height:1px; background: rgba(0,0,0,.06); margin: 12px 0; }
+  </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <div class="header">
+      <div style="width:100%;">
+        <h1>Zona 1 — Barra superior (Header) <span class="pill">v3</span></h1>
+        <div class="meta">Pasa el mouse por cada zona del header para ver qué hace.</div>
 
-<div class="wrap">
-  <div class="header">
-    <div>
-      <h1>Zona 1 — Barra superior (header)</h1>
-      <div class="meta">Hover = sub‑secciones · Click = más detalle</div>
+        <div class="intro">
+          Esta barra se muestra en la mayoría de pantallas de NetSuite. Te ayuda a <strong>identificar el ambiente</strong>,
+          <strong>buscar</strong> dentro del sistema y <strong>administrar tu sesión</strong> (usuario/rol, ayuda, comentarios, etc.).
+        </div>
+      </div>
+
+      <a class="btn" href="index.html">← Volver</a>
     </div>
-    <a class="btn" href="index.html">← Volver</a>
+
+    <!-- Imagen grande base para ubicar el header -->
+    <div class="card">
+      <div class="stage">
+        <img src="netsuite_home.png" alt="Captura Home NetSuite"/>
+
+        <!-- Resaltado general del header -->
+        <div class="hotspot" style="left:0%; top:0%; width:100%; height:11%; border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.10);"></div>
+
+        <!-- Subzonas del header (solo hover, sin click) -->
+        <div class="hotspot"
+          style="left:0%; top:0%; width:34%; height:11%;"
+          data-title="Izquierda: Logo / ambiente / atajos"
+          data-desc="Aquí normalmente verás el logo (TMC) y, según configuración, accesos rápidos. También suele estar el atajo de creación rápida (icono de hoja con +)."></div>
+
+        <div class="hotspot"
+          style="left:34%; top:0%; width:41%; height:11%;"
+          data-title="Centro: Buscador global"
+          data-desc="Busca registros, transacciones y entidades dentro del ecosistema NetSuite. Sirve para ir directo sin navegar menús."></div>
+
+        <div class="hotspot"
+          style="left:75%; top:0%; width:25%; height:11%;"
+          data-title="Derecha: Ayuda / Comentarios / Usuario y rol"
+          data-desc="Ayuda abre documentación de NetSuite. Comentarios permite enviar feedback al proveedor. En el nombre puedes ver el rol activo, cambiar rol (si aplica) y cerrar sesión."></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px;">
+      <div class="content">
+        <h2>Qué cubre esta zona</h2>
+        <ul>
+          <li><strong>Identificación del ambiente:</strong> saber si estás en Producción o en <strong>SANDBOX</strong> (pruebas).</li>
+          <li><strong>Búsqueda global:</strong> encontrar rápidamente clientes, facturas, órdenes, ítems, etc.</li>
+          <li><strong>Atajos:</strong> creación rápida (icono de hoja con <strong>+</strong>) y accesos frecuentes.</li>
+          <li><strong>Contexto de sesión:</strong> usuario, rol, ayuda y comentarios.</li>
+        </ul>
+
+        <div class="warning">
+          <strong>⚠️ Ojo con SANDBOX:</strong> SANDBOX es nuestro <strong>ambiente de pruebas</strong>.
+          Sirve para validar cambios sin afectar la operación real.  
+          Si haces “vainas” acá, estás probando… pero igual evita confusiones: confirma siempre el ambiente antes de ejecutar acciones importantes 😅
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>Ejemplos visuales del Header</h2>
+        <p class="small">
+          Estas imágenes son guía para reconocer cada elemento. (Si cambias los nombres de archivo, ajusta los <code>src</code>.)
+        </p>
+
+        <div class="grid">
+          <!-- Producción -->
+          <div class="shot">
+            <img src="header_prod.png" alt="Header en Producción (ejemplo)"/>
+            <div class="cap">
+              <p class="title">1) Producción (ambiente real)</p>
+              <p class="text">
+                Verás el header normal con el logo de TMC. Este es el ambiente donde las acciones impactan datos reales.
+              </p>
+            </div>
+          </div>
+
+          <!-- Sandbox -->
+          <div class="shot">
+            <img src="header_sandbox.png" alt="Header en SANDBOX (ejemplo)"/>
+            <div class="cap">
+              <p class="title">2) SANDBOX (ambiente de pruebas)</p>
+              <p class="text">
+                En SANDBOX aparece el indicador <strong>SANDBOX</strong>. Úsalo para probar procesos, formularios o configuraciones sin afectar la operación real.
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick Add menu -->
+          <div class="shot">
+            <img src="quickadd_menu.png" alt="Menú de creación rápida (hojita con +)"/>
+            <div class="cap">
+              <p class="title">3) Atajo “+” (creación rápida)</p>
+              <p class="text">
+                El icono de la <strong>hojita con +</strong> permite crear rápidamente elementos comunes (ej. Evento, Llamada telefónica, Tarea, Cliente, Contacto, Factura…).
+                Esto acelera el trabajo diario.
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick Add config -->
+          <div class="shot">
+            <img src="quickadd_config.png" alt="Configuración de la barra nueva / personalización"/>
+            <div class="cap">
+              <p class="title">4) Personalización del “+” (qué aparece en el menú)</p>
+              <p class="text">
+                Esta pantalla permite decidir qué opciones se muestran en el menú de creación rápida y en qué orden.
+                Es útil para adaptar el sistema a cada rol / equipo.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>Notas importantes</h2>
+        <ul>
+          <li><strong>Buscador global:</strong> te permite buscar “cualquier cosa” dentro de NetSuite (registros, transacciones, entidades). Ideal para ir rápido sin navegar por menús.</li>
+          <li><strong>Ayuda:</strong> abre la biblioteca/documentación oficial de NetSuite para guiarte en procesos y funcionalidades.</li>
+          <li><strong>Comentarios:</strong> sirve para enviar feedback/satisfacción al proveedor NetSuite (cuando aplique).</li>
+          <li><strong>Usuario / Rol:</strong> en el nombre puedes ver tu rol activo; si tienes más de un rol, normalmente puedes cambiarlo desde ahí. También puedes <strong>cerrar sesión</strong>.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
-  <div class="card">
-    <div class="stage">
-      <img src="netsuite_home.png" alt="Captura Home NetSuite"/>
-      <div class="hotspot" style="left:0%; top:0%; width:100%; height:11%; border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.12); cursor: default;"></div>
-      <div class="hotspot" style="left:0%; top:0%; width:34%; height:11%;" data-title="Logo + accesos rápidos" data-desc="Branding + accesos frecuentes (atajos)." data-href="comp_header_accesos.html"></div>
-<div class="hotspot" style="left:34%; top:0%; width:41%; height:11%;" data-title="Buscador global" data-desc="Búsqueda rápida de registros/transacciones/entidades." data-href="comp_header_busqueda.html"></div>
-<div class="hotspot" style="left:75%; top:0%; width:25%; height:11%;" data-title="Usuario / rol / ayuda" data-desc="Usuario logueado, rol activo y accesos de ayuda." data-href="comp_header_usuario.html"></div>
-    </div>
+  <!-- Tooltip -->
+  <div class="tooltip" id="tooltip" role="tooltip">
+    <div class="t" id="ttTitle"></div>
+    <div class="d" id="ttDesc"></div>
   </div>
 
-  <div class="card" style="margin-top:12px;">
-    <div class="content">
-      <p>Esta zona se ve en casi todas las pantallas. Sirve para orientarte (usuario/rol) y moverte rápido (buscador + atajos).</p><p>En tu caso, el header se compone de 3 sub‑partes. Pasa el mouse sobre cada una y haz clic para ver el detalle.</p>
-      <h2>Qué cubre esta zona</h2>
-      <ul><li>Logo TMC + accesos rápidos (atajos).</li><li>Buscador global.</li><li>Usuario/rol/ayuda (control de contexto).</li></ul>
-    </div>
-  </div>
-</div>
+  <script>
+    (function(){
+      const tooltip = document.getElementById('tooltip');
+      const ttTitle = document.getElementById('ttTitle');
+      const ttDesc  = document.getElementById('ttDesc');
 
-<div class="tooltip" id="tooltip" role="tooltip">
-  <div class="t" id="ttTitle"></div>
-  <div class="d" id="ttDesc"></div>
-</div>
+      function show(e, title, desc){
+        if(!title && !desc) return;
+        ttTitle.textContent = title || '';
+        ttDesc.textContent  = desc  || '';
+        tooltip.style.display = 'block';
+        move(e);
+      }
+      function hide(){ tooltip.style.display = 'none'; }
 
-<script>
-(function(){
-  const tooltip = document.getElementById('tooltip');
-  const ttTitle = document.getElementById('ttTitle');
-  const ttDesc  = document.getElementById('ttDesc');
+      function move(e){
+        const pad = 14;
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        const r = tooltip.getBoundingClientRect();
 
-  function show(e, title, desc){
-    ttTitle.textContent = title || '';
-    ttDesc.textContent  = desc  || '';
-    tooltip.style.display = 'block';
-    move(e);
-  }
-  function hide(){ tooltip.style.display = 'none'; }
-  function move(e){
-    const pad = 14;
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    const r = tooltip.getBoundingClientRect();
-    let x = e.clientX + pad;
-    let y = e.clientY + pad;
-    if (x + r.width  > vw - 8) x = e.clientX - r.width - pad;
-    if (y + r.height > vh - 8) y = e.clientY - r.height - pad;
-    tooltip.style.left = Math.max(8, x) + 'px';
-    tooltip.style.top  = Math.max(8, y) + 'px';
-  }
+        let x = e.clientX + pad;
+        let y = e.clientY + pad;
 
-  document.querySelectorAll('.hotspot').forEach(hs => {
-    hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
-    hs.addEventListener('mousemove', (e) => move(e));
-    hs.addEventListener('mouseleave', hide);
-    hs.addEventListener('click', () => {
-      const href = hs.dataset.href;
-      if (href) window.location.href = href;
-    });
-  });
-  window.addEventListener('scroll', hide, { passive: true });
-})();
-</script>
+        if (x + r.width  > vw - 8) x = e.clientX - r.width - pad;
+        if (y + r.height > vh - 8) y = e.clientY - r.height - pad;
 
+        tooltip.style.left = Math.max(8, x) + 'px';
+        tooltip.style.top  = Math.max(8, y) + 'px';
+      }
+
+      document.querySelectorAll('.hotspot').forEach(hs => {
+        hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
+        hs.addEventListener('mousemove', (e) => move(e));
+        hs.addEventListener('mouseleave', hide);
+      });
+
+      window.addEventListener('scroll', hide, { passive: true });
+    })();
+  </script>
 </body>
 </html>
