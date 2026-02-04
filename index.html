@@ -3,136 +3,101 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Guía interactiva (hover) — NetSuite Home</title>
+  <title>Guía interactiva — NetSuite Home</title>
   <style>
-    :root{
-      --stroke: rgba(0,0,0,.35);
-      --hint: rgba(0, 123, 255, .14);
-      --hint-strong: rgba(0, 123, 255, .25);
-      --tooltip-bg: rgba(255,255,255,.98);
-      --tooltip-text: #111827;
-    }
-    body{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      margin: 0; padding: 18px;
-      background: #f3f4f6;
-      color: #111827;
-    }
-    h1{ font-size: 18px; margin: 0 0 8px; }
-    p.note{ margin: 0 0 14px; color: #374151; font-size: 13px; }
-    .wrap{
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .stage{
-      position: relative;
-      background: #fff;
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,.06);
-      overflow: hidden;
-    }
-    .stage img{
-      width: 100%;
-      height: auto;
-      display: block;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-    .hotspot{
-      position: absolute;
-      border: 2px solid var(--hint);
-      background: transparent;
-      border-radius: 10px;
-      cursor: help;
-      transition: background .12s ease, border-color .12s ease, transform .12s ease;
-    }
-    .hotspot:hover{
-      background: var(--hint);
-      border-color: var(--hint-strong);
-      transform: translateY(-1px);
-    }
-    /* Tooltip */
-    .tooltip{
-      position: fixed;
-      z-index: 9999;
-      max-width: 320px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: var(--tooltip-bg);
-      color: var(--tooltip-text);
-      box-shadow: 0 18px 40px rgba(0,0,0,.20);
-      border: 1px solid rgba(0,0,0,.08);
-      display: none;
-      pointer-events: none; /* no bloquea el hover */
-    }
-    .tooltip .t{ font-weight: 700; margin-bottom: 4px; font-size: 13px; }
-    .tooltip .d{ font-size: 12px; line-height: 1.35; color: #374151; }
-    .pill{
-      display:inline-block;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: #3730a3;
-      margin-left: 6px;
-      border: 1px solid rgba(55,48,163,.15);
-    }
-    .footer{
-      margin-top: 12px;
-      font-size: 12px;
-      color: #4b5563;
-    }
-    .footer code{ background:#e5e7eb; padding:2px 5px; border-radius:6px; }
-  </style>
+:root{
+  --hint: rgba(0, 123, 255, .14);
+  --hint-strong: rgba(0, 123, 255, .25);
+  --tooltip-bg: rgba(255,255,255,.98);
+  --tooltip-text: #111827;
+}
+*{ box-sizing: border-box; }
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  margin: 0; padding: 18px;
+  background: #f3f4f6;
+  color: #111827;
+}
+a{ color:#1d4ed8; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+.wrap{ max-width: 1200px; margin: 0 auto; }
+.header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; margin-bottom:12px;
+}
+.header h1{ font-size: 18px; margin:0; }
+.header .actions{ font-size:12px; color:#4b5563; }
+.card{
+  background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+.stage{ position:relative; }
+.stage img{ width:100%; height:auto; display:block; user-select:none; -webkit-user-drag:none; }
+.hotspot{
+  position:absolute; border:2px solid var(--hint); background:transparent;
+  border-radius:10px; cursor:pointer;
+  transition: background .12s ease, border-color .12s ease, transform .12s ease;
+}
+.hotspot:hover{ background: var(--hint); border-color: var(--hint-strong); transform: translateY(-1px); }
+.tooltip{
+  position: fixed; z-index: 9999; max-width: 340px;
+  padding: 10px 12px; border-radius: 12px;
+  background: var(--tooltip-bg); color: var(--tooltip-text);
+  box-shadow: 0 18px 40px rgba(0,0,0,.20);
+  border: 1px solid rgba(0,0,0,.08);
+  display: none; pointer-events: none;
+}
+.tooltip .t{ font-weight:700; margin-bottom:4px; font-size:13px; }
+.tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
+.pill{
+  display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
+  background:#eef2ff; color:#3730a3; margin-left:6px; border:1px solid rgba(55,48,163,.15);
+}
+.footer{ margin-top: 12px; font-size: 12px; color: #4b5563; }
+.footer code{ background:#e5e7eb; padding:2px 5px; border-radius:6px; }
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:10px;
+  background:#111827; color:#fff; font-size:13px;
+  border:1px solid rgba(0,0,0,.1);
+}
+.btn:hover{ opacity:.92; text-decoration:none; }
+.content{
+  padding:14px 16px;
+}
+.content h2{ margin:0 0 8px; font-size:16px; }
+.content p{ margin:0 0 10px; color:#374151; line-height:1.45; }
+.content ul{ margin:0 0 10px 18px; color:#374151; }
+.small{ font-size:12px; color:#6b7280; }
+</style>
+  
 </head>
 <body>
+
 <div class="wrap">
-  <h1>Guía interactiva (pasar el mouse) — Pantalla principal</h1>
-  <p class="note">
-    Pasa el mouse sobre las áreas resaltadas para ver la explicación. Esto es una página HTML independiente (gratis), usando tu captura.
-    <span class="pill">Edita textos/zonas en el HTML</span>
-  </p>
+  <div class="header">
+    <div>
+      <h1>Guía interactiva — Pantalla principal de NetSuite</h1>
+      <div class="actions">Pasa el mouse para ver una explicación rápida. Haz clic para ver el detalle. <span class="pill">v2</span></div>
+    </div>
+    <a class="btn" href="mapa.html">Ver mapa de secciones</a>
+  </div>
 
-  <div class="stage" id="stage">
-    <img src="netsuite_home.png" alt="Captura NetSuite Home"/>
-
-    <!-- HOTSPOTS (posiciones en %) -->
-    <div class="hotspot" style="left:24.63%; top:2.86%; width:47.69%; height:6.86%;"
-         data-title="Buscador global"
-         data-desc="Aquí puedes buscar transacciones, clientes, ítems, empleados, etc. Es el acceso rápido a todo el sistema."></div>
-
-    <div class="hotspot" style="left:0%; top:12.59%; width:100%; height:6.86%;"
-         data-title="Menú principal"
-         data-desc="Barra de navegación por módulos (Actividades, Pagos, Transacciones, Informes, etc.). Desde aquí entras a cualquier proceso."></div>
-
-    <div class="hotspot" style="left:76%; top:0%; width:24%; height:12.59%;"
-         data-title="Usuario / Rol"
-         data-desc="Tu sesión actual: nombre, compañía, rol activo (por ejemplo Administrador) y accesos de ayuda/comentarios."></div>
-
-    <div class="hotspot" style="left:37.74%; top:19.45%; width:60.80%; height:4.58%;"
-         data-title="Acciones de la página"
-         data-desc="Opciones rápidas del dashboard (cambiar subsidiaria, personalizar, diseño, visualización)."></div>
-
-    <div class="hotspot" style="left:2.10%; top:25.17%; width:31.97%; height:34.32%;"
-         data-title="Acceso rápido — Loaner Maker"
-         data-desc="Portlet con acceso directo a una funcionalidad específica (por ejemplo, crear proyecto loaner)."></div>
-
-    <div class="hotspot" style="left:2.10%; top:61.78%; width:31.97%; height:36.61%;"
-         data-title="Mis tareas — recordatorios"
-         data-desc="Portlet de productividad: tareas de hoy/mañana/semana y pendientes."></div>
-
-    <div class="hotspot" style="left:35.64%; top:22.88%; width:62.89%; height:45.19%;"
-         data-title="Resumen estado de pedido"
-         data-desc="Portlet principal de consulta: ingresas el TranID y ves estado/seguimiento/observaciones de la transacción."></div>
-
-    <div class="hotspot" style="left:35.64%; top:69.79%; width:62.89%; height:28.60%;"
-         data-title="Tracking importaciones"
-         data-desc="Portlet para seguimiento (por proveedor, DEO, orden de compra, etc.). Normalmente incluye filtros y resultados."></div>
+  <div class="card">
+    <div class="stage">
+      <img src="netsuite_home.png" alt="Captura NetSuite"/>
+      <div class="hotspot" style="left:0.0%; top:0.0%; width:34.0%; height:11.0%;" data-title="Accesos rápidos + Logo TMC" data-desc="Zona superior izquierda: aquí aparecen accesos rápidos (iconos) y tu branding (logo TMC). Te lleva a funciones frecuentes." data-href="header_accesos.html"></div>
+<div class="hotspot" style="left:34.0%; top:0.0%; width:41.0%; height:11.0%;" data-title="Buscador global" data-desc="Barra de búsqueda para encontrar registros, transacciones, entidades y más. Es el atajo más rápido para navegar en NetSuite." data-href="header_busqueda.html"></div>
+<div class="hotspot" style="left:75.0%; top:0.0%; width:25.0%; height:11.0%;" data-title="Usuario, rol y ayuda" data-desc="Zona superior derecha: ayuda, comentarios, y el usuario/rol activo. Aquí confirmas en qué rol estás trabajando." data-href="header_usuario.html"></div>
+<div class="hotspot" style="left:0.0%; top:11.0%; width:100.0%; height:6.5%;" data-title="Menú principal (módulos)" data-desc="Barra de navegación por módulos (Actividades, Pagos, Transacciones, Informes, etc.). Desde aquí entras a cualquier proceso." data-href="menu_principal.html"></div>
+<div class="hotspot" style="left:36.0%; top:17.5%; width:64.0%; height:4.5%;" data-title="Menú del dashboard" data-desc="Opciones del dashboard: visualización, personalizar y diseño. Controla cómo se ve tu Home y qué portlets tienes." data-href="dashboard_menu.html"></div>
+<div class="hotspot" style="left:0.0%; top:22.0%; width:100.0%; height:78.0%;" data-title="Área de visualización (dashboard y formularios)" data-desc="Zona principal donde ves portlets y contenido. En general, aquí es donde se visualizan formularios (registros, transacciones y entidades)." data-href="dashboard_contenido.html"></div>
+    </div>
   </div>
 
   <div class="footer">
-    Tip: para ajustar las zonas, edita los <code>style="left/top/width/height"</code> de cada <code>.hotspot</code> (en porcentaje) y cambia <code>data-title</code>/<code>data-desc</code>.
+    Tip: si cambias la captura, ajusta los <code>left/top/width/height</code> (en %) dentro de <code>index.html</code>.
   </div>
 </div>
 
@@ -142,6 +107,7 @@
 </div>
 
 <script>
+
 (function(){
   const tooltip = document.getElementById('tooltip');
   const ttTitle = document.getElementById('ttTitle');
@@ -154,45 +120,37 @@
     tooltip.setAttribute('aria-hidden', 'false');
     move(e);
   }
-
   function hide(){
     tooltip.style.display = 'none';
     tooltip.setAttribute('aria-hidden', 'true');
   }
-
   function move(e){
     const pad = 14;
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-
-    // tamaño actual del tooltip
     const r = tooltip.getBoundingClientRect();
-
     let x = e.clientX + pad;
     let y = e.clientY + pad;
-
-    // evitar que se salga de pantalla
     if (x + r.width  > vw - 8) x = e.clientX - r.width - pad;
     if (y + r.height > vh - 8) y = e.clientY - r.height - pad;
-
     tooltip.style.left = Math.max(8, x) + 'px';
     tooltip.style.top  = Math.max(8, y) + 'px';
   }
 
   document.querySelectorAll('.hotspot').forEach(hs => {
-    hs.addEventListener('mouseenter', (e) => {
-      show(e, hs.dataset.title, hs.dataset.desc);
-    });
+    hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
     hs.addEventListener('mousemove', (e) => move(e));
     hs.addEventListener('mouseleave', hide);
     hs.addEventListener('click', (e) => {
-      // opcional: “fijar” tooltip con click (toggle)
-      e.preventDefault();
+      const href = hs.dataset.href;
+      if (href) window.location.href = href;
     });
   });
 
   window.addEventListener('scroll', hide, { passive: true });
 })();
+
 </script>
+
 </body>
 </html>

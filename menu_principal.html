@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Menú principal por módulos</title>
+  <style>
+:root{
+  --hint: rgba(0, 123, 255, .14);
+  --hint-strong: rgba(0, 123, 255, .25);
+  --tooltip-bg: rgba(255,255,255,.98);
+  --tooltip-text: #111827;
+}
+*{ box-sizing: border-box; }
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  margin: 0; padding: 18px;
+  background: #f3f4f6;
+  color: #111827;
+}
+a{ color:#1d4ed8; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+.wrap{ max-width: 1200px; margin: 0 auto; }
+.header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; margin-bottom:12px;
+}
+.header h1{ font-size: 18px; margin:0; }
+.header .actions{ font-size:12px; color:#4b5563; }
+.card{
+  background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+.stage{ position:relative; }
+.stage img{ width:100%; height:auto; display:block; user-select:none; -webkit-user-drag:none; }
+.hotspot{
+  position:absolute; border:2px solid var(--hint); background:transparent;
+  border-radius:10px; cursor:pointer;
+  transition: background .12s ease, border-color .12s ease, transform .12s ease;
+}
+.hotspot:hover{ background: var(--hint); border-color: var(--hint-strong); transform: translateY(-1px); }
+.tooltip{
+  position: fixed; z-index: 9999; max-width: 340px;
+  padding: 10px 12px; border-radius: 12px;
+  background: var(--tooltip-bg); color: var(--tooltip-text);
+  box-shadow: 0 18px 40px rgba(0,0,0,.20);
+  border: 1px solid rgba(0,0,0,.08);
+  display: none; pointer-events: none;
+}
+.tooltip .t{ font-weight:700; margin-bottom:4px; font-size:13px; }
+.tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
+.pill{
+  display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
+  background:#eef2ff; color:#3730a3; margin-left:6px; border:1px solid rgba(55,48,163,.15);
+}
+.footer{ margin-top: 12px; font-size: 12px; color: #4b5563; }
+.footer code{ background:#e5e7eb; padding:2px 5px; border-radius:6px; }
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:10px;
+  background:#111827; color:#fff; font-size:13px;
+  border:1px solid rgba(0,0,0,.1);
+}
+.btn:hover{ opacity:.92; text-decoration:none; }
+.content{
+  padding:14px 16px;
+}
+.content h2{ margin:0 0 8px; font-size:16px; }
+.content p{ margin:0 0 10px; color:#374151; line-height:1.45; }
+.content ul{ margin:0 0 10px 18px; color:#374151; }
+.small{ font-size:12px; color:#6b7280; }
+</style>
+  
+</head>
+<body>
+
+<div class="wrap">
+  <div class="header">
+    <div>
+      <h1>Menú principal por módulos</h1>
+      <div class="actions">Detalle de la sección seleccionada</div>
+    </div>
+    <a class="btn" href="index.html">← Volver</a>
+  </div>
+
+  <div class="card">
+    <div class="stage">
+      <img src="netsuite_home.png" alt="Captura NetSuite"/>
+      <div class="hotspot" style="left:0.0%; top:11.0%; width:100.0%; height:6.5%; border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.12); cursor: default;"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px;">
+    <div class="content">
+      <p>Esta barra concentra la navegación principal de NetSuite (módulos).</p><p>Desde aquí entras a procesos: actividades, transacciones, informes, configuración, etc.</p>
+      <h2>Qué puedes hacer aquí</h2>
+      <ul><li>Navegar a módulos y submenús (por ejemplo: Transacciones → Ventas → Órdenes).</li><li>Acceder a listas, reportes y análisis según permisos.</li><li>Reconocer que esta barra se mantiene en casi cualquier pantalla.</li></ul>
+      <p class="small">Tip: puedes copiar/pegar este texto a tu manual interno o a un onboarding.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
