@@ -74,7 +74,7 @@
       height:auto;
       border-radius:12px;
       border:1px solid rgba(0,0,0,.06);
-      max-height: clamp(240px, 48vh, 520px); /* 👈 NO gigante */
+      max-height: clamp(240px, 48vh, 520px); /* NO gigante */
       object-fit: contain;
       background:#fff;
       user-select:none; -webkit-user-drag:none;
@@ -172,8 +172,8 @@
       display:block;
       width:100%;
       height:auto;
-      max-height: 170px;     /* 👈 mini */
-      object-fit: contain;   /* 👈 sin recorte */
+      max-height: 170px;     /* mini */
+      object-fit: contain;   /* sin recorte */
       border-radius:12px;
       border:1px solid rgba(0,0,0,.06);
       user-select:none; -webkit-user-drag:none;
@@ -211,41 +211,41 @@
       <div style="width:100%;">
         <h1>Zona 3 — Área de trabajo (Dashboard + pantallas)</h1>
         <div class="meta">
-          Esta es la zona donde realmente “trabajas” en NetSuite: puedes ver el <strong>Dashboard (Home)</strong>,
+          Esta es la zona donde realmente <strong>trabajas</strong> en NetSuite: puedes ver el <strong>Dashboard (Home)</strong>,
           pero también formularios, búsquedas e informes. <strong>La pantalla cambia</strong> según lo que hagas.
         </div>
       </div>
       <a class="btn" href="index.html">← Volver</a>
     </div>
 
-    <!-- Imagen principal: Dashboard -->
+    <!-- Imagen principal: Dashboard (TU ARCHIVO REAL) -->
     <div class="card">
       <div class="stage">
         <div class="scene" id="scene">
-          <img id="imgMain" src="dashboard_home.png" alt="Dashboard (Home) NetSuite"/>
+          <img id="imgMain" src="fd00eb0d-ac71-49ec-be57-0d4df8e47f80.png" alt="Dashboard (Home) NetSuite"/>
 
           <!-- Hotspots sobre la imagen (en %) -->
           <div class="overlay" id="overlay">
 
-            <!-- 1) Barra acciones del dashboard -->
+            <!-- 1) Barra de acciones del dashboard -->
             <div class="hotspot"
-                 style="left:58%; top:2.5%; width:40%; height:10%;"
+                 style="left:55%; top:4%; width:42%; height:9%;"
                  data-title="Parte 1 — Acciones del Dashboard"
-                 data-desc="Controles del Home (ej.: Visualización, Personalizar y Diseño). Dependiendo del rol, permite configurar la vista y organizar portlets.">
+                 data-desc="Controles del Home (por ejemplo: Visualización, Personalizar y Diseño). Dependiendo del rol, permite configurar la vista, agregar/quitar portlets y ajustar el diseño.">
             </div>
 
-            <!-- 2) Grilla / área del dashboard -->
+            <!-- 2) Lienzo del dashboard -->
             <div class="hotspot"
-                 style="left:2%; top:13.5%; width:96%; height:80%;"
+                 style="left:2%; top:15%; width:96%; height:82%;"
                  data-title="Parte 2 — Área del Dashboard"
-                 data-desc="El lienzo donde se organizan los portlets. Puede estar en columnas y su contenido cambia por rol o preferencias del usuario.">
+                 data-desc="El “lienzo” donde se organizan los portlets (en columnas/filas). El contenido puede variar por rol o por preferencias del usuario.">
             </div>
 
-            <!-- 3) Portlet ejemplo -->
+            <!-- 3) Portlet (ejemplo) -->
             <div class="hotspot"
-                 style="left:4%; top:26%; width:28%; height:30%;"
+                 style="left:4%; top:26%; width:30%; height:34%;"
                  data-title="Parte 3 — Portlet (bloque/tarjeta)"
-                 data-desc="Cada bloque del Home es un portlet: KPIs, recordatorios, accesos rápidos, búsquedas, gráficos, etc.">
+                 data-desc="Cada bloque del Home es un portlet: accesos rápidos, recordatorios, KPIs, búsquedas, gráficos, etc. Se pueden reorganizar (si el rol lo permite).">
             </div>
 
           </div>
@@ -259,52 +259,59 @@
 
         <h2>1) Cuando estás en Home: ves el Dashboard</h2>
         <p>
-          Al dar clic en la <strong>casita (Home)</strong> vuelves al <strong>Dashboard</strong>.
-          Aquí ves información resumida y accesos rápidos.
+          Al dar clic en la <strong>casita (Home)</strong> vuelves a la página principal (inicio).
+          Esa página principal es el <strong>Dashboard</strong>: un panel con información y accesos rápidos del rol.
+        </p>
+
+        <h3>¿Qué es un Portlet?</h3>
+        <p>
+          Un <strong>Portlet</strong> es cada bloque/tarjeta dentro del Dashboard. Cada portlet puede mostrar cosas distintas:
+          recordatorios, KPIs, accesos directos, búsquedas rápidas, gráficos, etc.
         </p>
 
         <div class="callout">
           <strong>Nota:</strong> para algunos roles el dashboard viene <strong>preconfigurado</strong> (no editable).
-          Para otros roles, cada usuario puede <strong>personalizar</strong> qué portlets ve y en qué orden.
+          Para otros roles, cada usuario puede <strong>personalizar</strong> qué portlets ve, en qué orden, y el diseño de columnas.
         </div>
 
-        <h2 style="margin-top:14px;">2) Pero esta zona cambia según lo que hagas</h2>
+        <h2 style="margin-top:14px;">2) La Zona 3 cambia según lo que hagas</h2>
         <p>
-          La misma Zona 3 se transforma dependiendo de cómo navegues:
-          si usas el <strong>menú</strong>, el <strong>buscador</strong> o un <strong>atajo</strong>, puedes terminar en:
-          resultados, formularios o reportes.
+          Esta misma zona se transforma cuando navegas:
+          si usas un módulo del <strong>menú</strong> (Transacciones, Listas, Informes…),
+          si buscas en el <strong>buscador</strong> o si abres un <strong>atajo</strong>,
+          terminarás viendo formularios, listas/resultados o reportes.
         </p>
 
         <div class="grid">
-          <!-- Mini 1: resultados -->
+          <!-- Mini: resultados / búsqueda (TU ARCHIVO REAL) -->
           <div class="mini">
             <div class="imgwrap">
-              <img src="work_search_results.png" alt="Ejemplo: resultados de búsqueda / lista"/>
+              <img src="1ee845f0-b0e9-4514-a9bd-4199b8371247.png" alt="Ejemplo: resultados de búsqueda / lista"/>
             </div>
             <div class="cap">
               <div class="t">Ejemplo A — Resultados (búsqueda / lista)</div>
               <div class="d">
-                Cuando buscas algo o entras a una lista, normalmente verás una tabla con filtros y resultados
-                (búsquedas guardadas, listas de clientes, artículos, transacciones, etc.).
+                Pantalla típica de una búsqueda guardada o una lista: filtros arriba y tabla de resultados abajo.
+                Aquí normalmente puedes ordenar, abrir registros y (según permisos) exportar.
               </div>
             </div>
           </div>
 
-          <!-- Mini 2: formulario -->
+          <!-- Mini: formulario (TU ARCHIVO REAL) -->
           <div class="mini">
             <div class="imgwrap">
-              <img src="work_form.png" alt="Ejemplo: formulario de NetSuite"/>
+              <img src="a6759967-d47b-4e6d-a45c-9bdfd66dd0be.png" alt="Ejemplo: formulario de NetSuite"/>
             </div>
             <div class="cap">
               <div class="t">Ejemplo B — Formulario (registro / transacción)</div>
               <div class="d">
-                Cuando abres o creas un registro, aparece un formulario: campos, pestañas, sublistas y botones
-                (cliente, proveedor, orden de venta, factura, caso, tarea…).
+                Cuando creas o editas algo, aparece un formulario: campos obligatorios, pestañas, sublistas y botones
+                (Cliente, Oportunidad, Orden de venta, Factura, Caso, Tarea…).
               </div>
             </div>
           </div>
 
-          <!-- Mini 3: reporte -->
+          <!-- Mini: reporte (PENDIENTE CAPTURA) -->
           <div class="mini">
             <div class="imgwrap">
               <img src="work_report.png" alt="Ejemplo: reporte / informe"/>
@@ -312,8 +319,8 @@
             <div class="cap">
               <div class="t">Ejemplo C — Informe / Reporte</div>
               <div class="d">
-                Al entrar a Informes, verás reportes con tablas y, a veces, gráficos.
-                Suelen incluir opciones de filtros, exportación y navegación.
+                Cuando entras a Informes, verás reportes con tablas (y a veces gráficos), con filtros y opciones de exportación.
+                <br/><strong>Pendiente:</strong> aquí reemplaza <code>work_report.png</code> por tu captura real.
               </div>
             </div>
           </div>
@@ -321,12 +328,12 @@
 
         <div class="warning">
           <strong>Idea clave:</strong> no importa si entras por el menú, por el buscador o por un acceso rápido:
-          <strong>todo lo que haces “vive” en esta Zona 3</strong>.
+          <strong>todo lo que haces se muestra aquí</strong> (Zona 3). Lo que cambia es la “vista” según el proceso.
         </div>
 
         <p class="meta" style="margin-top:12px;">
-          Si los hotspots se corren, es porque tu captura cambió. Ajusta los porcentajes del <code>style</code>
-          (left/top/width/height) para que coincidan con tu imagen.
+          Si los hotspots se corren es porque tu captura del dashboard cambió de recorte.
+          Ajusta los porcentajes del <code>style</code> (left/top/width/height) en los hotspots.
         </p>
 
       </div>
