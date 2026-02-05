@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Zona 3A — Dashboard (Home): 3 partes</title>
+  <title>Zona 3 — Área de trabajo (Dashboard + Pantallas)</title>
 
   <style>
     :root{
@@ -57,42 +57,33 @@
       overflow:hidden;
     }
 
-    /* ===== ESCENA RESPONSIVE (sin recorte) ===== */
+    /* ===== ESCENA PRINCIPAL (dashboard) ===== */
     .stage{
       padding:12px;
       background:#fff;
       display:flex;
       justify-content:center;
     }
-
-    /* Este contenedor SIEMPRE conserva el “mismo” sistema de coordenadas porque no recorta */
     .scene{
       position:relative;
       width:min(1100px, 100%);
     }
-
     .scene img{
       display:block;
       width:100%;
       height:auto;
       border-radius:12px;
       border:1px solid rgba(0,0,0,.06);
-
-      /* Evita que se vea gigante en pantallas altas:
-         (no recorta, solo limita el alto; el ancho se ajusta automáticamente por el contenedor) */
-      max-height: clamp(260px, 55vh, 560px);
+      max-height: clamp(240px, 48vh, 520px); /* 👈 NO gigante */
       object-fit: contain;
       background:#fff;
+      user-select:none; -webkit-user-drag:none;
     }
-
-    /* Para que los hotspots usen el área exacta del render del img,
-       ponemos overlay encima y lo estiramos al tamaño real del img con JS */
     .overlay{
       position:absolute;
       left:0; top:0;
       width:100%;
       height:100%;
-      pointer-events:none; /* se habilita en hotspots con pointer-events */
     }
 
     .hotspot{
@@ -102,7 +93,6 @@
       border-radius:12px;
       cursor:default;
       transition: background .12s ease, border-color .12s ease, transform .12s ease;
-      pointer-events:auto;
     }
     .hotspot:hover{
       background:var(--hint);
@@ -150,6 +140,60 @@
       line-height:1.45;
     }
 
+    /* ===== MINI EJEMPLOS (pequeños) ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .mini{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:14px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 10px 22px rgba(0,0,0,.05);
+    }
+    .mini .imgwrap{
+      padding:10px;
+      background:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .mini img{
+      display:block;
+      width:100%;
+      height:auto;
+      max-height: 170px;     /* 👈 mini */
+      object-fit: contain;   /* 👈 sin recorte */
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,.06);
+      user-select:none; -webkit-user-drag:none;
+    }
+    .mini .cap{
+      padding:10px 12px 12px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+    .mini .cap .t{
+      font-weight:900;
+      font-size:13px;
+      margin-bottom:4px;
+      color:#111827;
+    }
+    .mini .cap .d{
+      font-size:12.5px;
+      color:#374151;
+      line-height:1.35;
+    }
+
     code{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 12px;
@@ -158,51 +202,6 @@
       padding: 1px 6px;
       border-radius: 8px;
     }
-
-    /* ===== MODO CALIBRACIÓN ===== */
-    .calib-panel{
-      position:fixed;
-      right:14px;
-      bottom:14px;
-      z-index:10000;
-      width:min(420px, calc(100% - 28px));
-      background: rgba(17,24,39,.96);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:14px;
-      padding:10px 12px;
-      display:none;
-      box-shadow:0 18px 40px rgba(0,0,0,.30);
-      font-size:12px;
-      line-height:1.35;
-    }
-    .calib-panel .row{ display:flex; gap:8px; align-items:center; justify-content:space-between; }
-    .calib-panel .title{ font-weight:800; }
-    .calib-panel .kbd{
-      font-weight:800;
-      background: rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
-      padding:2px 8px;
-      border-radius:999px;
-    }
-    .calib-panel .mono{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      background: rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.14);
-      padding:8px;
-      border-radius:12px;
-      margin-top:8px;
-      white-space:pre-wrap;
-      word-break:break-word;
-    }
-    .calib-rect{
-      position:absolute;
-      border:2px dashed rgba(245, 158, 11, .95);
-      background: rgba(245, 158, 11, .10);
-      border-radius:12px;
-      display:none;
-      pointer-events:none;
-    }
   </style>
 </head>
 
@@ -210,99 +209,126 @@
   <div class="wrap">
     <div class="topbar">
       <div style="width:100%;">
-        <h1>Zona 3A — Dashboard (Home): 3 partes</h1>
+        <h1>Zona 3 — Área de trabajo (Dashboard + pantallas)</h1>
         <div class="meta">
-          El <strong>Home</strong> es tu panel de inicio. Aquí ves información resumida (portlets) y accesos rápidos.
-          <strong>Esta pantalla puede variar por rol</strong> y/o por configuración del usuario.
+          Esta es la zona donde realmente “trabajas” en NetSuite: puedes ver el <strong>Dashboard (Home)</strong>,
+          pero también formularios, búsquedas e informes. <strong>La pantalla cambia</strong> según lo que hagas.
         </div>
       </div>
       <a class="btn" href="index.html">← Volver</a>
     </div>
 
+    <!-- Imagen principal: Dashboard -->
     <div class="card">
       <div class="stage">
         <div class="scene" id="scene">
-          <img id="dashImg" src="dashboard_home.png" alt="Dashboard (Home) NetSuite"/>
+          <img id="imgMain" src="dashboard_home.png" alt="Dashboard (Home) NetSuite"/>
 
-          <!-- overlay con hotspots en % -->
+          <!-- Hotspots sobre la imagen (en %) -->
           <div class="overlay" id="overlay">
-            <!-- ✅ HOTSPOTS (en %) — AJUSTA con el modo calibración (te da los % exactos) -->
-            <div class="hotspot"
-                 style="left:62%; top:2%; width:36%; height:10%;"
-                 data-title="Parte 1 — Barra del Dashboard (acciones del Home)"
-                 data-desc="Controles del Home (ej.: Visualización, Personalizar y Diseño). Desde aquí puedes ajustar cómo se ve el dashboard y, si tu rol lo permite, agregar/mover/quitar portlets."></div>
 
+            <!-- 1) Barra acciones del dashboard -->
             <div class="hotspot"
-                 style="left:1.5%; top:13%; width:97%; height:85%;"
-                 data-title="Parte 2 — Área del Dashboard (lienzo / grilla)"
-                 data-desc="Es el espacio donde se organizan los portlets. Puede estar dividido en columnas; el orden y la cantidad de portlets puede variar por rol o por preferencias del usuario."></div>
+                 style="left:58%; top:2.5%; width:40%; height:10%;"
+                 data-title="Parte 1 — Acciones del Dashboard"
+                 data-desc="Controles del Home (ej.: Visualización, Personalizar y Diseño). Dependiendo del rol, permite configurar la vista y organizar portlets.">
+            </div>
 
+            <!-- 2) Grilla / área del dashboard -->
             <div class="hotspot"
-                 style="left:2.5%; top:22%; width:30%; height:36%;"
+                 style="left:2%; top:13.5%; width:96%; height:80%;"
+                 data-title="Parte 2 — Área del Dashboard"
+                 data-desc="El lienzo donde se organizan los portlets. Puede estar en columnas y su contenido cambia por rol o preferencias del usuario.">
+            </div>
+
+            <!-- 3) Portlet ejemplo -->
+            <div class="hotspot"
+                 style="left:4%; top:26%; width:28%; height:30%;"
                  data-title="Parte 3 — Portlet (bloque/tarjeta)"
-                 data-desc="Un portlet es un componente individual del dashboard: KPI, recordatorios, accesos rápidos, búsquedas, gráficos, etc. Cada portlet muestra información o acciones puntuales."></div>
+                 data-desc="Cada bloque del Home es un portlet: KPIs, recordatorios, accesos rápidos, búsquedas, gráficos, etc.">
+            </div>
 
-            <!-- rectángulo de calibración -->
-            <div class="calib-rect" id="calibRect"></div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Texto + ejemplos -->
     <div class="card" style="margin-top:12px;">
       <div class="content">
 
-        <h2>¿Qué es el Dashboard (Home)?</h2>
+        <h2>1) Cuando estás en Home: ves el Dashboard</h2>
         <p>
-          El <strong>Dashboard</strong> es la pantalla principal de NetSuite (Home). Funciona como un panel de control:
-          muestra información resumida y accesos rápidos para trabajar sin entrar a muchos menús.
+          Al dar clic en la <strong>casita (Home)</strong> vuelves al <strong>Dashboard</strong>.
+          Aquí ves información resumida y accesos rápidos.
         </p>
 
         <div class="callout">
-          <strong>Importante:</strong> al dar clic en la <strong>casita (Home)</strong> siempre vuelves a este dashboard.
-          Si solo te <strong>paras encima</strong> de la casita, normalmente se despliegan opciones relacionadas (por ejemplo, acceso a preferencias, dependiendo de la configuración).
+          <strong>Nota:</strong> para algunos roles el dashboard viene <strong>preconfigurado</strong> (no editable).
+          Para otros roles, cada usuario puede <strong>personalizar</strong> qué portlets ve y en qué orden.
         </div>
 
-        <h3>Parte 1 — Barra del Dashboard (acciones)</h3>
-        <ul>
-          <li><strong>Visualización:</strong> define “qué vista” estás usando en el Home (puede cambiar filtros/contexto).</li>
-          <li><strong>Personalizar:</strong> opciones para ajustar portlets (agregar/quitar) si tu rol lo permite.</li>
-          <li><strong>Diseño:</strong> organiza la distribución del dashboard (columnas/orden) si está habilitado.</li>
-        </ul>
+        <h2 style="margin-top:14px;">2) Pero esta zona cambia según lo que hagas</h2>
+        <p>
+          La misma Zona 3 se transforma dependiendo de cómo navegues:
+          si usas el <strong>menú</strong>, el <strong>buscador</strong> o un <strong>atajo</strong>, puedes terminar en:
+          resultados, formularios o reportes.
+        </p>
 
-        <h3>Parte 2 — Área del Dashboard (grilla)</h3>
-        <ul>
-          <li>Es el “lienzo” donde aparecen todos los portlets.</li>
-          <li>En algunos roles viene <strong>preconfigurado</strong> (usuario no lo edita).</li>
-          <li>En otros roles el usuario puede <strong>personalizar</strong> (mover/ocultar/agregar portlets).</li>
-        </ul>
+        <div class="grid">
+          <!-- Mini 1: resultados -->
+          <div class="mini">
+            <div class="imgwrap">
+              <img src="work_search_results.png" alt="Ejemplo: resultados de búsqueda / lista"/>
+            </div>
+            <div class="cap">
+              <div class="t">Ejemplo A — Resultados (búsqueda / lista)</div>
+              <div class="d">
+                Cuando buscas algo o entras a una lista, normalmente verás una tabla con filtros y resultados
+                (búsquedas guardadas, listas de clientes, artículos, transacciones, etc.).
+              </div>
+            </div>
+          </div>
 
-        <h3>Parte 3 — Portlets (bloques)</h3>
-        <p>Un <strong>portlet</strong> es una tarjeta/bloque del dashboard. Puede mostrar:</p>
-        <ul>
-          <li>Indicadores (KPIs), recordatorios, tareas pendientes.</li>
-          <li>Accesos rápidos a procesos internos (Suitelets / dashboards personalizados).</li>
-          <li>Tablas o gráficos con información operativa.</li>
-        </ul>
+          <!-- Mini 2: formulario -->
+          <div class="mini">
+            <div class="imgwrap">
+              <img src="work_form.png" alt="Ejemplo: formulario de NetSuite"/>
+            </div>
+            <div class="cap">
+              <div class="t">Ejemplo B — Formulario (registro / transacción)</div>
+              <div class="d">
+                Cuando abres o creas un registro, aparece un formulario: campos, pestañas, sublistas y botones
+                (cliente, proveedor, orden de venta, factura, caso, tarea…).
+              </div>
+            </div>
+          </div>
+
+          <!-- Mini 3: reporte -->
+          <div class="mini">
+            <div class="imgwrap">
+              <img src="work_report.png" alt="Ejemplo: reporte / informe"/>
+            </div>
+            <div class="cap">
+              <div class="t">Ejemplo C — Informe / Reporte</div>
+              <div class="d">
+                Al entrar a Informes, verás reportes con tablas y, a veces, gráficos.
+                Suelen incluir opciones de filtros, exportación y navegación.
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="warning">
-          <strong>Tip:</strong> si no ves un portlet que “deberías” tener, revisa con tu líder o con el administrador
-          si tu <strong>rol</strong> lo tiene asignado o si debes agregarlo desde <strong>Personalizar</strong>.
+          <strong>Idea clave:</strong> no importa si entras por el menú, por el buscador o por un acceso rápido:
+          <strong>todo lo que haces “vive” en esta Zona 3</strong>.
         </div>
 
-        <h2 style="margin-top:14px;">¿Por qué esta zona “cambia” tanto?</h2>
-        <p>La zona de trabajo es dinámica. Cambia según lo que hagas:</p>
-        <ul>
-          <li>Si usas <strong>Home</strong> → ves el <strong>Dashboard</strong>.</li>
-          <li>Si entras por <strong>menús</strong> → se abre un <strong>formulario</strong> o una pantalla de proceso.</li>
-          <li>Si usas el <strong>buscador</strong> → puedes terminar en una <strong>lista</strong> o resultados.</li>
-          <li>Si entras a <strong>Informes</strong> → verás un <strong>reporte</strong> (tabla/gráfica).</li>
-        </ul>
-
         <p class="meta" style="margin-top:12px;">
-          <strong>Modo calibración:</strong> presiona <code>C</code>. Arrastra un rectángulo sobre la imagen y te dará los %
-          para pegar directo en el <code>style</code> del hotspot.
+          Si los hotspots se corren, es porque tu captura cambió. Ajusta los porcentajes del <code>style</code>
+          (left/top/width/height) para que coincidan con tu imagen.
         </p>
+
       </div>
     </div>
   </div>
@@ -313,44 +339,12 @@
     <div class="d" id="ttDesc"></div>
   </div>
 
-  <!-- Panel calibración -->
-  <div class="calib-panel" id="calibPanel">
-    <div class="row">
-      <div class="title">Modo calibración</div>
-      <div class="kbd">C</div>
-    </div>
-    <div style="opacity:.9; margin-top:6px;">
-      Arrastra para dibujar un área. Copia el CSS en % y pégalo en tu hotspot.
-    </div>
-    <div class="mono" id="calibOut">—</div>
-  </div>
-
   <script>
     (function(){
       const tooltip = document.getElementById('tooltip');
       const ttTitle = document.getElementById('ttTitle');
       const ttDesc  = document.getElementById('ttDesc');
 
-      const scene = document.getElementById('scene');
-      const img = document.getElementById('dashImg');
-      const overlay = document.getElementById('overlay');
-
-      // Mantener overlay exactamente del tamaño visible del <img> (por si max-height entra a jugar)
-      function syncOverlayToImage(){
-        const r = img.getBoundingClientRect();
-        const s = scene.getBoundingClientRect();
-
-        // Posición del img dentro del contenedor scene
-        const left = r.left - s.left;
-        const top  = r.top  - s.top;
-
-        overlay.style.left = left + 'px';
-        overlay.style.top  = top  + 'px';
-        overlay.style.width  = r.width + 'px';
-        overlay.style.height = r.height + 'px';
-      }
-
-      // Tooltip
       function show(e, title, desc){
         if(!title && !desc) return;
         ttTitle.textContent = title || '';
@@ -359,6 +353,7 @@
         move(e);
       }
       function hide(){ tooltip.style.display = 'none'; }
+
       function move(e){
         const pad = 14;
         const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -375,114 +370,13 @@
         tooltip.style.top  = Math.max(8, y) + 'px';
       }
 
-      function attachHotspots(){
-        overlay.querySelectorAll('.hotspot').forEach(hs => {
-          hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
-          hs.addEventListener('mousemove', (e) => move(e));
-          hs.addEventListener('mouseleave', hide);
-        });
-      }
-
-      // ===== Calibración =====
-      const calibPanel = document.getElementById('calibPanel');
-      const calibOut = document.getElementById('calibOut');
-      const calibRect = document.getElementById('calibRect');
-
-      let calibOn = false;
-      let dragging = false;
-      let startX = 0, startY = 0;
-
-      function pxToPct(px, total){
-        return total ? (px / total * 100) : 0;
-      }
-      function fmt(n){
-        return (Math.round(n * 100) / 100).toFixed(2);
-      }
-
-      function toggleCalib(){
-        calibOn = !calibOn;
-        calibPanel.style.display = calibOn ? 'block' : 'none';
-        calibRect.style.display = 'none';
-        dragging = false;
-        calibOut.textContent = calibOn
-          ? "Arrastra sobre la imagen para obtener: left/top/width/height en %."
-          : "—";
-      }
-
-      // Solo calibramos sobre el overlay (misma escala del img)
-      overlay.addEventListener('mousedown', (e) => {
-        if(!calibOn) return;
-        dragging = true;
-
-        const r = overlay.getBoundingClientRect();
-        startX = e.clientX - r.left;
-        startY = e.clientY - r.top;
-
-        calibRect.style.display = 'block';
-        calibRect.style.left = startX + 'px';
-        calibRect.style.top  = startY + 'px';
-        calibRect.style.width = '1px';
-        calibRect.style.height = '1px';
+      document.querySelectorAll('.hotspot').forEach(hs => {
+        hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
+        hs.addEventListener('mousemove', (e) => move(e));
+        hs.addEventListener('mouseleave', hide);
       });
 
-      window.addEventListener('mousemove', (e) => {
-        if(!calibOn || !dragging) return;
-
-        const r = overlay.getBoundingClientRect();
-        let x = e.clientX - r.left;
-        let y = e.clientY - r.top;
-
-        // Clamp
-        x = Math.max(0, Math.min(r.width, x));
-        y = Math.max(0, Math.min(r.height, y));
-
-        const left = Math.min(startX, x);
-        const top  = Math.min(startY, y);
-        const w    = Math.abs(x - startX);
-        const h    = Math.abs(y - startY);
-
-        calibRect.style.left = left + 'px';
-        calibRect.style.top  = top  + 'px';
-        calibRect.style.width  = w + 'px';
-        calibRect.style.height = h + 'px';
-
-        const lp = pxToPct(left, r.width);
-        const tp = pxToPct(top,  r.height);
-        const wp = pxToPct(w,     r.width);
-        const hp = pxToPct(h,     r.height);
-
-        calibOut.textContent =
-`style="left:${fmt(lp)}%; top:${fmt(tp)}%; width:${fmt(wp)}%; height:${fmt(hp)}%;"`;
-      });
-
-      window.addEventListener('mouseup', () => {
-        if(!calibOn) return;
-        dragging = false;
-      });
-
-      window.addEventListener('keydown', (e) => {
-        if(e.key.toLowerCase() === 'c') toggleCalib();
-      });
-
-      // Init
-      function init(){
-        attachHotspots();
-        syncOverlayToImage();
-      }
-
-      // Esperar que cargue la imagen
-      if (img.complete) init();
-      else img.addEventListener('load', init);
-
-      // Recalcular si cambia el tamaño
-      window.addEventListener('resize', () => {
-        syncOverlayToImage();
-        hide();
-      });
-      window.addEventListener('scroll', () => {
-        syncOverlayToImage();
-        hide();
-      }, { passive:true });
+      window.addEventListener('scroll', hide, { passive: true });
     })();
   </script>
 </body>
