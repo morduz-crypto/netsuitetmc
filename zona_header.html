@@ -7,8 +7,8 @@
 
   <style>
     :root{
-      --hint: rgba(0, 123, 255, .14);
-      --hint-strong: rgba(0, 123, 255, .28);
+ --hint: rgba(0, 123, 255, .55);
+      --hint-strong: rgba(0, 123, 255, .85);
       --accent: #111827;
       --card: #ffffff;
       --bg: #f3f4f6;
@@ -92,17 +92,25 @@
       -webkit-user-drag:none;
     }
 
-    .hotspot{
+   .hotspot{
       position:absolute;
-      border:2px solid var(--hint);
-      background:transparent;
-      border-radius:12px;
-      cursor:default;
-      transition: background .12s ease, border-color .12s ease, transform .12s ease;
+      border: 3px solid var(--hint);
+      background: transparent;
+      border-radius: 12px;
+      cursor: default;
+      pointer-events:auto;
+
+      box-shadow: 0 0 0 2px rgba(255,255,255,.85),
+                  0 8px 18px rgba(0,0,0,.10);
+
+      transition: background .12s ease, border-color .12s ease, transform .12s ease, box-shadow .12s ease;
     }
+
     .hotspot:hover{
-      background:var(--hint);
-      border-color:var(--hint-strong);
+      background: rgba(0,123,255,.10);
+      border-color: var(--hint-strong);
+      box-shadow: 0 0 0 2px rgba(255,255,255,.9),
+                  0 10px 22px rgba(0,0,0,.14);
       transform: translateY(-1px);
     }
 
