@@ -7,7 +7,7 @@
 
   <style>
     :root{
-      --bg:#f7f8fa;
+      --bg:#f8fafc;
       --card:#ffffff;
       --text:#0f172a;
       --muted:#475569;
@@ -34,26 +34,32 @@
       font-size:34px;
       font-weight:900;
       letter-spacing:-.02em;
-      margin:0 0 6px;
+      margin:0 0 10px;
     }
 
-    .subtitle{
+    .intro{
+      max-width:820px;
       font-size:16px;
+      line-height:1.6;
       color:var(--muted);
-      max-width:760px;
-      line-height:1.5;
+    }
+
+    .intro strong{
+      color:var(--text);
+      font-weight:700;
     }
 
     .divider{
       height:1px;
       background:var(--border);
-      margin:28px 0 34px;
+      margin:32px 0 36px;
     }
 
     .cards{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
       gap:22px;
+      align-items:stretch;
     }
 
     @media(max-width:1100px){
@@ -66,21 +72,24 @@
     .card{
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:14px;
-      padding:22px 22px 24px;
+      border-radius:16px;
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      box-shadow:0 10px 22px rgba(0,0,0,.05);
       transition: transform .15s ease, box-shadow .15s ease;
-      box-shadow:0 8px 18px rgba(0,0,0,.04);
     }
 
     .card:hover{
       transform: translateY(-2px);
-      box-shadow:0 14px 30px rgba(0,0,0,.08);
+      box-shadow:0 16px 34px rgba(0,0,0,.08);
     }
 
     .card-icon{
-      width:36px;
-      height:36px;
-      border-radius:8px;
+      width:40px;
+      height:40px;
+      border-radius:10px;
       background:rgba(37,99,235,.08);
       color:var(--accent);
       display:flex;
@@ -92,16 +101,17 @@
     }
 
     .card h3{
-      font-size:16px;
-      margin:0 0 6px;
+      font-size:17px;
+      margin:0 0 8px;
       font-weight:800;
     }
 
     .card p{
-      margin:0;
       font-size:14px;
       color:var(--muted);
-      line-height:1.45;
+      line-height:1.5;
+      margin:0;
+      flex-grow:1;
     }
 
     a{
@@ -110,7 +120,7 @@
     }
 
     footer{
-      margin-top:48px;
+      margin-top:56px;
       font-size:13px;
       color:#64748b;
     }
@@ -121,9 +131,23 @@
   <div class="container">
 
     <h1>Guía Básica de NetSuite</h1>
-    <div class="subtitle">
-      Documentación interna de TMC para entender los conceptos,
-      la navegación y la estructura general del sistema NetSuite.
+
+    <div class="intro">
+      <p>
+        <strong>NetSuite es el sistema central de Tecnologías Médicas Colombia (TMC)</strong>,
+        donde se gestionan procesos de ventas, clientes, inventario, compras,
+        cartera, servicio técnico, importaciones y reportes.
+      </p>
+      <p>
+        Esta guía es una <strong>visión general</strong> diseñada para dar contexto a
+        nuevos usuarios, ayudar a entender el lenguaje del sistema y reconocer
+        cómo se organiza NetSuite.
+      </p>
+      <p>
+        ⚠️ <strong>Importante:</strong> este material <strong>no reemplaza capacitaciones
+        específicas por área</strong>. Cada equipo cuenta con su propia documentación
+        y formación operativa.
+      </p>
     </div>
 
     <div class="divider"></div>
@@ -183,4 +207,3 @@
   </div>
 </body>
 </html>
-
