@@ -23,6 +23,9 @@
       background:var(--bg);
       color:var(--text);
     }
+    a{ color:var(--accent2); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
     .container{
       max-width:1100px;
       margin:0 auto;
@@ -72,6 +75,9 @@
       color: var(--accent2);
       background: rgba(37,99,235,.06);
     }
+    .btn.ghost{
+      background:transparent;
+    }
     .pill{
       display:inline-flex;
       align-items:center;
@@ -88,8 +94,8 @@
     .hint{
       color:var(--muted);
       margin:0 0 18px;
-      line-height:1.65;
-      max-width:900px;
+      line-height:1.7;
+      max-width:950px;
     }
 
     /* layout */
@@ -123,8 +129,27 @@
     .cardBody{
       padding:14px 18px 18px;
       color:var(--muted);
-      line-height:1.65;
+      line-height:1.7;
       font-size:14px;
+    }
+
+    /* friendly callout */
+    .callout{
+      background: rgba(37,99,235,.06);
+      border: 1px solid rgba(37,99,235,.18);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+      color:#334155;
+      margin-bottom:14px;
+    }
+    .callout b{ color:var(--text); }
+    .callout .mini{
+      display:block;
+      color:#64748b;
+      font-weight:800;
+      margin-top:6px;
+      font-size:12px;
     }
 
     .kpiRow{
@@ -136,6 +161,7 @@
     .kpi{
       display:flex;
       align-items:center;
+      justify-content:space-between;
       gap:10px;
       padding:12px 14px;
       border-radius:14px;
@@ -145,9 +171,7 @@
       flex: 1 1 260px;
       min-width: 260px;
     }
-    .kpi b{
-      color:var(--text);
-    }
+    .kpi b{ color:var(--text); }
     .kpi small{
       display:block;
       color:#64748b;
@@ -156,8 +180,36 @@
     }
     .mono{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-weight:800;
+      font-weight:900;
       color:var(--text);
+      letter-spacing:.2px;
+    }
+    .kpiRight{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex:0 0 auto;
+    }
+    .iconBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:38px;
+      height:38px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--card);
+      box-shadow:var(--shadow);
+      cursor:pointer;
+      user-select:none;
+    }
+    .iconBtn:hover{ background: rgba(37,99,235,.06); border-color: rgba(37,99,235,.22); }
+    .iconBtn svg{ width:18px; height:18px; }
+
+    .divider{
+      height:1px;
+      background:var(--border);
+      margin:14px 0;
     }
 
     .list{
@@ -166,10 +218,23 @@
     }
     .list li{ margin:6px 0; }
 
-    .divider{
-      height:1px;
-      background:var(--border);
-      margin:14px 0;
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(15,23,42,.03);
+      border:1px solid var(--border);
+      color:#334155;
+      font-weight:900;
+      font-size:12px;
     }
 
     .actions{
@@ -179,6 +244,7 @@
       margin-top:12px;
     }
 
+    /* toast */
     .toast{
       position:fixed;
       left:50%;
@@ -200,17 +266,73 @@
       transform:translateX(-50%) translateY(-2px);
     }
 
+    /* modal */
+    .modalBack{
+      position:fixed;
+      inset:0;
+      background: rgba(15,23,42,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index: 99999;
+    }
+    .modalBack.show{ display:flex; }
+    .modal{
+      width:min(980px, 100%);
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      box-shadow:0 24px 60px rgba(0,0,0,.28);
+      overflow:hidden;
+    }
+    .modalHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      background: #ffffff;
+    }
+    .modalHead b{ font-size:14px; color:var(--text); }
+    .closeBtn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--card);
+      cursor:pointer;
+      font-weight:900;
+      box-shadow:var(--shadow);
+    }
+    .modalBody{
+      padding:0;
+      background:#fff;
+    }
+    .iframeWrap{
+      width:100%;
+      height:min(74vh, 720px);
+      border:0;
+      display:block;
+      background:#fff;
+    }
+    .modalFoot{
+      padding:12px 16px;
+      border-top:1px solid var(--border);
+      color:#64748b;
+      font-size:12px;
+      line-height:1.5;
+      background:#fff;
+    }
+
     .small{
       font-size:12px;
       color:#64748b;
       margin-top:22px;
     }
-    .mutedLink{
-      color:var(--accent2);
-      text-decoration:none;
-      font-weight:900;
-    }
-    .mutedLink:hover{ text-decoration:underline; }
   </style>
 </head>
 
@@ -227,11 +349,11 @@
       </div>
     </div>
 
-    <p class="hint">
-      Para que podamos ayudarte rápido, la clave es <b>contexto</b>. Un pantallazo del error sin explicar qué estabas haciendo
-      normalmente nos obliga a adivinar y se pierde tiempo.
-      <br/>Aquí tienes la forma más simple de pedir soporte (y el link para confirmar que completaste el onboarding).
-    </p>
+    <div class="callout">
+      En <b>TMC</b>, el área de <b>Tecnología</b> es la encargada de dar soporte sobre <b>NetSuite</b>.
+      Esto incluye <b>errores del sistema</b>, <b>novedades</b> o comportamientos que “no deberían pasar”.
+      <span class="mini">Si nos compartes el contexto completo, podemos ayudarte mucho más rápido (sin adivinar).</span>
+    </div>
 
     <div class="grid">
 
@@ -242,12 +364,27 @@
         </div>
 
         <div class="cardBody">
+
           <div class="kpiRow">
             <div class="kpi">
               <div>
                 <b>Correo</b>
-                <small>Canal recomendado para solicitudes completas</small>
+                <small>Ideal para solicitudes completas (recomendado)</small>
                 <div class="mono" id="supportEmail">morduz@tm-colombia.com</div>
+              </div>
+              <div class="kpiRight">
+                <button class="iconBtn" type="button" id="copyEmailBtn" title="Copiar correo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+                <a class="iconBtn" id="mailBtn" href="#" title="Abrir correo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4h16v16H4z"></path>
+                    <path d="m22 6-10 7L2 6"></path>
+                  </svg>
+                </a>
               </div>
             </div>
 
@@ -257,42 +394,52 @@
                 <small>Para dudas rápidas o bloqueo urgente</small>
                 <div class="mono" id="supportWapp">3102465773</div>
               </div>
+              <div class="kpiRight">
+                <button class="iconBtn" type="button" id="copyWappBtn" title="Copiar WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+                <a class="iconBtn" id="waBtn" href="#" target="_blank" rel="noopener" title="Abrir WhatsApp">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
 
-          <div class="actions">
-            <button class="btn" type="button" id="copyEmailBtn">Copiar correo</button>
-            <a class="btn primary" id="mailBtn" href="#">Abrir correo</a>
-            <button class="btn" type="button" id="copyWappBtn">Copiar WhatsApp</button>
-            <a class="btn primary" id="waBtn" href="#" target="_blank" rel="noopener">Abrir WhatsApp</a>
+          <div class="chips">
+            <span class="chip">⏱️ Más contexto = solución más rápida</span>
+            <span class="chip">🧩 Error + pasos + registro = perfecto</span>
           </div>
 
           <div class="divider"></div>
 
-          <p style="margin:0;"><b>Checklist</b> (siempre manda esto):</p>
+          <p style="margin:0;"><b>¿Qué necesitamos para ayudarte?</b></p>
           <ul class="list">
             <li><b>Qué estabas haciendo</b> (paso a paso, 3–6 pasos máximo).</li>
-            <li><b>Dónde estabas</b>: ¿en qué menú/registro estabas? (ej: Orden de compra, Cliente, Caso, etc.).</li>
-            <li><b>Link del registro</b> o al menos: <b>número</b> (ej: PO12345, SO9876, INV-0001).</li>
-            <li><b>Screenshot</b> completo (que se vea la barra/URL si aplica y el mensaje exacto).</li>
-            <li><b>Qué esperabas que pasara</b> vs <b>qué pasó</b>.</li>
-            <li><b>¿Pasa siempre o solo a veces?</b> (y desde cuándo).</li>
+            <li><b>Dónde estabas</b>: ¿en qué menú/registro/transacción? (Ej: Orden de compra, Cliente, Caso, etc.).</li>
+            <li><b>Link del registro</b> o al menos el <b>número</b> (Ej: PO12345, SO9876, INV-0001).</li>
+            <li><b>Screenshot</b> completo (si aplica: que se vea el mensaje exacto).</li>
+            <li><b>Qué esperabas</b> vs <b>qué pasó</b>.</li>
+            <li><b>¿Pasa siempre o a veces?</b> (y desde cuándo).</li>
           </ul>
 
           <div class="divider"></div>
 
-          <p style="margin:0;"><b>Ejemplo de solicitud “bien hecha”</b>:</p>
+          <p style="margin:0;"><b>Ejemplo (corto y perfecto)</b>:</p>
           <ul class="list">
             <li><b>Registro:</b> Orden de compra PO12345 (link adjunto)</li>
             <li><b>Pasos:</b> Editar → Items → agrego ítem “X” → Guardar</li>
-            <li><b>Error:</b> “No se puede guardar porque…” (screenshot)</li>
+            <li><b>Mensaje:</b> “No se puede guardar porque…” (screenshot)</li>
             <li><b>Esperaba:</b> que guardara y quedara en “Pending Approval”</li>
           </ul>
 
           <p style="margin:12px 0 0;">
-            Tip: si tienes que “poner un espacio” para que aparezca una opción,
-            eso suena a un tema de <b>autocompletar/lookup</b> o de <b>validación en campo</b>.
-            En ese caso, manda también el <b>campo exacto</b> y el <b>valor</b> que intentas seleccionar.
+            <b>Tip rápido:</b> si el problema está en un campo (por ejemplo, “no me deja seleccionar”),
+            envíanos también el <b>nombre del campo</b> y el <b>valor</b> que intentas poner.
           </p>
         </div>
       </div>
@@ -306,25 +453,26 @@
         <div class="cardBody">
           <p style="margin:0;">
             Si llegaste hasta acá, ya terminaste la guía general 🎉<br/>
-            Para llevar control, confirma tu finalización en este link:
+            Para dejar el registro interno, confirma tu finalización aquí:
           </p>
 
           <div class="actions" style="margin-top:12px;">
-            <a class="btn primary" target="_blank" rel="noopener"
-               href="https://5055913.extforms.netsuite.com/app/site/crm/externalcustrecordpage.nl?compid=5055913&formid=1&h=AAFdikaIkeAA-TvlLFZXaXlxHaRPBDxNkw3COQDmufmdHuCq6N4">
-              Confirmar finalización →
+            <button class="btn primary" type="button" id="openConfirmBtn">
+              Confirmar en NetSuite →
+            </button>
+            <a class="btn" target="_blank" rel="noopener" id="openConfirmNewTab" href="#">
+              Abrir en nueva pestaña
             </a>
           </div>
 
-          <p style="margin:12px 0 0;">
-            Nota: este link es un <b>formulario en línea de NetSuite</b> (queda registro interno).
+          <p style="margin:12px 0 0; color:#64748b; font-size:12px;">
+            Se abre un <b>formulario en línea (NetSuite)</b>. Puedes enviarlo y cerrar — queda registrado.
           </p>
 
           <div class="divider"></div>
 
           <p style="margin:0;">
-            ¿Te quedó alguna duda de la guía? Escríbenos por correo o WhatsApp con el checklist de arriba
-            para poder ayudarte rápido.
+            Si te quedó alguna duda: escríbenos por correo o WhatsApp con el checklist de la izquierda 😊
           </p>
         </div>
       </div>
@@ -336,9 +484,35 @@
     <div id="toast" class="toast">Copiado ✅</div>
   </div>
 
+  <!-- Modal confirmación (iframe embebido) -->
+  <div class="modalBack" id="confirmModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Confirmar onboarding">
+      <div class="modalHead">
+        <b>Confirmar finalización · NetSuite</b>
+        <button class="closeBtn" type="button" id="closeConfirmBtn">Cerrar ✕</button>
+      </div>
+      <div class="modalBody">
+        <iframe
+          id="confirmFrame"
+          class="iframeWrap"
+          title="Formulario de confirmación"
+          src=""
+          loading="lazy"
+          referrerpolicy="no-referrer">
+        </iframe>
+      </div>
+      <div class="modalFoot">
+        Si el formulario no carga dentro del pop-up (por políticas del navegador), usa “Abrir en nueva pestaña”.
+      </div>
+    </div>
+  </div>
+
   <script>
     const EMAIL = 'morduz@tm-colombia.com';
     const WAPP  = '3102465773';
+
+    // ✅ link oficial del formulario externo
+    const CONFIRM_URL = 'https://5055913.extforms.netsuite.com/app/site/crm/externalcustrecordpage.nl?compid=5055913&formid=1&h=AAFdikaIkeAA-TvlLFZXaXlxHaRPBDxNkw3COQDmufmdHuCq6N4';
 
     const toast = document.getElementById('toast');
 
@@ -353,7 +527,6 @@
         await navigator.clipboard.writeText(text);
         showToast('Copiado ✅');
       }catch(e){
-        // fallback
         const ta = document.createElement('textarea');
         ta.value = text;
         document.body.appendChild(ta);
@@ -364,7 +537,7 @@
       }
     }
 
-    // Buttons
+    // Copy buttons
     document.getElementById('copyEmailBtn').addEventListener('click', () => copyToClipboard(EMAIL));
     document.getElementById('copyWappBtn').addEventListener('click', () => copyToClipboard(WAPP));
 
@@ -372,7 +545,7 @@
     const mailBtn = document.getElementById('mailBtn');
     const subject = encodeURIComponent('Soporte NetSuite - Solicitud');
     const body = encodeURIComponent(
-`Hola,
+`Hola equipo de Tecnología,
 
 Necesito ayuda con lo siguiente:
 
@@ -381,14 +554,14 @@ Necesito ayuda con lo siguiente:
 3) ¿Qué esperaba? / ¿Qué pasó? (incluye mensaje exacto)
 4) Adjuntos: screenshots
 
-Gracias.`
+¡Gracias!`
     );
     mailBtn.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
 
     // WhatsApp (wa.me)
     const waBtn = document.getElementById('waBtn');
     const waMsg = encodeURIComponent(
-`Hola. Necesito soporte en NetSuite.
+`Hola equipo de Tecnología 😊 Necesito soporte en NetSuite.
 
 - ¿Qué estaba haciendo? (paso a paso)
 - Registro/transacción: (link o número)
@@ -396,7 +569,45 @@ Gracias.`
 - Adjuntos: screenshots`
     );
     waBtn.href = `https://wa.me/57${WAPP}?text=${waMsg}`;
+
+    // Confirm modal
+    const modal = document.getElementById('confirmModal');
+    const frame = document.getElementById('confirmFrame');
+    const openBtn = document.getElementById('openConfirmBtn');
+    const closeBtn = document.getElementById('closeConfirmBtn');
+    const openNewTab = document.getElementById('openConfirmNewTab');
+
+    openNewTab.href = CONFIRM_URL;
+
+    function openModal(){
+      // set src on open (avoid loading cost on page load)
+      frame.src = CONFIRM_URL;
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      // optional: clear src so it resets next time
+      frame.src = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    // close on backdrop click
+    modal.addEventListener('click', (e) => {
+      if(e.target === modal) closeModal();
+    });
+
+    // close on ESC
+    window.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+    });
   </script>
 </body>
 </html>
+
 
