@@ -45,21 +45,14 @@
       padding:44px 22px 56px;
     }
 
-    /* Top */
+    /* ===== TOPBAR (título + botones a la derecha) ===== */
     .topbar{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom:12px;
-    }
-    .titleRow{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
       gap:14px;
       flex-wrap:wrap;
+      margin-bottom:12px;
     }
     .titleBlock{ min-width: 260px; }
     h1{
@@ -117,7 +110,7 @@
       white-space:nowrap;
     }
 
-    /* Callouts */
+    /* ===== CALLOUTS ===== */
     .callout{
       background: var(--info-bg);
       border: 1px solid var(--info-bd);
@@ -160,7 +153,7 @@
       box-shadow: 0 10px 22px rgba(0,0,0,.02);
     }
 
-    /* Cards */
+    /* ===== CARDS ===== */
     .card{
       background:var(--card);
       border:1px solid var(--border);
@@ -190,12 +183,10 @@
       font-size:14px;
     }
 
-    /* Chips + flows */
     .chips{
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:10px;
     }
     .chip{
       display:inline-flex;
@@ -211,93 +202,7 @@
       white-space:nowrap;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      align-items:stretch;
-    }
-    @media (max-width: 980px){
-      .grid{ grid-template-columns:1fr; }
-    }
-
-    .flow{
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:12px 12px;
-      background:#fff;
-      box-shadow: 0 8px 16px rgba(0,0,0,.02);
-      height:100%;
-    }
-    .flowHead{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:8px;
-    }
-    .flowHead b{
-      color:var(--text);
-      font-size:13px;
-      font-weight:900;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(37,99,235,.18);
-      background: rgba(37,99,235,.08);
-      color: var(--accent2);
-      font-weight:900;
-      font-size:11px;
-      white-space:nowrap;
-    }
-    .flow p{
-      margin:0 0 8px;
-      color:#334155;
-      line-height:1.6;
-    }
-    .steps{
-      margin:10px 0 0;
-      padding:10px 12px;
-      border:1px solid rgba(0,0,0,.06);
-      border-radius:14px;
-      background:#fafafa;
-      color:#334155;
-    }
-    .steps ol{ margin:0 0 0 18px; padding:0; }
-    .steps li{ margin:7px 0; }
-
-    .arrowline{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:10px;
-      align-items:center;
-    }
-    .pillStep{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 11px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow: 0 8px 16px rgba(0,0,0,.02);
-      font-weight:900;
-      color:#0f172a;
-      font-size:12px;
-      white-space:nowrap;
-    }
-    .arrow{
-      color:#94a3b8;
-      font-weight:900;
-      user-select:none;
-    }
-
-    /* Area cards */
+    /* ===== AREA CARDS ===== */
     .areas{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -357,7 +262,6 @@
       font-size:12px;
       line-height:1.35;
     }
-
     .tagRow{
       display:flex;
       flex-wrap:wrap;
@@ -415,155 +319,38 @@
 <body>
   <div class="container">
 
-    <!-- Top -->
+    <!-- TOP: título + botones ARRIBA al lado -->
     <div class="topbar">
       <div class="titleBlock">
-        <div class="titleRow">
-          <div>
-            <h1>Áreas y transacciones en NetSuite</h1>
-            <div class="meta">
-              Esta página te da <b>contexto general</b> de quién usa qué en NetSuite y cómo se conectan los procesos.
-              No es un paso a paso: cada área tiene su capacitación específica.
-            </div>
-          </div>
-
-          <!-- BOTONES al lado del título -->
-          <div class="topActions">
-            <a class="btn" href="visuales.html">← Anterior (Visuales)</a>
-            <a class="btn primary" href="buenaspracticas.html">Siguiente (Buenas prácticas) →</a>
-            <span class="pill">Sección 4 de 6</span>
-          </div>
+        <h1>Áreas y transacciones en NetSuite</h1>
+        <div class="meta">
+          Contexto general de quién usa qué en NetSuite y cómo se conectan los procesos.
+          No es un paso a paso: cada área tiene su capacitación específica.
         </div>
+      </div>
+
+      <div class="topActions">
+        <a class="btn" href="visuales.html">← Anterior (Visuales)</a>
+        <a class="btn primary" href="buenaspracticas.html">Siguiente (Buenas prácticas) →</a>
+        <span class="pill">Sección 4 de 6</span>
       </div>
     </div>
 
-    <!-- Intro -->
     <div class="callout">
       NetSuite es una cadena: lo que hace un área alimenta a la siguiente.
-      Por ejemplo, un <b>Cliente</b> bien creado desde Comercial evita reprocesos en SAC, Cartera y Contabilidad.
-      <span class="mini">Casi todo termina impactando <b>Contabilidad</b> porque las <b>transacciones</b> registran movimientos del negocio.</span>
+      Por ejemplo, <b>Comercial</b> inicia la información del cliente y eso impacta a <b>SAC</b>, <b>Cartera</b> y <b>Contabilidad</b>.
+      <span class="mini">Casi todo termina impactando Contabilidad porque las transacciones registran movimientos del negocio.</span>
     </div>
 
     <div class="note">
-      <b>Tranquilo/a:</b> no necesitas memorizar todo. Solo entiende:
-      <b>(1)</b> qué crea tu área, <b>(2)</b> qué recibe y <b>(3)</b> qué le entrega a otras áreas.
+      <b>Idea clave:</b> tu trabajo no está “aislado”. Si registras algo bien desde el inicio, el resto del flujo fluye mejor.
     </div>
 
-    <!-- Flows -->
+    <!-- ===== ÁREAS (sin mega-sección de flujos de cliente) ===== -->
     <div class="card">
       <div class="cardHeader">
-        <p class="cardTitle">3 flujos típicos del cliente (vista general)</p>
-        <div class="chips" style="margin-top:0;">
-          <span class="chip">👤 Prospecto (Prospect)</span>
-          <span class="chip">🎯 Oportunidad (Opportunity)</span>
-          <span class="chip">🧾 Cotización (Estimate)</span>
-          <span class="chip">📦 Orden de venta (Sales Order)</span>
-          <span class="chip">💳 Factura (Invoice)</span>
-          <span class="chip">💰 Pago (Customer Payment)</span>
-        </div>
-      </div>
-
-      <div class="cardBody">
-        <div class="grid">
-
-          <!-- Flow 1 -->
-          <div class="flow">
-            <div class="flowHead">
-              <b>1) Cliente nuevo (venta desde cero)</b>
-              <span class="badge">Comercial → SAC → Cartera</span>
-            </div>
-
-            <p>Cuando todavía no existe en el sistema y se crea desde el proceso comercial.</p>
-
-            <div class="arrowline">
-              <span class="pillStep">Prospecto (Prospect)</span><span class="arrow">→</span>
-              <span class="pillStep">Cliente interesado (Lead)</span><span class="arrow">→</span>
-              <span class="pillStep">Cliente (Customer)</span><span class="arrow">→</span>
-              <span class="pillStep">Oportunidad (Opportunity)</span><span class="arrow">→</span>
-              <span class="pillStep">Cotización (Estimate)</span><span class="arrow">→</span>
-              <span class="pillStep">Orden de venta (Sales Order)</span><span class="arrow">→</span>
-              <span class="pillStep">Factura (Invoice)</span>
-            </div>
-
-            <div class="steps">
-              <ol>
-                <li>Comercial avanza el cliente en el embudo: <b>Prospecto → Cliente interesado → Cliente</b>.</li>
-                <li>Se gestiona la <b>Oportunidad (Opportunity)</b> y se envía la <b>Cotización (Estimate)</b>.</li>
-                <li>Si el cliente acepta: se procesa <b>Orden de venta (Sales Order)</b> y luego <b>Factura (Invoice)</b>.</li>
-                <li>Cartera gestiona cobro, pagos, saldos y (si aplica) <b>Nota crédito (Credit Memo)</b>.</li>
-              </ol>
-            </div>
-          </div>
-
-          <!-- Flow 2 -->
-          <div class="flow">
-            <div class="flowHead">
-              <b>2) Cliente existente (venta directa “normal”)</b>
-              <span class="badge">SAC / Comercial</span>
-            </div>
-
-            <p>Cuando el cliente ya existe y solo se gestiona la venta/entrega.</p>
-
-            <div class="arrowline">
-              <span class="pillStep">Cliente (Customer)</span><span class="arrow">→</span>
-              <span class="pillStep">Cotización (Estimate) <small style="opacity:.7">(opcional)</small></span><span class="arrow">→</span>
-              <span class="pillStep">Orden de venta (Sales Order)</span><span class="arrow">→</span>
-              <span class="pillStep">Cumplimiento (Item Fulfillment) <small style="opacity:.7">(si aplica)</small></span><span class="arrow">→</span>
-              <span class="pillStep">Factura (Invoice)</span>
-            </div>
-
-            <div class="steps">
-              <ol>
-                <li>Puede iniciar con <b>Cotización (Estimate)</b> o ir directo a <b>Orden de venta (Sales Order)</b>.</li>
-                <li>Si hay despacho con inventario: <b>Cumplimiento (Item Fulfillment)</b>.</li>
-                <li>Se genera la <b>Factura (Invoice)</b> y Cartera controla el cobro.</li>
-              </ol>
-            </div>
-          </div>
-
-          <!-- Flow 3 -->
-          <div class="flow" style="grid-column: 1 / -1;">
-            <div class="flowHead">
-              <b>3) Consignación / reposición / legalización</b>
-              <span class="badge">SAC + Inventario</span>
-            </div>
-
-            <p>
-              No siempre es “venta directa”. En consignación puede haber reposición, legalización y despachos que se mueven con inventario.
-            </p>
-
-            <div class="arrowline">
-              <span class="pillStep">Solicitud (SAC / Cliente)</span><span class="arrow">→</span>
-              <span class="pillStep">Orden de traslado (Transfer Order)</span><span class="arrow">→</span>
-              <span class="pillStep">Cumplimiento (Item Fulfillment)</span><span class="arrow">→</span>
-              <span class="pillStep">Recepción (Item Receipt)</span>
-              <span class="arrow">→</span>
-              <span class="pillStep">Legalización (Estimate / Sales Order / Invoice) <small style="opacity:.7">(según caso)</small></span>
-            </div>
-
-            <div class="steps">
-              <ol>
-                <li>SAC coordina la solicitud: despacho / reposición / legalización.</li>
-                <li>Inventario ejecuta el movimiento: <b>Orden de traslado (Transfer Order)</b> o <b>Transferencia de inventario (Inventory Transfer)</b> según aplique.</li>
-                <li>Si se legaliza a venta: se apoya en <b>Cotización (Estimate)</b>, <b>Orden de venta (Sales Order)</b> y/o <b>Factura (Invoice)</b>.</li>
-              </ol>
-            </div>
-
-            <div class="warning" style="margin-top:10px;">
-              <b>Tip:</b> si no estás seguro qué documento crear, no adivines:
-              revisa el flujo de tu área o pregunta a tu líder. Esta guía solo es contexto general.
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Areas -->
-    <div class="card" style="margin-top:14px;">
-      <div class="cardHeader">
         <p class="cardTitle">¿Qué hace cada área en NetSuite?</p>
-        <div class="chips" style="margin-top:0;">
+        <div class="chips">
           <span class="chip">🎯 Qué crea</span>
           <span class="chip">📥 Qué recibe</span>
           <span class="chip">📤 Qué entrega</span>
@@ -571,6 +358,7 @@
       </div>
 
       <div class="cardBody">
+
         <div class="areas">
 
           <!-- Comercial -->
@@ -592,15 +380,23 @@
                 </div>
               </div>
             </div>
+
             <div class="areaBody">
               <ul>
-                <li>Gestiona el embudo: <b>Prospecto → Cliente interesado → Cliente</b>.</li>
-                <li>Crea/gestiona <b>Oportunidad (Opportunity)</b> y genera <b>Cotización (Estimate)</b>.</li>
-                <li>Deja <b>Tareas (Task)</b> para coordinar lo que sigue con SAC (documentos, legalizaciones, despacho, etc.).</li>
+                <li>Gestiona el embudo comercial: <b>Prospecto → Cliente interesado → Cliente</b>.</li>
+                <li>Trabaja la <b>Oportunidad (Opportunity)</b> y genera <b>Cotización (Estimate)</b>.</li>
+                <li>Crea <b>Tareas (Task)</b> para coordinar con SAC (despacho, legalización, documentación, consignación, etc.).</li>
+                <li><b>Flujos típicos (muy resumido):</b>
+                  <ul>
+                    <li><b>Cliente nuevo:</b> Prospecto/Lead → Cliente → Oportunidad → Cotización.</li>
+                    <li><b>Cliente existente:</b> Cliente → Oportunidad/Cotización (si aplica).</li>
+                    <li><b>Consignación:</b> coordina con SAC el caso (reposiciones/legalización) y deja tareas/contexto.</li>
+                  </ul>
+                </li>
               </ul>
 
               <div class="deliver">
-                <b>Entrega clave:</b> cliente bien creado + cotización clara + tareas con contexto.
+                <b>Entrega clave:</b> datos del cliente completos + cotización clara + tareas con contexto.
               </div>
             </div>
           </div>
@@ -616,23 +412,25 @@
                   <div class="tagRow">
                     <span class="tag">Orden de venta (Sales Order)</span>
                     <span class="tag">Factura (Invoice)</span>
-                    <span class="tag">Autorización de devolución (Return Authorization)</span>
                     <span class="tag">Orden de traslado (Transfer Order)</span>
+                    <span class="tag">Autorización de devolución (Return Authorization)</span>
                     <span class="tag">Caso (Support Case)</span>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="areaBody">
               <ul>
-                <li>Gestiona solicitudes del cliente: venta directa, despacho, reposición o legalización (consignación).</li>
-                <li>Opera <b>Orden de venta (Sales Order)</b> y (según el proceso) genera <b>Factura (Invoice)</b>.</li>
-                <li>Devoluciones: inicia <b>Autorización de devolución (Return Authorization)</b> y coordina el retorno.</li>
-                <li>Crea <b>Casos (Support Case)</b> para quejas, peticiones o reclamos y da trazabilidad.</li>
+                <li>Gestiona solicitudes del cliente: venta, despacho, reposición o legalización (consignación).</li>
+                <li>Opera <b>Orden de venta (Sales Order)</b> y (según proceso) genera <b>Factura (Invoice)</b>.</li>
+                <li>Despachos con inventario y documentos según el caso (incluye consignación/traslados).</li>
+                <li>Devoluciones: inicia <b>Autorización de devolución (Return Authorization)</b> y coordina el retorno (Cartera hace la <b>Nota crédito (Credit Memo)</b>).</li>
+                <li>Registra <b>Casos (Support Case)</b> para PQRS y seguimiento.</li>
               </ul>
 
               <div class="deliver">
-                <b>Entrega clave:</b> soportes completos + motivos claros (especialmente en devoluciones).
+                <b>Entrega clave:</b> soportes completos + trazabilidad del despacho/devolución.
               </div>
             </div>
           </div>
@@ -649,24 +447,26 @@
                     <span class="tag">Orden de compra (Purchase Order)</span>
                     <span class="tag">Recepción de artículo (Item Receipt)</span>
                     <span class="tag">Factura de proveedor (Vendor Bill)</span>
+                    <span class="tag">Orden de traslado (Transfer Order)</span>
                     <span class="tag">Transferencia de inventario (Inventory Transfer)</span>
                     <span class="tag">Ajuste de inventario (Inventory Adjustment)</span>
-                    <span class="tag">Ubicación (Location)</span>
                     <span class="tag">Artículo (Item)</span>
+                    <span class="tag">Ubicación (Location)</span>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="areaBody">
               <ul>
                 <li>Compra a proveedores con <b>Orden de compra (Purchase Order)</b> y recibe con <b>Recepción (Item Receipt)</b>.</li>
-                <li>Registra/gestiona <b>Factura de proveedor (Vendor Bill)</b> (según el flujo interno).</li>
-                <li>Controla novedades: <b>Ajuste de inventario (Inventory Adjustment)</b>, <b>Transferencia (Inventory Transfer)</b> y/o <b>Orden de traslado (Transfer Order)</b>.</li>
-                <li>Administra el catálogo: <b>Artículos (Items)</b>, <b>Ubicaciones (Locations)</b> y datos clave de inventario.</li>
+                <li>Controla inventario: <b>Orden de traslado (Transfer Order)</b>, <b>Transferencia (Inventory Transfer)</b> y <b>Ajuste (Inventory Adjustment)</b>.</li>
+                <li>Gestiona el catálogo: crea/mantiene <b>Artículos (Items)</b> y administra <b>Ubicaciones (Locations)</b>.</li>
+                <li>En consignación/BO: deja el inventario disponible y trazable para que otras áreas operen.</li>
               </ul>
 
               <div class="deliver">
-                <b>Entrega clave:</b> artículos/ubicaciones bien creados + movimientos trazables (kardex limpio).
+                <b>Entrega clave:</b> catálogo al día + movimientos correctamente soportados (kardex limpio).
               </div>
             </div>
           </div>
@@ -685,21 +485,23 @@
                     <span class="tag">Tarea (Task)</span>
                     <span class="tag">Activo (Asset)</span>
                     <span class="tag">Cotización (Estimate)</span>
+                    <span class="tag">Orden de venta (Sales Order)</span>
                     <span class="tag">Factura (Invoice)</span>
                     <span class="tag">Orden de traslado (Transfer Order)</span>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="areaBody">
               <ul>
-                <li>Opera el módulo <b>FSM (Field Service Management)</b> de forma general: <b>Casos</b>, <b>Proyectos</b>, <b>Tareas</b> y <b>Activos (Assets)</b>.</li>
-                <li>Gestiona la operación del servicio: <b>cotizar → ejecutar → evidenciar → facturar</b>.</li>
-                <li>Puede mover repuestos/equipos con traslados (según el servicio).</li>
+                <li>Opera el módulo <b>FSM (Field Service Management)</b> con procesos basados en <b>Casos</b>, <b>Proyectos</b>, <b>Tareas</b> y <b>Activos (Assets)</b>.</li>
+                <li>Gestiona el ciclo del servicio: <b>cotizar → ejecutar → evidenciar → facturar</b>.</li>
+                <li>Cuando se requieren repuestos/equipos, también puede generar <b>Orden de traslado (Transfer Order)</b> para mover inventario según el servicio.</li>
               </ul>
 
               <div class="deliver">
-                <b>Entrega clave:</b> caso bien documentado + consumos claros + activo trazable.
+                <b>Entrega clave:</b> caso bien documentado + consumos claros + trazabilidad del equipo/activo.
               </div>
             </div>
           </div>
@@ -720,15 +522,16 @@
                 </div>
               </div>
             </div>
+
             <div class="areaBody">
               <ul>
-                <li>Registra <b>Pagos de cliente (Customer Payment)</b> y aplica a facturas.</li>
-                <li>Emite y aplica <b>Nota crédito (Credit Memo)</b> cuando corresponde.</li>
-                <li>Controla saldos y la lógica de bloqueo/desbloqueo del cliente (cupo, vencimiento, políticas internas).</li>
+                <li>Registra y aplica <b>Pagos de cliente (Customer Payment)</b>.</li>
+                <li>Emite/aplica <b>Nota crédito (Credit Memo)</b> y controla saldos.</li>
+                <li>Controla bloqueo/desbloqueo del cliente (cupo, vencimiento y políticas internas).</li>
               </ul>
 
               <div class="deliver">
-                <b>Entrega clave:</b> pagos y saldos bien aplicados + control confiable del cliente.
+                <b>Entrega clave:</b> saldos reales y aplicados correctamente.
               </div>
             </div>
           </div>
@@ -749,15 +552,16 @@
                 </div>
               </div>
             </div>
+
             <div class="areaBody">
               <ul>
                 <li>Procesa <b>Facturas de proveedor (Vendor Bill)</b> y <b>Pagos (Vendor Payment)</b>.</li>
-                <li>Gestiona proveedores administrativos además de los de inventario.</li>
-                <li>Cuando aplica: legalización de viáticos y reembolsos con <b>Informe de gastos (Expense Report)</b>.</li>
+                <li>Gestiona proveedores administrativos además de proveedores de inventario.</li>
+                <li>Legaliza viáticos/reembolsos con <b>Informe de gastos (Expense Report)</b> (cuando alguien recibe dinero por gastos de viajes, etc.).</li>
               </ul>
 
               <div class="deliver">
-                <b>Entrega clave:</b> soportes completos + gastos correctamente clasificados.
+                <b>Entrega clave:</b> soportes completos + gastos bien clasificados.
               </div>
             </div>
           </div>
@@ -778,25 +582,27 @@
                 </div>
               </div>
             </div>
+
             <div class="areaBody">
               <ul>
-                <li>Revisa/Aprueba (según control interno): <b>Clientes (Customer)</b>, <b>Artículos (Item)</b>, <b>Proveedores (Vendor)</b> y facturas para asegurar cuentas/impuestos correctos.</li>
+                <li>Aprueba/valida (según control interno): <b>Clientes (Customer)</b>, <b>Artículos (Item)</b>, <b>Proveedores (Vendor)</b> y facturas, para asegurar cuentas/impuestos correctos.</li>
                 <li>Gestiona estructura contable: <b>cuentas</b>, <b>impuestos</b> y reglas de contabilización.</li>
                 <li>Cuando aplica, registra ajustes con <b>Asiento contable (Journal Entry)</b>.</li>
               </ul>
 
               <div class="deliver">
-                <b>Por qué “todo termina en contabilidad”:</b> porque las transacciones reflejan el movimiento real del negocio (ventas, compras, inventario, pagos) y eso alimenta reportes e impuestos.
+                <b>Por qué “todo llega a Contabilidad”:</b> porque ventas, compras, inventario y pagos se reflejan en reportes e impuestos.
               </div>
 
               <div class="warning" style="margin-top:12px;">
-                <b>Tip para todos:</b> si un Cliente/Artículo/Proveedor queda incompleto, el proceso se frena después.
-                Es mejor dejarlo bien desde el inicio (o pedir ayuda) que “pasarlo por pasar”.
+                <b>Dato importante:</b> NetSuite trabaja en cadena.
+Cada paso cuenta para que el resto del proceso fluya sin fricciones
               </div>
             </div>
           </div>
 
         </div>
+
       </div>
     </div>
 
