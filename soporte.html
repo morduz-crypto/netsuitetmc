@@ -14,15 +14,7 @@
       --border:rgba(15,23,42,.08);
       --accent:#2563eb;
       --accent2:#1d4ed8;
-
-      --okbg: rgba(16,185,129,.10);
-      --okbd: rgba(16,185,129,.22);
-
-      --warnbg: rgba(245,158,11,.12);
-      --warnbd: rgba(245,158,11,.30);
-
-      --badbg: rgba(239,68,68,.10);
-      --badbd: rgba(239,68,68,.22);
+      --shadow: 0 10px 22px rgba(0,0,0,.04);
     }
     *{ box-sizing:border-box }
     body{
@@ -36,13 +28,15 @@
       margin:0 auto;
       padding:44px 22px 56px;
     }
+
+    /* top */
     .topbar{
       display:flex;
       gap:12px;
-      align-items:flex-start;
+      align-items:center;
       justify-content:space-between;
       flex-wrap:wrap;
-      margin-bottom:14px;
+      margin-bottom:12px;
     }
     h1{
       font-size:30px;
@@ -50,19 +44,12 @@
       letter-spacing:-.02em;
       margin:0;
     }
-    .subtitle{
-      margin:6px 0 0;
-      color:var(--muted);
-      line-height:1.6;
-      max-width:920px;
-    }
-    .actions{
+    .topActions{
       display:flex;
       gap:10px;
       align-items:center;
       flex-wrap:wrap;
       justify-content:flex-end;
-      margin-top:2px;
     }
     .btn{
       display:inline-flex;
@@ -77,7 +64,8 @@
       text-decoration:none;
       cursor:pointer;
       user-select:none;
-      box-shadow:0 10px 22px rgba(0,0,0,.04);
+      box-shadow:var(--shadow);
+      white-space:nowrap;
     }
     .btn.primary{
       border-color: rgba(37,99,235,.25);
@@ -87,7 +75,6 @@
     .pill{
       display:inline-flex;
       align-items:center;
-      gap:8px;
       padding:10px 12px;
       border-radius:999px;
       background:rgba(37,99,235,.08);
@@ -98,167 +85,119 @@
       white-space:nowrap;
     }
 
+    .hint{
+      color:var(--muted);
+      margin:0 0 18px;
+      line-height:1.65;
+      max-width:900px;
+    }
+
+    /* layout */
     .grid{
       display:grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1.15fr .85fr;
       gap:14px;
-      margin-top:12px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns:1fr; }
     }
 
     .card{
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:18px;
-      box-shadow:0 10px 22px rgba(0,0,0,.04);
-      padding:16px 18px;
-    }
-
-    .row{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-    }
-    @media(min-width: 900px){
-      .row{ grid-template-columns: 1fr 1fr; }
-    }
-
-    .channel{
       border-radius:16px;
-      border:1px solid var(--border);
-      padding:14px 14px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      background:#fff;
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
-    .channel h3{
+    .cardHeader{
+      padding:16px 18px 12px;
+      border-bottom:1px solid var(--border);
+    }
+    .cardTitle{
       margin:0;
       font-size:16px;
-      font-weight:950;
+      font-weight:900;
       letter-spacing:-.01em;
     }
-    .kv{
+    .cardBody{
+      padding:14px 18px 18px;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:14px;
+    }
+
+    .kpiRow{
       display:flex;
       gap:10px;
-      align-items:center;
       flex-wrap:wrap;
-      color:var(--muted);
-      line-height:1.4;
+      margin-top:10px;
+    }
+    .kpi{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow:0 8px 16px rgba(0,0,0,.03);
+      flex: 1 1 260px;
+      min-width: 260px;
+    }
+    .kpi b{
+      color:var(--text);
+    }
+    .kpi small{
+      display:block;
+      color:#64748b;
+      font-weight:800;
+      margin-top:2px;
     }
     .mono{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-weight:900;
-      color:#0f172a;
-    }
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:12px;
-      border:1px solid rgba(37,99,235,.18);
-      color:var(--accent2);
-      background:rgba(37,99,235,.08);
-      white-space:nowrap;
-    }
-
-    .callout{
-      border-radius:16px;
-      padding:14px 14px;
-      border:1px solid var(--warnbd);
-      background:var(--warnbg);
-      color:#7c2d12;
-      font-weight:900;
-      line-height:1.5;
+      font-weight:800;
+      color:var(--text);
     }
 
     .list{
-      margin:8px 0 0 18px;
+      margin:10px 0 0 18px;
       padding:0;
-      color:var(--muted);
-      line-height:1.6;
     }
     .list li{ margin:6px 0; }
 
-    .okBox{
-      border-radius:16px;
-      padding:14px 14px;
-      border:1px solid var(--okbd);
-      background:var(--okbg);
-    }
-    .badBox{
-      border-radius:16px;
-      padding:14px 14px;
-      border:1px solid var(--badbd);
-      background:var(--badbg);
-    }
-    .boxTitle{
-      font-weight:950;
-      margin:0 0 6px;
-      letter-spacing:-.01em;
+    .divider{
+      height:1px;
+      background:var(--border);
+      margin:14px 0;
     }
 
-    .template{
-      width:100%;
-      border-radius:14px;
-      border:1px solid var(--border);
-      padding:12px 12px;
-      font-size:13px;
-      line-height:1.5;
-      color:#0f172a;
-      background:#fff;
-      min-height:240px;
-      resize:vertical;
-      outline:none;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      box-shadow:0 10px 22px rgba(0,0,0,.03);
-    }
-    .templateRow{
+    .actions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      margin-top:10px;
+      margin-top:12px;
     }
-    .helperText{
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:20px;
+      transform:translateX(-50%);
+      background:#0f172a;
+      color:#fff;
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:900;
       font-size:12px;
-      color:#64748b;
-      margin:0;
-      line-height:1.5;
+      box-shadow:0 16px 30px rgba(0,0,0,.25);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
     }
-
-    /* completion box */
-    .completeBox{
-      border-radius:18px;
-      border:1px solid rgba(37,99,235,.22);
-      background: rgba(37,99,235,.06);
-      padding:16px 16px;
-    }
-    .completeTitle{
-      margin:0 0 6px;
-      font-size:16px;
-      font-weight:950;
-      letter-spacing:-.01em;
-      color:#1e3a8a;
-    }
-    .fieldRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top:10px;
-    }
-    .input{
-      flex:1 1 260px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:#fff;
-      outline:none;
-      box-shadow:0 10px 22px rgba(0,0,0,.03);
-      font-size:14px;
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(-2px);
     }
 
     .small{
@@ -266,6 +205,12 @@
       color:#64748b;
       margin-top:22px;
     }
+    .mutedLink{
+      color:var(--accent2);
+      text-decoration:none;
+      font-weight:900;
+    }
+    .mutedLink:hover{ text-decoration:underline; }
   </style>
 </head>
 
@@ -273,209 +218,185 @@
   <div class="container">
 
     <div class="topbar">
-      <div>
-        <h1>Soporte (TMC)</h1>
-        <p class="subtitle">
-          Para que podamos ayudarte rápido, necesitamos <b>contexto completo</b>.
-          Un screenshot del error sin explicación casi nunca alcanza.
-        </p>
-      </div>
+      <h1>Soporte</h1>
 
-      <div class="actions">
-        <!-- ✅ última página: solo anterior -->
+      <div class="topActions">
+        <a class="btn" href="index.html">← Volver al Home</a>
         <a class="btn" href="buenaspracticas.html">← Anterior</a>
         <span class="pill">Sección 6 de 6</span>
       </div>
     </div>
 
+    <p class="hint">
+      Para que podamos ayudarte rápido, la clave es <b>contexto</b>. Un pantallazo del error sin explicar qué estabas haciendo
+      normalmente nos obliga a adivinar y se pierde tiempo.
+      <br/>Aquí tienes la forma más simple de pedir soporte (y el link para confirmar que completaste el onboarding).
+    </p>
+
     <div class="grid">
 
+      <!-- LEFT -->
       <div class="card">
-        <h2 style="margin:0 0 10px; font-size:18px; font-weight:950; letter-spacing:-.01em;">Canales de soporte</h2>
+        <div class="cardHeader">
+          <p class="cardTitle">¿Por dónde pedir soporte?</p>
+        </div>
 
-        <div class="row">
-          <div class="channel">
-            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:space-between;">
-              <h3>📩 Correo</h3>
-              <span class="tag">Recomendado para casos con detalle</span>
+        <div class="cardBody">
+          <div class="kpiRow">
+            <div class="kpi">
+              <div>
+                <b>Correo</b>
+                <small>Canal recomendado para solicitudes completas</small>
+                <div class="mono" id="supportEmail">morduz@tm-colombia.com</div>
+              </div>
             </div>
-            <div class="kv">
-              Enviar a:
-              <span class="mono">morduz@tm-colombia.com</span>
+
+            <div class="kpi">
+              <div>
+                <b>WhatsApp</b>
+                <small>Para dudas rápidas o bloqueo urgente</small>
+                <div class="mono" id="supportWapp">3102465773</div>
+              </div>
             </div>
-            <a class="btn primary" href="mailto:morduz@tm-colombia.com?subject=Soporte%20NetSuite%20-%20%5Bresumen%20corto%5D" title="Abrir correo">
-              Abrir correo →
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="button" id="copyEmailBtn">Copiar correo</button>
+            <a class="btn primary" id="mailBtn" href="#">Abrir correo</a>
+            <button class="btn" type="button" id="copyWappBtn">Copiar WhatsApp</button>
+            <a class="btn primary" id="waBtn" href="#" target="_blank" rel="noopener">Abrir WhatsApp</a>
+          </div>
+
+          <div class="divider"></div>
+
+          <p style="margin:0;"><b>Checklist</b> (siempre manda esto):</p>
+          <ul class="list">
+            <li><b>Qué estabas haciendo</b> (paso a paso, 3–6 pasos máximo).</li>
+            <li><b>Dónde estabas</b>: ¿en qué menú/registro estabas? (ej: Orden de compra, Cliente, Caso, etc.).</li>
+            <li><b>Link del registro</b> o al menos: <b>número</b> (ej: PO12345, SO9876, INV-0001).</li>
+            <li><b>Screenshot</b> completo (que se vea la barra/URL si aplica y el mensaje exacto).</li>
+            <li><b>Qué esperabas que pasara</b> vs <b>qué pasó</b>.</li>
+            <li><b>¿Pasa siempre o solo a veces?</b> (y desde cuándo).</li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <p style="margin:0;"><b>Ejemplo de solicitud “bien hecha”</b>:</p>
+          <ul class="list">
+            <li><b>Registro:</b> Orden de compra PO12345 (link adjunto)</li>
+            <li><b>Pasos:</b> Editar → Items → agrego ítem “X” → Guardar</li>
+            <li><b>Error:</b> “No se puede guardar porque…” (screenshot)</li>
+            <li><b>Esperaba:</b> que guardara y quedara en “Pending Approval”</li>
+          </ul>
+
+          <p style="margin:12px 0 0;">
+            Tip: si tienes que “poner un espacio” para que aparezca una opción,
+            eso suena a un tema de <b>autocompletar/lookup</b> o de <b>validación en campo</b>.
+            En ese caso, manda también el <b>campo exacto</b> y el <b>valor</b> que intentas seleccionar.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="card">
+        <div class="cardHeader">
+          <p class="cardTitle">Confirmar finalización del onboarding</p>
+        </div>
+
+        <div class="cardBody">
+          <p style="margin:0;">
+            Si llegaste hasta acá, ya terminaste la guía general 🎉<br/>
+            Para llevar control, confirma tu finalización en este link:
+          </p>
+
+          <div class="actions" style="margin-top:12px;">
+            <a class="btn primary" target="_blank" rel="noopener"
+               href="https://5055913.extforms.netsuite.com/app/site/crm/externalcustrecordpage.nl?compid=5055913&formid=1&h=AAFdikaIkeAA-TvlLFZXaXlxHaRPBDxNkw3COQDmufmdHuCq6N4">
+              Confirmar finalización →
             </a>
           </div>
 
-          <div class="channel">
-            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:space-between;">
-              <h3>💬 WhatsApp</h3>
-              <span class="tag">Ideal para dudas rápidas</span>
-            </div>
-            <div class="kv">
-              Escribir a:
-              <span class="mono">3102465773</span>
-            </div>
-            <a class="btn primary" href="https://wa.me/573102465773" target="_blank" rel="noopener noreferrer" title="Abrir WhatsApp">
-              Abrir WhatsApp →
-            </a>
-          </div>
+          <p style="margin:12px 0 0;">
+            Nota: este link es un <b>formulario en línea de NetSuite</b> (queda registro interno).
+          </p>
+
+          <div class="divider"></div>
+
+          <p style="margin:0;">
+            ¿Te quedó alguna duda de la guía? Escríbenos por correo o WhatsApp con el checklist de arriba
+            para poder ayudarte rápido.
+          </p>
         </div>
-
-        <div class="callout" style="margin-top:12px;">
-          ✅ Regla de oro: <b>siempre</b> envía una solicitud clara con <b>screenshot + paso a paso + contexto</b>.
-          Entre más completo, más rápido se soluciona.
-        </div>
-      </div>
-
-      <div class="card">
-        <h2 style="margin:0 0 10px; font-size:18px; font-weight:950; letter-spacing:-.01em;">¿Qué debe incluir una solicitud?</h2>
-
-        <div class="okBox">
-          <p class="boxTitle">✅ Lo que SÍ necesitamos</p>
-          <ul class="list">
-            <li><b>¿Qué estabas haciendo?</b> (paso a paso, como si lo explicas a alguien nuevo)</li>
-            <li><b>¿En qué pantalla?</b> (módulo/menú, nombre del formulario, etc.)</li>
-            <li><b>¿Qué tipo de cosa es?</b> (transacción o entidad)</li>
-            <li><b>Link al registro</b> o <b>número/documento</b> (si aplica)</li>
-            <li><b>Screenshot completo</b> (ideal: que se vea URL/menú y el mensaje de error)</li>
-            <li><b>¿Desde cuándo pasa?</b> y si alguien más lo puede replicar</li>
-            <li><b>Resultado esperado vs lo que pasó</b></li>
-          </ul>
-        </div>
-
-        <div class="badBox" style="margin-top:12px;">
-          <p class="boxTitle">❌ Lo que NO sirve (porque no da contexto)</p>
-          <ul class="list">
-            <li>“Me sale un error” (sin decir dónde ni qué hiciste)</li>
-            <li>Solo una captura del mensaje (sin el paso a paso)</li>
-            <li>“No funciona” (sin indicar si es cliente, orden, compra, traslado, etc.)</li>
-          </ul>
-        </div>
-
-        <div class="callout" style="margin-top:12px;">
-          Tip: si es sobre una <b>transacción</b> (Factura, Orden de compra, Traslado, etc.) o una <b>entidad</b> (Cliente, Proveedor, Artículo),
-          incluye <b>el link</b> o mínimo el <b>número/documento</b>.
-        </div>
-      </div>
-
-      <div class="card">
-        <h2 style="margin:0 0 10px; font-size:18px; font-weight:950; letter-spacing:-.01em;">Plantilla rápida (cópiala y pégala)</h2>
-
-        <textarea id="tpl" class="template" spellcheck="false">Asunto: Soporte NetSuite - [resumen corto]
-
-1) Qué estaba haciendo (paso a paso):
-- Paso 1:
-- Paso 2:
-- Paso 3:
-
-2) Dónde ocurre:
-- Menú / Módulo:
-- Pantalla/Formulario:
-- Rol del usuario (si aplica):
-
-3) Sobre qué es:
-- Tipo: (Transacción / Entidad / Búsqueda / Informe)
-- Registro/Documento/ID/Nombre:
-- Link (si aplica):
-
-4) Qué esperaba que pasara:
-- ...
-
-5) Qué pasó realmente (incluye el mensaje):
-- ...
-
-6) Evidencia:
-- Screenshot(s) adjuntos:
-- (Si aplica) búsqueda / reporte relacionado:
-
-7) Desde cuándo ocurre / frecuencia:
-- Desde:
-- Pasa siempre o a veces:
-- Otros usuarios lo pueden replicar: (Sí/No)</textarea>
-
-        <div class="templateRow">
-          <p class="helperText">Puedes dar clic en “Copiar plantilla” y pegarla en el correo o WhatsApp.</p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
-            <button id="copyBtn" class="btn" type="button">Copiar plantilla</button>
-            <button id="mailTplBtn" class="btn primary" type="button">Enviar por correo →</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card completeBox">
-        <p class="completeTitle">🎉 Si llegaste hasta acá, terminaste el onboarding</p>
-        <p class="subtitle" style="margin:0;">
-          Para registrar que completaste el onboarding, escribe tu correo y envía la confirmación.
-          Esto abre un correo listo para enviar a <b>morduz@tm-colombia.com</b>.
-        </p>
-
-        <div class="fieldRow">
-          <input id="userEmail" class="input" type="email" placeholder="Tu correo (ej: nombre@tm-colombia.com)" />
-          <button id="finishBtn" class="btn primary" type="button">Confirmar finalización →</button>
-        </div>
-
-        <p class="helperText" style="margin-top:10px;">
-          Si no te deja por políticas del navegador, copia el texto del correo y envíalo manualmente.
-        </p>
       </div>
 
     </div>
 
     <div class="small">Guía interna · Tecnologías Médicas Colombia (TMC)</div>
+
+    <div id="toast" class="toast">Copiado ✅</div>
   </div>
 
   <script>
-    // --- plantilla / copiar ---
-    const tpl = document.getElementById('tpl');
-    const copyBtn = document.getElementById('copyBtn');
-    const mailTplBtn = document.getElementById('mailTplBtn');
+    const EMAIL = 'morduz@tm-colombia.com';
+    const WAPP  = '3102465773';
 
-    copyBtn.addEventListener('click', async () => {
+    const toast = document.getElementById('toast');
+
+    function showToast(msg){
+      toast.textContent = msg || 'Copiado ✅';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1400);
+    }
+
+    async function copyToClipboard(text){
       try{
-        await navigator.clipboard.writeText(tpl.value);
-        copyBtn.textContent = '¡Copiada!';
-        setTimeout(() => copyBtn.textContent = 'Copiar plantilla', 1200);
+        await navigator.clipboard.writeText(text);
+        showToast('Copiado ✅');
       }catch(e){
         // fallback
-        tpl.focus();
-        tpl.select();
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
         document.execCommand('copy');
-        copyBtn.textContent = '¡Copiada!';
-        setTimeout(() => copyBtn.textContent = 'Copiar plantilla', 1200);
+        ta.remove();
+        showToast('Copiado ✅');
       }
-    });
+    }
 
-    mailTplBtn.addEventListener('click', () => {
-      const subject = 'Soporte NetSuite - [resumen corto]';
-      const body = tpl.value;
-      const mailto = `mailto:morduz@tm-colombia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
-    });
+    // Buttons
+    document.getElementById('copyEmailBtn').addEventListener('click', () => copyToClipboard(EMAIL));
+    document.getElementById('copyWappBtn').addEventListener('click', () => copyToClipboard(WAPP));
 
-    // --- finalización onboarding ---
-    const userEmail = document.getElementById('userEmail');
-    const finishBtn = document.getElementById('finishBtn');
-
-    finishBtn.addEventListener('click', () => {
-      const email = (userEmail.value || '').trim();
-      const safeEmail = email || '[sin correo]';
-
-      const subject = 'Confirmación: Onboarding NetSuite completado';
-      const body =
+    // mailto
+    const mailBtn = document.getElementById('mailBtn');
+    const subject = encodeURIComponent('Soporte NetSuite - Solicitud');
+    const body = encodeURIComponent(
 `Hola,
 
-Confirmo que completé el onboarding de NetSuite (Guía interna TMC).
+Necesito ayuda con lo siguiente:
 
-Correo del usuario: ${safeEmail}
-Fecha: ${new Date().toLocaleString('es-CO')}
+1) ¿Qué estaba haciendo? (paso a paso)
+2) ¿En qué registro/transacción? (link o número)
+3) ¿Qué esperaba? / ¿Qué pasó? (incluye mensaje exacto)
+4) Adjuntos: screenshots
 
-Gracias.`;
+Gracias.`
+    );
+    mailBtn.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
 
-      const mailto = `mailto:morduz@tm-colombia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
-    });
+    // WhatsApp (wa.me)
+    const waBtn = document.getElementById('waBtn');
+    const waMsg = encodeURIComponent(
+`Hola. Necesito soporte en NetSuite.
+
+- ¿Qué estaba haciendo? (paso a paso)
+- Registro/transacción: (link o número)
+- ¿Qué esperaba? / ¿Qué pasó? (mensaje exacto)
+- Adjuntos: screenshots`
+    );
+    waBtn.href = `https://wa.me/57${WAPP}?text=${waMsg}`;
   </script>
 </body>
 </html>
+
