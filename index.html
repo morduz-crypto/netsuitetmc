@@ -34,29 +34,27 @@
       font-size:34px;
       font-weight:900;
       letter-spacing:-.02em;
-      margin:0 0 16px;
-    }
-
-    .intro{
-      max-width:820px;
-      font-size:16px;
-      line-height:1.65;
-      color:var(--muted);
-    }
-
-    .intro p{
-      margin:0 0 14px;
-    }
-
-    .intro strong{
-      color:var(--text);
-      font-weight:700;
+      margin:0 0 18px;
     }
 
     .divider{
       height:1px;
       background:var(--border);
-      margin:36px 0 40px;
+      margin:28px 0 40px;
+    }
+
+    .video-wrap{
+      max-width:980px;
+      margin:0 auto 22px;
+    }
+
+    .video{
+      width:100%;
+      border-radius:16px;
+      border:1px solid var(--border);
+      box-shadow:0 10px 22px rgba(0,0,0,.05);
+      background:#000;
+      display:block;
     }
 
     .cards{
@@ -151,29 +149,12 @@
 
     <h1>Guía Básica de NetSuite</h1>
 
-    <div class="intro">
-      <p>
-        <strong>NetSuite es el ERP y CRM central de Tecnologías Médicas Colombia (TMC)</strong>.
-        En este sistema se integran y gestionan los procesos clave de la compañía, incluyendo
-        ventas, clientes, inventario, compras, cartera, servicio técnico, importaciones y reportes.
-      </p>
-
-      <p>
-        Como <strong>ERP (Enterprise Resource Planning)</strong>, NetSuite permite controlar la
-        operación y la información financiera de la empresa en un solo lugar.
-        Como <strong>CRM (Customer Relationship Management)</strong>, soporta la gestión de clientes,
-        oportunidades comerciales y el seguimiento de las relaciones con el mercado.
-      </p>
-
-      <p>
-        Esta guía es una <strong>visión general</strong> diseñada para dar contexto a nuevos usuarios,
-        ayudar a entender el lenguaje del sistema y reconocer cómo se organiza NetSuite dentro de TMC.
-      </p>
-
-      <p>
-        ⚠️ <strong>Importante:</strong> este material
-        <strong>no reemplaza capacitaciones específicas por área</strong>.
-      </p>
+    <!-- VIDEO (después del título) -->
+    <div class="video-wrap">
+      <video class="video" controls playsinline preload="metadata">
+        <source src="./introns.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+      </video>
     </div>
 
     <div class="divider"></div>
