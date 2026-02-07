@@ -761,8 +761,9 @@
       resetAll();
     });
 
-    nextBtn.addEventListener('click', () => {
-      const hasFilter = !!norm(q.value);
+nextBtn.addEventListener('click', () => {
+  window.location.href = 'home_guia.html';
+});
 
       if(!hasFilter){
         // ✅ sin filtro: avanza por todas
