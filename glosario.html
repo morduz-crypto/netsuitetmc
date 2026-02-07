@@ -44,7 +44,7 @@
       margin:0;
     }
 
-    /* ✅ botones arriba (junto a volver) */
+    /* botones arriba (junto a volver) */
     .topActions{
       display:flex;
       gap:10px;
@@ -66,11 +66,6 @@
       cursor:pointer;
       user-select:none;
       box-shadow:0 10px 22px rgba(0,0,0,.04);
-    }
-    .btn.primary{
-      border-color: rgba(37,99,235,.25);
-      color: var(--accent2);
-      background: rgba(37,99,235,.06);
     }
     .btn:disabled{
       opacity:.45;
@@ -202,12 +197,8 @@
       <h1>Glosario Básico de NetSuite</h1>
 
       <div class="topActions">
-        <!-- ✅ subpágina: volver al Home -->
         <a class="btn" href="index.html">← Volver al Home</a>
-
-        <!-- ✅ solo “Siguiente”, sin “Anterior” -->
         <button id="nextBtn" class="btn" type="button">Siguiente →</button>
-
         <span id="secPill" class="pill">Sección 1 de 6</span>
       </div>
     </div>
@@ -291,7 +282,7 @@
           <div class="term">
             <b>Categoría:</b>
             Es una etiqueta para clasificar la transacción según a qué línea, tipo de negocio o segmento pertenece, sin importar el área que la hizo
-            (ej. URO Consumibles, GI equipos, Estetica repuestos, etc).
+            (ej. URO Consumibles, GI equipos, Estética repuestos, etc).
           </div>
 
           <div class="term">
@@ -384,7 +375,7 @@
           <div class="term"><b>Proveedor (Vendor):</b> Empresa o persona a la que se le compran productos o servicios.</div>
 
           <div class="term">
-            <b>Orden de compra/Pedido (Purchase Order):</b>
+            <b>Orden de compra / Pedido (Purchase Order):</b>
             Documento para solicitar productos/servicios a un proveedor. Define cantidades, costos y fechas esperadas.
           </div>
 
@@ -585,7 +576,7 @@
           </div>
 
           <div class="term">
-            <b>Tarea/Task:</b>
+            <b>Tarea / Task:</b>
             Registro para asignar y hacer seguimiento a una actividad que alguien debe realizar.
             Tiene responsable, fecha, estado y descripción.
           </div>
@@ -638,16 +629,15 @@
   </div>
 
   <script>
+    // --- refs ---
     const q = document.getElementById('q');
     const clearBtn = document.getElementById('clearBtn');
     const noResults = document.getElementById('noResults');
-
     const sections = Array.from(document.querySelectorAll('#glossary details'));
     const nextBtn = document.getElementById('nextBtn');
-    const secPill = document.getElementById('secPill');
 
-    // Normaliza: minúsculas, sin tildes, y convierte signos en espacios
-    const norm = (s) => (s || '')
+    // --- helpers ---
+    const norm = (s) => (s ?? '')
       .toString()
       .toLowerCase()
       .normalize('NFD')
@@ -659,44 +649,6 @@
     const initialOpen = new Map();
     sections.forEach(d => initialOpen.set(d, d.open));
 
-    let currentIndex = 0;
-
-    const visibleIndexes = () =>
-      sections.map((d,i) => ({d,i}))
-        .filter(x => x.d.style.display !== 'none')
-        .map(x => x.i);
-
-    function updateNavUI(){
-      const hasFilter = !!norm(q.value);
-
-      // ✅ SIN filtro: pill fijo “1 de 6” basado en orden real (no en visibles)
-      if(!hasFilter){
-        const totalAll = sections.length;
-        secPill.textContent = `Sección ${currentIndex + 1} de ${totalAll}`;
-        nextBtn.disabled = (currentIndex >= totalAll - 1);
-        return;
-      }
-
-      // ✅ CON filtro: navega solo por secciones visibles
-      const vis = visibleIndexes();
-      const total = vis.length || 1;
-
-      if(sections[currentIndex] && sections[currentIndex].style.display === 'none'){
-        currentIndex = vis[0] ?? 0;
-      }
-
-      const pos = Math.max(0, vis.indexOf(currentIndex));
-      secPill.textContent = `Sección ${Math.min(pos + 1, total)} de ${total}`;
-      nextBtn.disabled = (pos >= total - 1);
-    }
-
-    function scrollToSection(idx){
-      const d = sections[idx];
-      if(!d) return;
-      d.open = true;
-      d.scrollIntoView({ behavior:'smooth', block:'start' });
-    }
-
     function resetAll(){
       noResults.style.display = 'none';
       sections.forEach(d => {
@@ -704,55 +656,48 @@
         d.open = initialOpen.get(d) || false;
         d.querySelectorAll('.term').forEach(t => t.style.display = '');
       });
-      currentIndex = 0; // ✅ siempre arranca en la primera sección
-      updateNavUI();
     }
 
-    function matchesAllTokens(haystack, query){
+    function matches(haystack, query){
+      const text = norm(haystack);
       const tokens = norm(query).split(' ').filter(Boolean);
       if(!tokens.length) return true;
-      const text = norm(haystack);
+      // AND por tokens
       return tokens.every(t => text.includes(t));
     }
 
     function applyFilter(){
       const query = q.value;
-      const queryNorm = norm(query);
+      const qn = norm(query);
 
-      if(!queryNorm){
+      if(!qn){
         resetAll();
         return;
       }
 
       let anyVisibleSection = false;
-      let firstVisibleIndex = -1;
 
-      sections.forEach((d, i) => {
+      sections.forEach((d) => {
         const terms = Array.from(d.querySelectorAll('.term'));
         let hasMatch = false;
 
         terms.forEach(t => {
-          // ✅ textContent: busca aunque el <details> esté cerrado
-          const ok = matchesAllTokens(t.textContent, query);
+          const ok = matches(t.textContent, query);
           t.style.display = ok ? '' : 'none';
           if(ok) hasMatch = true;
         });
 
         d.style.display = hasMatch ? '' : 'none';
-
         if(hasMatch){
           anyVisibleSection = true;
           d.open = true;
-          if(firstVisibleIndex === -1) firstVisibleIndex = i;
         }
       });
 
       noResults.style.display = anyVisibleSection ? 'none' : 'block';
-
-      currentIndex = (anyVisibleSection && firstVisibleIndex !== -1) ? firstVisibleIndex : 0;
-      updateNavUI();
     }
 
+    // --- events ---
     q.addEventListener('input', applyFilter);
 
     clearBtn.addEventListener('click', () => {
@@ -761,43 +706,13 @@
       resetAll();
     });
 
-nextBtn.addEventListener('click', () => {
-  window.location.href = 'home_guia.html';
-});
-
-      if(!hasFilter){
-        // ✅ sin filtro: avanza por todas
-        currentIndex = Math.min(sections.length - 1, currentIndex + 1);
-        updateNavUI();
-        scrollToSection(currentIndex);
-        return;
-      }
-
-      // ✅ con filtro: avanza por visibles
-      const vis = visibleIndexes();
-      const pos = vis.indexOf(currentIndex);
-      if(pos === -1 || pos >= vis.length - 1) return;
-      currentIndex = vis[pos + 1];
-      updateNavUI();
-      scrollToSection(currentIndex);
+    // Siguiente = ir a la siguiente PÁGINA del onboarding
+    nextBtn.addEventListener('click', () => {
+      window.location.href = 'home_guia.html';
     });
 
-    // ✅ no usamos “toggle” (eso causaba 6/6 al cargar)
-    sections.forEach((d, i) => {
-      const s = d.querySelector('summary');
-      if(!s) return;
-      s.addEventListener('click', () => {
-        if(d.style.display !== 'none'){
-          currentIndex = i;
-          updateNavUI();
-        }
-      });
-    });
-
-    // Init
-    currentIndex = 0;
-    updateNavUI();
+    // init
+    resetAll();
   </script>
 </body>
 </html>
-
