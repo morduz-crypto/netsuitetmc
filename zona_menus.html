@@ -3,118 +3,216 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Zona 2 — Menú principal (íconos + módulos)</title>
+  <title>Zona 2 · Menú principal · NetSuite TMC</title>
 
   <style>
     :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.08);
+      --accent:#2563eb;
+      --accent2:#1d4ed8;
+      --shadow: 0 10px 22px rgba(0,0,0,.04);
+
+      /* hotspots */
       --hint: rgba(0, 123, 255, .55);
       --hint-strong: rgba(0, 123, 255, .85);
-      --accent: #111827;
-      --card: #ffffff;
-      --bg: #f3f4f6;
 
-      --muted:#4b5563;
-      --text:#111827;
-      --subtext:#374151;
-
-      --info-bg: rgba(0, 123, 255, .08);
-      --info-bd: rgba(0, 123, 255, .22);
-
+      /* callouts */
+      --info-bg: rgba(37,99,235,.06);
+      --info-bd: rgba(37,99,235,.18);
       --warn-bg: rgba(245, 158, 11, .10);
       --warn-bd: rgba(245, 158, 11, .28);
     }
 
-    *{ box-sizing:border-box; }
+    *{ box-sizing:border-box }
     body{
+      margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      margin:0; padding:18px; background:var(--bg); color:var(--text);
+      background:var(--bg);
+      color:var(--text);
     }
-    a{ color:#1d4ed8; text-decoration:none; font-weight:700; }
+    a{ color:var(--accent2); text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
-    .wrap{ max-width:1200px; margin:0 auto; }
-
-    .topbar{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
-      margin-bottom:12px;
-    }
-    h1{ font-size:18px; margin:0; font-weight:800; letter-spacing:.2px; }
-    .meta{ font-size:12px; color:var(--muted); margin-top:4px; line-height:1.35; }
-
-    .btn{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
-      border:1px solid rgba(0,0,0,.1);
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:12px;
+      background: rgba(15,23,42,.04);
+      border: 1px solid rgba(15,23,42,.08);
+      padding: 1px 6px;
+      border-radius: 8px;
+      font-weight:800;
+      color:var(--text);
       white-space:nowrap;
     }
-    .btn:hover{ opacity:.92; text-decoration:none; }
 
-    .card{
-      background:var(--card);
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:12px;
-      box-shadow:0 10px 25px rgba(0,0,0,.06);
-      overflow:hidden;
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:44px 22px 56px;
     }
 
-    /* ===== Barra recortada (franja) ===== */
+    /* top */
+    .topbar{ margin-bottom:12px; }
+    .titleRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    h1{
+      font-size:30px;
+      font-weight:900;
+      letter-spacing:-.02em;
+      margin:0;
+      line-height:1.1;
+    }
+    .meta{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:8px;
+      line-height:1.6;
+      max-width:900px;
+    }
+
+    .topActions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--border);
+      background:var(--card);
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:900;
+      color:var(--text);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+      box-shadow:var(--shadow);
+      white-space:nowrap;
+    }
+    .btn.primary{
+      border-color: rgba(37,99,235,.25);
+      color: var(--accent2);
+      background: rgba(37,99,235,.06);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(37,99,235,.08);
+      color:var(--accent2);
+      border:1px solid rgba(37,99,235,.18);
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .callout{
+      background: var(--info-bg);
+      border: 1px solid var(--info-bd);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+      color:#334155;
+      line-height:1.7;
+      margin: 12px 0 14px;
+    }
+    .callout b{ color:var(--text); }
+    .callout .mini{
+      display:block;
+      color:#64748b;
+      font-weight:800;
+      margin-top:6px;
+      font-size:12px;
+    }
+
+    /* cards */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .cardHeader{
+      padding:16px 18px 12px;
+      border-bottom:1px solid var(--border);
+    }
+    .cardTitle{
+      margin:0;
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:-.01em;
+    }
     .stage{
       position:relative;
-      padding:12px;
+      padding:14px 18px 18px;
       background:#fff;
     }
 
-    /* Marco de la imagen: proporción estable para hotspots en % */
+    /* ===== Barra recortada ===== */
     .bar-frame{
       position:relative;
       max-width:1100px;
       margin:0 auto;
-      border-radius:12px;
-      border:1px solid rgba(0,0,0,.06);
+      border-radius:14px;
+      border:1px solid var(--border);
       background:#fff;
       overflow:hidden;
-      /* Ajusta el ratio si tu recorte es más alto/bajo */
-      aspect-ratio: 10 / 1.2; /* franja */
-    }
 
+      /* Ajusta ratio si tu recorte cambia */
+      aspect-ratio: 10 / 1.2;
+      box-shadow: 0 8px 16px rgba(0,0,0,.02);
+    }
     .bar-frame img{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
       object-fit:contain;
-      user-select:none; -webkit-user-drag:none;
+      user-select:none;
+      -webkit-user-drag:none;
       background:#fff;
     }
 
-    /* Fallback si no carga */
     .img-fallback{
       display:none;
-      margin:10px auto 0;
+      margin:12px auto 0;
       max-width:1100px;
       padding:10px 12px;
-      border-radius:12px;
-      border:1px dashed rgba(0,0,0,.18);
-      color:var(--subtext);
+      border-radius:14px;
+      border:1px dashed rgba(15,23,42,.25);
+      color:#334155;
       background:#fafafa;
       font-size:13px;
-      line-height:1.45;
+      line-height:1.55;
     }
 
-     .hotspot{
+    .hotspot{
       position:absolute;
       border: 3px solid var(--hint);
       background: transparent;
       border-radius: 12px;
       cursor: default;
       pointer-events:auto;
-
       box-shadow: 0 0 0 2px rgba(255,255,255,.85),
                   0 8px 18px rgba(0,0,0,.10);
-
       transition: background .12s ease, border-color .12s ease, transform .12s ease, box-shadow .12s ease;
     }
-
     .hotspot:hover{
       background: rgba(0,123,255,.10);
       border-color: var(--hint-strong);
@@ -123,62 +221,70 @@
       transform: translateY(-1px);
     }
 
+    /* tooltip */
     .tooltip{
-      position: fixed; z-index: 9999; max-width: 520px;
-      padding: 10px 12px; border-radius: 12px;
+      position: fixed;
+      z-index: 9999;
+      max-width: 520px;
+      padding: 10px 12px;
+      border-radius: 12px;
       background: rgba(255,255,255,.98);
       box-shadow: 0 18px 40px rgba(0,0,0,.20);
       border: 1px solid rgba(0,0,0,.08);
-      display: none; pointer-events: none;
+      display: none;
+      pointer-events: none;
     }
-    .tooltip .t{ font-weight:800; margin-bottom:4px; font-size:13px; }
-    .tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
+    .tooltip .t{ font-weight:900; margin-bottom:4px; font-size:13px; color:var(--text); }
+    .tooltip .d{ font-size:12px; line-height:1.4; color:#374151; }
 
+    /* content */
     .content{ padding:14px 16px; }
     .content h2{ margin:0 0 8px; font-size:16px; }
     .content h3{ margin:14px 0 8px; font-size:14px; }
-    .content p{ margin:0 0 10px; color:var(--subtext); line-height:1.45; }
-    .content ul{ margin:0 0 10px 18px; color:var(--subtext); }
+    .content p{ margin:0 0 10px; color:#334155; line-height:1.55; }
+    .content ul{ margin:0 0 10px 18px; color:#334155; }
     .content li{ margin-bottom:6px; }
 
-    .callout{
+    .calloutSmall{
       background:var(--info-bg);
       border:1px solid var(--info-bd);
       padding:10px 12px;
-      border-radius:12px;
-      color:var(--subtext);
+      border-radius:14px;
+      color:#334155;
       margin:10px 0 0;
       font-size:13px;
-      line-height:1.45;
+      line-height:1.55;
     }
-
     .warning{
-      background:var(--warn-bg);
-      border:1px solid var(--warn-bd);
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-bd);
       padding:10px 12px;
-      border-radius:12px;
-      color:var(--subtext);
+      border-radius:14px;
+      color:var(--text);
       margin:10px 0 0;
       font-size:13px;
-      line-height:1.45;
+      line-height:1.55;
     }
 
     .steps{
       margin:8px 0 0;
       padding:10px 12px;
-      border:1px solid rgba(0,0,0,.06);
-      border-radius:12px;
+      border:1px solid var(--border);
+      border-radius:14px;
       background:#fafafa;
+      color:#334155;
+      line-height:1.55;
     }
     .steps ol{ margin:0 0 0 18px; padding:0; }
     .steps li{ margin:6px 0; }
 
     .shot{
       margin-top:10px;
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:12px;
+      border:1px solid var(--border);
+      border-radius:14px;
       overflow:hidden;
       background:#fff;
+      box-shadow: 0 8px 16px rgba(0,0,0,.02);
     }
     .shot img{
       display:block;
@@ -186,41 +292,61 @@
       max-width:100%;
       max-height:320px;
       margin:10px auto 0;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,.06);
+      border-radius:12px;
+      border:1px solid var(--border);
       object-fit:contain;
+      background:#fff;
     }
     .shot .cap{
       padding:10px 12px;
-      border-top:1px solid rgba(0,0,0,.06);
+      border-top:1px solid var(--border);
       color:#374151;
       font-size:12.5px;
-      line-height:1.45;
+      line-height:1.55;
+    }
+
+    .small{
+      font-size:12px;
+      color:#64748b;
+      margin-top:22px;
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="container">
+
     <div class="topbar">
-      <div style="width:100%;">
-        <h1>Zona 2 — Menú principal (íconos + módulos)</h1>
-        <div class="meta">
-          Esta franja es la navegación principal de NetSuite. Incluye <strong>Recientes</strong>, <strong>Favoritos</strong>, <strong>Home</strong>
-          y los <strong>menús por módulos</strong> (Transacciones, Listas, Informes, etc.).
+      <div class="titleRow">
+        <h1>Zona 2 · Menú principal (íconos + módulos)</h1>
+
+        <div class="topActions">
+          <a class="btn" href="index.html">← Volver al Home</a>
+          <a class="btn" href="home_guia.html">← Volver a Navegación</a>
+          <span class="pill">Zona 2</span>
         </div>
       </div>
-      <a class="btn" href="index.html">← Volver</a>
+
+      <div class="meta">
+        Esta franja es la navegación principal de NetSuite. Incluye <b>Recientes</b>, <b>Favoritos</b>, <b>Home</b>
+        y los <b>menús por módulos</b> (Transacciones, Listas, Informes, etc.).
+      </div>
+    </div>
+
+    <div class="callout">
+      Aquí es donde te “mueves” por NetSuite. Si aprendes a usar <b>Recientes</b> y <b>Favoritos</b>, vas a navegar muchísimo más rápido.
+      <span class="mini">Tip: si haces una tarea todos los días, guárdala en ⭐ Favoritos.</span>
     </div>
 
     <!-- Barra recortada -->
     <div class="card">
+      <div class="cardHeader">
+        <p class="cardTitle">Mapa del menú principal (hover para ver cada parte)</p>
+      </div>
+
       <div class="stage">
         <div class="bar-frame" id="barFrame">
           <img id="menuImg" src="menu_bar.png" alt="Barra principal NetSuite (menú + íconos)"/>
-
-          <!-- Hotspots en % (se escalan perfecto con la imagen) -->
-          <!-- AJUSTA SOLO si tu recorte cambia mucho -->
 
           <!-- Recientes (reloj) -->
           <div class="hotspot"
@@ -233,7 +359,7 @@
           <div class="hotspot"
                style="left:5.0%; top:25%; width:4%; height:50%;"
                data-title="⭐ Favoritos"
-               data-desc="Guarda accesos directos personales. Ideal para informes y búsquedas guardadas que usas frecuentemente.">
+               data-desc="Accesos directos personales. Perfecto para reportes y búsquedas guardadas que usas con frecuencia.">
           </div>
 
           <!-- Home (casita) -->
@@ -252,36 +378,36 @@
         </div>
 
         <div class="img-fallback" id="imgFallback">
-          <strong>No se encontró la imagen</strong> <code>menu_bar.png</code>.
+          <b>No se encontró la imagen</b> <code>menu_bar.png</code>.
           Verifica que esté en la misma carpeta de este HTML y que el nombre coincida exactamente.
         </div>
       </div>
     </div>
 
     <!-- Explicación -->
-    <div class="card" style="margin-top:12px;">
+    <div class="card" style="margin-top:14px;">
       <div class="content">
 
         <h2>Menús por módulos</h2>
         <p>
-          NetSuite organiza la navegación por <strong>módulos</strong>. Cada módulo agrupa opciones relacionadas:
+          NetSuite organiza la navegación por <b>módulos</b>. Cada módulo agrupa opciones relacionadas:
         </p>
         <ul>
-          <li><strong>Transacciones:</strong> documentos operativos (órdenes, facturas, pagos, recibos…).</li>
-          <li><strong>Listas:</strong> catálogos maestros (Clientes, Proveedores, Artículos, Empleados…).</li>
-          <li><strong>Informes:</strong> reportes estándar y reportes guardados.</li>
-          <li><strong>Configuración:</strong> opciones administrativas (si el rol lo permite).</li>
+          <li><b>Transacciones:</b> documentos operativos (órdenes, facturas, pagos, recibos…).</li>
+          <li><b>Listas:</b> catálogos maestros (Clientes, Proveedores, Artículos, Empleados…).</li>
+          <li><b>Informes:</b> reportes estándar y reportes guardados.</li>
+          <li><b>Configuración:</b> opciones administrativas (si el rol lo permite).</li>
         </ul>
 
-        <div class="callout">
-          Los menús visibles dependen del <strong>rol</strong> y los permisos del usuario. Por eso, dos personas pueden ver módulos distintos.
+        <div class="calloutSmall">
+          Los menús visibles dependen del <b>rol</b> y los permisos del usuario. Por eso, dos personas pueden ver módulos distintos.
         </div>
 
         <h3>Cómo abrir un menú</h3>
         <div class="steps">
           <ol>
-            <li>Pasa el mouse por encima del módulo (ej.: <strong>Listas</strong>).</li>
-            <li>Se despliega el <strong>submenú</strong> con opciones agrupadas.</li>
+            <li>Pasa el mouse por encima del módulo (ej.: <b>Listas</b>).</li>
+            <li>Se despliega el <b>submenú</b> con opciones agrupadas.</li>
             <li>Haz clic en la opción que necesitas para entrar al formulario o pantalla.</li>
           </ol>
         </div>
@@ -289,14 +415,14 @@
         <div class="shot">
           <img src="menu_hover_listas.png" alt="Ejemplo: Listas desplegado (submenú)"/>
           <div class="cap">
-            <strong>Ejemplo:</strong> al pasar por <strong>Listas</strong> se despliegan opciones como <em>Clientes, Proveedores, Artículos…</em>
+            <b>Ejemplo:</b> al pasar por <b>Listas</b> se despliegan opciones como <i>Clientes, Proveedores, Artículos…</i>
           </div>
         </div>
 
         <div class="shot">
           <img src="menu_hover_transacciones.png" alt="Ejemplo: Transacciones desplegado (submenú)"/>
           <div class="cap">
-            <strong>Ejemplo (opcional):</strong> <strong>Transacciones</strong> agrupa documentos operativos (ventas, compras, pagos, etc.).
+            <b>Ejemplo (opcional):</b> <b>Transacciones</b> agrupa documentos operativos (ventas, compras, pagos, etc.).
           </div>
         </div>
 
@@ -308,34 +434,34 @@
         <div class="shot">
           <img src="recientes_menu.png" alt="Menú de Recientes en NetSuite"/>
           <div class="cap">
-            <strong>Así se ve Recientes:</strong> al abrirlo aparece una lista con accesos a lo que usaste recientemente.
+            <b>Así se ve Recientes:</b> al abrirlo aparece una lista con accesos a lo que usaste recientemente.
           </div>
         </div>
 
         <h2 style="margin-top:14px;">⭐ Favoritos (Estrella) — Accesos directos personales</h2>
         <p>
-          La estrella guarda accesos directos <strong>solo para tu usuario</strong>. Muy útil para reportes, búsquedas guardadas y pantallas frecuentes.
+          La estrella guarda accesos directos <b>solo para tu usuario</b>. Muy útil para reportes, búsquedas guardadas y pantallas frecuentes.
         </p>
 
         <h3>Cómo agregar un favorito</h3>
         <div class="steps">
           <ol>
             <li>Entra a la pantalla que quieres guardar (por ejemplo, un informe o una búsqueda guardada).</li>
-            <li>Pasa el mouse sobre la ⭐ y selecciona <strong>“Agregar acceso directo”</strong>.</li>
-            <li>Escribe un <strong>Nombre</strong> claro.</li>
-            <li>Opcional: marca <strong>“Abrir en una nueva ventana”</strong>.</li>
-            <li>Haz clic en <strong>Guardar</strong>. Desde ese momento aparecerá al abrir la ⭐.</li>
+            <li>Pasa el mouse sobre la ⭐ y selecciona <b>“Agregar acceso directo”</b>.</li>
+            <li>Escribe un <b>Nombre</b> claro.</li>
+            <li>Opcional: marca <b>“Abrir en una nueva ventana”</b>.</li>
+            <li>Haz clic en <b>Guardar</b>. Desde ese momento aparecerá al abrir la ⭐.</li>
           </ol>
         </div>
 
         <div class="shot">
           <img src="favoritos_add_shortcut.png" alt="Agregar acceso directo"/>
           <div class="cap">
-            <strong>Agregar acceso directo:</strong>
+            <b>Agregar acceso directo:</b>
             <ul>
-              <li><strong>Nombre:</strong> cómo verás el favorito en tu lista.</li>
-              <li><strong>Abrir en una nueva ventana:</strong> útil para reportes/búsquedas que quieres consultar mientras trabajas en otra pantalla.</li>
-              <li><strong>Guardar:</strong> queda asociado a tu usuario.</li>
+              <li><b>Nombre:</b> cómo verás el favorito en tu lista.</li>
+              <li><b>Abrir en una nueva ventana:</b> útil para reportes/búsquedas que quieres consultar mientras trabajas en otra pantalla.</li>
+              <li><b>Guardar:</b> queda asociado a tu usuario.</li>
             </ul>
           </div>
         </div>
@@ -343,7 +469,7 @@
         <div class="shot">
           <img src="favoritos_list.png" alt="Lista de favoritos en NetSuite"/>
           <div class="cap">
-            <strong>Después de guardar:</strong> al abrir la ⭐ verás tu lista de accesos directos.
+            <b>Después de guardar:</b> al abrir la ⭐ verás tu lista de accesos directos.
           </div>
         </div>
 
@@ -352,35 +478,37 @@
           La casita tiene dos comportamientos:
         </p>
         <ul>
-          <li><strong>Clic:</strong> te lleva al <strong>Home</strong> (dashboard / página principal).</li>
-          <li><strong>Hover (pasar el mouse):</strong> despliega opciones rápidas; una de ellas es <strong>Establecer preferencias</strong>.</li>
+          <li><b>Clic:</b> te lleva al <b>Home</b> (dashboard / página principal).</li>
+          <li><b>Hover:</b> despliega opciones rápidas; una de ellas es <b>Establecer preferencias</b>.</li>
         </ul>
 
         <div class="warning">
-          En <strong>Establecer preferencias → Apariencia</strong> puedes cambiar el <strong>tema/color</strong>.
-          Esto sirve para diferenciar visualmente <strong>Producción</strong> vs <strong>SANDBOX</strong>. El cambio queda guardado <strong>solo para tu usuario</strong>.
+          En <b>Establecer preferencias → Apariencia</b> puedes cambiar el <b>tema/color</b>.
+          Esto sirve para diferenciar visualmente <b>Producción</b> vs <b>SANDBOX</b>. El cambio queda guardado <b>solo para tu usuario</b>.
         </div>
 
         <div class="shot">
           <img src="home_menu_preferencias.png" alt="Menú de Home con opción de Establecer preferencias"/>
           <div class="cap">
-            <strong>Hover sobre la casita:</strong> se despliegan opciones rápidas, incluyendo <strong>Establecer preferencias</strong>.
+            <b>Hover sobre la casita:</b> se despliegan opciones rápidas, incluyendo <b>Establecer preferencias</b>.
           </div>
         </div>
 
         <div class="shot">
           <img src="preferencias_apariencia.png" alt="Establecer preferencias - Apariencia"/>
           <div class="cap">
-            <strong>Establecer preferencias → Apariencia:</strong> aquí puedes ajustar el tema/color (entre otras opciones) para tu usuario.
+            <b>Establecer preferencias → Apariencia:</b> aquí puedes ajustar el tema/color (entre otras opciones) para tu usuario.
           </div>
         </div>
 
+        <div class="small">Guía interna · Tecnologías Médicas Colombia (TMC)</div>
       </div>
     </div>
+
   </div>
 
   <!-- Tooltip -->
-  <div class="tooltip" id="tooltip" role="tooltip">
+  <div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true">
     <div class="t" id="ttTitle"></div>
     <div class="d" id="ttDesc"></div>
   </div>
@@ -403,9 +531,13 @@
         ttTitle.textContent = title || '';
         ttDesc.textContent  = desc  || '';
         tooltip.style.display = 'block';
+        tooltip.setAttribute('aria-hidden', 'false');
         move(e);
       }
-      function hide(){ tooltip.style.display = 'none'; }
+      function hide(){
+        tooltip.style.display = 'none';
+        tooltip.setAttribute('aria-hidden', 'true');
+      }
 
       function move(e){
         const pad = 14;
@@ -434,4 +566,5 @@
   </script>
 </body>
 </html>
+
 
