@@ -202,12 +202,13 @@
       <h1>Glosario Básico de NetSuite</h1>
 
       <div class="topActions">
+        <!-- ✅ subpágina: volver al Home -->
         <a class="btn" href="index.html">← Volver al Home</a>
 
-        <button id="prevBtn" class="btn" type="button">← Anterior</button>
+        <!-- ✅ solo “Siguiente”, sin “Anterior” -->
         <button id="nextBtn" class="btn" type="button">Siguiente →</button>
 
-        <span id="secPill" class="pill">Sección 1 de 1</span>
+        <span id="secPill" class="pill">Sección 1 de 6</span>
       </div>
     </div>
 
@@ -305,7 +306,7 @@
       <!-- 1 -->
       <details>
         <summary><span>1. CRM y Ventas (relación con clientes)</span><span class="tag">Comercial</span></summary>
-        <div class="content">
+        <div class="content>
 
           <div class="term">
             <b>Cliente interesado:</b>
@@ -502,7 +503,7 @@
       <!-- 5 -->
       <details>
         <summary><span>5. Tipos de artículos (lo que ‘vendemos/consumimos’)</span><span class="tag">Items</span></summary>
-        <div class="content>
+        <div class="content">
 
           <div class="term"><b>Inventariable (Inventory Item):</b> Artículo que maneja existencias (stock). Entra y sale de inventario.</div>
 
@@ -642,7 +643,6 @@
     const noResults = document.getElementById('noResults');
 
     const sections = Array.from(document.querySelectorAll('#glossary details'));
-    const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const secPill = document.getElementById('secPill');
 
@@ -667,6 +667,17 @@
         .map(x => x.i);
 
     function updateNavUI(){
+      const hasFilter = !!norm(q.value);
+
+      // ✅ SIN filtro: pill fijo “1 de 6” basado en orden real (no en visibles)
+      if(!hasFilter){
+        const totalAll = sections.length;
+        secPill.textContent = `Sección ${currentIndex + 1} de ${totalAll}`;
+        nextBtn.disabled = (currentIndex >= totalAll - 1);
+        return;
+      }
+
+      // ✅ CON filtro: navega solo por secciones visibles
       const vis = visibleIndexes();
       const total = vis.length || 1;
 
@@ -676,8 +687,6 @@
 
       const pos = Math.max(0, vis.indexOf(currentIndex));
       secPill.textContent = `Sección ${Math.min(pos + 1, total)} de ${total}`;
-
-      prevBtn.disabled = (pos <= 0);
       nextBtn.disabled = (pos >= total - 1);
     }
 
@@ -695,7 +704,7 @@
         d.open = initialOpen.get(d) || false;
         d.querySelectorAll('.term').forEach(t => t.style.display = '');
       });
-      currentIndex = 0;
+      currentIndex = 0; // ✅ siempre arranca en la primera sección
       updateNavUI();
     }
 
@@ -752,16 +761,18 @@
       resetAll();
     });
 
-    prevBtn.addEventListener('click', () => {
-      const vis = visibleIndexes();
-      const pos = vis.indexOf(currentIndex);
-      if(pos <= 0) return;
-      currentIndex = vis[pos - 1];
-      updateNavUI();
-      scrollToSection(currentIndex);
-    });
-
     nextBtn.addEventListener('click', () => {
+      const hasFilter = !!norm(q.value);
+
+      if(!hasFilter){
+        // ✅ sin filtro: avanza por todas
+        currentIndex = Math.min(sections.length - 1, currentIndex + 1);
+        updateNavUI();
+        scrollToSection(currentIndex);
+        return;
+      }
+
+      // ✅ con filtro: avanza por visibles
       const vis = visibleIndexes();
       const pos = vis.indexOf(currentIndex);
       if(pos === -1 || pos >= vis.length - 1) return;
@@ -770,8 +781,11 @@
       scrollToSection(currentIndex);
     });
 
+    // ✅ no usamos “toggle” (eso causaba 6/6 al cargar)
     sections.forEach((d, i) => {
-      d.addEventListener('toggle', () => {
+      const s = d.querySelector('summary');
+      if(!s) return;
+      s.addEventListener('click', () => {
         if(d.style.display !== 'none'){
           currentIndex = i;
           updateNavUI();
@@ -779,7 +793,10 @@
       });
     });
 
+    // Init
+    currentIndex = 0;
     updateNavUI();
   </script>
 </body>
 </html>
+
