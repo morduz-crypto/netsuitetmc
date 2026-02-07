@@ -15,7 +15,12 @@
       --accent:#2563eb;
       --accent2:#1d4ed8;
       --shadow: 0 10px 22px rgba(0,0,0,.04);
+
+      --info-bg: rgba(37,99,235,.06);
+      --info-bd: rgba(37,99,235,.18);
+      --chip-bg: rgba(15,23,42,.03);
     }
+
     *{ box-sizing:border-box }
     body{
       margin:0;
@@ -32,7 +37,6 @@
       padding:44px 22px 56px;
     }
 
-    /* top */
     .topbar{
       display:flex;
       gap:12px;
@@ -75,9 +79,6 @@
       color: var(--accent2);
       background: rgba(37,99,235,.06);
     }
-    .btn.ghost{
-      background:transparent;
-    }
     .pill{
       display:inline-flex;
       align-items:center;
@@ -91,6 +92,25 @@
       white-space:nowrap;
     }
 
+    .callout{
+      background: var(--info-bg);
+      border: 1px solid var(--info-bd);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+      color:#334155;
+      margin-bottom:14px;
+      line-height:1.75;
+    }
+    .callout b{ color:var(--text); }
+    .callout .mini{
+      display:block;
+      color:#64748b;
+      font-weight:800;
+      margin-top:6px;
+      font-size:12px;
+    }
+
     .hint{
       color:var(--muted);
       margin:0 0 18px;
@@ -98,7 +118,6 @@
       max-width:950px;
     }
 
-    /* layout */
     .grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
@@ -131,25 +150,6 @@
       color:var(--muted);
       line-height:1.7;
       font-size:14px;
-    }
-
-    /* friendly callout */
-    .callout{
-      background: rgba(37,99,235,.06);
-      border: 1px solid rgba(37,99,235,.18);
-      border-radius: 16px;
-      padding: 14px 16px;
-      box-shadow: 0 10px 22px rgba(0,0,0,.02);
-      color:#334155;
-      margin-bottom:14px;
-    }
-    .callout b{ color:var(--text); }
-    .callout .mini{
-      display:block;
-      color:#64748b;
-      font-weight:800;
-      margin-top:6px;
-      font-size:12px;
     }
 
     .kpiRow{
@@ -203,7 +203,10 @@
       cursor:pointer;
       user-select:none;
     }
-    .iconBtn:hover{ background: rgba(37,99,235,.06); border-color: rgba(37,99,235,.22); }
+    .iconBtn:hover{
+      background: rgba(37,99,235,.06);
+      border-color: rgba(37,99,235,.22);
+    }
     .iconBtn svg{ width:18px; height:18px; }
 
     .divider{
@@ -230,21 +233,60 @@
       gap:8px;
       padding:8px 10px;
       border-radius:999px;
-      background:rgba(15,23,42,.03);
+      background:var(--chip-bg);
       border:1px solid var(--border);
       color:#334155;
       font-weight:900;
       font-size:12px;
     }
 
-    .actions{
+    .speechWrap{
+      margin-top:12px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow: 0 8px 16px rgba(0,0,0,.02);
+    }
+    .speechHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 14px;
+      border-bottom:1px solid var(--border);
+      background: rgba(15,23,42,.015);
+    }
+    .speechHead b{ color:var(--text); font-size:13px; }
+    .speechHead small{ color:#64748b; font-weight:800; }
+    .speechBody{ padding:12px 14px; }
+    .speechBox{
+      width:100%;
+      min-height:180px;
+      resize:vertical;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 12px;
+      outline:none;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      line-height:1.55;
+      color:var(--text);
+      background:#fff;
+    }
+    .speechActions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin-top:12px;
+      margin-top:10px;
+      align-items:center;
+    }
+    .hintMini{
+      color:#64748b;
+      font-size:12px;
+      font-weight:800;
     }
 
-    /* toast */
     .toast{
       position:fixed;
       left:50%;
@@ -260,72 +302,11 @@
       opacity:0;
       pointer-events:none;
       transition:opacity .18s ease, transform .18s ease;
+      z-index: 999999;
     }
     .toast.show{
       opacity:1;
       transform:translateX(-50%) translateY(-2px);
-    }
-
-    /* modal */
-    .modalBack{
-      position:fixed;
-      inset:0;
-      background: rgba(15,23,42,.55);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index: 99999;
-    }
-    .modalBack.show{ display:flex; }
-    .modal{
-      width:min(980px, 100%);
-      background:var(--card);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      box-shadow:0 24px 60px rgba(0,0,0,.28);
-      overflow:hidden;
-    }
-    .modalHead{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:14px 16px;
-      border-bottom:1px solid var(--border);
-      background: #ffffff;
-    }
-    .modalHead b{ font-size:14px; color:var(--text); }
-    .closeBtn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:var(--card);
-      cursor:pointer;
-      font-weight:900;
-      box-shadow:var(--shadow);
-    }
-    .modalBody{
-      padding:0;
-      background:#fff;
-    }
-    .iframeWrap{
-      width:100%;
-      height:min(74vh, 720px);
-      border:0;
-      display:block;
-      background:#fff;
-    }
-    .modalFoot{
-      padding:12px 16px;
-      border-top:1px solid var(--border);
-      color:#64748b;
-      font-size:12px;
-      line-height:1.5;
-      background:#fff;
     }
 
     .small{
@@ -352,15 +333,20 @@
     <div class="callout">
       En <b>TMC</b>, el área de <b>Tecnología</b> es la encargada de dar soporte sobre <b>NetSuite</b>.
       Esto incluye <b>errores del sistema</b>, <b>novedades</b> o comportamientos que “no deberían pasar”.
-      <span class="mini">Si nos compartes el contexto completo, podemos ayudarte mucho más rápido (sin adivinar).</span>
+      <span class="mini">Para ayudarte más rápido, lo más valioso es que nos compartas el contexto completo (pasos + registro + mensaje).</span>
     </div>
+
+    <p class="hint">
+      Abajo tienes los <b>canales</b> y un mensaje listo para copiar/pegar (“speech”) que ya trae lo que necesitamos.
+      Puedes usarlo tal cual y solo reemplazar los campos.
+    </p>
 
     <div class="grid">
 
       <!-- LEFT -->
       <div class="card">
         <div class="cardHeader">
-          <p class="cardTitle">¿Por dónde pedir soporte?</p>
+          <p class="cardTitle">Canales de soporte</p>
         </div>
 
         <div class="cardBody">
@@ -379,7 +365,7 @@
                     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                   </svg>
                 </button>
-                <a class="iconBtn" id="mailBtn" href="#" title="Abrir correo">
+                <a class="iconBtn" id="mailBtn" href="#" title="Abrir correo (con mensaje sugerido)">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M4 4h16v16H4z"></path>
                     <path d="m22 6-10 7L2 6"></path>
@@ -401,7 +387,7 @@
                     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                   </svg>
                 </button>
-                <a class="iconBtn" id="waBtn" href="#" target="_blank" rel="noopener" title="Abrir WhatsApp">
+                <a class="iconBtn" id="waBtn" href="#" target="_blank" rel="noopener" title="Abrir WhatsApp (con mensaje sugerido)">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
                   </svg>
@@ -411,68 +397,72 @@
           </div>
 
           <div class="chips">
-            <span class="chip">⏱️ Más contexto = solución más rápida</span>
-            <span class="chip">🧩 Error + pasos + registro = perfecto</span>
+            <span class="chip">✅ Error + pasos + registro = perfecto</span>
+            <span class="chip">🧾 Adjunta screenshot completo si aplica</span>
+            <span class="chip">🔁 Indica si pasa siempre o a veces</span>
           </div>
 
           <div class="divider"></div>
 
-          <p style="margin:0;"><b>¿Qué necesitamos para ayudarte?</b></p>
+          <p style="margin:0;"><b>Checklist (para no olvidar nada)</b></p>
           <ul class="list">
             <li><b>Qué estabas haciendo</b> (paso a paso, 3–6 pasos máximo).</li>
-            <li><b>Dónde estabas</b>: ¿en qué menú/registro/transacción? (Ej: Orden de compra, Cliente, Caso, etc.).</li>
-            <li><b>Link del registro</b> o al menos el <b>número</b> (Ej: PO12345, SO9876, INV-0001).</li>
-            <li><b>Screenshot</b> completo (si aplica: que se vea el mensaje exacto).</li>
+            <li><b>Dónde estabas</b>: menú/registro/transacción (Ej: Orden de compra, Cliente, Caso, etc.).</li>
+            <li><b>Link del registro</b> o el <b>número</b> (Ej: PO12345, SO9876, INV-0001).</li>
+            <li><b>Mensaje exacto</b> (ideal con screenshot).</li>
             <li><b>Qué esperabas</b> vs <b>qué pasó</b>.</li>
             <li><b>¿Pasa siempre o a veces?</b> (y desde cuándo).</li>
           </ul>
 
-          <div class="divider"></div>
+          <!-- SPEECH -->
+          <div class="speechWrap" style="margin-top:14px;">
+            <div class="speechHead">
+              <div>
+                <b>Mensaje listo para copiar (“speech”)</b><br/>
+                <small>Úsalo por correo o WhatsApp — solo reemplaza los campos.</small>
+              </div>
+              <button class="btn" type="button" id="copySpeechBtn">Copiar mensaje</button>
+            </div>
+            <div class="speechBody">
+              <textarea class="speechBox" id="speechText" spellcheck="false"></textarea>
 
-          <p style="margin:0;"><b>Ejemplo (corto y perfecto)</b>:</p>
-          <ul class="list">
-            <li><b>Registro:</b> Orden de compra PO12345 (link adjunto)</li>
-            <li><b>Pasos:</b> Editar → Items → agrego ítem “X” → Guardar</li>
-            <li><b>Mensaje:</b> “No se puede guardar porque…” (screenshot)</li>
-            <li><b>Esperaba:</b> que guardara y quedara en “Pending Approval”</li>
-          </ul>
+              <div class="speechActions">
+                <button class="btn primary" type="button" id="sendMailFromSpeechBtn">Enviar por correo</button>
+                <button class="btn primary" type="button" id="sendWappFromSpeechBtn">Enviar por WhatsApp</button>
+                <span class="hintMini">Tip: pega links y adjunta screenshots antes de enviar.</span>
+              </div>
+            </div>
+          </div>
 
-          <p style="margin:12px 0 0;">
-            <b>Tip rápido:</b> si el problema está en un campo (por ejemplo, “no me deja seleccionar”),
-            envíanos también el <b>nombre del campo</b> y el <b>valor</b> que intentas poner.
-          </p>
         </div>
       </div>
 
       <!-- RIGHT -->
       <div class="card">
         <div class="cardHeader">
-          <p class="cardTitle">Confirmar finalización del onboarding</p>
+          <p class="cardTitle">Finalizar onboarding</p>
         </div>
 
         <div class="cardBody">
           <p style="margin:0;">
             Si llegaste hasta acá, ya terminaste la guía general 🎉<br/>
-            Para dejar el registro interno, confirma tu finalización aquí:
+            Para dejar el registro interno, haz clic aquí:
           </p>
 
-          <div class="actions" style="margin-top:12px;">
-            <button class="btn primary" type="button" id="openConfirmBtn">
-              Confirmar en NetSuite →
-            </button>
-            <a class="btn" target="_blank" rel="noopener" id="openConfirmNewTab" href="#">
-              Abrir en nueva pestaña
+          <div style="margin-top:12px;">
+            <a class="btn primary" id="confirmBtn" target="_blank" rel="noopener" href="#">
+              Confirmar finalización de onboarding →
             </a>
           </div>
 
           <p style="margin:12px 0 0; color:#64748b; font-size:12px;">
-            Se abre un <b>formulario en línea (NetSuite)</b>. Puedes enviarlo y cerrar — queda registrado.
+            Se abrirá un <b>formulario en línea (NetSuite)</b> en una nueva pestaña. Lo envías y listo.
           </p>
 
           <div class="divider"></div>
 
           <p style="margin:0;">
-            Si te quedó alguna duda: escríbenos por correo o WhatsApp con el checklist de la izquierda 😊
+            ¿Te quedó alguna duda? Escríbenos por correo o WhatsApp con el mensaje sugerido 😊
           </p>
         </div>
       </div>
@@ -484,34 +474,10 @@
     <div id="toast" class="toast">Copiado ✅</div>
   </div>
 
-  <!-- Modal confirmación (iframe embebido) -->
-  <div class="modalBack" id="confirmModal" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="Confirmar onboarding">
-      <div class="modalHead">
-        <b>Confirmar finalización · NetSuite</b>
-        <button class="closeBtn" type="button" id="closeConfirmBtn">Cerrar ✕</button>
-      </div>
-      <div class="modalBody">
-        <iframe
-          id="confirmFrame"
-          class="iframeWrap"
-          title="Formulario de confirmación"
-          src=""
-          loading="lazy"
-          referrerpolicy="no-referrer">
-        </iframe>
-      </div>
-      <div class="modalFoot">
-        Si el formulario no carga dentro del pop-up (por políticas del navegador), usa “Abrir en nueva pestaña”.
-      </div>
-    </div>
-  </div>
-
   <script>
     const EMAIL = 'morduz@tm-colombia.com';
     const WAPP  = '3102465773';
 
-    // ✅ link oficial del formulario externo
     const CONFIRM_URL = 'https://5055913.extforms.netsuite.com/app/site/crm/externalcustrecordpage.nl?compid=5055913&formid=1&h=AAFdikaIkeAA-TvlLFZXaXlxHaRPBDxNkw3COQDmufmdHuCq6N4';
 
     const toast = document.getElementById('toast');
@@ -537,74 +503,87 @@
       }
     }
 
-    // Copy buttons
+    // Confirm button (new tab)
+    document.getElementById('confirmBtn').href = CONFIRM_URL;
+
+    // ====== SPEECH ======
+    const speechText = document.getElementById('speechText');
+
+    function buildSpeech(){
+      return (
+`Hola equipo de Tecnología 😊
+
+Necesito soporte en NetSuite con lo siguiente:
+
+1) ¿Qué estaba haciendo? (paso a paso)
+- Paso 1:
+- Paso 2:
+- Paso 3:
+
+2) ¿En qué pantalla/registro estaba?
+- Módulo / menú:
+- Tipo de registro (Cliente, OC, SO, Factura, Caso, etc.):
+- Número del documento (si aplica):
+- Link del registro (si aplica):
+
+3) ¿Qué esperaba que pasara?
+- 
+
+4) ¿Qué pasó realmente?
+- Mensaje exacto del sistema:
+
+5) Adjuntos
+- Screenshot(s):
+
+6) Frecuencia
+- ¿Pasa siempre o a veces?
+- ¿Desde cuándo?
+
+Gracias 🙌`
+      );
+    }
+
+    speechText.value = buildSpeech();
+
+    // Copy speech
+    document.getElementById('copySpeechBtn').addEventListener('click', () => {
+      copyToClipboard(speechText.value);
+    });
+
+    // Copy channel data
     document.getElementById('copyEmailBtn').addEventListener('click', () => copyToClipboard(EMAIL));
     document.getElementById('copyWappBtn').addEventListener('click', () => copyToClipboard(WAPP));
 
-    // mailto
+    // mailto from speech
     const mailBtn = document.getElementById('mailBtn');
-    const subject = encodeURIComponent('Soporte NetSuite - Solicitud');
-    const body = encodeURIComponent(
-`Hola equipo de Tecnología,
+    function mailtoFromSpeech(){
+      const subject = encodeURIComponent('Soporte NetSuite - Solicitud');
+      const body = encodeURIComponent(speechText.value);
+      return `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    }
+    mailBtn.href = mailtoFromSpeech();
 
-Necesito ayuda con lo siguiente:
-
-1) ¿Qué estaba haciendo? (paso a paso)
-2) ¿En qué registro/transacción? (link o número)
-3) ¿Qué esperaba? / ¿Qué pasó? (incluye mensaje exacto)
-4) Adjuntos: screenshots
-
-¡Gracias!`
-    );
-    mailBtn.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-
-    // WhatsApp (wa.me)
+    // WhatsApp from speech
     const waBtn = document.getElementById('waBtn');
-    const waMsg = encodeURIComponent(
-`Hola equipo de Tecnología 😊 Necesito soporte en NetSuite.
-
-- ¿Qué estaba haciendo? (paso a paso)
-- Registro/transacción: (link o número)
-- ¿Qué esperaba? / ¿Qué pasó? (mensaje exacto)
-- Adjuntos: screenshots`
-    );
-    waBtn.href = `https://wa.me/57${WAPP}?text=${waMsg}`;
-
-    // Confirm modal
-    const modal = document.getElementById('confirmModal');
-    const frame = document.getElementById('confirmFrame');
-    const openBtn = document.getElementById('openConfirmBtn');
-    const closeBtn = document.getElementById('closeConfirmBtn');
-    const openNewTab = document.getElementById('openConfirmNewTab');
-
-    openNewTab.href = CONFIRM_URL;
-
-    function openModal(){
-      // set src on open (avoid loading cost on page load)
-      frame.src = CONFIRM_URL;
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+    function waFromSpeech(){
+      const waMsg = encodeURIComponent(speechText.value);
+      return `https://wa.me/57${WAPP}?text=${waMsg}`;
     }
-    function closeModal(){
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      // optional: clear src so it resets next time
-      frame.src = '';
-    }
+    waBtn.href = waFromSpeech();
 
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-
-    // close on backdrop click
-    modal.addEventListener('click', (e) => {
-      if(e.target === modal) closeModal();
+    // Send buttons
+    document.getElementById('sendMailFromSpeechBtn').addEventListener('click', () => {
+      window.location.href = mailtoFromSpeech();
     });
 
-    // close on ESC
-    window.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+    document.getElementById('sendWappFromSpeechBtn').addEventListener('click', () => {
+      window.open(waFromSpeech(), '_blank', 'noopener');
+    });
+
+    // keep icon links updated if they edit the speech
+    speechText.addEventListener('input', () => {
+      mailBtn.href = mailtoFromSpeech();
+      waBtn.href = waFromSpeech();
     });
   </script>
 </body>
