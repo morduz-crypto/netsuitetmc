@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Glosario · NetSuite TMC</title>
+
+  <style>
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.08);
+      --accent:#2563eb;
+    }
+    *{ box-sizing:border-box }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:44px 22px 56px;
+    }
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size:30px;
+      font-weight:900;
+      letter-spacing:-.02em;
+      margin:0;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--border);
+      background:var(--card);
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:700;
+      color:var(--text);
+      text-decoration:none;
+      box-shadow:0 10px 22px rgba(0,0,0,.04);
+    }
+    .hint{
+      color:var(--muted);
+      margin:0 0 18px;
+      line-height:1.6;
+      max-width:900px;
+    }
+    .search{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      outline:none;
+      background:var(--card);
+      font-size:14px;
+      box-shadow:0 10px 22px rgba(0,0,0,.03);
+      margin:10px 0 18px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+    details{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:0 10px 22px rgba(0,0,0,.04);
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:16px 18px;
+      font-weight:900;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .tag{
+      font-weight:800;
+      color:var(--accent);
+      background:rgba(37,99,235,.08);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      flex:0 0 auto;
+    }
+    .content{
+      padding:0 18px 18px;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+    .term{
+      padding:14px 0;
+      border-top:1px solid var(--border);
+    }
+    .term:first-child{ border-top:none; }
+    .term b{ color:var(--text); }
+    .term p{ margin:6px 0 0; }
+    .term ul{
+      margin:8px 0 0 18px;
+      padding:0;
+    }
+    .term li{ margin:4px 0; }
+    .small{
+      font-size:12px;
+      color:#64748b;
+      margin-top:22px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="topbar">
+      <h1>Glosario Básico de NetSuite</h1>
+      <a class="btn" href="index.html">← Volver al inicio</a>
+    </div>
+
+    <p class="hint">
+      Este glosario explica los términos más comunes que vas a escuchar y ver en NetSuite.
+      No necesariamente vas a usar todos en tu trabajo diario, pero es muy probable que los escuches cuando hables con otras áreas
+      (Comercial, Inventario, Cartera, Contabilidad, Servicio, Importaciones).
+      La idea es que puedas entender de qué se está hablando incluso si nunca has usado un ERP.
+    </p>
+
+    <input id="q" class="search" type="search" placeholder="Buscar término… (ej: sandbox, orden de venta, lote, DEO, portlet)" />
+
+    <div class="grid" id="glossary">
+
+      <!-- 0 -->
+      <details open>
+        <summary><span>0. Conceptos de sistema</span><span class="tag">Base</span></summary>
+        <div class="content">
+
+          <div class="term">
+            <b>Dashboard:</b> Pantalla principal del usuario con indicadores y accesos rápidos.
+          </div>
+
+          <div class="term">
+            <b>Portlet:</b> Bloque dentro del dashboard (lista, gráfico, KPI, recordatorio).
+          </div>
+
+          <div class="term">
+            <b>Transacción (Transaction):</b>
+            Documento que registra un movimiento del negocio (venta, compra, traslado, ajuste, pago).
+            Suele tener impacto operativo y/o contable.
+          </div>
+
+          <div class="term">
+            <b>Registro (Record):</b> una “ficha” de información. Ej: Cliente, Factura, Artículo.
+          </div>
+
+          <div class="term">
+            <b>Entidad (Entity):</b> Persona u organización con la que la empresa se relaciona (cliente, proveedor, empleado, contacto).
+          </div>
+
+          <div class="term">
+            <b>Rol (Role):</b>
+            Es el “perfil” del usuario en NetSuite: define qué puede ver y qué puede hacer (menús, pantallas, permisos, campos y transacciones).
+          </div>
+
+          <div class="term">
+            <b>Producción (Production):</b> Es el ambiente real de NetSuite donde opera la empresa en el día a día.
+            <p><b>En Producción:</b></p>
+            <ul>
+              <li>Están los datos reales (clientes reales, inventario real, facturas reales, pagos reales).</li>
+              <li>Lo que se registra sí tiene impacto (contable y operativo).</li>
+              <li>Lo que hagas ahí cuenta para la operación: entregas, cartera, compras, reportes, cierres, etc.</li>
+            </ul>
+          </div>
+
+          <div class="term">
+            <b>Sandbox:</b> Es un ambiente de pruebas de NetSuite (una copia del sistema) que se usa para:
+            <ul>
+              <li>Probar cambios (scripts, formularios, configuraciones, flujos).</li>
+              <li>Que usuarios nuevos practiquen sin afectar la operación.</li>
+            </ul>
+            <p><b>Importante:</b> No es el ambiente productivo. Lo que hagas en Sandbox no afecta Producción.</p>
+          </div>
+
+          <div class="term">
+            <b>Subsidiaria (Subsidiary):</b>
+            Es la empresa legal dentro del grupo al que pertenece la transacción. Define a nombre de qué compañía se registra la venta, el gasto,
+            el cliente y la contabilidad (por ejemplo en nuestro caso es TMC SAS).
+          </div>
+
+          <div class="term">
+            <b>Centro de costo:</b>
+            Es el “lugar” interno donde se genera un gasto o ingreso. En simple: te dice qué área/equipo está costando plata o generando plata
+            (ej. Soporte, Ventas, Cartera).
+          </div>
+
+          <div class="term">
+            <b>Categoría:</b>
+            Es una etiqueta para clasificar la transacción según a qué línea, tipo de negocio o segmento pertenece, sin importar el área que la hizo
+            (ej. URO Consumibles, GI equipos, Estetica repuestos, etc).
+          </div>
+
+          <div class="term">
+            <b>Estado (Status):</b>
+            En qué etapa va un proceso. Los estados varían dependiendo del tipo de transacción
+            (ej. Orden: Pendiente de aprobación / Aprobada / Cumplida).
+          </div>
+
+        </div>
+      </details>
+
+      <!-- 1 -->
+      <details>
+        <summary><span>1. CRM y Ventas (relación con clientes)</span><span class="tag">Comercial</span></summary>
+        <div class="content">
+
+          <div class="term">
+            <b>Cliente interesado:</b>
+            Cliente potencial que ya tiene información suficiente para seguimiento comercial, pero todavía no ha comprado.
+          </div>
+
+          <div class="term">
+            <b>Prospecto:</b>
+            Persona o empresa que mostró interés (por ejemplo, pidió información), pero todavía no está calificada.
+            En TMC esto puede usarse como el primer estado antes de convertirlo en prospecto o cliente, según el proceso definido.
+          </div>
+
+          <div class="term">
+            <b>Cliente (Customer):</b>
+            Persona o empresa que ya compra o está habilitada para comprar.
+            Normalmente aquí quedan registrados datos de facturación, envío, condiciones de pago y límite de crédito.
+          </div>
+
+          <div class="term">
+            <b>Contacto (Contact):</b>
+            Persona específica dentro de un cliente o proveedor (por ejemplo: “María Pérez - Compras”).
+            Se usa para llamadas, correos, cotizaciones y seguimiento.
+          </div>
+
+          <div class="term">
+            <b>Oportunidad (Opportunity):</b>
+            Una venta en proceso. Representa una negociación con un cliente, con un monto estimado y una etapa (pipeline).
+          </div>
+
+          <div class="term">
+            <b>Cotización (Estimate / Quote):</b>
+            Propuesta formal de precios y condiciones para el cliente. No es una venta confirmada todavía.
+          </div>
+
+          <div class="term">
+            <b>Orden de venta (Sales Order):</b>
+            Confirmación de la venta. Es el documento que normalmente dispara el proceso operativo: reservar/entregar inventario y luego facturar.
+          </div>
+
+          <div class="term">
+            <b>Factura de venta (Invoice):</b>
+            Documento contable que registra el cobro al cliente. Afecta cartera (cuentas por cobrar).
+          </div>
+
+          <div class="term">
+            <b>Nota crédito (Credit Memo):</b>
+            Documento que reduce una factura de venta (por devolución, descuento o ajuste). Puede aplicarse a una factura existente.
+          </div>
+
+          <div class="term">
+            <b>Autorización de devolución (Return Authorization):</b>
+            Documento que se crea antes de recibir una devolución desde un cliente. Sirve para autorizar y controlar la devolución:
+            <ul>
+              <li>Qué artículos van a devolver (con su detalle de inventario: serie, lote, etc.).</li>
+              <li>Cantidades.</li>
+              <li>Motivo.</li>
+              <li>Condiciones (si aplica).</li>
+            </ul>
+            <p>
+              Luego, con base en esa autorización, se procesa la devolución y normalmente se hace:
+              recepción de la devolución (para que el inventario vuelva a bodega, si aplica) y/o se genera una Nota crédito o un reemplazo
+              (dependiendo del caso).
+            </p>
+            <p><b>En palabras simples:</b> “es el permiso/registro oficial para que el cliente devuelva algo.”</p>
+          </div>
+
+        </div>
+      </details>
+
+      <!-- 2 -->
+      <details>
+        <summary><span>2. Compras y Proveedores (relación con proveedores)</span><span class="tag">Compras</span></summary>
+        <div class="content">
+
+          <div class="term">
+            <b>Proveedor (Vendor):</b> Empresa o persona a la que se le compran productos o servicios.
+          </div>
+
+          <div class="term">
+            <b>Orden de compra/Pedido (Purchase Order):</b>
+            Documento para solicitar productos/servicios a un proveedor. Define cantidades, costos y fechas esperadas.
+          </div>
+
+          <div class="term">
+            <b>Factura de proveedor (Vendor Bill):</b>
+            Cuenta por pagar al proveedor. Documento contable que registra lo que se debe pagar. Afecta cuentas por pagar.
+          </div>
+
+          <div class="term">
+            <b>Autorización de devolución del proveedor (Vendor Return Authorization):</b>
+            Documento que se crea para registrar una devolución hacia un proveedor (por garantía, daño, error de despacho, etc.).
+            Sirve para definir y controlar:
+            <ul>
+              <li>Qué se devuelve.</li>
+              <li>Cantidades.</li>
+              <li>Motivo.</li>
+              <li>Desde qué ubicación sale.</li>
+            </ul>
+            <p>
+              Después, según el proceso y el acuerdo con el proveedor, eso puede terminar en:
+              una nota crédito del proveedor (Vendor Credit) o ajustes relacionados (dependiendo de cómo lo manejen).
+            </p>
+            <p><b>En palabras simples:</b> “es el permiso/registro oficial para devolverle cosas al proveedor.”</p>
+          </div>
+
+        </div>
+      </details>
+
+      <!-- 3 -->
+      <details>
+        <summary><span>3. Inventario y Logística</span><span class="tag">Inventario</span></summary>
+        <div class="content">
+
+          <div class="term">
+            <b>Artículo (Item):</b>
+            Producto o servicio que la empresa compra, vende, arrienda o utiliza. En NetSuite casi todo gira alrededor de artículos.
+          </div>
+
+          <div class="term">
+            <b>Ubicación (Location):</b>
+            Lugar donde NetSuite controla inventario. Una ubicación define “dónde está” el stock y cómo se usa.
+            <p><b>En TMC normalmente se divide por tipos de bodegas/uso, por ejemplo:</b></p>
+            <ul>
+              <li><b>Bodegas principales:</b> inventario disponible y controlado para operación normal.</li>
+              <li><b>Bodegas de especialistas:</b> inventario asignado o manejado por equipos/áreas específicas.</li>
+              <li><b>Ubicaciones transitorias:</b> inventario en tránsito, temporal o pendiente de definición.</li>
+              <li><b>Consignación:</b> inventario que está en poder del cliente o en modalidad consignada (según políticas TMC).</li>
+            </ul>
+          </div>
+
+          <div class="term">
+            <b>Traslado de inventario (Inventory Transfer):</b>
+            Movimiento directo de inventario entre dos ubicaciones (bodega origen → bodega destino).
+            <ul>
+              <li>No es una venta ni una compra: no hay cliente ni proveedor; solo cambia en qué bodega queda el stock.</li>
+              <li>Se usa cuando necesitas mover inventario rápido y no requieres el ciclo completo de una Orden de traslado.</li>
+              <li>En la práctica, es un solo documento que deja el inventario “salido de origen y entrado a destino” en un mismo paso.</li>
+            </ul>
+          </div>
+
+          <div class="term">
+            <b>Orden de traslado (Transfer Order):</b>
+            Documento que se usa para planear y controlar el movimiento de inventario entre dos ubicaciones (bodega origen → bodega destino) con trazabilidad completa.
+            <p><b>A diferencia de un traslado directo, la Orden de traslado tiene un ciclo y normalmente requiere dos documentos adicionales:</b></p>
+            <ul>
+              <li><b>Ejecución / Envío (Fulfillment):</b> registra la salida del inventario desde la bodega origen (se descuenta de origen).</li>
+              <li><b>Recepción (Receipt):</b> registra el ingreso del inventario en la bodega destino (se suma en destino).</li>
+            </ul>
+            <p><b>En resumen:</b> la Orden de traslado es el “plan”, y Fulfillment + Receipt son la evidencia de que el inventario salió y luego llegó.</p>
+          </div>
+
+          <div class="term">
+            <b>Ajuste de inventario (Inventory Adjustment):</b>
+            Transacción para corregir existencias por conteos, daños, pérdidas o ajustes administrativos (sube o baja stock).
+          </div>
+
+          <div class="term">
+            <b>Ejecución de pedido de artículo (Item Fulfillment):</b>
+            Documento que confirma la salida del inventario desde la bodega/ubicación origen.
+            Siempre está ligado a una transacción principal que puede ser una orden de traslado, orden de venta o devolución al proveedor.
+          </div>
+
+          <div class="term">
+            <b>Recibo de artículo / Recepción (Item Receipt):</b>
+            Documento que confirma el ingreso del inventario en la bodega/ubicación destino.
+            Siempre está ligado a una transacción principal que puede ser una orden de traslado, pedido/orden de compra o devolución del cliente.
+          </div>
+
+        </div>
+      </details>
+
+      <!-- 4 -->
+      <details>
+        <summary><span>4. Detalle de inventario (trazabilidad)</span><span class="tag">Lotes/Series</span></summary>
+        <div class="content">
+
+          <div class="term">
+            <b>Lote (Lot Number):</b>
+            Identificador de un grupo de unidades fabricadas o recibidas juntas. Se usa cuando varias unidades comparten el mismo lote
+            (por ejemplo, misma producción o vencimiento).
+          </div>
+
+          <div class="term">
+            <b>Serial / Número de serie (Serial Number):</b>
+            Identificador único para una unidad específica. Sirve para rastrear exactamente “esa” unidad (equipo) a lo largo del tiempo.
+          </div>
+
+          <div class="term">
+            <b>Depósito:</b>
+            Es una posición física dentro de la ubicación (como una coordenada) para encontrar el ítem: pasillo–estante–nivel–caja.
+          </div>
+
+        </div>
+      </details>
+
+      <!-- 5 -->
+      <details>
+        <summary><span>5. Tipos de artículos (lo que ‘vendemos/consumimos’)</span><span class="tag">Items</span></summary>
+        <div class="content">
+
+          <div class="term">
+            <b>Inventariable (Inventory Item):</b> Artículo que maneja existencias (stock). Entra y sale de inventario.
+          </div>
+
+          <div class="term">
+            <b>Inventariable por lote (Lot-Numbered Inventory Item):</b>
+            Inventariable que requiere seleccionar lote al recibir, mover, vender o consumir.
+          </div>
+
+          <div class="term">
+            <b>Inventariable por serie (Serialized Inventory Item):</b>
+            Inventariable que requiere seleccionar número de serie por cada unidad.
+          </div>
+
+          <div class="term">
+            <b>Kit (Kit Item):</b>
+            Un Kit es “un solo producto” de cara al usuario (una sola línea), pero por debajo está compuesto por varios artículos.
+            Cuando lo vendes, NetSuite toma/consume los componentes del inventario para poder cumplir el kit (si esos componentes son inventariables).
+          </div>
+
+          <div class="term">
+            <b>Grupo de artículos (Item Group):</b>
+            Una plantilla de combo: lo seleccionas y NetSuite agrega automáticamente varias líneas de artículos en el documento para no digitarlas una por una.
+          </div>
+
+          <div class="term">
+            <b>Artículo fuera de inventario (Non-Inventory Item):</b>
+            Artículo que no controla stock. Se usa cuando no se necesita manejar existencias (por ejemplo, consumibles no controlados).
+          </div>
+
+          <div class="term">
+            <b>Artículo de servicio (Service Item):</b>
+            Ítem que representa un trabajo o prestación (por ejemplo: mano de obra, instalación, mantenimiento).
+            No es un producto físico y no maneja inventario.
+            Se usa para cobrar servicios al cliente o registrar servicios comprados a un proveedor.
+          </div>
+
+        </div>
+      </details>
+
+      <!-- 6 -->
+      <details>
+        <summary><span>6. Informes, Búsquedas y Analítica</span><span class="tag">Reporting</span></summary>
+        <div class="content">
+
+          <div class="term">
+            <b>Informe (Report):</b>
+            Es un reporte estándar de NetSuite que ya viene predefinido para mostrar información de una forma “tipo resumen”
+            (agrupada, con totales). Puede ser de finanzas, ventas, compras, inventario u otras áreas, dependiendo del menú.
+            <p><b>Características:</b></p>
+            <ul>
+              <li>Viene con un formato más “listo para presentar” (resúmenes, subtotales).</li>
+              <li>Permite filtros básicos (fecha, cliente, ubicación, etc.).</li>
+              <li>Es menos flexible que una Saved Search para crear columnas personalizadas o reglas específicas.</li>
+            </ul>
+          </div>
+
+          <div class="term">
+            <b>Búsqueda guardada (Saved Search):</b>
+            Consulta a NetSuite para traer una lista de registros (clientes, artículos, facturas, órdenes, etc.) con filtros y columnas a la medida.
+          </div>
+
+          <div class="term">
+            <b>SuiteAnalytics:</b>
+            Conjunto de herramientas de análisis y reportes en NetSuite (workbooks, datasets, pivotes, gráficos).
+            Permite crear tableros y análisis más flexibles que un reporte estándar.
+          </div>
+
+        </div>
+      </details>
+
+      <!-- 7 -->
+      <details>
+        <summary><span>7. Servicio y Soporte (Casos)</span><span class="tag">Casos</span></summary>
+        <div class="content">
+
+          <div class="term">
+            <b>Caso (Case / Support Case):</b>
+            Ticket de servicio o soporte. Registra una solicitud, incidente o requerimiento del cliente, con estado, prioridad y responsable.
+          </div>
+
+          <div class="term">
+            <b>Tarea/Task:</b>
+            Registro para asignar y hacer seguimiento a una actividad que alguien debe realizar.
+            Tiene responsable, fecha, estado y descripción.
+          </div>
+
+          <div class="term">
+            <b>Nota del usuario (User Note / Note):</b>
+            Registro para dejar un comentario o registro de información dentro de NetSuite.
+            Es una “bitácora” de lo que se habló/decidió.
+            <p><b>Ejemplos:</b></p>
+            <ul>
+              <li>“Cliente pidió entrega el viernes”.</li>
+              <li>“Se acordó descuento del 5%”.</li>
+              <li>“Equipo se revisó y quedó pendiente repuesto”.</li>
+            </ul>
+          </div>
+
+        </div>
+      </details>
+
+      <!-- 8 -->
+      <details>
+        <summary><span>8. Importaciones (TMC)</span><span class="tag">DEO</span></summary>
+        <div class="content">
+
+          <div class="term">
+            <b>Detalle de importación (DEO):</b>
+            Registro que consolida la información de una importación: órdenes de compra relacionadas, fechas clave, estado por etapas,
+            costos asociados y documentos (por ejemplo, recibos, facturas, levante, etc.). Su objetivo es dar trazabilidad de punta a punta a la importación.
+          </div>
+
+        </div>
+      </details>
+
+      <!-- 9 -->
+      <details>
+        <summary><span>9. Siglas (TMC)</span><span class="tag">Siglas</span></summary>
+        <div class="content">
+
+          <div class="term"><b>ERP:</b> Sistema central de operación y contabilidad.</div>
+          <div class="term"><b>CRM:</b> Gestión comercial (leads, oportunidades, clientes).</div>
+          <div class="term"><b>AR / AP:</b> Cuentas por cobrar / Cuentas por pagar.</div>
+          <div class="term"><b>COGS:</b> Costo de lo vendido.</div>
+          <div class="term"><b>SKU:</b> Referencia del producto.</div>
+          <div class="term"><b>OC:</b> Orden de compra.</div>
+          <div class="term"><b>OT:</b> Orden de traslado.</div>
+          <div class="term"><b>OV:</b> Orden de venta.</div>
+
+        </div>
+      </details>
+
+    </div>
+
+    <div class="small">Guía interna · Tecnologías Médicas Colombia (TMC)</div>
+  </div>
+
+  <script>
+    const q = document.getElementById('q');
+    const details = Array.from(document.querySelectorAll('#glossary details'));
+
+    q.addEventListener('input', () => {
+      const term = q.value.trim().toLowerCase();
+
+      if(!term){
+        details.forEach(d => d.style.display = '');
+        return;
+      }
+
+      details.forEach(d => {
+        d.style.display = d.innerText.toLowerCase().includes(term) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
