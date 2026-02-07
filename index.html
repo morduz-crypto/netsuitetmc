@@ -66,9 +66,24 @@
       align-items:stretch;
     }
 
+    /* Centrar la última fila cuando hay 6 tarjetas (desktop 4 columnas) */
+    .cards > a:nth-last-child(2){
+      grid-column: 2;
+    }
+    .cards > a:last-child{
+      grid-column: 3;
+    }
+
     @media(max-width:1100px){
       .cards{ grid-template-columns: repeat(2,1fr); }
+
+      /* Reset centrado en tablet */
+      .cards > a:nth-last-child(2),
+      .cards > a:last-child{
+        grid-column: auto;
+      }
     }
+
     @media(max-width:600px){
       .cards{ grid-template-columns: 1fr; }
     }
@@ -209,7 +224,6 @@
         </div>
       </a>
 
-      <!-- NUEVA: Buenas prácticas -->
       <a href="buenas-practicas.html">
         <div class="card">
           <div class="card-icon">✓</div>
@@ -221,7 +235,6 @@
         </div>
       </a>
 
-      <!-- NUEVA: Soporte -->
       <a href="soporte.html">
         <div class="card">
           <div class="card-icon">?</div>
