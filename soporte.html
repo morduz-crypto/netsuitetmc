@@ -118,14 +118,12 @@
       max-width:950px;
     }
 
+    /* ✅ 1 columna */
     .grid{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1fr;
       gap:14px;
       align-items:start;
-    }
-    @media (max-width: 980px){
-      .grid{ grid-template-columns:1fr; }
     }
 
     .card{
@@ -168,8 +166,8 @@
       border:1px solid var(--border);
       background:#fff;
       box-shadow:0 8px 16px rgba(0,0,0,.03);
-      flex: 1 1 260px;
-      min-width: 260px;
+      flex: 1 1 320px;
+      min-width: 320px;
     }
     .kpi b{ color:var(--text); }
     .kpi small{
@@ -256,6 +254,7 @@
       padding:12px 14px;
       border-bottom:1px solid var(--border);
       background: rgba(15,23,42,.015);
+      flex-wrap:wrap;
     }
     .speechHead b{ color:var(--text); font-size:13px; }
     .speechHead small{ color:#64748b; font-weight:800; }
@@ -285,6 +284,24 @@
       color:#64748b;
       font-size:12px;
       font-weight:800;
+    }
+
+    /* ✅ CTA ancho */
+    .ctaRow{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .ctaBtn{
+      padding:12px 16px;
+      min-width: 320px;
+      justify-content:center;
+    }
+    @media (max-width: 520px){
+      .ctaBtn{ min-width: 100%; }
     }
 
     .toast{
@@ -343,7 +360,7 @@
 
     <div class="grid">
 
-      <!-- LEFT -->
+      <!-- CANALES -->
       <div class="card">
         <div class="cardHeader">
           <p class="cardTitle">Canales de soporte</p>
@@ -437,7 +454,7 @@
         </div>
       </div>
 
-      <!-- RIGHT -->
+      <!-- ✅ FINALIZAR ONBOARDING (FULL WIDTH) -->
       <div class="card">
         <div class="cardHeader">
           <p class="cardTitle">Finalizar onboarding</p>
@@ -445,19 +462,20 @@
 
         <div class="cardBody">
           <p style="margin:0;">
-            Si llegaste hasta acá, ya terminaste la guía general 🎉<br/>
-            Para dejar el registro interno, haz clic aquí:
+            Si llegaste hasta acá, ya terminaste la guía general 🎉
+            Para dejar el registro interno, confirma acá:
           </p>
 
-          <div style="margin-top:12px;">
-            <a class="btn primary" id="confirmBtn" target="_blank" rel="noopener" href="#">
+          <div class="ctaRow">
+            <a class="btn primary ctaBtn" id="confirmBtn" target="_blank" rel="noopener" href="#">
               Confirmar finalización de onboarding →
             </a>
-          </div>
 
-          <p style="margin:12px 0 0; color:#64748b; font-size:12px;">
-            Se abrirá un <b>formulario en línea (NetSuite)</b> en una nueva pestaña. Lo envías y listo.
-          </p>
+            <div style="color:#64748b; font-size:12px; font-weight:800; line-height:1.55; max-width:520px;">
+              Se abrirá un <b>formulario en línea (NetSuite)</b> en una nueva pestaña.
+              Lo envías y listo.
+            </div>
+          </div>
 
           <div class="divider"></div>
 
@@ -588,5 +606,6 @@ Gracias 🙌`
   </script>
 </body>
 </html>
+
 
 
