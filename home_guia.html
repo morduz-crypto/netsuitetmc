@@ -3,179 +3,285 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Guía NetSuite — 3 zonas</title>
+  <title>Navegación · NetSuite TMC</title>
+
   <style>
-:root{
-  --hint: rgba(0, 123, 255, .55);
-      --hint-strong: rgba(0, 123, 255, .85);
-  --accent: #111827;
-  --card: #ffffff;
-  --bg: #f3f4f6;
-}
-*{ box-sizing:border-box; }
-body{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  margin:0; padding:18px; background:var(--bg); color:#111827;
-}
-a{ color:#1d4ed8; text-decoration:none; }
-a:hover{ text-decoration:underline; }
-.wrap{ max-width:1200px; margin:0 auto; }
-.header{
-  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px;
-}
-h1{ font-size:18px; margin:0; }
-.meta{ font-size:12px; color:#4b5563; }
-.pill{
-  display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
-  background:#eef2ff; color:#3730a3; border:1px solid rgba(55,48,163,.15); margin-left:6px;
-}
-    .intro{
-  font-size: 13px;
-  color: #111827;
-  background: rgba(0, 123, 255, .10);
-  border: 1px solid rgba(0, 123, 255, .25);
-  padding: 10px 12px;
-  border-radius: 12px;
-  line-height: 1.45;
-  margin-top: 6px;
-}
-.intro a{ color:#1d4ed8; font-weight:600; }
-.card{
-  background:var(--card);
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,.06);
-  overflow:hidden;
-}
-.stage{ position:relative; }
-.stage img{ width:100%; height:auto; display:block; user-select:none; -webkit-user-drag:none; }
-.hotspot{
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.08);
+      --accent:#2563eb;
+      --accent2:#1d4ed8;
+
+      --hint: rgba(37,99,235,.40);
+      --hint-strong: rgba(37,99,235,.78);
+      --shadow: 0 10px 22px rgba(0,0,0,.04);
+    }
+
+    *{ box-sizing:border-box }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    a{ color:var(--accent2); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:44px 22px 56px;
+    }
+
+    /* top */
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    h1{
+      font-size:30px;
+      font-weight:900;
+      letter-spacing:-.02em;
+      margin:0;
+    }
+    .topActions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--border);
+      background:var(--card);
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:900;
+      color:var(--text);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+      box-shadow:var(--shadow);
+      white-space:nowrap;
+    }
+    .btn.primary{
+      border-color: rgba(37,99,235,.25);
+      color: var(--accent2);
+      background: rgba(37,99,235,.06);
+    }
+    .btn:disabled{
+      opacity:.45;
+      cursor:not-allowed;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(37,99,235,.08);
+      color:var(--accent2);
+      border:1px solid rgba(37,99,235,.18);
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .hint{
+      color:var(--muted);
+      margin:0 0 14px;
+      line-height:1.65;
+      max-width:900px;
+    }
+
+    /* card/stage */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .stage{ position:relative; }
+    .stage img{
+      width:100%;
+      height:auto;
+      display:block;
+      user-select:none;
+      -webkit-user-drag:none;
+    }
+
+    .hotspot{
       position:absolute;
       border: 3px solid var(--hint);
       background: transparent;
       border-radius: 12px;
-      cursor: default;
+      cursor: pointer;
       pointer-events:auto;
-
-      box-shadow: 0 0 0 2px rgba(255,255,255,.85),
-                  0 8px 18px rgba(0,0,0,.10);
-
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,.85),
+        0 8px 18px rgba(0,0,0,.10);
       transition: background .12s ease, border-color .12s ease, transform .12s ease, box-shadow .12s ease;
     }
-
     .hotspot:hover{
-      background: rgba(0,123,255,.10);
+      background: rgba(37,99,235,.10);
       border-color: var(--hint-strong);
-      box-shadow: 0 0 0 2px rgba(255,255,255,.9),
-                  0 10px 22px rgba(0,0,0,.14);
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,.92),
+        0 10px 22px rgba(0,0,0,.14);
       transform: translateY(-1px);
     }
 
-.tooltip{
-  position: fixed; z-index: 9999; max-width: 360px;
-  padding: 10px 12px; border-radius: 12px;
-  background: rgba(255,255,255,.98);
-  box-shadow: 0 18px 40px rgba(0,0,0,.20);
-  border: 1px solid rgba(0,0,0,.08);
-  display: none; pointer-events: none;
-}
-.tooltip .t{ font-weight:700; margin-bottom:4px; font-size:13px; }
-.tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
-.btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
-  border:1px solid rgba(0,0,0,.1);
-}
-.btn:hover{ opacity:.92; text-decoration:none; }
-.content{ padding:14px 16px; }
-.content h2{ margin:0 0 8px; font-size:16px; }
-.content p{ margin:0 0 10px; color:#374151; line-height:1.45; }
-.content ul{ margin:0 0 10px 18px; color:#374151; }
-.small{ font-size:12px; color:#6b7280; }
-.callout{
-  background:#f9fafb; border:1px solid rgba(0,0,0,.06);
-  padding:10px 12px; border-radius:12px; color:#374151; font-size:13px; margin:10px 0 0;
-}
-</style>
+    .tooltip{
+      position: fixed;
+      z-index: 9999;
+      max-width: 360px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.98);
+      box-shadow: 0 18px 40px rgba(0,0,0,.20);
+      border: 1px solid rgba(15,23,42,.10);
+      display: none;
+      pointer-events: none;
+    }
+    .tooltip .t{ font-weight:900; margin-bottom:4px; font-size:13px; color:var(--text); }
+    .tooltip .d{ font-size:12px; line-height:1.45; color:#334155; }
+
+    .callout{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(37,99,235,.18);
+      background:rgba(37,99,235,.06);
+      color:#334155;
+      font-weight:700;
+      line-height:1.6;
+    }
+
+    .small{
+      font-size:12px;
+      color:#64748b;
+      margin-top:22px;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="container">
 
-<div class="wrap">
-<div class="header">
-  <div class="header-left">
-    <h1>Navegación En netsuite</h1>
+    <div class="topbar">
+      <h1>Navegación en NetSuite</h1>
 
-    <div class="intro">
+      <div class="topActions">
+        <a class="btn" href="index.html">← Volver al Home</a>
+
+        <!-- ✅ flujo del curso -->
+        <a class="btn" href="glosario.html">← Anterior</a>
+        <a class="btn primary" href="visuales.html">Siguiente →</a>
+
+        <!-- ✅ fijo: sección 2 de 6 -->
+        <span class="pill">Sección 2 de 6</span>
+      </div>
+    </div>
+
+    <p class="hint">
       Al ingresar a NetSuite desde
-      <a href="https://5055913.app.netsuite.com/" target="_blank" rel="noopener noreferrer">
-        https://5055913.app.netsuite.com/
-      </a>,
-      la primera pantalla que verás es el <strong>Home</strong>, como se muestra a continuación.
-      Esta vista se organiza en <strong>tres zonas principales</strong>:
-      pasa el mouse para ver una explicación rápida y haz clic para ver el detalle.
-      <span class="pill">v3</span>
+      <a href="https://5055913.app.netsuite.com/" target="_blank" rel="noopener noreferrer">https://5055913.app.netsuite.com/</a>,
+      la primera pantalla que verás es el <b>Home</b>.
+      Esta vista se organiza en <b>tres zonas principales</b>.
+      Pasa el mouse por encima para ver una explicación rápida y haz clic para ir al detalle.
+    </p>
+
+    <div class="card">
+      <div class="stage">
+        <img src="netsuite_home.png" alt="Captura Home NetSuite"/>
+
+        <div class="hotspot"
+             style="left:0%; top:0%; width:100%; height:9%;"
+             data-title="Zona 1 — Barra superior (Header)"
+             data-desc="Incluye: accesos rápidos, buscador global y sección de usuario/rol/ayuda."
+             data-href="zona_header.html"></div>
+
+        <div class="hotspot"
+             style="left:0%; top:8.5%; width:100%; height:6.5%;"
+             data-title="Zona 2 — Menú principal (Módulos)"
+             data-desc="Aquí navegas por módulos: actividades, transacciones, listas, informes y más."
+             data-href="zona_menus.html"></div>
+
+        <div class="hotspot"
+             style="left:0%; top:15.5%; width:100%; height:82.5%;"
+             data-title="Zona 3 — Área de trabajo"
+             data-desc="Donde ves portlets, resultados y formularios (registros, transacciones y entidades)."
+             data-href="zona_trabajo.html"></div>
+      </div>
     </div>
-  </div>
-</div>
 
-
-  <div class="card">
-    <div class="stage">
-      <img src="netsuite_home.png" alt="Captura Home NetSuite"/>
-      <div class="hotspot" style="left:0%; top:0%; width:100%; height:9%;" data-title="Zona 1 — Barra superior (header)" data-desc="Incluye: logo + accesos rápidos, buscador global y sección de usuario/rol/ayuda." data-href="zona_header.html"></div>
-<div class="hotspot" style="left:0%; top:8.5%; width:100%; height:6.5%;" data-title="Zona 2 — Menú principal (módulos)" data-desc="Aquí navegas por módulos: actividades, transacciones, informes, etc." data-href="zona_menus.html"></div>
-<div class="hotspot" style="left:0%; top:15.5%; width:100%; height:82.5%;" data-title="Zona 3 — Área de trabajo (dashboard y formularios)" data-desc="Donde ves portlets, resultados y formularios (registros, transacciones y entidades)." data-href="zona_trabajo.html"></div>
+    <div class="callout">
+      Vista “macro”: 3 zonas generales. En el detalle verás sub-partes (por ejemplo, el header se compone de varias secciones).
     </div>
+
+    <div class="small">Guía interna · Tecnologías Médicas Colombia (TMC)</div>
   </div>
 
-  <div class="callout">
-    Vista “macro”: 3 zonas generales. Al entrar al detalle, verás las sub‑partes (por ejemplo, el header se compone de 3 secciones).
+  <div class="tooltip" id="tooltip" role="tooltip">
+    <div class="t" id="ttTitle"></div>
+    <div class="d" id="ttDesc"></div>
   </div>
-</div>
 
-<div class="tooltip" id="tooltip" role="tooltip">
-  <div class="t" id="ttTitle"></div>
-  <div class="d" id="ttDesc"></div>
-</div>
+  <script>
+    (function(){
+      const tooltip = document.getElementById('tooltip');
+      const ttTitle = document.getElementById('ttTitle');
+      const ttDesc  = document.getElementById('ttDesc');
 
-<script>
-(function(){
-  const tooltip = document.getElementById('tooltip');
-  const ttTitle = document.getElementById('ttTitle');
-  const ttDesc  = document.getElementById('ttDesc');
+      function show(e, title, desc){
+        ttTitle.textContent = title || '';
+        ttDesc.textContent  = desc  || '';
+        tooltip.style.display = 'block';
+        move(e);
+      }
+      function hide(){
+        tooltip.style.display = 'none';
+      }
+      function move(e){
+        const pad = 14;
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        const r = tooltip.getBoundingClientRect();
 
-  function show(e, title, desc){
-    ttTitle.textContent = title || '';
-    ttDesc.textContent  = desc  || '';
-    tooltip.style.display = 'block';
-    move(e);
-  }
-  function hide(){ tooltip.style.display = 'none'; }
-  function move(e){
-    const pad = 14;
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    const r = tooltip.getBoundingClientRect();
-    let x = e.clientX + pad;
-    let y = e.clientY + pad;
-    if (x + r.width  > vw - 8) x = e.clientX - r.width - pad;
-    if (y + r.height > vh - 8) y = e.clientY - r.height - pad;
-    tooltip.style.left = Math.max(8, x) + 'px';
-    tooltip.style.top  = Math.max(8, y) + 'px';
-  }
+        let x = e.clientX + pad;
+        let y = e.clientY + pad;
 
-  document.querySelectorAll('.hotspot').forEach(hs => {
-    hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
-    hs.addEventListener('mousemove', (e) => move(e));
-    hs.addEventListener('mouseleave', hide);
-    hs.addEventListener('click', () => {
-      const href = hs.dataset.href;
-      if (href) window.location.href = href;
-    });
-  });
-  window.addEventListener('scroll', hide, { passive: true });
-})();
-</script>
+        if (x + r.width  > vw - 8) x = e.clientX - r.width - pad;
+        if (y + r.height > vh - 8) y = e.clientY - r.height - pad;
 
+        tooltip.style.left = Math.max(8, x) + 'px';
+        tooltip.style.top  = Math.max(8, y) + 'px';
+      }
+
+      document.querySelectorAll('.hotspot').forEach(hs => {
+        hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
+        hs.addEventListener('mousemove', (e) => move(e));
+        hs.addEventListener('mouseleave', hide);
+        hs.addEventListener('click', () => {
+          const href = hs.dataset.href;
+          if (href) window.location.href = href;
+        });
+      });
+
+      window.addEventListener('scroll', hide, { passive: true });
+    })();
+  </script>
 </body>
 </html>
+
