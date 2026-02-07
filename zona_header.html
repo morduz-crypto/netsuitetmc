@@ -57,23 +57,26 @@
 
     /* top */
     .topbar{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      justify-content:space-between;
-      flex-wrap:wrap;
       margin-bottom:12px;
+    }
+    .titleRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
     }
     h1{
       font-size:30px;
       font-weight:900;
       letter-spacing:-.02em;
       margin:0;
+      line-height:1.1;
     }
     .meta{
       font-size:13px;
       color:var(--muted);
-      margin-top:6px;
+      margin-top:8px;
       line-height:1.6;
       max-width:900px;
     }
@@ -301,19 +304,23 @@
 
 <body>
   <div class="container">
+
     <div class="topbar">
-      <div>
+      <!-- ✅ Título + botones en la MISMA fila -->
+      <div class="titleRow">
         <h1>Zona 1 · Barra superior (Header)</h1>
-        <div class="meta">
-          Pasa el mouse por cada área del header para ver una explicación rápida.
-          Abajo encuentras el detalle por Área (1–6).
+
+        <div class="topActions">
+          <a class="btn" href="index.html">← Volver al Home</a>
+          <a class="btn" href="navegacion.html">← Volver a Navegación</a>
+          <span class="pill">Zona 1</span>
         </div>
       </div>
 
-      <div class="topActions">
-        <a class="btn" href="index.html">← Volver al Home</a>
-        <a class="btn" href="navegacion.html">← Volver a Navegación</a>
-        <span class="pill">Zona 1</span>
+      <!-- ✅ Meta debajo (ya no empuja los botones hacia abajo) -->
+      <div class="meta">
+        Pasa el mouse por cada área del header para ver una explicación rápida.
+        Abajo encuentras el detalle por Área (1–6).
       </div>
     </div>
 
@@ -579,4 +586,3 @@
   </script>
 </body>
 </html>
-
