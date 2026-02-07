@@ -3,100 +3,184 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Zona 3 — Área de trabajo (Dashboard + Pantallas)</title>
+  <title>Zona 3 · Área de trabajo · NetSuite TMC</title>
 
   <style>
     :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.08);
+      --accent:#2563eb;
+      --accent2:#1d4ed8;
+      --shadow: 0 10px 22px rgba(0,0,0,.04);
+
+      /* hotspots */
       --hint: rgba(0, 123, 255, .55);
       --hint-strong: rgba(0, 123, 255, .85);
 
-      --accent: #111827;
-      --card: #ffffff;
-      --bg: #f3f4f6;
-
-      --muted:#4b5563;
-      --text:#111827;
-      --subtext:#374151;
-
-      --info-bg: rgba(0, 123, 255, .08);
-      --info-bd: rgba(0, 123, 255, .22);
-
-      --warn-bg: rgba(245, 158, 11, .12);
-      --warn-bd: rgba(245, 158, 11, .35);
+      /* callouts */
+      --info-bg: rgba(37,99,235,.06);
+      --info-bd: rgba(37,99,235,.18);
+      --warn-bg: rgba(245, 158, 11, .10);
+      --warn-bd: rgba(245, 158, 11, .28);
     }
 
-    *{ box-sizing:border-box; }
+    *{ box-sizing:border-box }
     body{
+      margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      margin:0; padding:18px; background:var(--bg); color:var(--text);
+      background:var(--bg);
+      color:var(--text);
     }
-    a{ color:#1d4ed8; text-decoration:none; font-weight:700; }
+    a{ color:var(--accent2); text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
-    .wrap{ max-width:1200px; margin:0 auto; }
-
-    .topbar{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
-      margin-bottom:12px;
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:44px 22px 56px;
     }
-    h1{ font-size:18px; margin:0; font-weight:800; letter-spacing:.2px; }
-    .meta{ font-size:12px; color:var(--muted); margin-top:4px; line-height:1.35; }
 
+    /* top */
+    .topbar{ margin-bottom:12px; }
+    .titleRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    h1{
+      font-size:30px;
+      font-weight:900;
+      letter-spacing:-.02em;
+      margin:0;
+      line-height:1.1;
+    }
+    .meta{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:8px;
+      line-height:1.6;
+      max-width:900px;
+    }
+
+    .topActions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
     .btn{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
-      border:1px solid rgba(0,0,0,.1);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--border);
+      background:var(--card);
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:900;
+      color:var(--text);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+      box-shadow:var(--shadow);
       white-space:nowrap;
     }
-    .btn:hover{ opacity:.92; text-decoration:none; }
-
-    .card{
-      background:var(--card);
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:12px;
-      box-shadow:0 10px 25px rgba(0,0,0,.06);
-      overflow:hidden;
+    .btn.primary{
+      border-color: rgba(37,99,235,.25);
+      color: var(--accent2);
+      background: rgba(37,99,235,.06);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(37,99,235,.08);
+      color:var(--accent2);
+      border:1px solid rgba(37,99,235,.18);
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
     }
 
-    /* ===== ESCENA PRINCIPAL (dashboard) ===== */
+    .callout{
+      background: var(--info-bg);
+      border: 1px solid var(--info-bd);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+      color:#334155;
+      line-height:1.7;
+      margin: 12px 0 14px;
+    }
+    .callout b{ color:var(--text); }
+    .callout .mini{
+      display:block;
+      color:#64748b;
+      font-weight:800;
+      margin-top:6px;
+      font-size:12px;
+    }
+
+    /* cards */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .cardHeader{
+      padding:16px 18px 12px;
+      border-bottom:1px solid var(--border);
+    }
+    .cardTitle{
+      margin:0;
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:-.01em;
+    }
     .stage{
-      padding:12px;
+      padding:14px 18px 18px;
       background:#fff;
     }
 
-    /* IMPORTANTE: el contenedor centra y NO fuerza 100% a la caja de la imagen */
+    /* ===== ESCENA PRINCIPAL (dashboard) ===== */
     .scene{
       display:flex;
       justify-content:center;
       width:100%;
     }
-
-    /* CLAVE: shrink-wrap al tamaño REAL de la imagen */
     .imgbox{
       position:relative;
-      display:inline-block;   /* <- esto evita que el overlay sea más grande que la imagen */
+      display:inline-block;
       max-width:100%;
     }
-
-    /* La imagen: no gigante, responsive, sin distorsión */
     .imgbox img{
       display:block;
-      width:auto;             /* <- permite shrink-wrap */
-      max-width:100%;         /* <- responsive */
+      width:auto;
+      max-width:100%;
       height:auto;
-      max-height: clamp(240px, 48vh, 520px);
+      max-height: clamp(260px, 52vh, 560px);
 
-      border-radius:12px;
-      border:1px solid rgba(0,0,0,.06);
+      border-radius:14px;
+      border:1px solid var(--border);
       background:#fff;
 
-      user-select:none; -webkit-user-drag:none;
+      user-select:none;
+      -webkit-user-drag:none;
+      box-shadow: 0 8px 16px rgba(0,0,0,.02);
     }
 
-    /* Overlay SIEMPRE del tamaño exacto de la imagen (porque imgbox = imagen) */
     .overlay{
       position:absolute;
-      inset:0;                /* <- top/right/bottom/left:0 */
+      inset:0;
       width:100%;
       height:100%;
       pointer-events:none;
@@ -115,7 +199,6 @@
 
       transition: background .12s ease, border-color .12s ease, transform .12s ease, box-shadow .12s ease;
     }
-
     .hotspot:hover{
       background: rgba(0,123,255,.10);
       border-color: var(--hint-strong);
@@ -124,44 +207,50 @@
       transform: translateY(-1px);
     }
 
+    /* tooltip */
     .tooltip{
-      position: fixed; z-index: 9999; max-width: 520px;
-      padding: 10px 12px; border-radius: 12px;
+      position: fixed;
+      z-index: 9999;
+      max-width: 520px;
+      padding: 10px 12px;
+      border-radius: 12px;
       background: rgba(255,255,255,.98);
       box-shadow: 0 18px 40px rgba(0,0,0,.20);
       border: 1px solid rgba(0,0,0,.08);
-      display: none; pointer-events: none;
+      display: none;
+      pointer-events: none;
     }
-    .tooltip .t{ font-weight:800; margin-bottom:4px; font-size:13px; }
-    .tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
+    .tooltip .t{ font-weight:900; margin-bottom:4px; font-size:13px; color:var(--text); }
+    .tooltip .d{ font-size:12px; line-height:1.4; color:#374151; }
 
+    /* content */
     .content{ padding:14px 16px; }
     .content h2{ margin:0 0 8px; font-size:16px; }
     .content h3{ margin:14px 0 8px; font-size:14px; }
-    .content p{ margin:0 0 10px; color:var(--subtext); line-height:1.45; }
-    .content ul{ margin:0 0 10px 18px; color:var(--subtext); }
+    .content p{ margin:0 0 10px; color:#334155; line-height:1.55; }
+    .content ul{ margin:0 0 10px 18px; color:#334155; }
     .content li{ margin-bottom:6px; }
 
-    .callout{
+    .calloutSmall{
       background:var(--info-bg);
       border:1px solid var(--info-bd);
       padding:10px 12px;
-      border-radius:12px;
-      color:var(--subtext);
+      border-radius:14px;
+      color:#334155;
       margin:10px 0 0;
       font-size:13px;
-      line-height:1.45;
+      line-height:1.55;
     }
 
     .warning{
       background: var(--warn-bg);
       border: 1px solid var(--warn-bd);
       padding:10px 12px;
-      border-radius:12px;
+      border-radius:14px;
       color:var(--text);
       margin:10px 0 0;
       font-size:13px;
-      line-height:1.45;
+      line-height:1.55;
     }
 
     /* ===== MINI EJEMPLOS ===== */
@@ -179,11 +268,11 @@
     }
 
     .mini{
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:14px;
+      border:1px solid var(--border);
+      border-radius:16px;
       overflow:hidden;
       background:#fff;
-      box-shadow:0 10px 22px rgba(0,0,0,.05);
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
     }
     .mini .imgwrap{
       padding:10px;
@@ -197,15 +286,16 @@
       width:auto;
       max-width:100%;
       height:auto;
-      max-height: 170px;
+      max-height: 180px;
       object-fit: contain;
       border-radius:12px;
-      border:1px solid rgba(0,0,0,.06);
+      border:1px solid var(--border);
       user-select:none; -webkit-user-drag:none;
+      background:#fff;
     }
     .mini .cap{
       padding:10px 12px 12px;
-      border-top:1px solid rgba(0,0,0,.06);
+      border-top:1px solid var(--border);
     }
     .mini .cap .t{
       font-weight:900;
@@ -216,39 +306,59 @@
     .mini .cap .d{
       font-size:12.5px;
       color:#374151;
-      line-height:1.35;
+      line-height:1.45;
+    }
+
+    .small{
+      font-size:12px;
+      color:#64748b;
+      margin-top:22px;
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="container">
+
     <div class="topbar">
-      <div style="width:100%;">
-        <h1>Zona 3 — Área de trabajo (Dashboard + pantallas)</h1>
-        <div class="meta">
-          Esta es la zona donde realmente <strong>trabajas</strong> en NetSuite: puedes ver el <strong>Dashboard (Home)</strong>,
-          pero también formularios, búsquedas e informes. <strong>La pantalla cambia</strong> según lo que hagas.
+      <div class="titleRow">
+        <h1>Zona 3 · Área de trabajo (Dashboard + pantallas)</h1>
+
+        <div class="topActions">
+          <a class="btn" href="index.html">← Volver al Home</a>
+          <a class="btn" href="navegacion.html">← Volver a Navegación</a>
+          <span class="pill">Zona 3</span>
         </div>
       </div>
-      <a class="btn" href="index.html">← Volver</a>
+
+      <div class="meta">
+        Esta es la zona donde realmente <b>trabajas</b> en NetSuite: aquí ves el <b>Dashboard (Home)</b>,
+        pero también formularios, búsquedas e informes. <b>La pantalla cambia</b> según lo que hagas.
+      </div>
+    </div>
+
+    <div class="callout">
+      Piensa en esta zona como tu “pantalla principal” en NetSuite: todo lo que abres termina aquí.
+      A veces verás un dashboard con portlets, y otras veces un formulario, una lista o un reporte.
+      <span class="mini">Tip: si te sientes “perdida”, revisa el título de la pantalla y el breadcrumb/menú para ubicarte.</span>
     </div>
 
     <!-- Imagen principal: Dashboard -->
     <div class="card">
+      <div class="cardHeader">
+        <p class="cardTitle">Mapa del área de trabajo (hover para ver cada parte)</p>
+      </div>
+
       <div class="stage">
         <div class="scene">
           <div class="imgbox">
             <img id="imgMain" src="dashboard_home.png" alt="Dashboard (Home) NetSuite"/>
 
-            <!-- Overlay EXACTO del tamaño de la imagen -->
             <div class="overlay">
-
-              <!-- Hotspots (en %) relativos a la imagen -->
               <div class="hotspot"
                    style="left:48%; top:9%; width:50%; height:8%;"
                    data-title="Parte 1 — Acciones del Dashboard"
-                   data-desc="Controles del Home (por ejemplo: Visualización, Personalizar y Diseño). Dependiendo del rol, permite configurar la vista, agregar/quitar portlets y ajustar el diseño.">
+                   data-desc="Controles del Home (ej: Visualización, Personalizar, Diseño). Dependiendo del rol, permite configurar la vista, agregar/quitar portlets y ajustar el diseño.">
               </div>
 
               <div class="hotspot"
@@ -262,39 +372,39 @@
                    data-title="Parte 3 — Portlet (bloque/tarjeta)"
                    data-desc="Cada bloque del Home es un portlet: accesos rápidos, recordatorios, KPIs, búsquedas, gráficos, etc. Se pueden reorganizar (si el rol lo permite).">
               </div>
-
             </div>
+
           </div>
         </div>
       </div>
     </div>
 
     <!-- Texto + ejemplos -->
-    <div class="card" style="margin-top:12px;">
+    <div class="card" style="margin-top:14px;">
       <div class="content">
 
         <h2>1) Cuando estás en Home: ves el Dashboard</h2>
         <p>
-          Al dar clic en la <strong>casita (Home)</strong> vuelves a la página principal (inicio).
-          Esa página principal es el <strong>Dashboard</strong>: un panel con información y accesos rápidos del rol.
+          Al dar clic en la <b>casita (Home)</b> vuelves a la página principal (inicio).
+          Esa página principal es el <b>Dashboard</b>: un panel con información y accesos rápidos del rol.
         </p>
 
         <h3>¿Qué es un Portlet?</h3>
         <p>
-          Un <strong>Portlet</strong> es cada bloque/tarjeta dentro del Dashboard. Cada portlet puede mostrar cosas distintas:
+          Un <b>Portlet</b> es cada bloque/tarjeta dentro del Dashboard. Cada portlet puede mostrar cosas distintas:
           recordatorios, KPIs, accesos directos, búsquedas rápidas, gráficos, etc.
         </p>
 
-        <div class="callout">
-          <strong>Nota:</strong> para algunos roles el dashboard viene <strong>preconfigurado</strong> (no editable).
-          Para otros roles, cada usuario puede <strong>personalizar</strong> qué portlets ve, en qué orden, y el diseño de columnas.
+        <div class="calloutSmall">
+          <b>Nota:</b> para algunos roles el dashboard viene <b>preconfigurado</b> (no editable).
+          Para otros roles, cada usuario puede <b>personalizar</b> qué portlets ve, en qué orden, y el diseño de columnas.
         </div>
 
         <h2 style="margin-top:14px;">2) La Zona 3 cambia según lo que hagas</h2>
         <p>
           Esta misma zona se transforma cuando navegas:
-          si usas un módulo del <strong>menú</strong> (Transacciones, Listas, Informes…),
-          si buscas en el <strong>buscador</strong> o si abres un <strong>atajo</strong>,
+          si usas un módulo del <b>menú</b> (Transacciones, Listas, Informes…),
+          si buscas en el <b>buscador</b> o si abres un <b>atajo</b>,
           terminarás viendo formularios, listas/resultados o reportes.
         </p>
 
@@ -339,16 +449,18 @@
         </div>
 
         <div class="warning">
-          <strong>Idea clave:</strong> no importa si entras por el menú, por el buscador o por un acceso rápido:
-          <strong>todo lo que haces se muestra aquí</strong> (Zona 3). Lo que cambia es la “vista” según el proceso.
+          <b>Idea clave:</b> no importa si entras por el menú, por el buscador o por un acceso rápido:
+          <b>todo lo que haces se muestra aquí</b> (Zona 3). Lo que cambia es la “vista” según el proceso.
         </div>
 
+        <div class="small">Guía interna · Tecnologías Médicas Colombia (TMC)</div>
       </div>
     </div>
+
   </div>
 
   <!-- Tooltip -->
-  <div class="tooltip" id="tooltip" role="tooltip">
+  <div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true">
     <div class="t" id="ttTitle"></div>
     <div class="d" id="ttDesc"></div>
   </div>
@@ -364,9 +476,13 @@
         ttTitle.textContent = title || '';
         ttDesc.textContent  = desc  || '';
         tooltip.style.display = 'block';
+        tooltip.setAttribute('aria-hidden', 'false');
         move(e);
       }
-      function hide(){ tooltip.style.display = 'none'; }
+      function hide(){
+        tooltip.style.display = 'none';
+        tooltip.setAttribute('aria-hidden', 'true');
+      }
 
       function move(e){
         const pad = 14;
