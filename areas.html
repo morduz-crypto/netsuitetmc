@@ -45,28 +45,30 @@
       padding:44px 22px 56px;
     }
 
-    /* ===== TOPBAR (título + botones a la derecha) ===== */
+    /* ===== TOPBAR: MISMA FILA (título + botones) ===== */
     .topbar{
       display:flex;
-      align-items:flex-start;
+      align-items:center;          /* <- clave para que sea una sola línea */
       justify-content:space-between;
       gap:14px;
       flex-wrap:wrap;
       margin-bottom:12px;
     }
-    .titleBlock{ min-width: 260px; }
+
+    .titleRow{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      min-width: 260px;
+    }
+
     h1{
       font-size:30px;
       font-weight:900;
       letter-spacing:-.02em;
       margin:0;
-    }
-    .meta{
-      font-size:13px;
-      color:var(--muted);
-      margin-top:6px;
-      line-height:1.6;
-      max-width:920px;
+      line-height:1.1;
     }
 
     .topActions{
@@ -108,6 +110,14 @@
       font-weight:900;
       font-size:12px;
       white-space:nowrap;
+    }
+
+    .meta{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.6;
+      max-width:920px;
+      margin: 4px 0 0;
     }
 
     /* ===== CALLOUTS ===== */
@@ -319,26 +329,29 @@
 <body>
   <div class="container">
 
-    <!-- TOP: título + botones ARRIBA al lado -->
+    <!-- TOP: TÍTULO + BOTONES AL LADO (MISMA FILA) -->
     <div class="topbar">
-      <div class="titleBlock">
+      <div class="titleRow">
         <h1>Áreas y transacciones en NetSuite</h1>
-        <div class="meta">
-          Contexto general de quién usa qué en NetSuite y cómo se conectan los procesos.
-          No es un paso a paso: cada área tiene su capacitación específica.
-        </div>
       </div>
 
       <div class="topActions">
+        <a class="btn" href="index.html">← Volver al Home</a>
         <a class="btn" href="visuales.html">← Anterior (Visuales)</a>
         <a class="btn primary" href="buenaspracticas.html">Siguiente (Buenas prácticas) →</a>
         <span class="pill">Sección 4 de 6</span>
       </div>
     </div>
 
+    <!-- META ABAJO DEL TÍTULO (solo texto, no botones) -->
+    <div class="meta" style="margin-bottom:10px;">
+      Contexto general de quién usa qué en NetSuite y cómo se conectan los procesos.
+      No es un paso a paso: cada área tiene su capacitación específica.
+    </div>
+
     <div class="callout">
       NetSuite es una cadena: lo que hace un área alimenta a la siguiente.
-      Por ejemplo, <b>Comercial</b> inicia la información del cliente y eso impacta a <b>SAC</b>, <b>Cartera</b> y <b>Contabilidad</b>.
+      Por ejemplo, <b>Comercial</b> inicia información del cliente y eso impacta a <b>SAC</b>, <b>Cartera</b> y <b>Contabilidad</b>.
       <span class="mini">Casi todo termina impactando Contabilidad porque las transacciones registran movimientos del negocio.</span>
     </div>
 
@@ -346,7 +359,6 @@
       <b>Idea clave:</b> tu trabajo no está “aislado”. Si registras algo bien desde el inicio, el resto del flujo fluye mejor.
     </div>
 
-    <!-- ===== ÁREAS (sin mega-sección de flujos de cliente) ===== -->
     <div class="card">
       <div class="cardHeader">
         <p class="cardTitle">¿Qué hace cada área en NetSuite?</p>
@@ -368,7 +380,7 @@
                 <div class="emoji">💼</div>
                 <div>
                   <h3>Comercial (CRM / Ventas)</h3>
-                  <div class="sub">Embudo + clientes + oportunidades + cotizaciones</div>
+                  <div class="sub">Embudo + oportunidades + cotizaciones</div>
                   <div class="tagRow">
                     <span class="tag">Prospecto (Prospect)</span>
                     <span class="tag">Cliente interesado (Lead)</span>
@@ -383,20 +395,14 @@
 
             <div class="areaBody">
               <ul>
-                <li>Gestiona el embudo comercial: <b>Prospecto → Cliente interesado → Cliente</b>.</li>
-                <li>Trabaja la <b>Oportunidad (Opportunity)</b> y genera <b>Cotización (Estimate)</b>.</li>
-                <li>Crea <b>Tareas (Task)</b> para coordinar con SAC (despacho, legalización, documentación, consignación, etc.).</li>
-                <li><b>Flujos típicos (muy resumido):</b>
-                  <ul>
-                    <li><b>Cliente nuevo:</b> Prospecto/Lead → Cliente → Oportunidad → Cotización.</li>
-                    <li><b>Cliente existente:</b> Cliente → Oportunidad/Cotización (si aplica).</li>
-                    <li><b>Consignación:</b> coordina con SAC el caso (reposiciones/legalización) y deja tareas/contexto.</li>
-                  </ul>
-                </li>
+                <li>Gestiona el embudo: <b>Prospecto → Cliente interesado → Cliente</b>.</li>
+                <li><b>Regla práctica:</b> cuando aplica, el flujo comercial es <b>Oportunidad (Opportunity) → Cotización (Estimate)</b>.</li>
+                <li>Deja <b>Tareas (Task)</b> con contexto para que SAC sepa qué debe ejecutar (despacho, legalización, consignación, documentos, etc.).</li>
+                <li><b>En pocas palabras:</b> Comercial deja claro <b>qué se vendió / qué se requiere</b> y <b>qué sigue</b>.</li>
               </ul>
 
               <div class="deliver">
-                <b>Entrega clave:</b> datos del cliente completos + cotización clara + tareas con contexto.
+                <b>Entrega clave:</b> oportunidad bien registrada + cotización clara + tareas con contexto.
               </div>
             </div>
           </div>
@@ -408,7 +414,7 @@
                 <div class="emoji">📦</div>
                 <div>
                   <h3>SAC (Servicio al cliente / Despachos / Legalizaciones)</h3>
-                  <div class="sub">Operación del cliente: venta, despacho, devoluciones, PQRS</div>
+                  <div class="sub">Operación del cliente: despacho, devoluciones, PQRS</div>
                   <div class="tagRow">
                     <span class="tag">Orden de venta (Sales Order)</span>
                     <span class="tag">Factura (Invoice)</span>
@@ -460,9 +466,8 @@
             <div class="areaBody">
               <ul>
                 <li>Compra a proveedores con <b>Orden de compra (Purchase Order)</b> y recibe con <b>Recepción (Item Receipt)</b>.</li>
-                <li>Controla inventario: <b>Orden de traslado (Transfer Order)</b>, <b>Transferencia (Inventory Transfer)</b> y <b>Ajuste (Inventory Adjustment)</b>.</li>
-                <li>Gestiona el catálogo: crea/mantiene <b>Artículos (Items)</b> y administra <b>Ubicaciones (Locations)</b>.</li>
-                <li>En consignación/BO: deja el inventario disponible y trazable para que otras áreas operen.</li>
+                <li>Controla inventario: <b>Orden de traslado</b>, <b>Transferencia</b> y <b>Ajuste</b>.</li>
+                <li>Mantiene el catálogo: crea/actualiza <b>Artículos (Items)</b> y administra <b>Ubicaciones (Locations)</b>.</li>
               </ul>
 
               <div class="deliver">
@@ -478,8 +483,9 @@
                 <div class="emoji">🛠️</div>
                 <div>
                   <h3>Soporte Técnico (FSM)</h3>
-                  <div class="sub">Servicios: cotizar, ejecutar, evidenciar y facturar</div>
+                  <div class="sub">Servicios técnicos: solicitudes, ejecución, consumos y facturación</div>
                   <div class="tagRow">
+                    <span class="tag">FSM (Field Service Management)</span>
                     <span class="tag">Caso (Support Case)</span>
                     <span class="tag">Proyecto (Project)</span>
                     <span class="tag">Tarea (Task)</span>
@@ -495,9 +501,10 @@
 
             <div class="areaBody">
               <ul>
-                <li>Opera el módulo <b>FSM (Field Service Management)</b> con procesos basados en <b>Casos</b>, <b>Proyectos</b>, <b>Tareas</b> y <b>Activos (Assets)</b>.</li>
-                <li>Gestiona el ciclo del servicio: <b>cotizar → ejecutar → evidenciar → facturar</b>.</li>
-                <li>Cuando se requieren repuestos/equipos, también puede generar <b>Orden de traslado (Transfer Order)</b> para mover inventario según el servicio.</li>
+                <li><b>¿Qué es FSM?</b> Es el módulo donde TMC controla los <b>servicios técnicos</b> (mantenimientos, reparaciones, visitas, etc.) de forma trazable.</li>
+                <li>En la práctica, el servicio se maneja con: <b>Casos</b> (solicitud) + <b>Proyectos/Tareas</b> (plan y ejecución) + <b>Activos</b> (equipos).</li>
+                <li>Cuando aplica, se cotiza y se factura el servicio con <b>Cotización → Orden de venta → Factura</b>.</li>
+                <li>Si se requieren repuestos/equipos, también se mueve inventario con <b>Orden de traslado (Transfer Order)</b>.</li>
               </ul>
 
               <div class="deliver">
@@ -557,7 +564,7 @@
               <ul>
                 <li>Procesa <b>Facturas de proveedor (Vendor Bill)</b> y <b>Pagos (Vendor Payment)</b>.</li>
                 <li>Gestiona proveedores administrativos además de proveedores de inventario.</li>
-                <li>Legaliza viáticos/reembolsos con <b>Informe de gastos (Expense Report)</b> (cuando alguien recibe dinero por gastos de viajes, etc.).</li>
+                <li>Legaliza viáticos/reembolsos con <b>Informe de gastos (Expense Report)</b>.</li>
               </ul>
 
               <div class="deliver">
@@ -585,7 +592,7 @@
 
             <div class="areaBody">
               <ul>
-                <li>Aprueba/valida (según control interno): <b>Clientes (Customer)</b>, <b>Artículos (Item)</b>, <b>Proveedores (Vendor)</b> y facturas, para asegurar cuentas/impuestos correctos.</li>
+                <li>Aprueba/valida (según control interno): <b>Clientes (Customer)</b>, <b>Artículos (Item)</b>, <b>Proveedores (Vendor)</b> y facturas (cuentas/impuestos correctos).</li>
                 <li>Gestiona estructura contable: <b>cuentas</b>, <b>impuestos</b> y reglas de contabilización.</li>
                 <li>Cuando aplica, registra ajustes con <b>Asiento contable (Journal Entry)</b>.</li>
               </ul>
@@ -595,8 +602,7 @@
               </div>
 
               <div class="warning" style="margin-top:12px;">
-                <b>Dato importante:</b> NetSuite trabaja en cadena.
-Cada paso cuenta para que el resto del proceso fluya sin fricciones
+                <b>Dato importante:</b> NetSuite trabaja en cadena. Cada paso cuenta para que el resto del proceso fluya sin fricciones.
               </div>
             </div>
           </div>
