@@ -27,6 +27,8 @@
       margin:0 auto;
       padding:44px 22px 56px;
     }
+
+    /* top */
     .topbar{
       display:flex;
       gap:12px;
@@ -41,6 +43,15 @@
       letter-spacing:-.02em;
       margin:0;
     }
+
+    /* ✅ botones arriba (junto a volver) */
+    .topActions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
     .btn{
       display:inline-flex;
       align-items:center;
@@ -48,13 +59,13 @@
       border:1px solid var(--border);
       background:var(--card);
       padding:10px 12px;
-      border-radius:12px;
-      font-weight:800;
+      border-radius:999px;
+      font-weight:900;
       color:var(--text);
       text-decoration:none;
-      box-shadow:0 10px 22px rgba(0,0,0,.04);
       cursor:pointer;
       user-select:none;
+      box-shadow:0 10px 22px rgba(0,0,0,.04);
     }
     .btn.primary{
       border-color: rgba(37,99,235,.25);
@@ -65,6 +76,20 @@
       opacity:.45;
       cursor:not-allowed;
     }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(37,99,235,.08);
+      color:var(--accent2);
+      border:1px solid rgba(37,99,235,.18);
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
     .hint{
       color:var(--muted);
       margin:0 0 14px;
@@ -92,29 +117,6 @@
       min-width:260px;
     }
 
-    /* section nav */
-    .sectionNav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      margin:0 0 18px;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(37,99,235,.08);
-      color:var(--accent2);
-      border:1px solid rgba(37,99,235,.18);
-      font-weight:900;
-      font-size:12px;
-      white-space:nowrap;
-    }
-
     .grid{
       display:grid;
       grid-template-columns:1fr;
@@ -138,6 +140,7 @@
       gap:12px;
     }
     summary::-webkit-details-marker{ display:none; }
+
     .tag{
       font-weight:900;
       color:var(--accent);
@@ -147,6 +150,7 @@
       font-size:12px;
       flex:0 0 auto;
     }
+
     .content{
       padding:0 18px 18px;
       color:var(--muted);
@@ -165,13 +169,13 @@
       padding:0;
     }
     .term li{ margin:4px 0; }
+
     .small{
       font-size:12px;
       color:#64748b;
       margin-top:22px;
     }
 
-    /* no results */
     .noResults{
       display:none;
       margin:10px 0 0;
@@ -180,12 +184,12 @@
       border:1px dashed rgba(37,99,235,.35);
       background:rgba(37,99,235,.06);
       color:#1e3a8a;
-      font-weight:800;
+      font-weight:900;
     }
     .noResults span{
       display:block;
       color:#334155;
-      font-weight:700;
+      font-weight:800;
       margin-top:6px;
     }
   </style>
@@ -196,7 +200,15 @@
 
     <div class="topbar">
       <h1>Glosario Básico de NetSuite</h1>
-      <a class="btn" href="index.html">← Volver al inicio</a>
+
+      <div class="topActions">
+        <a class="btn" href="index.html">← Volver al Home</a>
+
+        <button id="prevBtn" class="btn" type="button">← Anterior</button>
+        <button id="nextBtn" class="btn" type="button">Siguiente →</button>
+
+        <span id="secPill" class="pill">Sección 1 de 1</span>
+      </div>
     </div>
 
     <p class="hint">
@@ -208,17 +220,8 @@
 
     <div class="searchRow">
       <input id="q" class="search" type="search"
-        placeholder="Buscar término… (ej: produccion, autorizacion, lote, DEO, portlet, orden de compra)" />
+        placeholder="Buscar término… (ej: produccion, autorizacion, lote, DEO, portlet, orden compra)" />
       <button id="clearBtn" class="btn" type="button" title="Limpiar búsqueda">Limpiar</button>
-    </div>
-
-    <div class="sectionNav">
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-        <button id="prevBtn" class="btn" type="button">← Anterior</button>
-        <button id="nextBtn" class="btn" type="button">Siguiente →</button>
-        <span id="secPill" class="pill">Sección 1 de 10</span>
-      </div>
-      <a class="btn primary" href="#glossary" title="Ir al inicio del glosario">Ir al glosario ↓</a>
     </div>
 
     <div id="noResults" class="noResults">
@@ -499,7 +502,7 @@
       <!-- 5 -->
       <details>
         <summary><span>5. Tipos de artículos (lo que ‘vendemos/consumimos’)</span><span class="tag">Items</span></summary>
-        <div class="content">
+        <div class="content>
 
           <div class="term"><b>Inventariable (Inventory Item):</b> Artículo que maneja existencias (stock). Entra y sale de inventario.</div>
 
@@ -643,7 +646,7 @@
     const nextBtn = document.getElementById('nextBtn');
     const secPill = document.getElementById('secPill');
 
-    // Normaliza: minúsculas, sin tildes, y convierte signos (/, -, :, (), etc.) en espacios
+    // Normaliza: minúsculas, sin tildes, y convierte signos en espacios
     const norm = (s) => (s || '')
       .toString()
       .toLowerCase()
@@ -653,17 +656,29 @@
       .replace(/\s+/g, ' ')
       .trim();
 
-    // Estado original de open + visibilidad
     const initialOpen = new Map();
     sections.forEach(d => initialOpen.set(d, d.open));
 
     let currentIndex = 0;
 
+    const visibleIndexes = () =>
+      sections.map((d,i) => ({d,i}))
+        .filter(x => x.d.style.display !== 'none')
+        .map(x => x.i);
+
     function updateNavUI(){
-      const total = sections.length;
-      secPill.textContent = `Sección ${currentIndex + 1} de ${total}`;
-      prevBtn.disabled = currentIndex <= 0;
-      nextBtn.disabled = currentIndex >= total - 1;
+      const vis = visibleIndexes();
+      const total = vis.length || 1;
+
+      if(sections[currentIndex] && sections[currentIndex].style.display === 'none'){
+        currentIndex = vis[0] ?? 0;
+      }
+
+      const pos = Math.max(0, vis.indexOf(currentIndex));
+      secPill.textContent = `Sección ${Math.min(pos + 1, total)} de ${total}`;
+
+      prevBtn.disabled = (pos <= 0);
+      nextBtn.disabled = (pos >= total - 1);
     }
 
     function scrollToSection(idx){
@@ -675,7 +690,7 @@
 
     function resetAll(){
       noResults.style.display = 'none';
-      sections.forEach((d, i) => {
+      sections.forEach(d => {
         d.style.display = '';
         d.open = initialOpen.get(d) || false;
         d.querySelectorAll('.term').forEach(t => t.style.display = '');
@@ -688,7 +703,7 @@
       const tokens = norm(query).split(' ').filter(Boolean);
       if(!tokens.length) return true;
       const text = norm(haystack);
-      return tokens.every(t => text.includes(t)); // AND
+      return tokens.every(t => text.includes(t));
     }
 
     function applyFilter(){
@@ -708,7 +723,8 @@
         let hasMatch = false;
 
         terms.forEach(t => {
-          const ok = matchesAllTokens(t.innerText, query);
+          // ✅ textContent: busca aunque el <details> esté cerrado
+          const ok = matchesAllTokens(t.textContent, query);
           t.style.display = ok ? '' : 'none';
           if(ok) hasMatch = true;
         });
@@ -724,17 +740,10 @@
 
       noResults.style.display = anyVisibleSection ? 'none' : 'block';
 
-      // Si hay resultados, “enfocamos” la primera sección visible para que el nav tenga sentido
-      if(anyVisibleSection && firstVisibleIndex !== -1){
-        currentIndex = firstVisibleIndex;
-      } else {
-        currentIndex = 0;
-      }
-
+      currentIndex = (anyVisibleSection && firstVisibleIndex !== -1) ? firstVisibleIndex : 0;
       updateNavUI();
     }
 
-    // --- events ---
     q.addEventListener('input', applyFilter);
 
     clearBtn.addEventListener('click', () => {
@@ -744,53 +753,25 @@
     });
 
     prevBtn.addEventListener('click', () => {
-      // Navega por todas las secciones (incluso si algunas están ocultas).
-      // Si hay filtro activo, saltamos a la sección visible anterior.
-      const hasFilter = !!norm(q.value);
-
-      if(!hasFilter){
-        currentIndex = Math.max(0, currentIndex - 1);
-        updateNavUI();
-        scrollToSection(currentIndex);
-        return;
-      }
-
-      // con filtro: buscar anterior visible
-      for(let i = currentIndex - 1; i >= 0; i--){
-        if(sections[i].style.display !== 'none'){
-          currentIndex = i;
-          updateNavUI();
-          scrollToSection(currentIndex);
-          return;
-        }
-      }
+      const vis = visibleIndexes();
+      const pos = vis.indexOf(currentIndex);
+      if(pos <= 0) return;
+      currentIndex = vis[pos - 1];
+      updateNavUI();
+      scrollToSection(currentIndex);
     });
 
     nextBtn.addEventListener('click', () => {
-      const hasFilter = !!norm(q.value);
-
-      if(!hasFilter){
-        currentIndex = Math.min(sections.length - 1, currentIndex + 1);
-        updateNavUI();
-        scrollToSection(currentIndex);
-        return;
-      }
-
-      // con filtro: buscar siguiente visible
-      for(let i = currentIndex + 1; i < sections.length; i++){
-        if(sections[i].style.display !== 'none'){
-          currentIndex = i;
-          updateNavUI();
-          scrollToSection(currentIndex);
-          return;
-        }
-      }
+      const vis = visibleIndexes();
+      const pos = vis.indexOf(currentIndex);
+      if(pos === -1 || pos >= vis.length - 1) return;
+      currentIndex = vis[pos + 1];
+      updateNavUI();
+      scrollToSection(currentIndex);
     });
 
-    // Soporte: si el usuario abre/cierra manual, ajustamos índice “actual” al que interactuó
     sections.forEach((d, i) => {
       d.addEventListener('toggle', () => {
-        // si está visible, lo consideramos como "actual"
         if(d.style.display !== 'none'){
           currentIndex = i;
           updateNavUI();
@@ -798,7 +779,6 @@
       });
     });
 
-    // Init
     updateNavUI();
   </script>
 </body>
