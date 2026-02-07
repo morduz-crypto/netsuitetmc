@@ -13,6 +13,7 @@
       --muted:#475569;
       --border:rgba(15,23,42,.08);
       --accent:#2563eb;
+      --accent2:#1d4ed8;
     }
     *{ box-sizing:border-box }
     body{
@@ -32,7 +33,7 @@
       align-items:center;
       justify-content:space-between;
       flex-wrap:wrap;
-      margin-bottom:18px;
+      margin-bottom:12px;
     }
     h1{
       font-size:30px;
@@ -48,19 +49,39 @@
       background:var(--card);
       padding:10px 12px;
       border-radius:12px;
-      font-weight:700;
+      font-weight:800;
       color:var(--text);
       text-decoration:none;
       box-shadow:0 10px 22px rgba(0,0,0,.04);
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn.primary{
+      border-color: rgba(37,99,235,.25);
+      color: var(--accent2);
+      background: rgba(37,99,235,.06);
+    }
+    .btn:disabled{
+      opacity:.45;
+      cursor:not-allowed;
     }
     .hint{
       color:var(--muted);
-      margin:0 0 18px;
+      margin:0 0 14px;
       line-height:1.6;
       max-width:900px;
     }
+
+    /* search row */
+    .searchRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin:10px 0 14px;
+    }
     .search{
-      width:100%;
+      flex:1 1 420px;
       padding:12px 14px;
       border-radius:14px;
       border:1px solid var(--border);
@@ -68,8 +89,32 @@
       background:var(--card);
       font-size:14px;
       box-shadow:0 10px 22px rgba(0,0,0,.03);
-      margin:10px 0 18px;
+      min-width:260px;
     }
+
+    /* section nav */
+    .sectionNav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:0 0 18px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(37,99,235,.08);
+      color:var(--accent2);
+      border:1px solid rgba(37,99,235,.18);
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
     .grid{
       display:grid;
       grid-template-columns:1fr;
@@ -94,7 +139,7 @@
     }
     summary::-webkit-details-marker{ display:none; }
     .tag{
-      font-weight:800;
+      font-weight:900;
       color:var(--accent);
       background:rgba(37,99,235,.08);
       border-radius:999px;
@@ -125,6 +170,24 @@
       color:#64748b;
       margin-top:22px;
     }
+
+    /* no results */
+    .noResults{
+      display:none;
+      margin:10px 0 0;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px dashed rgba(37,99,235,.35);
+      background:rgba(37,99,235,.06);
+      color:#1e3a8a;
+      font-weight:800;
+    }
+    .noResults span{
+      display:block;
+      color:#334155;
+      font-weight:700;
+      margin-top:6px;
+    }
   </style>
 </head>
 
@@ -143,7 +206,25 @@
       La idea es que puedas entender de qué se está hablando incluso si nunca has usado un ERP.
     </p>
 
-    <input id="q" class="search" type="search" placeholder="Buscar término… (ej: produccion, autorizacion, lote, DEO, portlet)" />
+    <div class="searchRow">
+      <input id="q" class="search" type="search"
+        placeholder="Buscar término… (ej: produccion, autorizacion, lote, DEO, portlet, orden de compra)" />
+      <button id="clearBtn" class="btn" type="button" title="Limpiar búsqueda">Limpiar</button>
+    </div>
+
+    <div class="sectionNav">
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <button id="prevBtn" class="btn" type="button">← Anterior</button>
+        <button id="nextBtn" class="btn" type="button">Siguiente →</button>
+        <span id="secPill" class="pill">Sección 1 de 10</span>
+      </div>
+      <a class="btn primary" href="#glossary" title="Ir al inicio del glosario">Ir al glosario ↓</a>
+    </div>
+
+    <div id="noResults" class="noResults">
+      No encontramos coincidencias 😕
+      <span>Tip: prueba con una sola palabra clave (ej: “orden”, “compra”, “lote”, “devolucion”).</span>
+    </div>
 
     <div class="grid" id="glossary">
 
@@ -152,13 +233,8 @@
         <summary><span>0. Conceptos de sistema</span><span class="tag">Base</span></summary>
         <div class="content">
 
-          <div class="term">
-            <b>Dashboard:</b> Pantalla principal del usuario con indicadores y accesos rápidos.
-          </div>
-
-          <div class="term">
-            <b>Portlet:</b> Bloque dentro del dashboard (lista, gráfico, KPI, recordatorio).
-          </div>
+          <div class="term"><b>Dashboard:</b> Pantalla principal del usuario con indicadores y accesos rápidos.</div>
+          <div class="term"><b>Portlet:</b> Bloque dentro del dashboard (lista, gráfico, KPI, recordatorio).</div>
 
           <div class="term">
             <b>Transacción (Transaction):</b>
@@ -166,9 +242,7 @@
             Suele tener impacto operativo y/o contable.
           </div>
 
-          <div class="term">
-            <b>Registro (Record):</b> una “ficha” de información. Ej: Cliente, Factura, Artículo.
-          </div>
+          <div class="term"><b>Registro (Record):</b> una “ficha” de información. Ej: Cliente, Factura, Artículo.</div>
 
           <div class="term">
             <b>Entidad (Entity):</b> Persona u organización con la que la empresa se relaciona (cliente, proveedor, empleado, contacto).
@@ -303,9 +377,7 @@
         <summary><span>2. Compras y Proveedores (relación con proveedores)</span><span class="tag">Compras</span></summary>
         <div class="content">
 
-          <div class="term">
-            <b>Proveedor (Vendor):</b> Empresa o persona a la que se le compran productos o servicios.
-          </div>
+          <div class="term"><b>Proveedor (Vendor):</b> Empresa o persona a la que se le compran productos o servicios.</div>
 
           <div class="term">
             <b>Orden de compra/Pedido (Purchase Order):</b>
@@ -429,9 +501,7 @@
         <summary><span>5. Tipos de artículos (lo que ‘vendemos/consumimos’)</span><span class="tag">Items</span></summary>
         <div class="content">
 
-          <div class="term">
-            <b>Inventariable (Inventory Item):</b> Artículo que maneja existencias (stock). Entra y sale de inventario.
-          </div>
+          <div class="term"><b>Inventariable (Inventory Item):</b> Artículo que maneja existencias (stock). Entra y sale de inventario.</div>
 
           <div class="term">
             <b>Inventariable por lote (Lot-Numbered Inventory Item):</b>
@@ -535,13 +605,11 @@
       <details>
         <summary><span>8. Importaciones (TMC)</span><span class="tag">DEO</span></summary>
         <div class="content">
-
           <div class="term">
             <b>Detalle de importación (DEO):</b>
             Registro que consolida la información de una importación: órdenes de compra relacionadas, fechas clave, estado por etapas,
             costos asociados y documentos (por ejemplo, recibos, facturas, levante, etc.). Su objetivo es dar trazabilidad de punta a punta a la importación.
           </div>
-
         </div>
       </details>
 
@@ -549,7 +617,6 @@
       <details>
         <summary><span>9. Siglas (TMC)</span><span class="tag">Siglas</span></summary>
         <div class="content">
-
           <div class="term"><b>ERP:</b> Sistema central de operación y contabilidad.</div>
           <div class="term"><b>CRM:</b> Gestión comercial (leads, oportunidades, clientes).</div>
           <div class="term"><b>AR / AP:</b> Cuentas por cobrar / Cuentas por pagar.</div>
@@ -558,7 +625,6 @@
           <div class="term"><b>OC:</b> Orden de compra.</div>
           <div class="term"><b>OT:</b> Orden de traslado.</div>
           <div class="term"><b>OV:</b> Orden de venta.</div>
-
         </div>
       </details>
 
@@ -569,30 +635,171 @@
 
   <script>
     const q = document.getElementById('q');
-    const details = Array.from(document.querySelectorAll('#glossary details'));
+    const clearBtn = document.getElementById('clearBtn');
+    const noResults = document.getElementById('noResults');
 
-    // Normaliza: minúsculas + sin tildes/diacríticos
+    const sections = Array.from(document.querySelectorAll('#glossary details'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const secPill = document.getElementById('secPill');
+
+    // Normaliza: minúsculas, sin tildes, y convierte signos (/, -, :, (), etc.) en espacios
     const norm = (s) => (s || '')
       .toString()
       .toLowerCase()
-      .normalize('NFD')                 // separa letras de diacríticos
-      .replace(/[\u0300-\u036f]/g, '')  // elimina diacríticos (tildes)
-      .replace(/\s+/g, ' ')             // colapsa espacios
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .replace(/\s+/g, ' ')
       .trim();
 
-    q.addEventListener('input', () => {
-      const term = norm(q.value);
+    // Estado original de open + visibilidad
+    const initialOpen = new Map();
+    sections.forEach(d => initialOpen.set(d, d.open));
 
-      if(!term){
-        details.forEach(d => d.style.display = '');
+    let currentIndex = 0;
+
+    function updateNavUI(){
+      const total = sections.length;
+      secPill.textContent = `Sección ${currentIndex + 1} de ${total}`;
+      prevBtn.disabled = currentIndex <= 0;
+      nextBtn.disabled = currentIndex >= total - 1;
+    }
+
+    function scrollToSection(idx){
+      const d = sections[idx];
+      if(!d) return;
+      d.open = true;
+      d.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+
+    function resetAll(){
+      noResults.style.display = 'none';
+      sections.forEach((d, i) => {
+        d.style.display = '';
+        d.open = initialOpen.get(d) || false;
+        d.querySelectorAll('.term').forEach(t => t.style.display = '');
+      });
+      currentIndex = 0;
+      updateNavUI();
+    }
+
+    function matchesAllTokens(haystack, query){
+      const tokens = norm(query).split(' ').filter(Boolean);
+      if(!tokens.length) return true;
+      const text = norm(haystack);
+      return tokens.every(t => text.includes(t)); // AND
+    }
+
+    function applyFilter(){
+      const query = q.value;
+      const queryNorm = norm(query);
+
+      if(!queryNorm){
+        resetAll();
         return;
       }
 
-      details.forEach(d => {
-        const txt = norm(d.innerText);
-        d.style.display = txt.includes(term) ? '' : 'none';
+      let anyVisibleSection = false;
+      let firstVisibleIndex = -1;
+
+      sections.forEach((d, i) => {
+        const terms = Array.from(d.querySelectorAll('.term'));
+        let hasMatch = false;
+
+        terms.forEach(t => {
+          const ok = matchesAllTokens(t.innerText, query);
+          t.style.display = ok ? '' : 'none';
+          if(ok) hasMatch = true;
+        });
+
+        d.style.display = hasMatch ? '' : 'none';
+
+        if(hasMatch){
+          anyVisibleSection = true;
+          d.open = true;
+          if(firstVisibleIndex === -1) firstVisibleIndex = i;
+        }
+      });
+
+      noResults.style.display = anyVisibleSection ? 'none' : 'block';
+
+      // Si hay resultados, “enfocamos” la primera sección visible para que el nav tenga sentido
+      if(anyVisibleSection && firstVisibleIndex !== -1){
+        currentIndex = firstVisibleIndex;
+      } else {
+        currentIndex = 0;
+      }
+
+      updateNavUI();
+    }
+
+    // --- events ---
+    q.addEventListener('input', applyFilter);
+
+    clearBtn.addEventListener('click', () => {
+      q.value = '';
+      q.focus();
+      resetAll();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      // Navega por todas las secciones (incluso si algunas están ocultas).
+      // Si hay filtro activo, saltamos a la sección visible anterior.
+      const hasFilter = !!norm(q.value);
+
+      if(!hasFilter){
+        currentIndex = Math.max(0, currentIndex - 1);
+        updateNavUI();
+        scrollToSection(currentIndex);
+        return;
+      }
+
+      // con filtro: buscar anterior visible
+      for(let i = currentIndex - 1; i >= 0; i--){
+        if(sections[i].style.display !== 'none'){
+          currentIndex = i;
+          updateNavUI();
+          scrollToSection(currentIndex);
+          return;
+        }
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const hasFilter = !!norm(q.value);
+
+      if(!hasFilter){
+        currentIndex = Math.min(sections.length - 1, currentIndex + 1);
+        updateNavUI();
+        scrollToSection(currentIndex);
+        return;
+      }
+
+      // con filtro: buscar siguiente visible
+      for(let i = currentIndex + 1; i < sections.length; i++){
+        if(sections[i].style.display !== 'none'){
+          currentIndex = i;
+          updateNavUI();
+          scrollToSection(currentIndex);
+          return;
+        }
+      }
+    });
+
+    // Soporte: si el usuario abre/cierra manual, ajustamos índice “actual” al que interactuó
+    sections.forEach((d, i) => {
+      d.addEventListener('toggle', () => {
+        // si está visible, lo consideramos como "actual"
+        if(d.style.display !== 'none'){
+          currentIndex = i;
+          updateNavUI();
+        }
       });
     });
+
+    // Init
+    updateNavUI();
   </script>
 </body>
 </html>
