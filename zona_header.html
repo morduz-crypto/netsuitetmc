@@ -3,86 +3,168 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Zona 1 — Barra superior (Header)</title>
+  <title>Zona 1 · Header · NetSuite TMC</title>
 
   <style>
     :root{
- --hint: rgba(0, 123, 255, .55);
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.08);
+      --accent:#2563eb;
+      --accent2:#1d4ed8;
+      --shadow: 0 10px 22px rgba(0,0,0,.04);
+
+      /* hotspots */
+      --hint: rgba(0, 123, 255, .55);
       --hint-strong: rgba(0, 123, 255, .85);
-      --accent: #111827;
-      --card: #ffffff;
-      --bg: #f3f4f6;
 
-      --info-bg: rgba(0, 123, 255, .10);
-      --info-bd: rgba(0, 123, 255, .25);
-
-      --warn-bg: rgba(245, 158, 11, .12);
-      --warn-bd: rgba(245, 158, 11, .35);
-
-      --muted: #4b5563;
-      --text: #111827;
-      --subtext: #374151;
+      /* callouts */
+      --info-bg: rgba(37,99,235,.06);
+      --info-bd: rgba(37,99,235,.18);
+      --warn-bg: rgba(245, 158, 11, .10);
+      --warn-bd: rgba(245, 158, 11, .28);
     }
 
-    *{ box-sizing:border-box; }
+    *{ box-sizing:border-box }
     body{
+      margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      margin:0; padding:18px; background:var(--bg); color:var(--text);
+      background:var(--bg);
+      color:var(--text);
     }
-    a{ color:#1d4ed8; text-decoration:none; font-weight:700; }
+    a{ color:var(--accent2); text-decoration:none; }
     a:hover{ text-decoration:underline; }
+
     code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      background: rgba(0,0,0,.04);
-      border: 1px solid rgba(0,0,0,.06);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:12px;
+      background: rgba(15,23,42,.04);
+      border: 1px solid rgba(15,23,42,.08);
       padding: 1px 6px;
       border-radius: 8px;
-    }
-
-    .wrap{ max-width:1200px; margin:0 auto; }
-
-    .topbar{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
-      margin-bottom:12px;
-    }
-    h1{ font-size:18px; margin:0; font-weight:800; letter-spacing:.2px; }
-    .meta{ font-size:12px; color:var(--muted); margin-top:4px; }
-
-    .pill{
-      display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px;
-      background:#eef2ff; color:#3730a3; border:1px solid rgba(55,48,163,.15); margin-left:6px;
-      vertical-align:middle;
-    }
-
-    .btn{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px; border-radius:10px; background:var(--accent); color:#fff; font-size:13px;
-      border:1px solid rgba(0,0,0,.1);
+      font-weight:800;
+      color:var(--text);
       white-space:nowrap;
     }
-    .btn:hover{ opacity:.92; text-decoration:none; }
 
-    .intro{
-      margin-top:10px;
-      padding:12px 14px;
-      border-radius:14px;
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:44px 22px 56px;
+    }
+
+    /* top */
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    h1{
+      font-size:30px;
+      font-weight:900;
+      letter-spacing:-.02em;
+      margin:0;
+    }
+    .meta{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:6px;
+      line-height:1.6;
+      max-width:900px;
+    }
+
+    .topActions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--border);
+      background:var(--card);
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:900;
+      color:var(--text);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+      box-shadow:var(--shadow);
+      white-space:nowrap;
+    }
+    .btn.primary{
+      border-color: rgba(37,99,235,.25);
+      color: var(--accent2);
+      background: rgba(37,99,235,.06);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(37,99,235,.08);
+      color:var(--accent2);
+      border:1px solid rgba(37,99,235,.18);
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .callout{
       background: var(--info-bg);
       border: 1px solid var(--info-bd);
-      color:var(--text);
-      font-size:13px;
-      line-height:1.45;
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+      color:#334155;
+      line-height:1.7;
+      margin: 12px 0 14px;
+    }
+    .callout b{ color:var(--text); }
+    .callout .mini{
+      display:block;
+      color:#64748b;
+      font-weight:800;
+      margin-top:6px;
+      font-size:12px;
     }
 
+    /* cards */
     .card{
       background:var(--card);
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:12px;
-      box-shadow:0 10px 25px rgba(0,0,0,.06);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
+    .cardHeader{
+      padding:16px 18px 12px;
+      border-bottom:1px solid var(--border);
+    }
+    .cardTitle{
+      margin:0;
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:-.01em;
+    }
+    .cardBody{
+      padding:14px 18px 18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
 
-    /* Header principal: mantener full width para que los hotspots queden exactos */
+    /* stage */
     .stage{ position:relative; }
     .stage img{
       width:100%;
@@ -92,20 +174,17 @@
       -webkit-user-drag:none;
     }
 
-   .hotspot{
+    .hotspot{
       position:absolute;
       border: 3px solid var(--hint);
       background: transparent;
       border-radius: 12px;
       cursor: default;
       pointer-events:auto;
-
       box-shadow: 0 0 0 2px rgba(255,255,255,.85),
                   0 8px 18px rgba(0,0,0,.10);
-
       transition: background .12s ease, border-color .12s ease, transform .12s ease, box-shadow .12s ease;
     }
-
     .hotspot:hover{
       background: rgba(0,123,255,.10);
       border-color: var(--hint-strong);
@@ -113,157 +192,194 @@
                   0 10px 22px rgba(0,0,0,.14);
       transform: translateY(-1px);
     }
+    .hotspot.frame{
+      border-color: rgba(245,158,11,.35);
+      background: rgba(245,158,11,.06);
+      box-shadow: none;
+      pointer-events:none;
+    }
 
+    /* tooltip */
     .tooltip{
-      position: fixed; z-index: 9999; max-width: 440px;
-      padding: 10px 12px; border-radius: 12px;
+      position: fixed;
+      z-index: 9999;
+      max-width: 440px;
+      padding: 10px 12px;
+      border-radius: 12px;
       background: rgba(255,255,255,.98);
       box-shadow: 0 18px 40px rgba(0,0,0,.20);
       border: 1px solid rgba(0,0,0,.08);
-      display: none; pointer-events: none;
+      display: none;
+      pointer-events: none;
     }
-    .tooltip .t{ font-weight:800; margin-bottom:4px; font-size:13px; }
-    .tooltip .d{ font-size:12px; line-height:1.35; color:#374151; }
+    .tooltip .t{ font-weight:900; margin-bottom:4px; font-size:13px; color:var(--text); }
+    .tooltip .d{ font-size:12px; line-height:1.4; color:#374151; }
 
-    .content{ padding:14px 16px; }
-    .content h2{ margin:0 0 8px; font-size:16px; }
-    .content p{ margin:0 0 10px; color:var(--subtext); line-height:1.45; }
-    .content ul{ margin:0 0 10px 18px; color:var(--subtext); }
-    .content li{ margin-bottom:6px; }
+    /* detail blocks */
+    .area{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:12px 12px;
+      background:#ffffff;
+      margin-top:12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,.02);
+    }
+    .kicker{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:6px;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      color:var(--text);
+      font-size:14px;
+    }
+    .chip{
+      font-size:11px;
+      padding:3px 9px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(15,23,42,.03);
+      color:#334155;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .area p{ margin:8px 0; color:#334155; }
+    .area ul{ margin:8px 0 0 18px; padding:0; color:#334155; }
+    .area li{ margin:6px 0; }
 
     .warning{
       background: var(--warn-bg);
       border: 1px solid var(--warn-bd);
       padding:10px 12px;
-      border-radius:12px;
+      border-radius:14px;
       color:var(--text);
       margin:10px 0 0;
       font-size:13px;
-      line-height:1.45;
+      line-height:1.6;
     }
 
-    .area{
-      border:1px solid rgba(0,0,0,.06);
-      border-radius:14px;
-      padding:12px 12px;
-      background:#fafafa;
-      margin-top:10px;
-    }
-    .kicker{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      margin-bottom:6px;
-    }
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      font-weight:800; color:#111827; font-size:13px;
-    }
-    .chip{
-      font-size:11px;
-      padding:2px 8px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,.10);
-      background:#fff;
-      color:#111827;
-    }
-
-    /* ✅ Miniaturas (no gigantes) */
+    /* thumbnails */
     .shot{
       margin-top:10px;
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:12px;
+      border:1px solid var(--border);
+      border-radius:14px;
       overflow:hidden;
       background:#fff;
+      box-shadow: 0 8px 16px rgba(0,0,0,.02);
     }
     .shot img{
       display:block;
       width:auto;
       max-width:100%;
-      max-height:220px;     /* ajusta 180–260 si quieres */
+      max-height:220px;
       margin:10px auto 0;
       border-radius:10px;
-      border:1px solid rgba(0,0,0,.06);
+      border:1px solid var(--border);
+      background:#fff;
     }
     .shot .cap{
       padding:10px 12px;
-      border-top:1px solid rgba(0,0,0,.06);
-      color:#374151;
+      border-top:1px solid var(--border);
+      color:#334155;
       font-size:12.5px;
-      line-height:1.45;
+      line-height:1.55;
+    }
+
+    .small{
+      font-size:12px;
+      color:#64748b;
+      margin-top:22px;
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="container">
     <div class="topbar">
-      <div style="width:100%;">
-        <h1>Zona 1 — Barra superior (Header) <span class="pill">v5</span></h1>
-        <div class="meta">Pasa el mouse por cada área del header. Abajo está el detalle por Área (1–6).</div>
-
-        <div class="intro">
-          La barra superior se mantiene visible en la mayoría de pantallas de NetSuite y se usa para:
-          <strong>identificar el ambiente</strong>, <strong>buscar</strong> información, crear con atajos (<strong>+</strong>),
-          acceder a <strong>Ayuda</strong>, enviar <strong>Comentarios</strong> y gestionar la sesión (<strong>usuario/rol</strong>).
+      <div>
+        <h1>Zona 1 · Barra superior (Header)</h1>
+        <div class="meta">
+          Pasa el mouse por cada área del header para ver una explicación rápida.
+          Abajo encuentras el detalle por Área (1–6).
         </div>
       </div>
 
-      <a class="btn" href="index.html">← Volver</a>
+      <div class="topActions">
+        <a class="btn" href="index.html">← Volver al Home</a>
+        <a class="btn" href="navegacion.html">← Volver a Navegación</a>
+        <span class="pill">Zona 1</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      La barra superior se mantiene visible en la mayoría de pantallas de NetSuite y te ayuda a:
+      <b>identificar el ambiente</b>, <b>buscar</b> información, crear con atajos (<b>+</b>),
+      acceder a <b>Ayuda</b>, enviar <b>Comentarios</b> y gestionar tu sesión (<b>usuario/rol</b>).
+      <span class="mini">Tip: antes de registrar algo importante, confirma si estás en <b>Producción</b> o <b>Sandbox</b>.</span>
     </div>
 
     <!-- Header principal -->
     <div class="card">
+      <div class="cardHeader">
+        <p class="cardTitle">Mapa del Header (hover para ver cada área)</p>
+      </div>
       <div class="stage">
         <img src="header_prod.png" alt="Header NetSuite"/>
 
-        <!-- Marco general -->
-        <div class="hotspot"
-             style="left:0%; top:0%; width:100%; height:100%;
-                    border-color: rgba(249,115,22,.55); background: rgba(249,115,22,.08);">
-        </div>
+        <!-- marco general -->
+        <div class="hotspot frame" style="left:0%; top:0%; width:100%; height:100%;"></div>
 
         <!-- 6 Áreas -->
         <div class="hotspot"
              style="left:0%; top:0%; width:20%; height:100%;"
              data-title="Área 1 — Logo y ambiente (PROD / SANDBOX)"
-             data-desc="Logo institucional y señalización del ambiente donde estás trabajando (Producción o SANDBOX).">
+             data-desc="Logo e indicador del ambiente donde estás trabajando. Fundamental para no hacer acciones reales desde SANDBOX (o al revés).">
         </div>
 
         <div class="hotspot"
              style="left:20%; top:0%; width:42%; height:100%;"
              data-title="Área 2 — Buscador global"
-             data-desc="Búsqueda rápida dentro de NetSuite. Puedes usar % y también prefijos tipo 'empleado:' o 'orden de venta:' para limitar resultados.">
+             data-desc="Búsqueda rápida dentro de NetSuite. Usa % para el modo predictivo y/o escribe tipo:valor para limitar resultados (ej: cliente:).">
         </div>
 
         <div class="hotspot"
              style="left:62%; top:0%; width:4%; height:100%;"
              data-title="Área 3 — Atajos (hojita con +)"
-             data-desc="Creación rápida de registros frecuentes. Puede personalizarse por rol.">
+             data-desc="Creación rápida de registros frecuentes (según tu rol).">
         </div>
 
         <div class="hotspot"
              style="left:66%; top:0%; width:6%; height:100%;"
              data-title="Área 4 — Ayuda"
-             data-desc="Acceso a documentación oficial de NetSuite (artículos y guías).">
+             data-desc="Acceso a documentación oficial y recursos de NetSuite.">
         </div>
 
         <div class="hotspot"
              style="left:72%; top:0%; width:9%; height:100%;"
              data-title="Área 5 — Comentarios"
-             data-desc="Canal de retroalimentación/satisfacción sobre el sistema (cuando aplique).">
+             data-desc="Canal de retroalimentación sobre el sistema (cuando aplique).">
         </div>
 
         <div class="hotspot"
              style="left:81%; top:0%; width:19%; height:100%;"
              data-title="Área 6 — Usuario, roles y sesión"
-             data-desc="Información del usuario, rol activo, cambio de rol/cuenta y cierre de sesión.">
+             data-desc="Rol activo, opciones de sesión, cambio de rol/cuenta y cerrar sesión.">
         </div>
       </div>
     </div>
 
     <!-- Detalle por áreas -->
-    <div class="card" style="margin-top:12px;">
-      <div class="content">
-        <h2>Detalle por Área (1–6)</h2>
+    <div class="card" style="margin-top:14px;">
+      <div class="cardHeader">
+        <p class="cardTitle">Detalle por Área (1–6)</p>
+      </div>
+      <div class="cardBody">
 
         <!-- Área 1 -->
         <div class="area">
@@ -272,24 +388,25 @@
           </div>
 
           <p>
-            Esta zona permite identificar el ambiente en el que estás trabajando:
-            <strong>Producción</strong> (operación real) o <strong>SANDBOX</strong> (ambiente de pruebas).
+            Esta zona te confirma el ambiente en el que estás trabajando:
+            <b>Producción</b> (operación real) o <b>Sandbox</b> (pruebas).
           </p>
 
           <ul>
-            <li><strong>Producción:</strong> los cambios impactan información real.</li>
-            <li><strong>SANDBOX:</strong> ambiente destinado a pruebas y validaciones.</li>
+            <li><b>Producción:</b> todo impacta información real.</li>
+            <li><b>Sandbox:</b> se usa para pruebas y validaciones, sin afectar la operación.</li>
           </ul>
 
           <div class="shot">
             <img src="header_sandbox.png" alt="Ejemplo de header en SANDBOX"/>
             <div class="cap">
-              <strong>Así se ve en SANDBOX:</strong> aparece el indicador <strong>SANDBOX</strong> en el header.
+              <b>Así se ve en Sandbox:</b> aparece el indicador <b>SANDBOX</b> en el header.
             </div>
           </div>
 
           <div class="warning">
-            <strong>Recomendación:</strong> antes de ejecutar acciones operativas, confirma el ambiente (Producción vs SANDBOX).
+            <b>Recomendación:</b> antes de ejecutar acciones operativas (facturar, trasladar, aprobar),
+            confirma siempre el ambiente.
           </div>
         </div>
 
@@ -300,21 +417,18 @@
           </div>
 
           <p>
-            El buscador global permite encontrar registros y documentos sin navegar por menús
-            (clientes, proveedores, empleados, transacciones, reportes, etc.).
+            El buscador global te permite encontrar registros y documentos sin navegar por menús
+            (clientes, proveedores, empleados, transacciones, etc.).
           </p>
 
           <ul>
-            <li><strong>Búsqueda normal:</strong> escribe el término y presiona <strong>Enter</strong>.</li>
-
+            <li><b>Búsqueda normal:</b> escribe y presiona <b>Enter</b>.</li>
             <li>
-              <strong>Modo predictivo con %:</strong> escribe <code>%</code> + al menos <strong>3 caracteres</strong>
-              (ej. <code>%far</code>). El sistema muestra resultados <strong>mientras escribes</strong>, sin necesidad de presionar Enter.
+              <b>Modo predictivo con %:</b> escribe <code>%</code> + al menos <b>3 caracteres</b>
+              (ej. <code>%far</code>) y NetSuite te sugiere resultados mientras escribes.
             </li>
-
             <li>
-              <strong>Buscar por tipo (para limitar resultados):</strong>
-              escribe el tipo + <code>:</code> y luego el texto a buscar. Ejemplos:
+              <b>Limitar por tipo:</b> escribe <code>tipo: valor</code>. Ejemplos:
               <ul style="margin-top:6px;">
                 <li><code>empleado: camila</code></li>
                 <li><code>proveedor: acme</code></li>
@@ -323,16 +437,13 @@
                 <li><code>factura: INV</code></li>
               </ul>
             </li>
-
-            <li>
-              Si no aparece lo que necesitas en los primeros resultados, usa <strong>“Mostrar todos los resultados”</strong>.
-            </li>
+            <li>Si no aparece, usa <b>“Mostrar todos los resultados”</b>.</li>
           </ul>
 
           <div class="shot">
             <img src="search_percent.png" alt="Ejemplo de búsqueda con % en NetSuite"/>
             <div class="cap">
-              <strong>Así se ve el modo predictivo:</strong> con <code>%</code> el sistema sugiere resultados a medida que escribes.
+              <b>Modo predictivo:</b> con <code>%</code> el sistema sugiere resultados en tiempo real.
             </div>
           </div>
         </div>
@@ -344,26 +455,22 @@
           </div>
 
           <p>
-            El ícono de la hojita con <strong>+</strong> abre un menú de <strong>creación rápida</strong> para registros frecuentes.
+            El ícono de la hojita con <b>+</b> abre el menú de <b>creación rápida</b> de registros comunes (según tu rol).
           </p>
 
           <ul>
-            <li>Ejemplos: Evento, Llamada telefónica, Tarea, Cliente, Contacto, Factura…</li>
-            <li>Puede <strong>personalizarse</strong> para mostrar solo las opciones necesarias por rol/equipo.</li>
+            <li>Ejemplos: Evento, Llamada telefónica, Tarea, Cliente, Contacto, etc.</li>
+            <li>Puede <b>personalizarse</b> para mostrar solo lo necesario por rol/equipo.</li>
           </ul>
 
           <div class="shot">
             <img src="quickadd_menu.png" alt="Menú de creación rápida (hojita con +)"/>
-            <div class="cap">
-              <strong>Así se ve el menú del +:</strong> lista de accesos rápidos para crear registros.
-            </div>
+            <div class="cap"><b>Menú del +:</b> accesos rápidos para crear registros.</div>
           </div>
 
           <div class="shot">
             <img src="quickadd_config.png" alt="Configuración del menú del +"/>
-            <div class="cap">
-              <strong>Personalización:</strong> puedes incluir/excluir opciones y definir el orden en que aparecen.
-            </div>
+            <div class="cap"><b>Personalización:</b> se puede ajustar qué aparece y en qué orden.</div>
           </div>
         </div>
 
@@ -374,13 +481,9 @@
           </div>
 
           <p>
-            La opción <strong>Ayuda</strong> lleva a la documentación oficial de NetSuite: artículos, guías y recursos de soporte.
+            <b>Ayuda</b> te lleva a la documentación oficial: artículos, guías y recursos de NetSuite.
+            Es útil para entender conceptos del sistema y resolver dudas frecuentes.
           </p>
-
-          <ul>
-            <li>Útil para entender conceptos del sistema y resolver dudas frecuentes.</li>
-            <li>Recomendado como primer punto de consulta para usuarios nuevos.</li>
-          </ul>
         </div>
 
         <!-- Área 5 -->
@@ -390,7 +493,7 @@
           </div>
 
           <p>
-            La opción <strong>Comentarios</strong> permite enviar retroalimentación o calificaciones relacionadas con el sistema,
+            <b>Comentarios</b> permite enviar retroalimentación o calificaciones relacionadas con el sistema,
             de acuerdo con las funcionalidades habilitadas por NetSuite.
           </p>
         </div>
@@ -402,29 +505,29 @@
           </div>
 
           <p>
-            Desde el nombre de usuario puedes ver el <strong>rol activo</strong> y acceder a opciones de sesión.
+            Desde el nombre de usuario puedes ver tu <b>rol activo</b> y acceder a opciones de sesión.
           </p>
 
           <ul>
-            <li><strong>Ver mis roles:</strong> cambiar el rol (si tienes más de uno asignado).</li>
-            <li><strong>Switch to another account:</strong> cambiar a otra cuenta/ambiente (si está habilitado).</li>
-            <li><strong>Cerrar sesión:</strong> finalizar la sesión actual.</li>
+            <li><b>Ver mis roles:</b> cambiar el rol (si tienes más de uno asignado).</li>
+            <li><b>Switch to another account:</b> cambiar a otra cuenta/ambiente (si está habilitado).</li>
+            <li><b>Cerrar sesión:</b> finalizar la sesión actual.</li>
           </ul>
 
           <div class="shot">
             <img src="user_menu.png" alt="Menú de usuario / roles en NetSuite"/>
-            <div class="cap">
-              <strong>Así se ve el menú del usuario:</strong> opciones de rol, cuenta/ambiente y cierre de sesión.
-            </div>
+            <div class="cap"><b>Menú del usuario:</b> rol, opciones de cuenta/ambiente y cierre de sesión.</div>
           </div>
         </div>
 
       </div>
     </div>
+
+    <div class="small">Guía interna · Tecnologías Médicas Colombia (TMC)</div>
   </div>
 
   <!-- Tooltip -->
-  <div class="tooltip" id="tooltip" role="tooltip">
+  <div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true">
     <div class="t" id="ttTitle"></div>
     <div class="d" id="ttDesc"></div>
   </div>
@@ -440,9 +543,13 @@
         ttTitle.textContent = title || '';
         ttDesc.textContent  = desc  || '';
         tooltip.style.display = 'block';
+        tooltip.setAttribute('aria-hidden', 'false');
         move(e);
       }
-      function hide(){ tooltip.style.display = 'none'; }
+      function hide(){
+        tooltip.style.display = 'none';
+        tooltip.setAttribute('aria-hidden', 'true');
+      }
 
       function move(e){
         const pad = 14;
@@ -461,6 +568,7 @@
       }
 
       document.querySelectorAll('.hotspot').forEach(hs => {
+        if(hs.classList.contains('frame')) return;
         hs.addEventListener('mouseenter', (e) => show(e, hs.dataset.title, hs.dataset.desc));
         hs.addEventListener('mousemove', (e) => move(e));
         hs.addEventListener('mouseleave', hide);
@@ -471,3 +579,4 @@
   </script>
 </body>
 </html>
+
