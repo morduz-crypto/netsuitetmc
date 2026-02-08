@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Ingreso a NetSuite · NetSuite TMC</title>
+
+  <style>
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.08);
+      --accent:#2563eb;
+      --accent2:#1d4ed8;
+      --shadow: 0 10px 22px rgba(0,0,0,.04);
+
+      --info-bg: rgba(37,99,235,.06);
+      --info-bd: rgba(37,99,235,.18);
+
+      --warn-bg: rgba(245, 158, 11, .12);
+      --warn-bd: rgba(245, 158, 11, .35);
+
+      --ok-bg: rgba(16, 185, 129, .10);
+      --ok-bd: rgba(16, 185, 129, .22);
+
+      --chip-bg: rgba(15,23,42,.03);
+      --chip-bd: rgba(15,23,42,.10);
+    }
+
+    *{ box-sizing:border-box }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    a{ color:var(--accent2); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:44px 22px 56px;
+    }
+
+    /* ===== TOPBAR (título + botones al lado) ===== */
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .titleBlock{ min-width: 260px; }
+    h1{
+      font-size:30px;
+      font-weight:900;
+      letter-spacing:-.02em;
+      margin:0;
+    }
+    .meta{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:6px;
+      line-height:1.6;
+      max-width:920px;
+    }
+
+    .topActions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--border);
+      background:var(--card);
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:900;
+      color:var(--text);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+      box-shadow:var(--shadow);
+      white-space:nowrap;
+    }
+    .btn.primary{
+      border-color: rgba(37,99,235,.25);
+      color: var(--accent2);
+      background: rgba(37,99,235,.06);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(37,99,235,.08);
+      color:var(--accent2);
+      border:1px solid rgba(37,99,235,.18);
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    /* ===== CALLOUTS ===== */
+    .callout{
+      background: var(--info-bg);
+      border: 1px solid var(--info-bd);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+      color:#334155;
+      line-height:1.75;
+      margin: 12px 0 14px;
+    }
+    .callout b{ color:var(--text); }
+    .callout .mini{
+      display:block;
+      color:#64748b;
+      font-weight:800;
+      margin-top:6px;
+      font-size:12px;
+    }
+
+    .note{
+      background: var(--ok-bg);
+      border: 1px solid var(--ok-bd);
+      border-radius: 16px;
+      padding: 12px 14px;
+      color:#064e3b;
+      line-height:1.65;
+      margin: 0 0 14px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+    }
+    .note b{ color:#052e16; }
+
+    .warning{
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-bd);
+      border-radius: 16px;
+      padding: 12px 14px;
+      color:var(--text);
+      line-height:1.65;
+      margin: 14px 0 0;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+    }
+
+    /* ===== CARDS ===== */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .cardHeader{
+      padding:16px 18px 12px;
+      border-bottom:1px solid var(--border);
+    }
+    .cardTitle{
+      margin:0;
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:-.01em;
+    }
+    .cardSub{
+      margin-top:6px;
+      color:#64748b;
+      font-weight:800;
+      font-size:12.5px;
+      line-height:1.45;
+    }
+    .cardBody{
+      padding:14px 18px 18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    /* ===== VIDEO ===== */
+    .videoWrap{
+      padding:14px 18px 18px;
+      background:#fff;
+    }
+    .player{
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
+      background:#000;
+      position:relative;
+    }
+    video{
+      display:block;
+      width:100%;
+      height:auto;
+      max-height: 520px;
+      background:#000;
+    }
+    .videoCap{
+      padding:10px 12px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background: rgba(15,23,42,.85);
+      color:#fff;
+      font-size:12.5px;
+      line-height:1.45;
+    }
+    .videoCap b{ color:#fff; }
+
+    /* ===== GRID (pasos rápidos) ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns:1fr; }
+    }
+    .miniCard{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
+      padding:14px 16px;
+    }
+    .miniCard h3{
+      margin:0 0 6px;
+      font-size:14px;
+      font-weight:900;
+      color:var(--text);
+      letter-spacing:-.01em;
+    }
+    .miniCard p{
+      margin:0;
+      color:#334155;
+      line-height:1.65;
+      font-size:13.5px;
+    }
+    .steps{
+      margin:10px 0 0 18px;
+      padding:0;
+      color:#334155;
+    }
+    .steps li{ margin:7px 0; }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-weight:900;
+      padding:2px 8px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background: rgba(15,23,42,.03);
+      color:#0f172a;
+      white-space:nowrap;
+    }
+
+    .small{
+      font-size:12px;
+      color:#64748b;
+      margin-top:22px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- TOP: título + botones al lado -->
+    <div class="topbar">
+      <div class="titleBlock">
+        <h1>Ingreso a NetSuite</h1>
+        <div class="meta">
+          Cómo entrar por primera vez y cómo dejar el acceso guardado para que no te enredes.
+          (Sección <b>2 de 6</b>)
+        </div>
+      </div>
+
+      <div class="topActions">
+        <a class="btn" href="index.html">🏠 Ir al Home</a>
+        <a class="btn" href="glosario.html">← Anterior (Glosario)</a>
+        <a class="btn primary" href="navegacion.html">Siguiente (Navegación) →</a>
+        <span class="pill">Sección 2 de 6</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      En tu correo te llegará un mensaje con asunto similar a <b>“¡Bienvenido a NetSuite con TMC!”</b>.
+      Desde ahí defines tu contraseña y ya puedes iniciar sesión.
+      <span class="mini">Tip: usa <b>Google Chrome</b> para mejor compatibilidad y rendimiento.</span>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="card">
+      <div class="cardHeader">
+        <p class="cardTitle">Video: cómo ingresar (paso a paso)</p>
+        <div class="cardSub">Dale play y sigue los pasos tal cual. Si algo no te carga, revisa el nombre del archivo del video.</div>
+      </div>
+
+      <div class="videoWrap">
+        <div class="player">
+          <video controls preload="metadata">
+            <source src="ingresons.mp4" type="video/mp4"/>
+            Tu navegador no soporta video HTML5.
+          </video>
+          <div class="videoCap">
+            <b>Archivo:</b> ingresons.mp4 — Debe estar en la misma carpeta de este HTML.
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="miniCard">
+            <h3>Ruta 1 — Desde el correo</h3>
+            <p>La más fácil para la primera vez.</p>
+            <ol class="steps">
+              <li>Abre el correo <b>“¡Bienvenido a NetSuite con TMC!”</b>.</li>
+              <li>Haz clic en el link para <b>crear tu contraseña</b>.</li>
+              <li>Guarda la contraseña y vuelve a iniciar sesión con tu <b>correo</b> como usuario.</li>
+            </ol>
+          </div>
+
+          <div class="miniCard">
+            <h3>Ruta 2 — Buscando el login</h3>
+            <p>Útil si no tienes el correo a la mano.</p>
+            <ol class="steps">
+              <li>En Google busca: <span class="kbd">netsuite login</span></li>
+              <li>Entra al login y escribe:</li>
+              <li><b>Usuario:</b> tu correo · <b>Contraseña:</b> la que acabas de crear.</li>
+              <li>Haz clic en <b>Log In</b>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:14px;">
+          <b>Recomendado:</b> cuando ya estés en la pantalla de login, guárdala en favoritos del navegador
+          para entrar más rápido la próxima vez.
+        </div>
+
+        <div class="warning">
+          Si te sale error de contraseña o bloqueo: revisa mayúsculas/minúsculas, intenta “olvidé mi contraseña”
+          o contacta a Tecnología.
+        </div>
+      </div>
+    </div>
+
+    <div class="small">Guía interna · Tecnologías Médicas Colombia (TMC)</div>
+  </div>
+</body>
+</html>
