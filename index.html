@@ -13,6 +13,8 @@
       --muted:#475569;
       --border:rgba(15,23,42,.08);
       --accent:#2563eb;
+      --accent2:#1d4ed8;
+      --shadow:0 10px 22px rgba(0,0,0,.05);
     }
 
     *{ box-sizing:border-box }
@@ -30,105 +32,87 @@
       padding:48px 28px 56px;
     }
 
+    /* ===== HERO LAYOUT (video + cards) ===== */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap:26px;
+      align-items:start;
+    }
+
+    @media(max-width: 980px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    /* ===== LEFT PANEL ===== */
     h1{
       font-size:34px;
       font-weight:900;
       letter-spacing:-.02em;
-      margin:0 0 18px;
+      margin:0 0 10px;
+      line-height:1.1;
     }
 
-    .divider{
-      height:1px;
-      background:var(--border);
-      margin:28px 0 40px;
+    .subtitle{
+      margin:0 0 16px;
+      color:var(--muted);
+      line-height:1.6;
+      max-width: 46ch;
+      font-size:14.5px;
     }
 
-    .video-wrap{
-      max-width:980px;
-      margin:0 auto 22px;
+    .videoCard{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
     }
 
     .video{
       width:100%;
-      border-radius:16px;
-      border:1px solid var(--border);
-      box-shadow:0 10px 22px rgba(0,0,0,.05);
-      background:#000;
       display:block;
+      background:#000;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
     }
 
+    .videoCap{
+      padding:12px 14px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:12.8px;
+      line-height:1.5;
+    }
+    .videoCap b{ color:var(--text); }
+
+    .quick{
+      margin-top:14px;
+      background:rgba(37,99,235,.06);
+      border:1px solid rgba(37,99,235,.16);
+      border-radius:16px;
+      padding:12px 14px;
+      color:#334155;
+      line-height:1.6;
+      font-size:13.5px;
+    }
+
+    .quick ul{
+      margin:8px 0 0 18px;
+      padding:0;
+    }
+    .quick li{ margin:6px 0; }
+
+    /* ===== RIGHT PANEL (cards) ===== */
     .cards{
       display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:22px;
+      grid-template-columns: repeat(2, 1fr);
+      gap:16px;
       align-items:stretch;
-    }
-
-    /* Centrar la última fila cuando hay 6 tarjetas (desktop 4 columnas) */
-    .cards > a:nth-last-child(2){
-      grid-column: 2;
-    }
-    .cards > a:last-child{
-      grid-column: 3;
-    }
-
-    @media(max-width:1100px){
-      .cards{ grid-template-columns: repeat(2,1fr); }
-
-      /* Reset centrado en tablet */
-      .cards > a:nth-last-child(2),
-      .cards > a:last-child{
-        grid-column: auto;
-      }
     }
 
     @media(max-width:600px){
       .cards{ grid-template-columns: 1fr; }
-    }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:22px;
-      display:flex;
-      flex-direction:column;
-      height:100%;
-      box-shadow:0 10px 22px rgba(0,0,0,.05);
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-
-    .card:hover{
-      transform: translateY(-2px);
-      box-shadow:0 16px 34px rgba(0,0,0,.08);
-    }
-
-    .card-icon{
-      width:40px;
-      height:40px;
-      border-radius:10px;
-      background:rgba(37,99,235,.08);
-      color:var(--accent);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:900;
-      font-size:18px;
-      margin-bottom:14px;
-    }
-
-    .card h3{
-      font-size:17px;
-      margin:0 0 8px;
-      font-weight:800;
-    }
-
-    .card p{
-      font-size:14px;
-      color:var(--muted);
-      line-height:1.5;
-      margin:0;
-      flex-grow:1;
     }
 
     a{
@@ -136,8 +120,78 @@
       color:inherit;
     }
 
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      box-shadow:var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow:0 16px 34px rgba(0,0,0,.08);
+      border-color: rgba(37,99,235,.22);
+    }
+
+    .cardTop{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:10px;
+    }
+
+    .card-icon{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      background:rgba(37,99,235,.08);
+      color:var(--accent);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      font-size:18px;
+      flex:0 0 auto;
+    }
+
+    .card h3{
+      font-size:16px;
+      margin:0;
+      font-weight:900;
+      letter-spacing:-.01em;
+      line-height:1.15;
+    }
+
+    .card p{
+      font-size:13.8px;
+      color:var(--muted);
+      line-height:1.55;
+      margin:0;
+      flex-grow:1;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(15,23,42,.03);
+      border:1px solid var(--border);
+      color:#334155;
+      font-weight:900;
+      font-size:12px;
+      width: fit-content;
+    }
+
     footer{
-      margin-top:56px;
+      margin-top:28px;
       font-size:13px;
       color:#64748b;
     }
@@ -147,85 +201,117 @@
 <body>
   <div class="container">
 
-    <h1>Guía Básica de NetSuite</h1>
+    <div class="hero">
 
-    <!-- VIDEO (después del título) -->
-    <div class="video-wrap">
-      <video class="video" controls playsinline preload="metadata">
-        <source src="./introns.mp4" type="video/mp4">
-        Tu navegador no soporta video.
-      </video>
-    </div>
+      <!-- LEFT: título + video -->
+      <div>
+        <h1>Guía Básica de NetSuite</h1>
+        <p class="subtitle">
+          Una guía corta para empezar sin enredarte: conceptos, ingreso, navegación y lo básico por áreas.
+        </p>
 
-    <div class="divider"></div>
-
-    <div class="cards">
-
-      <a href="glosario.html">
-        <div class="card">
-          <div class="card-icon">Aa</div>
-          <h3>Glosario</h3>
-          <p>
-            Conceptos y términos básicos que se usan en NetSuite
-            en las diferentes áreas de TMC.
-          </p>
+        <div class="videoCard">
+          <video class="video" controls playsinline preload="metadata">
+            <source src="./introns.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+          </video>
+          <div class="videoCap">
+            <b>Intro:</b> mira este video primero y luego entra a la sección que necesites.
+          </div>
         </div>
-      </a>
 
-      <a href="ingreso.html">
-        <div class="card">
-          <div class="card-icon">↪</div>
-          <h3>Ingreso a NetSuite</h3>
-          <p>
-            Cómo entrar al sistema, guardar el link y qué hacer
-            si no te deja iniciar sesión.
-          </p>
+        <div class="quick">
+          <b>¿Primera vez?</b>
+          <ul>
+            <li>Empieza por <b>Glosario</b> y <b>Ingreso</b>.</li>
+            <li>Luego sigue con <b>Navegación</b> y <b>Pantallas</b>.</li>
+            <li>Si te atascas, ve a <b>Soporte</b>.</li>
+          </ul>
         </div>
-      </a>
+      </div>
 
-      <a href="home_guia.html">
-        <div class="card">
-          <div class="card-icon">☰</div>
-          <h3>Navegación</h3>
-          <p>
-            Aprende cómo moverte dentro del sistema y
-            reconocer sus zonas principales.
-          </p>
-        </div>
-      </a>
+      <!-- RIGHT: cards -->
+      <div class="cards">
 
-      <a href="visuales.html">
-        <div class="card">
-          <div class="card-icon">▢</div>
-          <h3>Pantallas y vistas</h3>
-          <p>
-            Para no perderte: cómo se ven los formularios, registros,
-            búsquedas e informes en NetSuite.
-          </p>
-        </div>
-      </a>
+        <a href="glosario.html">
+          <div class="card">
+            <div class="cardTop">
+              <div class="card-icon">Aa</div>
+              <div>
+                <h3>Glosario</h3>
+              </div>
+            </div>
+            <p>Conceptos y términos básicos que se usan en NetSuite en las diferentes áreas de TMC.</p>
+            <span class="pill">Sección 1</span>
+          </div>
+        </a>
 
-      <a href="areas.html">
-        <div class="card">
-          <div class="card-icon">◼︎</div>
-          <h3>Áreas</h3>
-          <p>
-            Visión general de qué transacciones usa cada área
-            y cómo se conectan los procesos.
-          </p>
-        </div>
-      </a>
+        <a href="ingreso.html">
+          <div class="card">
+            <div class="cardTop">
+              <div class="card-icon">↪</div>
+              <div>
+                <h3>Ingreso a NetSuite</h3>
+              </div>
+            </div>
+            <p>Cómo entrar al sistema, guardar el link y qué hacer si no te deja iniciar sesión.</p>
+            <span class="pill">Sección 2</span>
+          </div>
+        </a>
 
-      <a href="soporte.html">
-        <div class="card">
-          <div class="card-icon">?</div>
-          <h3>Soporte</h3>
-          <p>
-            Qué hacer si algo no te carga, no te aparece o te da error.
-            Cómo pedir ayuda y qué información enviar.
-          </p>
-        </div>
-      </a>
+        <a href="home_guia.html">
+          <div class="card">
+            <div class="cardTop">
+              <div class="card-icon">☰</div>
+              <div>
+                <h3>Navegación</h3>
+              </div>
+            </div>
+            <p>Cómo moverte dentro del sistema y reconocer sus zonas principales.</p>
+            <span class="pill">Sección 3</span>
+          </div>
+        </a>
+
+        <a href="visuales.html">
+          <div class="card">
+            <div class="cardTop">
+              <div class="card-icon">▢</div>
+              <div>
+                <h3>Pantallas y vistas</h3>
+              </div>
+            </div>
+            <p>Cómo se ven formularios, registros, búsquedas e informes en NetSuite.</p>
+            <span class="pill">Sección 4</span>
+          </div>
+        </a>
+
+        <a href="areas.html">
+          <div class="card">
+            <div class="cardTop">
+              <div class="card-icon">◼︎</div>
+              <div>
+                <h3>Áreas</h3>
+              </div>
+            </div>
+            <p>Qué transacciones usa cada área y cómo se conectan los procesos.</p>
+            <span class="pill">Sección 5</span>
+          </div>
+        </a>
+
+        <a href="soporte.html">
+          <div class="card">
+            <div class="cardTop">
+              <div class="card-icon">?</div>
+              <div>
+                <h3>Soporte</h3>
+              </div>
+            </div>
+            <p>Qué hacer si algo no te carga, no te aparece o te da error. Cómo pedir ayuda.</p>
+            <span class="pill">Sección 6</span>
+          </div>
+        </a>
+
+      </div>
 
     </div>
 
