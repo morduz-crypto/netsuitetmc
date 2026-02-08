@@ -25,8 +25,9 @@
       --ok-bg: rgba(16, 185, 129, .10);
       --ok-bd: rgba(16, 185, 129, .22);
 
-      --pill-bg: rgba(15,23,42,.03);
-      --pill-bd: rgba(15,23,42,.10);
+      --chip-bg: rgba(15,23,42,.03);
+      --chip-bd: rgba(15,23,42,.10);
+
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
@@ -46,7 +47,7 @@
       padding:44px 22px 56px;
     }
 
-    /* ===== TOPBAR (título + botones al lado) ===== */
+    /* ===== TOPBAR (TÍTULO + BOTONES AL LADO) ===== */
     .topbar{
       display:flex;
       align-items:flex-start;
@@ -55,12 +56,24 @@
       flex-wrap:wrap;
       margin-bottom:12px;
     }
-    .titleBlock{ min-width: 260px; }
+    .titleRow{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      flex-wrap:wrap;
+      width:100%;
+      justify-content:space-between;
+    }
+    .titleLeft{
+      min-width:260px;
+      flex: 1 1 520px;
+    }
     h1{
       font-size:30px;
       font-weight:900;
       letter-spacing:-.02em;
       margin:0;
+      line-height:1.05;
     }
     .meta{
       font-size:13px;
@@ -76,6 +89,8 @@
       align-items:center;
       flex-wrap:wrap;
       justify-content:flex-end;
+      flex: 0 0 auto;
+      margin-top:2px;
     }
     .btn{
       display:inline-flex;
@@ -143,7 +158,18 @@
     }
     .note b{ color:#052e16; }
 
-    /* ===== CARD ===== */
+    .warn{
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-bd);
+      border-radius: 16px;
+      padding: 12px 14px;
+      color:var(--text);
+      line-height:1.65;
+      margin-top:14px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+    }
+
+    /* ===== CARD + TABS ===== */
     .card{
       background:var(--card);
       border:1px solid var(--border);
@@ -166,14 +192,7 @@
       font-weight:900;
       letter-spacing:-.01em;
     }
-    .cardBody{
-      padding:14px 18px 18px;
-      color:#334155;
-      line-height:1.7;
-      font-size:14px;
-    }
 
-    /* ===== TABS ===== */
     .tabs{
       display:flex;
       flex-wrap:wrap;
@@ -186,8 +205,8 @@
       gap:8px;
       padding:9px 11px;
       border-radius:999px;
-      border:1px solid var(--pill-bd);
-      background:var(--pill-bg);
+      border:1px solid var(--chip-bd);
+      background:var(--chip-bg);
       color:#1e293b;
       font-weight:900;
       font-size:12px;
@@ -201,6 +220,13 @@
       background: rgba(37,99,235,.10);
       border-color: rgba(37,99,235,.22);
       color:#0f172a;
+    }
+
+    .cardBody{
+      padding:14px 18px 18px;
+      color:#334155;
+      line-height:1.7;
+      font-size:14px;
     }
 
     .panel{ display:none; }
@@ -262,10 +288,39 @@
       font-size:13px;
       line-height:1.65;
     }
+    .miniBody ul{
+      margin:8px 0 0 18px;
+      padding:0;
+    }
+    .miniBody li{ margin:6px 0; }
+
+    /* ===== KEYCAPS ===== */
+    .keys{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .keycap{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow: 0 8px 16px rgba(0,0,0,.02);
+      font-weight:900;
+      font-size:12px;
+      color:#0f172a;
+      white-space:nowrap;
+      font-family: var(--mono);
+    }
+    .keycap span{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:#64748b;
+      font-weight:900;
+      font-size:12px;
+    }
 
     /* ===== SHOTS ===== */
     .shot{
-      margin-top:10px;
+      margin-top:12px;
       border:1px solid var(--border);
       border-radius:16px;
       overflow:hidden;
@@ -276,7 +331,7 @@
       display:block;
       width:100%;
       height:auto;
-      max-height:340px;
+      max-height:360px;
       object-fit:contain;
       background:#fff;
       border-bottom:1px solid var(--border);
@@ -287,7 +342,7 @@
       color:#64748b;
       font-weight:900;
       font-size:13px;
-      line-height:1.5;
+      line-height:1.55;
       background: linear-gradient(180deg, rgba(15,23,42,.02), rgba(15,23,42,.01));
       border-bottom:1px solid var(--border);
     }
@@ -295,11 +350,11 @@
       padding:10px 12px 12px;
       color:#334155;
       font-size:12.5px;
-      line-height:1.55;
+      line-height:1.6;
     }
     .cap b{ color:var(--text); }
 
-    /* ===== FLOW ===== */
+    /* ===== FLOWS ===== */
     .flowRow{
       display:flex;
       flex-wrap:wrap;
@@ -332,34 +387,6 @@
       user-select:none;
     }
 
-    /* ===== MESSAGES ===== */
-    .msg{
-      border:1px solid var(--border);
-      border-radius:14px;
-      overflow:hidden;
-      background:#fff;
-      margin-top:10px;
-    }
-    .msgHead{
-      padding:10px 12px;
-      background: rgba(245,158,11,.08);
-      border-bottom:1px solid rgba(245,158,11,.22);
-      color:#92400e;
-      font-weight:900;
-      font-size:12px;
-    }
-    .msgBody{
-      padding:10px 12px;
-      color:#334155;
-      font-size:13px;
-      line-height:1.55;
-    }
-    .mono{
-      font-family: var(--mono);
-      font-weight:900;
-      color:#0f172a;
-    }
-
     .hintLine{
       margin-top:10px;
       padding:10px 12px;
@@ -368,20 +395,9 @@
       background: rgba(37,99,235,.06);
       color:#1e293b;
       font-size:13px;
-      line-height:1.55;
+      line-height:1.6;
     }
     .hintLine b{ color:var(--text); }
-
-    .warn{
-      background: var(--warn-bg);
-      border: 1px solid var(--warn-bd);
-      border-radius: 16px;
-      padding: 12px 14px;
-      color:var(--text);
-      line-height:1.65;
-      margin-top:14px;
-      box-shadow: 0 10px 22px rgba(0,0,0,.02);
-    }
 
     .small{
       font-size:12px;
@@ -394,53 +410,52 @@
 <body>
   <div class="container">
 
-    <!-- TOPBAR -->
+    <!-- TOPBAR: TÍTULO + BOTONES AL LADO -->
     <div class="topbar">
-      <div class="titleBlock">
-        <h1>Pantallas y vistas</h1>
-        <div class="meta">
-          Esta sección es para que te “ubiques” rápido en NetSuite.
-          Te muestra <b>qué pantalla estás viendo</b>, <b>cómo leer mensajes</b> y <b>qué suele pasar después</b>.
+      <div class="titleRow">
+        <div class="titleLeft">
+          <h1>Pantallas y vistas</h1>
+          <div class="meta">
+            Para ubicarte rápido: <b>cómo reconocer</b> cada pantalla, <b>dónde están los filtros</b> y <b>qué hace cada botón</b>.
+          </div>
         </div>
-      </div>
 
-      <div class="topActions">
-        <a class="btn" href="index.html">🏠 Home</a>
-        <a class="btn" href="home_guia.html">← Navegación</a>
-        <a class="btn primary" href="areas.html">Áreas →</a>
-        <span class="pill">Sección 3 de 6</span>
+        <div class="topActions">
+          <a class="btn" href="index.html">🏠 Home</a>
+          <a class="btn" href="home_guia.html">← Navegación</a>
+          <a class="btn primary" href="areas.html">Áreas →</a>
+          <span class="pill">Sección 3 de 6</span>
+        </div>
       </div>
     </div>
 
     <div class="callout">
-      <b>¿Por qué te sirve esto?</b> Porque NetSuite tiene muchas pantallas, pero casi todas se entienden con la misma lógica:
-      <b>ver qué es</b> (formulario / lista / reporte) y <b>leer lo que el sistema te está diciendo</b>.
-      <span class="mini">Si algo no te deja guardar, el 90% de las veces es un campo obligatorio o un dato incoherente.</span>
+      <b>Truco para no perderte:</b> en la parte superior NetSuite casi siempre te dice <b>qué pantalla es</b> y en qué <b>modo</b> estás.
+      <span class="mini">Si algo falla, no adivines: lee el mensaje y corrige lo que el sistema te está pidiendo.</span>
     </div>
 
     <div class="note">
-      <b>Regla de oro:</b> no llenes campos “por llenar”. Usa información real.
-      Eso evita reprocesos y ayuda a las otras áreas.
+      <b>Regla de oro:</b> usa información real (no “rellenar por pasar”). Lo que tú guardas aquí lo usa otra área después.
     </div>
 
-    <!-- ===== CARD TABS ===== -->
     <div class="card">
       <div class="cardHeader">
-        <p class="cardTitle">Explora por pestañas</p>
+        <p class="cardTitle">Apréndelo por pestañas (lo básico de verdad)</p>
         <div class="tabs" role="tablist" aria-label="Pantallas y vistas">
-          <button class="tab active" data-tab="tab1" role="tab" aria-selected="true">🧩 Tipos de pantalla</button>
-          <button class="tab" data-tab="tab2" role="tab" aria-selected="false">⚠️ Campos y alertas</button>
-          <button class="tab" data-tab="tab3" role="tab" aria-selected="false">🔁 Qué pasa después</button>
-          <button class="tab" data-tab="tab4" role="tab" aria-selected="false">📊 Reportes y búsquedas</button>
+          <button class="tab active" data-tab="t_form" role="tab" aria-selected="true">🧾 Formularios</button>
+          <button class="tab" data-tab="t_rep" role="tab" aria-selected="false">📊 Informes</button>
+          <button class="tab" data-tab="t_search" role="tab" aria-selected="false">🔎 Búsquedas</button>
+          <button class="tab" data-tab="t_trans" role="tab" aria-selected="false">🔁 Transformaciones</button>
         </div>
       </div>
 
       <div class="cardBody">
 
-        <!-- TAB 1 -->
-        <section class="panel active" id="tab1" role="tabpanel">
+        <!-- ===== TAB: FORMULARIOS ===== -->
+        <section class="panel active" id="t_form" role="tabpanel">
           <p style="margin:0;">
-            En NetSuite, casi siempre vas a estar en una de estas 4 vistas. Si aprendes a reconocerlas, ya no te “pierdes”.
+            Un <b>Formulario (Form)</b> es una pantalla donde <b>creas</b> o <b>editas</b> información. Se reconoce porque normalmente vas a ver
+            opciones como <b>Editar</b>, <b>Guardar</b> y <b>Cancelar</b>.
           </p>
 
           <div class="grid2">
@@ -448,89 +463,57 @@
               <div class="miniHead">
                 <div class="emoji">🧩</div>
                 <div>
-                  <b>Formulario (Form)</b>
-                  <small>Sirve para crear o editar información.</small>
+                  <b>Tipos de formulario (lo que más vas a ver)</b>
+                  <small>No todos los formularios son “ventas”.</small>
                 </div>
               </div>
               <div class="miniBody">
-                Aquí llenas campos y guardas.
-                Ejemplos: <b>Cliente (Customer)</b>, <b>Oportunidad (Opportunity)</b>, <b>Cotización (Estimate)</b>, <b>Factura (Invoice)</b>.
+                <ul>
+                  <li><b>Entidad (Entity):</b> Cliente (Customer), Proveedor (Vendor), Empleado (Employee).</li>
+                  <li><b>Transacción (Transaction):</b> Cotización (Estimate), Orden de venta (Sales Order), Factura (Invoice), etc.</li>
+                  <li><b>Registro (Record):</b> registros internos/auxiliares (dependen del proceso y permisos).</li>
+                </ul>
               </div>
             </div>
 
             <div class="miniCard">
               <div class="miniHead">
-                <div class="emoji">📋</div>
+                <div class="emoji">👀</div>
                 <div>
-                  <b>Lista / Resultados (List / Results)</b>
-                  <small>Una tabla con registros.</small>
+                  <b>Modo VER vs EDITAR</b>
+                  <small>Esto te evita asustarte cuando “no te deja escribir”.</small>
                 </div>
               </div>
               <div class="miniBody">
-                Sirve para buscar y abrir registros.
-                Normalmente hay filtros y una tabla con columnas.
-              </div>
-            </div>
-
-            <div class="miniCard">
-              <div class="miniHead">
-                <div class="emoji">📊</div>
-                <div>
-                  <b>Reporte / Informe (Report)</b>
-                  <small>Sirve para consultar (no editar).</small>
+                <ul>
+                  <li><b>Ver (View):</b> estás consultando. Sueles ver botón <b>Editar</b>.</li>
+                  <li><b>Editar (Edit):</b> estás modificando. Sueles ver botón <b>Guardar</b>.</li>
+                </ul>
+                <div class="hintLine">
+                  <b>Tip visual:</b> arriba casi siempre verás el <b>nombre del registro</b> y su <b>tipo</b> (ej: “Cliente”, “Factura”…).
                 </div>
-              </div>
-              <div class="miniBody">
-                Muestra información resumida por fechas, estados, etc.
-                Sueles filtrar y descargar.
-              </div>
-            </div>
-
-            <div class="miniCard">
-              <div class="miniHead">
-                <div class="emoji">🔎</div>
-                <div>
-                  <b>Búsqueda guardada (Saved Search)</b>
-                  <small>Una lista “inteligente”.</small>
-                </div>
-              </div>
-              <div class="miniBody">
-                Es una lista creada para responder preguntas del negocio.
-                Ej: “pendientes”, “vencidos”, “por aprobar”, “por despachar”.
               </div>
             </div>
           </div>
-
-          <div class="shot">
-            <!-- Si tienes screenshot, reemplaza el placeholder por img -->
-            <div class="placeholder">
-              (Opcional) Screenshot: ejemplo de un <b>Formulario</b> vs una <b>Lista</b><br/>
-              Aquí puedes poner dos capturas para que sea visual.
-            </div>
-            <div class="cap">
-              <b>Tip rápido:</b> si ves botón de <b>Guardar</b>, casi seguro estás en un <b>Formulario</b>.
-            </div>
-          </div>
-        </section>
-
-        <!-- TAB 2 -->
-        <section class="panel" id="tab2" role="tabpanel">
-          <p style="margin:0;">
-            Lo más normal al empezar es que NetSuite “no deje guardar”. No es que esté dañado: normalmente falta algo.
-          </p>
 
           <div class="grid2">
             <div class="miniCard">
               <div class="miniHead">
-                <div class="emoji">✅</div>
+                <div class="emoji">⚠️</div>
                 <div>
                   <b>Campos obligatorios</b>
-                  <small>Si faltan, NO puedes guardar.</small>
+                  <small>Si faltan, NetSuite NO deja guardar.</small>
                 </div>
               </div>
               <div class="miniBody">
-                Si un campo es obligatorio, NetSuite lo marca y te muestra un mensaje.
-                Solución: <b>leer el mensaje</b> y llenar lo que falta.
+                Si no te deja guardar, normalmente:
+                <ul>
+                  <li>Falta un <b>campo obligatorio</b>, o</li>
+                  <li>Hay un dato incoherente (ej: fechas/estado/relación).</li>
+                </ul>
+                <div class="hintLine">
+                  <b>Clave:</b> lee el mensaje tal cual. Te dice exactamente qué falta.
+                </div>
               </div>
             </div>
 
@@ -538,147 +521,242 @@
               <div class="miniHead">
                 <div class="emoji">🧠</div>
                 <div>
-                  <b>Datos coherentes</b>
-                  <small>No “rellenar por pasar”.</small>
+                  <b>No “rellenar por pasar”</b>
+                  <small>Porque después otra área lo sufre.</small>
                 </div>
               </div>
               <div class="miniBody">
-                A veces sí deja guardar, pero lo que pongas afecta el proceso después.
-                Ej: impuestos, cuentas, saldos, inventario.
+                Un cliente/artículo/proveedor/transacción mal creada puede afectar:
+                <ul>
+                  <li>Despachos (SAC)</li>
+                  <li>Inventario y compras</li>
+                  <li>Cartera (saldos / pagos)</li>
+                  <li>Contabilidad (impuestos / cuentas)</li>
+                </ul>
               </div>
-            </div>
-          </div>
-
-          <div class="msg">
-            <div class="msgHead">⚠️ Ejemplo de mensaje típico</div>
-            <div class="msgBody">
-              <span class="mono">“Este campo es obligatorio: Cliente / Fecha / Artículo …”</span><br/>
-              Qué hacer: busca ese campo en el formulario, complétalo y vuelve a guardar.
-            </div>
-          </div>
-
-          <div class="msg">
-            <div class="msgHead">🔔 Ejemplo de alerta arriba del formulario</div>
-            <div class="msgBody">
-              <span class="mono">“No se puede guardar el registro”</span><br/>
-              Arriba suele aparecer el motivo. Revisa el texto completo (no lo ignores).
             </div>
           </div>
 
           <div class="shot">
             <div class="placeholder">
-              (Opcional) Screenshot: 1 captura de “campo obligatorio” + 1 captura de “mensaje arriba”
+              (Opcional) Screenshot de un FORMULARIO<br/>
+              Ideal: que se vea arriba el nombre del registro + botones (Editar/Guardar) + un ejemplo de campo obligatorio.
             </div>
             <div class="cap">
-              <b>Tip:</b> cuando tomes screenshot, que se vea el <b>mensaje completo</b> y el contexto (no recortado).
+              <b>Qué quiero que se vea:</b> arriba “qué es” y si estás en <b>View</b> o <b>Edit</b>.
             </div>
           </div>
-
-          <div class="hintLine">
-            <b>Si no entiendes el mensaje:</b> copia el texto tal cual y envíalo a soporte (en la sección de Soporte tienes el “speech” listo).
-          </div>
         </section>
 
-        <!-- TAB 3 -->
-        <section class="panel" id="tab3" role="tabpanel">
+        <!-- ===== TAB: INFORMES ===== -->
+        <section class="panel" id="t_rep" role="tabpanel">
           <p style="margin:0;">
-            En NetSuite, muchas cosas son “paso a paso”. No es para enredarte: es para llevar control del proceso.
-          </p>
-
-          <div class="divider" style="height:1px;background:var(--border);margin:12px 0;"></div>
-
-          <b style="color:#0f172a;">🧾 Ventas (Comercial / SAC)</b>
-          <div class="flowRow">
-            <span class="node">Oportunidad <small>(Opportunity)</small></span>
-            <span class="arrow">→</span>
-            <span class="node">Cotización <small>(Estimate)</small></span>
-            <span class="arrow">→</span>
-            <span class="node">Orden de venta <small>(Sales Order)</small></span>
-            <span class="arrow">→</span>
-            <span class="node">Factura <small>(Invoice)</small></span>
-          </div>
-          <div class="hintLine">
-            <b>Qué significa:</b> el sistema reutiliza la información del paso anterior (cliente, artículos, valores) para el siguiente.
-          </div>
-
-          <div class="divider" style="height:1px;background:var(--border);margin:12px 0;"></div>
-
-          <b style="color:#0f172a;">📦 Compras (Inventario / Compras)</b>
-          <div class="flowRow">
-            <span class="node">Orden de compra <small>(Purchase Order)</small></span>
-            <span class="arrow">→</span>
-            <span class="node">Recepción <small>(Item Receipt)</small></span>
-            <span class="arrow">→</span>
-            <span class="node">Factura de proveedor <small>(Vendor Bill)</small></span>
-          </div>
-          <div class="hintLine">
-            <b>Clave fácil:</b> no es “convertir” — es ir ejecutando pasos: comprar → recibir → facturar.
-          </div>
-
-          <div class="divider" style="height:1px;background:var(--border);margin:12px 0;"></div>
-
-          <b style="color:#0f172a;">🔄 Devoluciones</b>
-          <div class="flowRow">
-            <span class="node">Autorización de devolución <small>(Return Authorization)</small></span>
-            <span class="arrow">→</span>
-            <span class="node">Nota crédito <small>(Credit Memo)</small></span>
-          </div>
-          <div class="hintLine">
-            <b>Idea simple:</b> primero se registra la devolución, luego se formaliza el ajuste con la nota crédito.
-          </div>
-
-          <div class="warn">
-            <b>Dato importante:</b> si un paso queda incompleto, el siguiente proceso se frena o queda mal (inventario, saldos, impuestos, etc.).
-          </div>
-        </section>
-
-        <!-- TAB 4 -->
-        <section class="panel" id="tab4" role="tabpanel">
-          <p style="margin:0;">
-            Los reportes y búsquedas sirven para consultar. Si “no ves” algo, lo primero es revisar filtros.
+            Un <b>Informe (Report)</b> es para <b>consultar</b> información (no para editar). Se reconoce porque normalmente:
+            <b>muestra totales</b>, <b>resúmenes</b> y tiene una zona de <b>filtros</b>.
           </p>
 
           <div class="grid2">
             <div class="miniCard">
               <div class="miniHead">
-                <div class="emoji">🎛️</div>
+                <div class="emoji">🔎</div>
                 <div>
-                  <b>Filtros</b>
-                  <small>Fechas, estado, ubicación, etc.</small>
+                  <b>Cómo saber que estás en un Informe</b>
+                  <small>Se ve como “reporte”, no como formulario.</small>
                 </div>
               </div>
               <div class="miniBody">
-                Si el rango de fechas está mal, el reporte “sale vacío”.
-                Cambia filtros y vuelve a ejecutar/actualizar.
+                Señales típicas:
+                <ul>
+                  <li>Tabla con resultados y/o totales.</li>
+                  <li>Filtros visibles (muchas veces <b>abajo</b>).</li>
+                  <li>Botón para <b>Actualizar / Refrescar</b> resultados.</li>
+                </ul>
               </div>
             </div>
 
             <div class="miniCard">
               <div class="miniHead">
-                <div class="emoji">⬇️</div>
+                <div class="emoji">🎛️</div>
                 <div>
-                  <b>Descarga</b>
-                  <small>Excel/PDF (según permisos).</small>
+                  <b>Filtros (abajo) y el botón “Actualizar”</b>
+                  <small>Esto es lo que más confunde al nuevo.</small>
                 </div>
               </div>
               <div class="miniBody">
-                Muchos reportes y listas permiten exportar.
-                Si no ves el botón, puede ser por permisos del rol.
+                En reportes, aunque cambies filtros, <b>no cambia nada</b> hasta que:
+                <ul>
+                  <li>Le das a <b>Actualizar / Refresh</b> (o el botón equivalente).</li>
+                </ul>
+                <div class="hintLine">
+                  <b>Si ves flechitas ↑↓ o un “+”</b> en filtros, es porque hay <b>más filtros ocultos</b>.
+                </div>
               </div>
             </div>
           </div>
 
           <div class="shot">
             <div class="placeholder">
-              (Opcional) Screenshot: un Reporte mostrando “título arriba” + “filtros” + “botón exportar”
+              (Opcional) Screenshot de un INFORME<br/>
+              Ideal: se vea el título del reporte + filtros abajo + botón Actualizar + flechitas/+ de filtros.
             </div>
             <div class="cap">
-              <b>Tip:</b> antes de pedir ayuda, confirma: (1) fecha, (2) estado, (3) filtros.
+              <b>Resumen:</b> en Informes cambias filtros y luego <b>Actualizas</b> para ver el resultado.
             </div>
           </div>
 
+          <div class="warn">
+            <b>Tip:</b> si un reporte sale “vacío”, casi siempre es porque el <b>rango de fechas</b> o el <b>estado</b> está filtrando.
+          </div>
+        </section>
+
+        <!-- ===== TAB: BÚSQUEDAS ===== -->
+        <section class="panel" id="t_search" role="tabpanel">
+          <p style="margin:0;">
+            Una <b>Búsqueda guardada (Saved Search)</b> es como una lista inteligente.
+            Se reconoce porque ves una <b>tabla</b> y arriba una zona de <b>filtros</b> (muchas veces “recogidos”).
+          </p>
+
+          <div class="grid2">
+            <div class="miniCard">
+              <div class="miniHead">
+                <div class="emoji">🧭</div>
+                <div>
+                  <b>Dónde están los filtros (arriba)</b>
+                  <small>Normalmente se ven compactos.</small>
+                </div>
+              </div>
+              <div class="miniBody">
+                En búsquedas, los filtros suelen estar:
+                <ul>
+                  <li><b>Arriba</b> (antes de la tabla de resultados).</li>
+                  <li>Con un <b>+</b> o una flechita para <b>mostrar más filtros</b>.</li>
+                </ul>
+                <div class="hintLine">
+                  <b>Diferencia clave:</b> en búsquedas normalmente no es “Actualizar” abajo como reporte.
+                </div>
+              </div>
+            </div>
+
+            <div class="miniCard">
+              <div class="miniHead">
+                <div class="emoji">⌨️</div>
+                <div>
+                  <b>Cómo aplicar filtros (tecla)</b>
+                  <small>Esto te ahorra mil rabias.</small>
+                </div>
+              </div>
+              <div class="miniBody">
+                En búsquedas, cuando escribes un filtro:
+                <ul>
+                  <li>Usa <b>TAB</b> para salir del campo y que el sistema tome el valor.</li>
+                  <li>Luego ejecutas/actualizas la búsqueda (según el botón que tengas).</li>
+                </ul>
+
+                <div class="keys">
+                  <div class="keycap">TAB <span>para aplicar el valor</span></div>
+                  <div class="keycap">ENTER <span>no siempre aplica</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="shot">
+            <div class="placeholder">
+              (Opcional) Screenshot de una BÚSQUEDA<br/>
+              Ideal: se vea la tabla + filtros arriba + botón de ejecutar + un “+”/flechita de más filtros.
+            </div>
+            <div class="cap">
+              <b>Resumen:</b> en Búsquedas los filtros viven arriba; si están “escondidos”, usa el <b>+</b> o la flecha.
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== TAB: TRANSFORMACIONES ===== -->
+        <section class="panel" id="t_trans" role="tabpanel">
+          <p style="margin:0;">
+            Las <b>Transformaciones</b> pasan cuando una <b>transacción</b> se convierte en otra para continuar el proceso.
+            (No aplica para “entidades” como Cliente, ni para “reportes”.)
+          </p>
+
           <div class="hintLine">
-            <b>Si estás perdido:</b> revisa el título arriba y vuelve a <b>Home</b> para arrancar de nuevo.
+            <b>Idea simple:</b> transformar es “usar lo que ya tienes” para crear el siguiente documento sin volver a digitar todo.
+          </div>
+
+          <div class="grid2">
+            <div class="miniCard">
+              <div class="miniHead">
+                <div class="emoji">🧾</div>
+                <div>
+                  <b>Flujo común de Ventas</b>
+                  <small>Lo más típico en Comercial/SAC.</small>
+                </div>
+              </div>
+              <div class="miniBody">
+                <div class="flowRow">
+                  <span class="node">Oportunidad <small>(Opportunity)</small></span>
+                  <span class="arrow">→</span>
+                  <span class="node">Cotización <small>(Estimate)</small></span>
+                  <span class="arrow">→</span>
+                  <span class="node">Orden de venta <small>(Sales Order)</small></span>
+                  <span class="arrow">→</span>
+                  <span class="node">Factura <small>(Invoice)</small></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="miniCard">
+              <div class="miniHead">
+                <div class="emoji">🔄</div>
+                <div>
+                  <b>Devoluciones (cliente/proveedor)</b>
+                  <small>Para que entiendan la lógica.</small>
+                </div>
+              </div>
+              <div class="miniBody">
+                Ejemplo típico:
+                <div class="flowRow">
+                  <span class="node">Autorización de devolución <small>(Return Authorization)</small></span>
+                  <span class="arrow">→</span>
+                  <span class="node">Nota crédito <small>(Credit Memo)</small></span>
+                </div>
+                <div class="hintLine">
+                  <b>Traducción humana:</b> primero registras la devolución, luego ajustas la parte financiera con la nota crédito.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="miniCard" style="margin-top:14px;">
+            <div class="miniHead">
+              <div class="emoji">📦</div>
+              <div>
+                <b>Compras NO es “transformar todo el tiempo”</b>
+                <small>Es más “paso a paso”: comprar → recibir → facturar.</small>
+              </div>
+            </div>
+            <div class="miniBody">
+              En compras, muchas veces no se habla como “transformación”, sino como ejecutar etapas:
+              <div class="flowRow">
+                <span class="node">Orden de compra <small>(Purchase Order)</small></span>
+                <span class="arrow">→</span>
+                <span class="node">Recepción <small>(Item Receipt)</small></span>
+                <span class="arrow">→</span>
+                <span class="node">Factura de proveedor <small>(Vendor Bill)</small></span>
+              </div>
+              <div class="hintLine">
+                <b>Idea fácil:</b> cada documento confirma un paso del proceso.
+              </div>
+            </div>
+          </div>
+
+          <div class="shot">
+            <div class="placeholder">
+              (Opcional) Screenshot de botón “Transformar” o “Crear” desde una transacción<br/>
+              Ideal: que se vea dónde aparece la opción para crear el siguiente documento.
+            </div>
+            <div class="cap">
+              <b>Objetivo:</b> que el usuario entienda que esto solo aplica a <b>transacciones</b> y que es “continuar el flujo”.
+            </div>
           </div>
         </section>
 
