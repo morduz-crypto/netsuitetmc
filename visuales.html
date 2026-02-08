@@ -7,87 +7,37 @@
 
   <style>
     :root{
-      --bg:#f8fafc;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#475569;
+      --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#475569;
       --border:rgba(15,23,42,.08);
-      --accent:#2563eb;
-      --accent2:#1d4ed8;
+      --accent:#2563eb; --accent2:#1d4ed8;
       --shadow: 0 10px 22px rgba(0,0,0,.04);
-
-      --info-bg: rgba(37,99,235,.06);
-      --info-bd: rgba(37,99,235,.18);
-
-      --warn-bg: rgba(245, 158, 11, .12);
-      --warn-bd: rgba(245, 158, 11, .35);
-
-      --chip-bg: rgba(15,23,42,.03);
-      --chip-bd: rgba(15,23,42,.10);
+      --info-bg: rgba(37,99,235,.06); --info-bd: rgba(37,99,235,.18);
+      --warn-bg: rgba(245,158,11,.12); --warn-bd: rgba(245,158,11,.35);
+      --chip-bg: rgba(15,23,42,.03); --chip-bd: rgba(15,23,42,.10);
     }
-
     *{ box-sizing:border-box }
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
+      margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg); color:var(--text);
     }
     a{ color:var(--accent2); text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
-    .container{
-      max-width:1100px;
-      margin:0 auto;
-      padding:44px 22px 56px;
-    }
+    .container{ max-width:1100px; margin:0 auto; padding:44px 22px 56px; }
 
-    /* ===== TOPBAR (título + botones al lado) ===== */
+    /* TOP */
     .topbar{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:14px; flex-wrap:wrap; margin-bottom:14px;
     }
-    .titleBlock{ min-width: 260px; }
-    h1{
-      font-size:30px;
-      font-weight:900;
-      letter-spacing:-.02em;
-      margin:0;
-    }
-    .meta{
-      font-size:13px;
-      color:var(--muted);
-      margin-top:6px;
-      line-height:1.65;
-      max-width:920px;
-    }
-
-    .topActions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
+    h1{ font-size:30px; font-weight:900; letter-spacing:-.02em; margin:0; }
+    .meta{ font-size:13px; color:var(--muted); margin-top:6px; line-height:1.65; max-width:920px; }
+    .topActions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
     .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      border:1px solid var(--border);
-      background:var(--card);
-      padding:10px 12px;
-      border-radius:999px;
-      font-weight:900;
-      color:var(--text);
-      text-decoration:none;
-      cursor:pointer;
-      user-select:none;
-      box-shadow:var(--shadow);
-      white-space:nowrap;
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--border); background:var(--card);
+      padding:10px 12px; border-radius:999px; font-weight:900; color:var(--text);
+      box-shadow:var(--shadow); white-space:nowrap;
     }
     .btn.primary{
       border-color: rgba(37,99,235,.25);
@@ -95,123 +45,67 @@
       background: rgba(37,99,235,.06);
     }
     .pill{
-      display:inline-flex;
-      align-items:center;
-      padding:10px 12px;
-      border-radius:999px;
-      background:rgba(37,99,235,.08);
-      color:var(--accent2);
-      border:1px solid rgba(37,99,235,.18);
-      font-weight:900;
-      font-size:12px;
-      white-space:nowrap;
+      display:inline-flex; align-items:center; padding:10px 12px; border-radius:999px;
+      background:rgba(37,99,235,.08); color:var(--accent2);
+      border:1px solid rgba(37,99,235,.18); font-weight:900; font-size:12px; white-space:nowrap;
     }
 
-    /* ===== CALLOUT ===== */
+    /* CALLOUTS */
     .callout{
-      background: var(--info-bg);
-      border: 1px solid var(--info-bd);
-      border-radius: 16px;
-      padding: 14px 16px;
+      background: var(--info-bg); border: 1px solid var(--info-bd);
+      border-radius: 16px; padding: 14px 16px;
       box-shadow: 0 10px 22px rgba(0,0,0,.02);
-      color:#334155;
-      line-height:1.75;
-      margin: 0 0 14px;
+      color:#334155; line-height:1.75; margin: 0 0 16px;
     }
     .callout b{ color:var(--text); }
-
     .warning{
-      background: var(--warn-bg);
-      border: 1px solid var(--warn-bd);
-      border-radius: 16px;
-      padding: 12px 14px;
-      color:var(--text);
-      line-height:1.65;
-      margin: 14px 0 0;
+      background: var(--warn-bg); border: 1px solid var(--warn-bd);
+      border-radius: 16px; padding: 12px 14px; color:var(--text);
+      line-height:1.65; margin: 12px 0 0;
       box-shadow: 0 10px 22px rgba(0,0,0,.02);
     }
 
-    /* ===== TABS ===== */
-    .tabs{
+    /* SECTIONS */
+    .section{
+      margin-top:14px;
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:16px;
+      border-radius:18px;
       box-shadow:var(--shadow);
       overflow:hidden;
     }
-    .tabBar{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      padding:12px;
+    .sectionHead{
+      padding:16px 18px 14px;
       border-bottom:1px solid var(--border);
       background: rgba(15,23,42,.01);
+      display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
     }
-    .tabBtn{
-      border:1px solid var(--border);
-      background:#fff;
-      padding:10px 12px;
-      border-radius:999px;
-      font-weight:900;
-      color:#0f172a;
-      cursor:pointer;
-      user-select:none;
-      font-size:12.5px;
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-    }
-    .tabBtn.active{
-      border-color: rgba(37,99,235,.25);
-      background: rgba(37,99,235,.06);
-      color: var(--accent2);
-    }
-
-    .tabPanel{
-      display:none;
-      padding:16px 18px 18px;
-    }
-    .tabPanel.active{ display:block; }
-
-    .panelTitle{
+    .sectionTitle{
+      margin:0;
       font-size:16px;
       font-weight:900;
-      margin:0 0 8px;
       letter-spacing:-.01em;
-    }
-    .p{
-      margin:0 0 10px;
-      color:#334155;
-      line-height:1.75;
-      font-size:14px;
-    }
-
-    .chips{
       display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin:10px 0 0;
-    }
-    .chip{
-      display:inline-flex;
+      gap:10px;
       align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      background:var(--chip-bg);
-      border:1px solid var(--chip-bd);
-      color:#334155;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(37,99,235,.20);
+      background: rgba(37,99,235,.06);
+      color: var(--accent2);
       font-weight:900;
       font-size:12px;
       white-space:nowrap;
     }
+    .sectionBody{ padding:16px 18px 18px; }
 
     .grid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.05fr .95fr;
       gap:14px;
       align-items:start;
-      margin-top:12px;
     }
     @media (max-width: 980px){
       .grid{ grid-template-columns:1fr; }
@@ -227,26 +121,27 @@
     .cardHead{
       padding:14px 16px 10px;
       border-bottom:1px solid var(--border);
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
+      background: rgba(15,23,42,.01);
     }
-    .cardHead b{
-      font-size:13.5px;
-      letter-spacing:-.01em;
-    }
+    .cardHead b{ font-size:13.5px; letter-spacing:-.01em; }
     .cardBody{
       padding:12px 16px 14px;
       color:#334155;
       line-height:1.7;
       font-size:13.5px;
     }
-
+    .p{ margin:0 0 10px; color:#334155; line-height:1.75; font-size:14px; }
     .list{ margin:8px 0 0 18px; padding:0; }
     .list li{ margin:7px 0; }
 
-    /* ===== MEDIA (img/gif) ===== */
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 10px;
+      border-radius:999px; background:var(--chip-bg); border:1px solid var(--chip-bd);
+      color:#334155; font-weight:900; font-size:12px; white-space:nowrap;
+    }
+
+    /* MEDIA (mock pro) */
     .media{
       border:1px solid var(--border);
       border-radius:16px;
@@ -254,12 +149,184 @@
       background:#fff;
       box-shadow: 0 10px 22px rgba(0,0,0,.03);
     }
-    .media img, .media video{
-      display:block;
-      width:100%;
-      height:auto;
-      background:#0b1220;
+    .mediaTop{
+      padding:12px 12px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      background: rgba(15,23,42,.01);
     }
+    .mediaTop b{ font-size:13px; }
+    .mediaTop .mini{ font-size:12px; color:#64748b; font-weight:800; }
+
+    .shotWrap{
+      position:relative;
+      aspect-ratio: 16/10;
+      background:#0b1220;
+      overflow:hidden;
+    }
+    .zoomLayer{
+      position:absolute; inset:0;
+      transform-origin: 50% 40%;
+      animation: zoomSlow 7s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes zoomSlow{
+      0%,100%{ transform: scale(1) translateY(0); }
+      50%{ transform: scale(1.07) translateY(-6px); }
+    }
+
+    .mockShot{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1200px 500px at 30% -10%, rgba(37,99,235,.35), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 26px, transparent 26px 52px);
+      transform: scale(1.06);
+    }
+
+    .nsBar{
+      position:absolute; left:0; right:0; top:0;
+      height:46px; background: rgba(15,23,42,.72);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex; align-items:center; padding:0 14px; gap:10px;
+    }
+    .nsDot{ width:10px; height:10px; border-radius:999px; background: rgba(255,255,255,.22); }
+    .nsTitle{
+      color: rgba(255,255,255,.92);
+      font-weight:900; font-size:13px; letter-spacing:-.01em;
+    }
+    .nsRight{ margin-left:auto; display:flex; gap:8px; align-items:center; }
+    .nsPill{
+      color: rgba(255,255,255,.85);
+      border:1px solid rgba(255,255,255,.16);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:11.5px;
+      font-weight:900;
+      background: rgba(255,255,255,.06);
+      white-space:nowrap;
+    }
+
+    .nsBody{
+      position:absolute; left:12px; right:12px; top:60px; bottom:12px;
+      border-radius:14px; background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10); overflow:hidden;
+    }
+    .nsTabs{
+      display:flex; gap:8px; padding:12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+      flex-wrap:wrap;
+    }
+    .nsTab{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.88);
+      font-size:11.5px; font-weight:900;
+      background: rgba(255,255,255,.05);
+    }
+    .nsTab.active{
+      border-color: rgba(37,99,235,.55);
+      background: rgba(37,99,235,.18);
+      color: rgba(255,255,255,.95);
+    }
+    .nsFields{
+      padding:12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .nsField{
+      height:46px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      position:relative;
+      overflow:hidden;
+    }
+    .nsField:before{
+      content:"";
+      position:absolute; left:10px; top:10px;
+      width:42%; height:8px; border-radius:8px;
+      background: rgba(255,255,255,.14);
+    }
+    .nsField:after{
+      content:"";
+      position:absolute; left:10px; bottom:10px;
+      width:70%; height:10px; border-radius:10px;
+      background: rgba(255,255,255,.08);
+    }
+
+    /* Spotlight animado */
+    .spot{
+      position:absolute;
+      width:340px; height:220px;
+      border-radius:18px;
+      border:2px solid rgba(37,99,235,.65);
+      box-shadow: 0 0 0 2px rgba(255,255,255,.85), 0 18px 40px rgba(0,0,0,.35);
+      background: rgba(37,99,235,.10);
+      backdrop-filter: blur(2px);
+      animation: spotPath 7s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes spotPath{
+      0%{ transform: translate(12%, 18%); }
+      33%{ transform: translate(52%, 22%); }
+      66%{ transform: translate(24%, 56%); }
+      100%{ transform: translate(12%, 18%); }
+    }
+    /* Variantes por sección */
+    .spot.s2{ animation-name: spotPath2; }
+    @keyframes spotPath2{
+      0%{ transform: translate(10%, 22%); }
+      50%{ transform: translate(56%, 18%); }
+      100%{ transform: translate(10%, 22%); }
+    }
+    .spot.s3{ animation-name: spotPath3; }
+    @keyframes spotPath3{
+      0%{ transform: translate(16%, 55%); }
+      50%{ transform: translate(52%, 48%); }
+      100%{ transform: translate(16%, 55%); }
+    }
+    .spot.s4{ animation-name: spotPath4; }
+    @keyframes spotPath4{
+      0%{ transform: translate(14%, 24%); }
+      33%{ transform: translate(52%, 24%); }
+      66%{ transform: translate(34%, 58%); }
+      100%{ transform: translate(14%, 24%); }
+    }
+
+    .spotLabel{
+      position:absolute; left:10px; top:-38px;
+      background: rgba(15,23,42,.75);
+      border:1px solid rgba(255,255,255,.14);
+      color:#fff; padding:8px 10px;
+      border-radius:999px; font-size:12px; font-weight:900;
+      display:flex; gap:8px; align-items:center;
+      box-shadow: 0 12px 26px rgba(0,0,0,.25);
+      white-space:nowrap;
+    }
+    .spark{
+      width:8px; height:8px; border-radius:999px;
+      background: rgba(37,99,235,.95);
+      box-shadow: 0 0 0 6px rgba(37,99,235,.18);
+    }
+    .spot:after{
+      content:"";
+      position:absolute; inset:-60px;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.18), transparent 70%);
+      transform: translateX(-40%);
+      animation: shimmer 2.2s ease-in-out infinite;
+      opacity:.7;
+    }
+    @keyframes shimmer{
+      0%{ transform: translateX(-45%); }
+      100%{ transform: translateX(45%); }
+    }
+
     .cap{
       padding:10px 12px;
       border-top:1px solid var(--border);
@@ -269,68 +336,19 @@
     }
     .cap b{ color:#0f172a; }
 
-    /* ===== Micro “highlight” demo (sin GIF) ===== */
-    .highlightDemo{
-      position:relative;
-      border-radius:16px;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg,#ffffff, #fbfdff);
-      overflow:hidden;
-      padding:14px;
-      box-shadow: 0 10px 22px rgba(0,0,0,.03);
-    }
-    .hlRow{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-top:10px;
-    }
-    .hlBox{
-      width:100%;
-      height:180px;
-      border-radius:14px;
-      border:1px solid rgba(15,23,42,.10);
-      background:
-        linear-gradient(0deg, rgba(37,99,235,.05), rgba(37,99,235,.02)),
-        repeating-linear-gradient(90deg, rgba(15,23,42,.03) 0 28px, transparent 28px 56px);
-      position:relative;
-      overflow:hidden;
-    }
-    .hlPulse{
-      position:absolute;
-      inset:auto;
-      left:10%;
-      top:18%;
-      width:80%;
-      height:20%;
-      border-radius:12px;
-      border:3px solid rgba(37,99,235,.55);
-      box-shadow: 0 0 0 2px rgba(255,255,255,.9), 0 14px 26px rgba(0,0,0,.10);
-      animation: pulse 1.6s ease-in-out infinite;
-      background: rgba(37,99,235,.08);
-    }
-    @keyframes pulse{
-      0%,100%{ transform:translateY(0); opacity:.95; }
-      50%{ transform:translateY(-2px); opacity:1; }
-    }
-
-    .small{
-      font-size:12px;
-      color:#64748b;
-      margin-top:22px;
-    }
+    .small{ font-size:12px; color:#64748b; margin-top:22px; }
   </style>
 </head>
 
 <body>
   <div class="container">
 
-    <!-- TOP: título + botones AL LADO -->
     <div class="topbar">
-      <div class="titleBlock">
-        <h1>Pantallas y vistas</h1>
+      <div>
+        <h1>Pantallas y vistas en NetSuite</h1>
         <div class="meta">
-          Aquí vas a aprender a reconocer las pantallas más comunes en NetSuite:
-          <b>formularios</b>, <b>informes</b> y <b>búsquedas</b>.
-          La idea es que sepas “dónde estás parado” y qué hacer.
+          Esta sección te enseña a reconocer lo más común: <b>formularios</b>, <b>transformaciones</b>, <b>informes</b> y <b>búsquedas</b>.
+          La idea es que siempre sepas “dónde estás parado” antes de hacer clic.
         </div>
       </div>
 
@@ -343,290 +361,309 @@
     </div>
 
     <div class="callout">
-      <b>Dato importante:</b> en NetSuite casi todo se ve como un “formulario”.
-      Lo que cambia es <b>qué tipo</b> de información estás manejando: <b>Maestros</b>, <b>Transacciones</b> o <b>Registros</b>.
+      <b>Dato importante:</b> en NetSuite casi todo se ve como un formulario.
+      Lo que cambia es <b>qué tipo</b> de información estás manejando y <b>qué acción</b> vas a ejecutar.
     </div>
 
-    <div class="tabs">
-
-      <!-- TAB BUTTONS -->
-      <div class="tabBar">
-        <button class="tabBtn active" data-tab="tabForms">🧾 Formularios</button>
-        <button class="tabBtn" data-tab="tabMasters">🗂️ Maestros</button>
-        <button class="tabBtn" data-tab="tabTrans">🔄 Transacciones y transformaciones</button>
-        <button class="tabBtn" data-tab="tabReports">📊 Informes</button>
-        <button class="tabBtn" data-tab="tabSearch">🔎 Búsquedas</button>
-        <button class="tabBtn" data-tab="tabChecklist">✅ Checklist rápido</button>
+    <!-- 1) FORMULARIOS -->
+    <section class="section">
+      <div class="sectionHead">
+        <h2 class="sectionTitle">🧾 Formularios (lo que más vas a ver)</h2>
+        <span class="badge">Reconócelos por el título arriba</span>
       </div>
-
-      <!-- TAB: Formularios -->
-      <section class="tabPanel active" id="tabForms">
-        <h2 class="panelTitle">¿Qué es un formulario y cómo leerlo?</h2>
-        <p class="p">
-          Un <b>formulario</b> es la pantalla donde <b>creas</b>, <b>editas</b> o <b>ves</b> información.
-          Puede ser un cliente, una orden, una factura, un caso… todo es un formulario.
-        </p>
-
+      <div class="sectionBody">
         <div class="grid">
-
           <div class="card">
-            <div class="cardHead">
-              <b>Cómo saber “qué estás viendo”</b>
-            </div>
+            <div class="cardHead"><b>¿Qué es un formulario?</b></div>
             <div class="cardBody">
+              <p class="p">
+                Un <b>formulario</b> es la pantalla donde <b>ves</b>, <b>creas</b> o <b>editas</b> información:
+                clientes, cotizaciones, órdenes, casos, etc.
+              </p>
+
+              <p class="p"><b>En NetSuite hay 3 tipos grandes:</b></p>
               <ul class="list">
-                <li><b>Arriba siempre verás el nombre</b> del formulario (ej: Cliente, Cotización, Orden de compra, Caso).</li>
-                <li>También suele verse el <b>número</b> del documento cuando ya existe (ej: SO12345).</li>
-                <li>Los botones de acción (Guardar, Editar, etc.) están <b>arriba</b>.</li>
+                <li><b>🗂️ Maestros:</b> Cliente, Proveedor, Artículo, Empleado, Ubicación. (No “mueven dinero”, pero son base.)</li>
+                <li><b>🔄 Transacciones:</b> Oportunidad, Cotización, Orden de venta, Factura, OC, Pago, Traslado.</li>
+                <li><b>🧩 Registros:</b> Casos, Proyectos, Tareas y registros personalizados (seguimiento interno).</li>
               </ul>
 
               <div class="chips">
-                <span class="chip">👀 Modo vista: no puedes escribir</span>
-                <span class="chip">✏️ Modo edición: sí puedes escribir</span>
+                <span class="chip">📌 Mira el nombre arriba</span>
+                <span class="chip">📌 Mira el estado del registro</span>
+              </div>
+
+              <div class="warning">
+                <b>Regla básica:</b> antes de tocar un botón, confirma: ¿qué formulario es y en qué estado está?
               </div>
             </div>
           </div>
 
           <div class="media">
-            <img src="img_form_header.png" alt="Encabezado de formulario - ejemplo"/>
+            <div class="mediaTop">
+              <b>Demo (animación): Encabezado + pestañas + campos</b>
+              <span class="mini">reemplazable por screenshot real</span>
+            </div>
+            <div class="shotWrap" aria-label="Demo de formulario con zoom y spotlight">
+              <div class="zoomLayer">
+                <div class="mockShot"></div>
+
+                <div class="nsBar">
+                  <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
+                  <div class="nsTitle">Cliente · ACME S.A.S</div>
+                  <div class="nsRight">
+                    <span class="nsPill">Editar</span>
+                    <span class="nsPill">Crear</span>
+                    <span class="nsPill">Imprimir</span>
+                  </div>
+                </div>
+
+                <div class="nsBody">
+                  <div class="nsTabs">
+                    <span class="nsTab active">General</span>
+                    <span class="nsTab">Finanzas</span>
+                    <span class="nsTab">Dirección</span>
+                    <span class="nsTab">Comunicación</span>
+                  </div>
+                  <div class="nsFields">
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="spot">
+                <div class="spotLabel"><span class="spark"></span> Título + botones arriba</div>
+              </div>
+            </div>
             <div class="cap">
-              <b>Ejemplo:</b> en la parte superior ves el tipo de formulario y las acciones principales.
-              (Reemplaza esta imagen por tu screenshot recortado).
+              <b>Tip:</b> el título del formulario + los botones de acción (arriba) son tu punto de referencia principal.
             </div>
           </div>
-
         </div>
+      </div>
+    </section>
 
+    <!-- 2) VISTA VS EDICIÓN -->
+    <section class="section">
+      <div class="sectionHead">
+        <h2 class="sectionTitle">👀 Vista vs ✏️ Edición (y botones)</h2>
+        <span class="badge">Si puedes escribir = estás en edición</span>
+      </div>
+      <div class="sectionBody">
         <div class="grid">
-
-          <div class="media">
-            <!-- Si tienes gif, úsalo aquí. Si no, deja la imagen. -->
-            <img src="gif_edit_vs_view.gif" alt="Modo vista vs modo edición (gif opcional)"/>
-            <div class="cap">
-              <b>Mini clip (opcional):</b> diferencia entre <b>modo vista</b> y <b>modo edición</b>.
-              Si no tienes GIF, pon una imagen.
-            </div>
-          </div>
-
           <div class="card">
-            <div class="cardHead">
-              <b>Campos obligatorios y mensajes</b>
-            </div>
+            <div class="cardHead"><b>Cómo reconocerlo rápido</b></div>
             <div class="cardBody">
               <ul class="list">
-                <li>Si falta un campo obligatorio, NetSuite <b>no deja guardar</b>.</li>
-                <li>El sistema muestra un <b>mensaje arriba</b> diciendo qué falta.</li>
-                <li><b>No llenes por llenar</b>: lo que pongas aquí lo usará otra área después.</li>
+                <li><b>Modo Vista:</b> solo miras. Botones típicos: <b>Editar</b>, <b>Imprimir</b>, <b>Crear</b>.</li>
+                <li><b>Modo Edición:</b> puedes cambiar campos. Botones típicos: <b>Guardar</b>, <b>Guardar y cerrar</b>, <b>Cancelar</b>.</li>
+                <li>Si algo es obligatorio y falta, NetSuite te lo va a decir con un <b>mensaje arriba</b>.</li>
               </ul>
               <div class="warning">
-                <b>Tip:</b> cuando salga un mensaje de alerta, léelo completo.
-                Casi siempre te dice exactamente qué campo falta o qué está mal.
+                <b>No llenes por llenar:</b> lo que pongas lo va a usar otra área después.
               </div>
             </div>
           </div>
 
-        </div>
-
-        <div class="grid">
-
-          <div class="card">
-            <div class="cardHead">
-              <b>Pestañas y grupos de campos</b>
+          <div class="media">
+            <div class="mediaTop">
+              <b>Demo (animación): Botones + alertas</b>
+              <span class="mini">zoom suave + spotlight</span>
             </div>
+
+            <div class="shotWrap">
+              <div class="zoomLayer">
+                <div class="mockShot"></div>
+
+                <div class="nsBar">
+                  <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
+                  <div class="nsTitle">Orden de venta · SO12345</div>
+                  <div class="nsRight">
+                    <span class="nsPill">Guardar</span>
+                    <span class="nsPill">Guardar y cerrar</span>
+                    <span class="nsPill">Cancelar</span>
+                  </div>
+                </div>
+
+                <div class="nsBody">
+                  <div class="nsTabs">
+                    <span class="nsTab active">Artículos</span>
+                    <span class="nsTab">Envío</span>
+                    <span class="nsTab">Facturación</span>
+                  </div>
+                  <div class="nsFields">
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="spot s2">
+                <div class="spotLabel"><span class="spark"></span> Guardar / Guardar y cerrar</div>
+              </div>
+            </div>
+
+            <div class="cap">
+              <b>Tip:</b> si hay un error, mira arriba: el mensaje casi siempre te dice qué falta.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) TRANSFORMACIONES -->
+    <section class="section">
+      <div class="sectionHead">
+        <h2 class="sectionTitle">🔄 Transformaciones (crear un documento desde otro)</h2>
+        <span class="badge">“Crear” = siguiente paso del flujo</span>
+      </div>
+      <div class="sectionBody">
+        <div class="grid">
+          <div class="card">
+            <div class="cardHead"><b>Qué significa “transformar”</b></div>
             <div class="cardBody">
+              <p class="p">
+                Una <b>transformación</b> es cuando NetSuite genera un documento <b>a partir de otro</b>.
+                Ej: de una cotización creas una orden de venta.
+              </p>
+
+              <p class="p"><b>Flujos típicos:</b></p>
               <ul class="list">
-                <li>Muchos formularios tienen <b>pestañas</b> (General, Finanzas, Dirección, Artículos…).</li>
-                <li>Además, los campos se organizan en <b>grupos</b> con títulos (ej: “Información del cliente”, “Facturación”, “Envío”…).</li>
-                <li>Estos <b>grupos pueden estar en la parte principal</b> o dentro de pestañas.</li>
+                <li><b>Ventas:</b> Oportunidad → Cotización → Orden de venta → Factura</li>
+                <li><b>Compras:</b> Orden de compra → Recepción (Item Receipt) → Factura proveedor</li>
+                <li><b>Devolución cliente:</b> Factura → Return Authorization → Nota crédito</li>
               </ul>
+
+              <div class="warning">
+                <b>Tip:</b> antes de crear/transformar, confirma que el documento base esté correcto.
+              </div>
             </div>
           </div>
 
           <div class="media">
-            <img src="img_form_fieldgroups.png" alt="Grupos de campos en formulario"/>
+            <div class="mediaTop">
+              <b>Demo (animación): Botón “Crear”</b>
+              <span class="mini">spotlight en menú de acciones</span>
+            </div>
+
+            <div class="shotWrap">
+              <div class="zoomLayer">
+                <div class="mockShot"></div>
+
+                <div class="nsBar">
+                  <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
+                  <div class="nsTitle">Cotización · EST4567</div>
+                  <div class="nsRight">
+                    <span class="nsPill">Editar</span>
+                    <span class="nsPill">Crear</span>
+                    <span class="nsPill">Acciones</span>
+                  </div>
+                </div>
+
+                <div class="nsBody">
+                  <div class="nsTabs">
+                    <span class="nsTab active">General</span>
+                    <span class="nsTab">Artículos</span>
+                    <span class="nsTab">Comunicación</span>
+                  </div>
+                  <div class="nsFields">
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="spot s3">
+                <div class="spotLabel"><span class="spark"></span> Crear → siguiente documento</div>
+              </div>
+            </div>
+
             <div class="cap">
-              <b>Ejemplo:</b> los campos suelen venir agrupados por secciones con nombres.
-            </div>
-          </div>
-
-        </div>
-
-        <div class="highlightDemo" style="margin-top:14px;">
-          <b style="font-size:13.5px;">Mini demo visual (sin archivos extra)</b>
-          <div class="p" style="margin-top:6px;">
-            Esto simula cómo NetSuite “resalta” zonas importantes (títulos, grupos, campos clave).
-            Si luego quieres, aquí mismo ponemos un GIF o un screenshot real.
-          </div>
-          <div class="hlBox">
-            <div class="hlPulse" aria-hidden="true"></div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- TAB: Maestros -->
-      <section class="tabPanel" id="tabMasters">
-        <h2 class="panelTitle">Maestros: la base del sistema</h2>
-        <p class="p">
-          Los <b>Maestros</b> son la información “base” que el sistema necesita para operar.
-          No son ventas ni compras: son datos que se usan en muchas partes.
-        </p>
-
-        <div class="card">
-          <div class="cardHead"><b>Ejemplos de Maestros</b></div>
-          <div class="cardBody">
-            <div class="chips">
-              <span class="chip">👤 Cliente (Customer)</span>
-              <span class="chip">🏢 Proveedor (Vendor)</span>
-              <span class="chip">📦 Artículo (Item)</span>
-              <span class="chip">🧑‍💼 Empleado (Employee)</span>
-              <span class="chip">📍 Ubicación (Location)</span>
-            </div>
-            <div class="warning" style="margin-top:12px;">
-              <b>Idea clave:</b> si un maestro queda incompleto, después otra área se frena.
-              Por eso es mejor hacerlo bien desde el inicio.
+              <b>Regla:</b> “Crear” no es decorativo — normalmente genera el siguiente documento del proceso.
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- TAB: Transacciones + transformaciones -->
-      <section class="tabPanel" id="tabTrans">
-        <h2 class="panelTitle">Transacciones y “transformaciones”</h2>
-        <p class="p">
-          Una <b>Transacción</b> es un documento que registra un movimiento del negocio.
-          Y una <b>transformación</b> es cuando un documento se genera <b>a partir de otro</b>.
-        </p>
-
-        <div class="card">
-          <div class="cardHead"><b>Flujos comunes (lo que más verás)</b></div>
-          <div class="cardBody">
-            <ul class="list">
-              <li><b>Compras:</b> Orden de compra (Purchase Order) → Recepción de artículo (Item Receipt) → Factura de proveedor (Vendor Bill)</li>
-              <li><b>Ventas:</b> Oportunidad (Opportunity) → Cotización (Estimate) → Orden de venta (Sales Order) → Factura (Invoice)</li>
-              <li><b>Devoluciones cliente:</b> Factura (Invoice) → Autorización de devolución (Return Authorization) → Nota crédito (Credit Memo)</li>
-              <li><b>Devoluciones a proveedor:</b> (según proceso) se gestionan devoluciones y ajustes relacionados a compras.</li>
-            </ul>
-
-            <div class="warning">
-              <b>Tip:</b> si ves un botón tipo <b>“Crear”</b> o <b>“Transformar”</b> dentro de una transacción,
-              normalmente significa que vas a generar el siguiente documento del flujo.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB: Informes -->
-      <section class="tabPanel" id="tabReports">
-        <h2 class="panelTitle">Informes: para ver resultados y controlar</h2>
-        <p class="p">
-          Un <b>Informe</b> es una pantalla para analizar información (ventas, cartera, inventario, etc.).
-          Se reconoce porque tiene una estructura tipo “reporte” y una zona de <b>filtros</b>.
-        </p>
-
+    <!-- 4) INFORMES VS BÚSQUEDAS -->
+    <section class="section">
+      <div class="sectionHead">
+        <h2 class="sectionTitle">📊 Informes vs 🔎 Búsquedas (cómo reconocerlos)</h2>
+        <span class="badge">Filtros abajo (Informe) vs arriba (Búsqueda)</span>
+      </div>
+      <div class="sectionBody">
         <div class="grid">
           <div class="card">
-            <div class="cardHead"><b>Cómo funcionan los filtros en Informes</b></div>
+            <div class="cardHead"><b>La diferencia (simple y útil)</b></div>
             <div class="cardBody">
               <ul class="list">
-                <li>Los filtros suelen estar <b>en la parte inferior</b> del reporte.</li>
-                <li>Si ves una flechita o un <b>+</b>, significa que hay <b>más filtros</b> para desplegar.</li>
-                <li>Después de cambiar filtros, normalmente debes dar clic en <b>Actualizar</b> para que el reporte tome los cambios.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="media">
-            <img src="img_report_filters.png" alt="Filtros de informe - ejemplo"/>
-            <div class="cap">
-              <b>Ejemplo:</b> filtros abajo + botón <b>Actualizar</b>.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB: Búsquedas -->
-      <section class="tabPanel" id="tabSearch">
-        <h2 class="panelTitle">Búsquedas: listas con filtros arriba</h2>
-        <p class="p">
-          Una <b>Búsqueda</b> muestra resultados en tabla (como una lista).
-          Se reconoce porque suele tener filtros <b>arriba</b> y resultados abajo.
-        </p>
-
-        <div class="grid">
-          <div class="card">
-            <div class="cardHead"><b>Cómo funcionan los filtros en Búsquedas</b></div>
-            <div class="cardBody">
-              <ul class="list">
-                <li>Los filtros suelen estar <b>en la parte superior</b>.</li>
-                <li>Muchas veces aparecen “recogidos”; si ves un <b>+</b> puedes desplegar más filtros.</li>
-                <li>A diferencia de los informes, muchas búsquedas aplican con <b>TAB</b> (no necesitas “Enter”).</li>
+                <li><b>📊 Informe:</b> está pensado para análisis/resumen. Normalmente tiene filtros <b>abajo</b> y botón <b>Actualizar</b>.</li>
+                <li><b>🔎 Búsqueda:</b> es una lista en tabla. Normalmente tiene filtros <b>arriba</b> y resultados abajo.</li>
               </ul>
 
               <div class="chips">
-                <span class="chip">⌨️ Tecla clave: TAB</span>
-                <span class="chip">➕ “+” = más filtros</span>
+                <span class="chip">📊 Informe: botón “Actualizar”</span>
+                <span class="chip">🔎 Búsqueda: filtros arriba</span>
+                <span class="chip">⌨️ En búsquedas: TAB ayuda a aplicar</span>
+              </div>
+
+              <div class="warning">
+                <b>Tip:</b> si no te aparecen datos, revisa primero los filtros (y en informes recuerda “Actualizar”).
               </div>
             </div>
           </div>
 
           <div class="media">
-            <img src="img_search_filters.png" alt="Filtros de búsqueda - ejemplo"/>
+            <div class="mediaTop">
+              <b>Demo (animación): zona de filtros</b>
+              <span class="mini">spotlight moviéndose por “filtros”</span>
+            </div>
+
+            <div class="shotWrap">
+              <div class="zoomLayer">
+                <div class="mockShot"></div>
+
+                <div class="nsBar">
+                  <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
+                  <div class="nsTitle">Reporte / Búsqueda · Vista de resultados</div>
+                  <div class="nsRight">
+                    <span class="nsPill">Exportar</span>
+                    <span class="nsPill">Actualizar</span>
+                  </div>
+                </div>
+
+                <div class="nsBody">
+                  <div class="nsTabs">
+                    <span class="nsTab active">Resultados</span>
+                    <span class="nsTab">Gráficos</span>
+                    <span class="nsTab">Más</span>
+                  </div>
+                  <div class="nsFields">
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="spot s4">
+                <div class="spotLabel"><span class="spark"></span> Filtros + Actualizar</div>
+              </div>
+            </div>
+
             <div class="cap">
-              <b>Ejemplo:</b> filtros arriba + tabla de resultados.
+              <b>Truco:</b> si ves “Actualizar”, probablemente estás en un reporte (o una vista tipo reporte).
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- TAB: Checklist -->
-      <section class="tabPanel" id="tabChecklist">
-        <h2 class="panelTitle">Checklist rápido (para no perderte)</h2>
-        <p class="p">
-          Si eres nuevo y no sabes qué hacer, usa esta lista:
-        </p>
-
-        <div class="card">
-          <div class="cardHead"><b>Antes de hacer clic en Guardar o Crear…</b></div>
-          <div class="cardBody">
-            <ul class="list">
-              <li>¿Qué formulario es? (mira el título arriba)</li>
-              <li>¿Estoy en <b>vista</b> o en <b>edición</b>?</li>
-              <li>¿Hay campos obligatorios pendientes?</li>
-              <li>¿Hay pestañas o grupos donde falte información?</li>
-              <li>¿Hay un mensaje arriba (alerta) que me esté diciendo qué falta?</li>
-              <li>Si es un informe: ¿ya di <b>Actualizar</b> después de cambiar filtros?</li>
-              <li>Si es una búsqueda: ¿usé <b>TAB</b> para aplicar los filtros?</li>
-            </ul>
-
-            <div class="warning">
-              <b>Idea clave:</b> lo que haces en un área puede afectar a otras (ventas, inventario, cartera y contabilidad).
-              Por eso, es mejor dejar la información clara desde el inicio.
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
+      </div>
+    </section>
 
     <div class="small">Guía interna · Tecnologías Médicas Colombia (TMC)</div>
   </div>
-
-  <script>
-    // Tabs
-    document.querySelectorAll('.tabBtn').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const target = btn.dataset.tab;
-
-        document.querySelectorAll('.tabBtn').forEach(b=>b.classList.remove('active'));
-        document.querySelectorAll('.tabPanel').forEach(p=>p.classList.remove('active'));
-
-        btn.classList.add('active');
-        document.getElementById(target).classList.add('active');
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
-  </script>
 </body>
 </html>
+
