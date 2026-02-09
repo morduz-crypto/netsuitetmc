@@ -630,13 +630,58 @@
       </section>
 
       <!-- TAB 4 -->
-      <section class="tabPanel" id="tabSearch">
-        <h2 class="panelTitle">Búsquedas</h2>
-        <div class="placeholder">
-          <b>En construcción:</b> aquí vamos a explicar qué es una búsqueda, cómo se ve (tabla + filtros arriba),
-          y trucos como TAB para aplicar filtros.
-        </div>
-      </section>
+<section class="tabPanel" id="tabSearch">
+  <h2 class="panelTitle">Búsquedas</h2>
+
+  <p class="p">
+    Una <b>búsqueda</b> sirve para listar y trabajar registros
+    (cotizaciones, órdenes, clientes, casos, etc.).
+    A diferencia de un informe, desde una búsqueda puedes
+    <b>abrir y editar</b> registros.
+  </p>
+
+  <p class="p">
+    <b>Diferencia clave:</b>
+    informe = análisis · búsqueda = trabajo operativo.
+  </p>
+
+  <!-- Imagen con hotspots -->
+  <div class="media" style="margin-top:12px;">
+    <div class="mediaTop">
+      <b>Ejemplo real: Búsqueda en NetSuite</b>
+      <span class="mini">toca los puntos</span>
+    </div>
+
+    <div class="shotWrap" style="aspect-ratio:16/9;">
+      <img
+        src="imgbusqueda_cotizaciones.png"
+        alt="Búsqueda NetSuite - Cotizaciones"
+      />
+
+      <button class="hsDot" style="left:10%;top:9%;" data-title="① Título de la búsqueda"
+        data-text="Indica qué tipo de registros estás viendo.">1</button>
+
+      <button class="hsDot" style="left:18%;top:14%;" data-title="② Volver a criterios"
+        data-text="Permite cambiar filtros o condiciones (según permisos).">2</button>
+
+      <button class="hsDot" style="left:8%;top:22%;" data-title="③ Filtros"
+        data-text="Definen qué registros aparecen en la lista.">3</button>
+
+      <button class="hsDot" style="left:6%;top:38%;" data-title="④ Editar / Ver"
+        data-text="Desde aquí entras directamente al registro.">4</button>
+
+      <button class="hsDot" style="left:45%;top:45%;" data-title="⑤ Tabla de resultados"
+        data-text="Cada fila es un registro real del sistema.">5</button>
+
+      <button class="hsDot" style="left:92%;top:18%;" data-title="⑥ Exportar"
+        data-text="Descarga la lista en Excel o PDF.">6</button>
+
+      <!-- tooltip reutiliza el mismo script de Informes -->
+      <div class="hsTip" id="hsTipSearch"></div>
+    </div>
+  </div>
+</section>
+
     </div>
 
     <div class="small">Guía interna · Tecnologías Médicas Colombia (TMC)</div>
