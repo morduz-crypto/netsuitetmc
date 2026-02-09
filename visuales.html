@@ -282,7 +282,217 @@
       <section class="tabPanel" id="tabReports">
         <h2 class="panelTitle">Informes</h2>
         <div class="placeholder">
-          <b>En construcción:</b> aquí vamos a explicar cómo reconocer un informe, filtros, Actualizar, Exportar y tips prácticos.
+      <!-- TAB 3: INFORMES -->
+<section class="tabPanel" id="tabReports">
+  <h2 class="panelTitle">Informes</h2>
+  <p class="p">
+    Un <b>informe</b> es para analizar resultados (ventas, cartera, inventario, etc.).
+    Se reconoce porque tiene <b>tabla de resultados</b>, <b>filtros</b> y un botón de <b>Actualizar</b>.
+  </p>
+
+  <!-- ===== Imagen 1: Reporte completo con hotspots ===== -->
+  <div class="media" style="margin-top:12px;">
+    <div class="mediaTop">
+      <b>Ejemplo real: Reporte en NetSuite</b>
+      <span class="mini">toca los puntos</span>
+    </div>
+
+    <div class="shotWrap" style="aspect-ratio: 16/9; background:#0b1220;">
+      <img
+        src="img/reporte_inventario.png"
+        alt="Reporte NetSuite - ejemplo"
+        style="width:100%;height:100%;object-fit:cover;display:block;"
+      />
+
+      <!-- Hotspots (posiciones en %) -->
+      <button class="hsDot" data-title="① Título del reporte"
+        data-text="Indica qué información estás consultando."
+        style="left: 9%; top: 8%;">
+        1
+      </button>
+
+      <button class="hsDot" data-title="② Ver detalle / Ver resumen"
+        data-text="Cambia el nivel de información (resumen vs detalle). No cambia los datos, solo la vista."
+        style="left: 20.5%; top: 8.5%;">
+        2
+      </button>
+
+      <button class="hsDot" data-title="③ Tabla de resultados"
+        data-text="Aquí ves la información del reporte. Es solo consulta: no modifica nada."
+        style="left: 16%; top: 22%;">
+        3
+      </button>
+
+      <button class="hsDot" data-title="④ Filtros (parte inferior)"
+        data-text="Aquí defines qué quieres ver: fecha, subsidiaria, libro contable, etc."
+        style="left: 14%; top: 90%;">
+        4
+      </button>
+
+      <button class="hsDot" data-title="⑤ Botón “Más”"
+        data-text="Hay más filtros disponibles, pero están ocultos."
+        style="left: 63%; top: 90%;">
+        5
+      </button>
+
+      <button class="hsDot" data-title="⑥ Botón “Actualizar”"
+        data-text="Aplica los filtros. Si no haces clic aquí, el reporte no cambia."
+        style="left: 3.8%; top: 94.2%;">
+        6
+      </button>
+
+      <!-- Tooltip -->
+      <div class="hsTip" id="hsTip" aria-hidden="true">
+        <div class="hsTipTitle" id="hsTipTitle"></div>
+        <div class="hsTipText" id="hsTipText"></div>
+        <div class="hsTipHint">Clic afuera para cerrar</div>
+      </div>
+    </div>
+
+    <div class="cap">
+      <b>Tip:</b> la mayoría de errores en reportes pasa por esto: cambiar filtros y no dar <b>Actualizar</b>.
+    </div>
+  </div>
+
+  <!-- ===== Imagen 2: Toolbar (Exportar, PDF, Excel, etc.) ===== -->
+  <div class="media" style="margin-top:14px;">
+    <div class="mediaTop">
+      <b>Barra de acciones (Exportar)</b>
+      <span class="mini">toca los puntos</span>
+    </div>
+
+    <div class="shotWrap" style="aspect-ratio: 16/3; background:#0b1220;">
+      <img
+        src="img/reporte_toolbar.png"
+        alt="Toolbar del reporte - exportar"
+        style="width:100%;height:100%;object-fit:contain;display:block;background:#fff;"
+      />
+
+      <!-- Exportar: Excel/PDF (ajusta la posición según tu recorte) -->
+      <button class="hsDot small" data-title="⑦ Exportar"
+        data-text="Descarga el reporte con los filtros aplicados (Excel o PDF)."
+        style="left: 60%; top: 52%;">
+        7
+      </button>
+    </div>
+
+    <div class="cap">
+      <b>Clave:</b> exporta después de filtrar y actualizar, así te baja el reporte correcto.
+    </div>
+  </div>
+
+  <!-- ===== Texto corto debajo ===== -->
+  <div class="card" style="margin-top:14px;">
+    <div class="cardBody">
+      <p class="p" style="margin-bottom:8px;"><b>¿Cómo leer un reporte en NetSuite?</b></p>
+      <ul class="list" style="margin-top:0;">
+        <li><b>① Título del reporte:</b> indica qué estás consultando.</li>
+        <li><b>② Ver detalle / Ver resumen:</b> cambia el nivel de vista (no los datos).</li>
+        <li><b>③ Tabla:</b> resultados del reporte (solo consulta).</li>
+        <li><b>④ Filtros abajo:</b> define fecha, subsidiaria, etc.</li>
+        <li><b>⑤ “Más”:</b> hay filtros ocultos.</li>
+        <li><b>⑥ Actualizar:</b> aplica filtros (si no, no cambia).</li>
+        <li><b>⑦ Exportar:</b> descarga Excel/PDF con filtros aplicados.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hotspots */
+  .hsDot{
+    position:absolute;
+    width:40px; height:40px;
+    border-radius:999px;
+    border:2px solid rgba(37,99,235,.75);
+    background: rgba(255,255,255,.92);
+    color:#1d4ed8;
+    font-weight:950;
+    display:grid;
+    place-items:center;
+    cursor:pointer;
+    box-shadow: 0 14px 30px rgba(0,0,0,.25);
+    transform: translate(-50%,-50%);
+    user-select:none;
+  }
+  .hsDot:hover{ filter: brightness(1.02); transform: translate(-50%,-50%) scale(1.03); }
+
+  .hsDot.small{ width:34px; height:34px; font-size:13px; }
+
+  .hsTip{
+    position:absolute;
+    min-width: 260px;
+    max-width: 340px;
+    right: 14px;
+    top: 14px;
+    background: rgba(15,23,42,.92);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:16px;
+    padding:12px 12px 10px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    display:none;
+    z-index:10;
+  }
+  .hsTipTitle{
+    font-weight:950;
+    font-size:13.5px;
+    letter-spacing:-.01em;
+    margin-bottom:6px;
+  }
+  .hsTipText{
+    font-size:12.8px;
+    line-height:1.55;
+    color: rgba(255,255,255,.92);
+  }
+  .hsTipHint{
+    margin-top:8px;
+    font-size:11.5px;
+    color: rgba(255,255,255,.70);
+    font-weight:800;
+  }
+</style>
+
+<script>
+  (function(){
+    const tip = document.getElementById('hsTip');
+    const tipTitle = document.getElementById('hsTipTitle');
+    const tipText = document.getElementById('hsTipText');
+
+    function openTip(btn){
+      tipTitle.textContent = btn.getAttribute('data-title') || '';
+      tipText.textContent  = btn.getAttribute('data-text')  || '';
+      tip.style.display = 'block';
+      tip.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeTip(){
+      tip.style.display = 'none';
+      tip.setAttribute('aria-hidden', 'true');
+    }
+
+    document.querySelectorAll('.hsDot').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        openTip(btn);
+      });
+
+      // opcional: tooltip también en hover
+      btn.addEventListener('mouseenter', ()=>{
+        openTip(btn);
+      });
+    });
+
+    // clic afuera cierra
+    document.addEventListener('click', closeTip);
+
+    // ESC cierra
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeTip();
+    });
+  })();
+</script>
+
         </div>
       </section>
 
