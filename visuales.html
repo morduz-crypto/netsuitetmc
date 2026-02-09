@@ -381,14 +381,114 @@
         </div>
       </section>
 
-      <!-- TAB 2 -->
-      <section class="tabPanel" id="tabTransf">
-        <h2 class="panelTitle">Transformaciones</h2>
-        <div class="placeholder">
-          <b>En construcción:</b> aquí vamos a explicar qué es una transformación y cómo reconocerla (Crear / Crear desde / Transformar),
-          con ejemplos típicos (Compras y Ventas).
-        </div>
-      </section>
+
+      <!-- TAB 2: TRANSFORMACIONES -->
+
+<section class="tabPanel" id="tabTransf">
+  <h2 class="panelTitle">Transformaciones</h2>
+
+  <p class="p">
+    En NetSuite, una <b>transformación</b> ocurre cuando un documento continúa su proceso
+    y genera otro documento relacionado. No se empieza desde cero: el nuevo registro
+    nace desde el anterior.
+  </p>
+
+  <div class="callout" style="margin-top:10px;">
+    <b>Idea clave:</b> si el sistema te ofrece una acción para continuar el proceso,
+    estás frente a una transformación.
+  </div>
+
+  <!-- ===== 1. Oportunidad → Cotización ===== -->
+  <div class="media">
+    <div class="mediaTop">
+      <b>Oportunidad → Cotización</b>
+    </div>
+
+    <div class="shotWrap" style="aspect-ratio:16/9;">
+      <img src="img/transf_oportunidad_cotizacion.png" alt="Oportunidad a Cotización">
+    </div>
+
+    <div class="cap">
+      Desde la <b>Oportunidad</b>, usa <b>Acciones (📄)</b> y selecciona
+      <b>Crear cotización</b>. La cotización hereda cliente e información comercial.
+    </div>
+  </div>
+
+  <!-- ===== 2. Cotización → Orden de Venta ===== -->
+  <div class="media">
+    <div class="mediaTop">
+      <b>Cotización → Orden de Venta</b>
+    </div>
+
+    <div class="shotWrap" style="aspect-ratio:16/9;">
+      <img src="img/transf_cotizacion_orden_venta.png" alt="Cotización a Orden de Venta">
+    </div>
+
+    <div class="cap">
+      Desde la <b>Cotización</b>, el sistema muestra la opción
+      <b>Crear orden de venta</b> (botón o menú de acciones).
+    </div>
+  </div>
+
+  <!-- ===== 3. Orden de Venta → Factura ===== -->
+  <div class="media">
+    <div class="mediaTop">
+      <b>Orden de Venta → Factura</b>
+    </div>
+
+    <div class="shotWrap" style="aspect-ratio:16/9;">
+      <img src="img/transf_orden_venta_factura.png" alt="Orden de Venta a Factura">
+    </div>
+
+    <div class="cap">
+      Desde la <b>Orden de Venta</b>, usa el botón <b>Facturar</b>.
+      La factura nace ligada a la orden.
+    </div>
+  </div>
+
+  <!-- ===== 4. Orden de Compra → Recibo ===== -->
+  <div class="media">
+    <div class="mediaTop">
+      <b>Orden de Compra → Recibo</b>
+    </div>
+
+    <div class="shotWrap" style="aspect-ratio:16/9;">
+      <img src="img/transf_orden_compra_recibo.png" alt="Orden de Compra a Recibo">
+    </div>
+
+    <div class="cap">
+      Desde la <b>Orden de Compra</b>, selecciona <b>Recibir</b>.
+      Aquí se registra la entrada de inventario.
+    </div>
+  </div>
+
+  <!-- ===== 5. Orden de Traslado → Ejecución / Recibo ===== -->
+  <div class="media">
+    <div class="mediaTop">
+      <b>Orden de Traslado → Ejecución / Recibo</b>
+    </div>
+
+    <div class="shotWrap" style="aspect-ratio:16/9;">
+      <img src="img/transf_orden_traslado.png" alt="Orden de Traslado">
+    </div>
+
+    <div class="cap">
+      En la <b>Orden de Traslado</b> aparecen los botones
+      <b>Ejecutar traslado</b> (sale inventario) y
+      <b>Recibir traslado</b> (entra inventario).
+    </div>
+  </div>
+
+  <!-- ===== NO ES TRANSFORMACIÓN ===== -->
+  <div class="callout" style="margin-top:14px;">
+    <b>No son transformaciones:</b><br/>
+    Ajustes de inventario y documentos creados sin un registro previo.
+    Si no hay documento origen, no hay transformación.
+  </div>
+</section>
+
+
+      
 
       <!-- TAB 3: INFORMES (FUNCIONA + tooltip dentro de la imagen) -->
       <section class="tabPanel" id="tabReports">
