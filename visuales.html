@@ -39,9 +39,7 @@
       font-size:13px; color:var(--muted); margin-top:6px;
       line-height:1.65; max-width:920px;
     }
-    .topActions{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
-    }
+    .topActions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
     .btn{
       display:inline-flex; align-items:center; gap:8px;
       border:1px solid var(--border); background:var(--card);
@@ -109,17 +107,14 @@
       background: rgba(37,99,235,.06);
       color: var(--accent2);
     }
-    .tabPanel{
-      display:none;
-      padding:16px 18px 18px;
-    }
+    .tabPanel{ display:none; padding:16px 18px 18px; }
     .tabPanel.active{ display:block; }
 
     /* CONTENT */
     .panelTitle{
       font-size:16px;
       font-weight:950;
-      margin:0 0 8px;
+      margin:0 0 10px;
       letter-spacing:-.01em;
     }
     .p{
@@ -128,6 +123,7 @@
       line-height:1.75;
       font-size:14px;
     }
+
     .grid{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
@@ -144,20 +140,14 @@
       box-shadow: 0 12px 26px rgba(0,0,0,.04);
       overflow:hidden;
     }
-    .cardHead{
-      padding:14px 16px 10px;
-      border-bottom:1px solid var(--border);
-      background: rgba(15,23,42,.01);
-    }
-    .cardHead b{ font-size:13.5px; letter-spacing:-.01em; }
     .cardBody{
-      padding:12px 16px 14px;
+      padding:14px 16px 16px;
       color:#334155;
       line-height:1.7;
       font-size:13.5px;
     }
     .list{ margin:8px 0 0 18px; padding:0; }
-    .list li{ margin:7px 0; }
+    .list li{ margin:8px 0; }
 
     .chips{ display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0; }
     .chip{
@@ -190,7 +180,84 @@
       box-shadow: 0 10px 22px rgba(0,0,0,.02);
     }
 
-    /* “Pro” highlight demo (zoom + spotlight) */
+    /* Step header (flujo dentro de formularios) */
+    .stepper{
+      background: rgba(15,23,42,.01);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:12px;
+      margin: 10px 0 14px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.02);
+      overflow:auto;
+    }
+    .stepperRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      min-width: 880px; /* para que se sienta lineal y legible */
+    }
+    .step{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(15,23,42,.10);
+      background:#fff;
+      white-space:nowrap;
+      font-weight:950;
+      color:#0f172a;
+    }
+    .step .n{
+      width:30px; height:30px;
+      border-radius:999px;
+      display:grid; place-items:center;
+      background: rgba(37,99,235,.10);
+      border:1px solid rgba(37,99,235,.22);
+      color: var(--accent2);
+      font-size:14px;
+      font-weight:950;
+    }
+    .arrow{
+      font-weight:950;
+      color:#94a3b8;
+      font-size:16px;
+      user-select:none;
+    }
+
+    /* BIG step badge */
+    .stepBlockHead{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px 16px 12px;
+      border-bottom:1px solid var(--border);
+      background: rgba(15,23,42,.01);
+    }
+    .bigN{
+      width:44px; height:44px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      background: rgba(37,99,235,.12);
+      border:1px solid rgba(37,99,235,.22);
+      color: var(--accent2);
+      font-size:18px;
+      font-weight:950;
+      flex: 0 0 auto;
+    }
+    .stepTitle{
+      font-size:14.5px;
+      font-weight:950;
+      letter-spacing:-.01em;
+      margin: 2px 0 0;
+      color:#0f172a;
+    }
+    .stepSub{
+      font-size:12.8px;
+      color:#64748b;
+      margin-top:4px;
+      line-height:1.55;
+    }
+
+    /* “Pro” mock visual blocks (zoom + spotlight) */
     .media{
       border:1px solid var(--border);
       border-radius:16px;
@@ -237,6 +304,7 @@
       transform: scale(1.06);
       filter: saturate(1.05);
     }
+
     .nsBar{
       position:absolute; left:0; right:0; top:0;
       height:46px; background: rgba(15,23,42,.74);
@@ -412,58 +480,100 @@
         <button class="tabBtn" data-tab="tabSearch">🔎 Búsquedas</button>
       </div>
 
-      <!-- TAB 1: FORMULARIOS (TU CONTENIDO) -->
+      <!-- TAB 1: FORMULARIOS -->
       <section class="tabPanel active" id="tabForms">
         <h2 class="panelTitle">Formularios</h2>
 
-        <div class="grid">
+        <!-- Flujo visual -->
+        <div class="stepper" aria-label="Flujo de lectura de formulario">
+          <div class="stepperRow">
+            <div class="step"><span class="n">1</span> Tipos</div>
+            <div class="arrow">→</div>
+            <div class="step"><span class="n">2</span> ¿Qué formulario es?</div>
+            <div class="arrow">→</div>
+            <div class="step"><span class="n">3</span> Vista vs Edición</div>
+            <div class="arrow">→</div>
+            <div class="step"><span class="n">5</span> Obligatorios</div>
+            <div class="arrow">→</div>
+            <div class="step"><span class="n">6</span> Pestañas</div>
+            <div class="arrow">→</div>
+            <div class="step"><span class="n">7</span> Grupos</div>
+            <div class="arrow">→</div>
+            <div class="step"><span class="n">8</span> Alertas</div>
+          </div>
+        </div>
+
+        <!-- 1 -->
+        <div class="card">
+          <div class="stepBlockHead">
+            <div class="bigN">1</div>
+            <div>
+              <div class="stepTitle">Tipos de formularios que existen</div>
+              <div class="stepSub">Aquí no necesitas demo: solo entender la clasificación.</div>
+            </div>
+          </div>
+          <div class="cardBody">
+            <p class="p">
+              Aunque visualmente se parecen, no todos los formularios son lo mismo. En NetSuite hay tres grandes tipos:
+            </p>
+
+            <ul class="list">
+              <li>
+                <b>🗂️ Formularios de Maestros</b><br/>
+                Son formularios donde se crea información base.<br/>
+                <b>Ejemplos:</b> Cliente · Proveedor · Artículo (Item) · Empleado · Ubicación<br/>
+                👉 No mueven dinero, pero son obligatorios para que el resto del sistema funcione.
+              </li>
+
+              <li>
+                <b>🔄 Formularios de Transacciones</b><br/>
+                Son formularios donde se registra una operación del negocio.<br/>
+                <b>Ejemplos:</b> Oportunidad · Cotización · Orden de venta · Factura · Orden de compra · Pago · Nota crédito · Orden de traslado<br/>
+                👉 Algunos impactan contabilidad y otros son parte del proceso antes de llegar a contabilidad.
+              </li>
+
+              <li>
+                <b>🧩 Formularios de Registros</b><br/>
+                Sirven para control, seguimiento y organización interna.<br/>
+                <b>Ejemplos:</b> Casos · Proyectos · Tareas · Registros personalizados<br/>
+                👉 No son ventas ni compras, pero conectan procesos entre áreas.
+              </li>
+            </ul>
+
+            <div class="chips">
+              <span class="chip">🗂️ Maestros = base</span>
+              <span class="chip">🔄 Transacciones = operación</span>
+              <span class="chip">🧩 Registros = seguimiento</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="grid" style="margin-top:14px;">
           <div class="card">
-            <div class="cardHead"><b>1️⃣ Tipos de formularios que existen</b></div>
-            <div class="cardBody">
-              <p class="p" style="margin-bottom:8px;">
-                Aunque visualmente se parecen, no todos los formularios son lo mismo. En NetSuite hay tres grandes tipos:
-              </p>
-
-              <ul class="list">
-                <li>
-                  <b>🗂️ Formularios de Maestros</b><br/>
-                  Son formularios donde se crea información base.<br/><br/>
-                  <b>Ejemplos:</b> Cliente · Proveedor · Artículo (Item) · Empleado · Ubicación<br/>
-                  👉 No mueven dinero, pero son obligatorios para que el resto del sistema funcione.
-                </li>
-
-                <li>
-                  <b>🔄 Formularios de Transacciones</b><br/>
-                  Son formularios donde se registra una operación del negocio.<br/><br/>
-                  <b>Ejemplos:</b> Oportunidad · Cotización · Orden de venta · Factura · Orden de compra · Pago · Nota crédito · Orden de traslado<br/>
-                  👉 Algunos impactan contabilidad y otros son parte del proceso antes de llegar a contabilidad.
-                </li>
-
-                <li>
-                  <b>🧩 Formularios de Registros</b><br/>
-                  Sirven para control, seguimiento y organización interna.<br/><br/>
-                  <b>Ejemplos:</b> Casos · Proyectos · Tareas · Registros personalizados<br/>
-                  👉 No son ventas ni compras, pero conectan procesos entre áreas.
-                </li>
-              </ul>
-
-              <div class="chips">
-                <span class="chip">🗂️ Maestros = base</span>
-                <span class="chip">🔄 Transacciones = operación</span>
-                <span class="chip">🧩 Registros = seguimiento</span>
+            <div class="stepBlockHead">
+              <div class="bigN">2</div>
+              <div>
+                <div class="stepTitle">Cómo saber en qué formulario estás</div>
+                <div class="stepSub">Este es el punto clave: “dónde estoy parado”.</div>
               </div>
+            </div>
+            <div class="cardBody">
+              <p class="p">Siempre, siempre, fíjate en la parte superior del formulario. Ahí NetSuite te dice claramente:</p>
+              <ul class="list">
+                <li>Qué tipo de registro es</li>
+                <li>En qué estado está</li>
+                <li>Qué puedes hacer con él</li>
+              </ul>
+              <div class="note">👉 Ese título es tu punto de referencia principal.</div>
             </div>
           </div>
 
           <div class="media">
-            <div class="mediaTop">
-              <b>Demo pro: encabezado + botones + pestañas</b>
-              <span class="mini">zoom + spotlight</span>
-            </div>
+            <div class="mediaTop"><b>Imagen/clip sugerido: título del formulario</b><span class="mini">zoom + spotlight</span></div>
             <div class="shotWrap">
               <div class="zoomLayer">
                 <div class="mockShot"></div>
-
                 <div class="nsBar">
                   <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
                   <div class="nsTitle">Orden de venta · SO12345</div>
@@ -473,7 +583,6 @@
                     <span class="nsPill">Imprimir</span>
                   </div>
                 </div>
-
                 <div class="nsBody">
                   <div class="nsTabs">
                     <span class="nsTab active">General</span>
@@ -488,74 +597,87 @@
                   </div>
                 </div>
               </div>
-
               <div class="spot">
-                <div class="spotLabel"><span class="spark"></span> Título arriba = tu referencia</div>
+                <div class="spotLabel"><span class="spark"></span> “Título arriba”</div>
               </div>
             </div>
-            <div class="cap">
-              <b>Ejemplos visuales:</b> “Cliente” · “Orden de venta #SO12345” · “Cotización” · “Caso”.
-            </div>
+            <div class="cap"><b>Ejemplos:</b> “Cliente”, “Orden de venta #SO12345”, “Cotización”, “Caso”.</div>
           </div>
         </div>
 
+        <!-- 3 (incluye acciones y botones aquí) -->
         <div class="grid" style="margin-top:14px;">
           <div class="card">
-            <div class="cardHead"><b>2️⃣ Cómo saber en qué formulario estás</b></div>
-            <div class="cardBody">
-              <p class="p">
-                Siempre, siempre, fíjate en la parte superior del formulario. Ahí NetSuite te dice claramente:
-              </p>
-              <ul class="list">
-                <li>Qué tipo de registro es</li>
-                <li>En qué estado está</li>
-                <li>Qué puedes hacer con él</li>
-              </ul>
-              <div class="note">
-                👉 Ese título es tu punto de referencia principal.
+            <div class="stepBlockHead">
+              <div class="bigN">3</div>
+              <div>
+                <div class="stepTitle">Modo Vista vs Modo Edición</div>
+                <div class="stepSub">Aquí metemos “acciones y botones” porque es donde tiene sentido.</div>
               </div>
             </div>
-          </div>
-
-          <div class="card">
-            <div class="cardHead"><b>3️⃣ Modo Vista vs Modo Edición</b></div>
             <div class="cardBody">
               <ul class="list">
                 <li>
                   <b>👀 Modo Vista</b><br/>
-                  Solo estás mirando la información. No puedes cambiar campos.<br/>
-                  Botones comunes: Editar · Imprimir · Crear algo a partir de esto.<br/>
-                  👉 Si no puedes escribir en los campos, estás en modo vista.
+                  Solo estás mirando. No puedes cambiar campos.<br/>
+                  Botones típicos: <b>Editar</b>, <b>Imprimir</b>, <b>Crear</b> (crear algo a partir de esto).
                 </li>
                 <li>
                   <b>✏️ Modo Edición</b><br/>
                   Puedes escribir, cambiar valores y seleccionar opciones.<br/>
-                  Botones comunes: Guardar · Guardar y cerrar · Cancelar.<br/>
-                  👉 Si puedes escribir en los campos, estás en modo edición.
+                  Botones típicos: <b>Guardar</b>, <b>Guardar y cerrar</b>, <b>Cancelar</b>.
                 </li>
               </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid" style="margin-top:14px;">
-          <div class="card">
-            <div class="cardHead"><b>4️⃣ Acciones y botones (siempre arriba)</b></div>
-            <div class="cardBody">
-              <p class="p">En la parte superior del formulario vas a encontrar:</p>
-              <ul class="list">
-                <li>Botones de acción (Guardar, Editar, Aprobar, Crear, etc.)</li>
-                <li>Menús de acciones adicionales</li>
-                <li>Opciones que dependen del estado del registro</li>
-              </ul>
               <div class="warning">
-                <b>📌 Regla básica:</b> Antes de hacer clic en cualquier botón, mira qué formulario es y en qué estado está.
+                <b>📌 Regla:</b> si puedes escribir en los campos, estás en edición. Si no, estás en vista.
               </div>
             </div>
           </div>
 
+          <div class="media">
+            <div class="mediaTop"><b>Imagen/clip sugerido: vista vs edición</b><span class="mini">spotlight</span></div>
+            <div class="shotWrap">
+              <div class="zoomLayer">
+                <div class="mockShot"></div>
+                <div class="nsBar">
+                  <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
+                  <div class="nsTitle">Cliente · ACME S.A.S</div>
+                  <div class="nsRight">
+                    <span class="nsPill">Editar</span>
+                    <span class="nsPill">Imprimir</span>
+                  </div>
+                </div>
+                <div class="nsBody">
+                  <div class="nsTabs">
+                    <span class="nsTab active">General</span>
+                    <span class="nsTab">Finanzas</span>
+                    <span class="nsTab">Direcciones</span>
+                  </div>
+                  <div class="nsFields">
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="spot s3">
+                <div class="spotLabel"><span class="spark"></span> Botones cambian por modo</div>
+              </div>
+            </div>
+            <div class="cap"><b>Tip:</b> los botones de arriba son el “indicador” del modo.</div>
+          </div>
+        </div>
+
+        <!-- 5 obligatorios (con imagen + mensaje) -->
+        <div class="grid" style="margin-top:14px;">
           <div class="card">
-            <div class="cardHead"><b>5️⃣ Campos obligatorios</b></div>
+            <div class="stepBlockHead">
+              <div class="bigN">5</div>
+              <div>
+                <div class="stepTitle">Campos obligatorios</div>
+                <div class="stepSub">Si no llenas, no guarda: y te aparece el mensaje arriba.</div>
+              </div>
+            </div>
             <div class="cardBody">
               <p class="p">Algunos campos son obligatorios. Si no los llenas, NetSuite no te deja guardar.</p>
               <p class="p" style="margin-bottom:6px;"><b>Cómo identificarlos:</b></p>
@@ -565,75 +687,16 @@
                 <li>Aparece un mensaje arriba diciendo qué falta.</li>
               </ul>
               <div class="note">
-                👉 No llenes campos “por llenar” solo para que deje guardar. Lo que pongas ahí se va a usar después por otras áreas.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid" style="margin-top:14px;">
-          <div class="card">
-            <div class="cardHead"><b>6️⃣ Pestañas dentro del formulario</b></div>
-            <div class="cardBody">
-              <p class="p">Muchos formularios tienen pestañas (tabs).</p>
-              <p class="p" style="margin-bottom:6px;"><b>Ejemplos:</b> General · Finanzas · Dirección · Artículos · Comunicación · Otros</p>
-              <div class="note">
-                👉 Las pestañas sirven para organizar la información, no son formularios distintos.<br/>
-                📌 Si no encuentras algo, revisa las pestañas.
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="cardHead"><b>7️⃣ Grupos de campos</b></div>
-            <div class="cardBody">
-              <p class="p">
-                Dentro de una pestaña, la información suele estar organizada en grupos de campos.
-              </p>
-              <p class="p" style="margin-bottom:6px;"><b>Por ejemplo:</b></p>
-              <ul class="list">
-                <li>Información del cliente</li>
-                <li>Datos de facturación</li>
-                <li>Información logística</li>
-                <li>Datos contables</li>
-              </ul>
-              <div class="note">
-                👉 Los grupos ayudan a entender qué tipo de información estás llenando.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid" style="margin-top:14px;">
-          <div class="card">
-            <div class="cardHead"><b>8️⃣ Mensajes y alertas (léelos siempre)</b></div>
-            <div class="cardBody">
-              <p class="p">Cuando algo falta o está mal:</p>
-              <ul class="list">
-                <li>NetSuite te lo dice</li>
-                <li>El mensaje suele aparecer arriba del formulario</li>
-              </ul>
-              <p class="p" style="margin-bottom:6px;"><b>Puede indicar:</b></p>
-              <ul class="list">
-                <li>Campos obligatorios faltantes</li>
-                <li>Inconsistencias</li>
-                <li>Restricciones del proceso</li>
-              </ul>
-              <div class="warning">
-                <b>📌 Tip:</b> Leer el mensaje casi siempre te dice qué hacer.
+                👉 No llenes campos “por llenar”. Lo que pongas ahí se va a usar después por otras áreas.
               </div>
             </div>
           </div>
 
           <div class="media">
-            <div class="mediaTop">
-              <b>Demo pro: alerta arriba</b>
-              <span class="mini">spotlight</span>
-            </div>
+            <div class="mediaTop"><b>Imagen/clip sugerido: mensaje de obligatorio</b><span class="mini">spotlight</span></div>
             <div class="shotWrap">
               <div class="zoomLayer">
                 <div class="mockShot"></div>
-
                 <div class="nsBar">
                   <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
                   <div class="nsTitle">Cotización · EST4567</div>
@@ -642,7 +705,6 @@
                     <span class="nsPill">Cancelar</span>
                   </div>
                 </div>
-
                 <div class="nsBody">
                   <div class="nsTabs">
                     <span class="nsTab active">General</span>
@@ -656,23 +718,160 @@
                   </div>
                 </div>
               </div>
-
               <div class="spot s2">
                 <div class="spotLabel"><span class="spark"></span> Mensaje arriba</div>
               </div>
             </div>
-            <div class="cap">
-              <b>Idea:</b> los mensajes no están de adorno. Léelos y te ahorras tiempo.
+            <div class="cap"><b>Idea:</b> “no guarda” + mensaje = te está diciendo exactamente qué falta.</div>
+          </div>
+        </div>
+
+        <!-- 6 pestañas (con nota de que varían) -->
+        <div class="grid" style="margin-top:14px;">
+          <div class="card">
+            <div class="stepBlockHead">
+              <div class="bigN">6</div>
+              <div>
+                <div class="stepTitle">Pestañas dentro del formulario</div>
+                <div class="stepSub">Organizan información. La cantidad varía por tipo de formulario.</div>
+              </div>
+            </div>
+            <div class="cardBody">
+              <p class="p">Muchos formularios tienen pestañas (tabs).</p>
+              <p class="p" style="margin-bottom:6px;"><b>Ejemplos:</b> General · Finanzas · Dirección · Artículos · Comunicación · Otros</p>
+              <div class="note">
+                👉 Las pestañas sirven para organizar la información, no son formularios distintos.<br/>
+                <b>Y ojo:</b> la cantidad de pestañas varía dependiendo del tipo de formulario.
+              </div>
+            </div>
+          </div>
+
+          <div class="media">
+            <div class="mediaTop"><b>Imagen/clip sugerido: pestañas</b><span class="mini">spotlight</span></div>
+            <div class="shotWrap">
+              <div class="zoomLayer">
+                <div class="mockShot"></div>
+                <div class="nsBar">
+                  <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
+                  <div class="nsTitle">Orden de compra · PO9876</div>
+                  <div class="nsRight">
+                    <span class="nsPill">Editar</span>
+                    <span class="nsPill">Acciones</span>
+                  </div>
+                </div>
+                <div class="nsBody">
+                  <div class="nsTabs">
+                    <span class="nsTab active">General</span>
+                    <span class="nsTab">Artículos</span>
+                    <span class="nsTab">Finanzas</span>
+                    <span class="nsTab">Aprobación</span>
+                    <span class="nsTab">Comunicación</span>
+                  </div>
+                  <div class="nsFields">
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="spot s4">
+                <div class="spotLabel"><span class="spark"></span> Pestañas</div>
+              </div>
+            </div>
+            <div class="cap"><b>Tip:</b> si “no encuentras” algo, casi siempre está en otra pestaña.</div>
+          </div>
+        </div>
+
+        <!-- 7 grupos -->
+        <div class="grid" style="margin-top:14px;">
+          <div class="card">
+            <div class="stepBlockHead">
+              <div class="bigN">7</div>
+              <div>
+                <div class="stepTitle">Grupos de campos</div>
+                <div class="stepSub">Secciones internas que te dicen qué estás llenando.</div>
+              </div>
+            </div>
+            <div class="cardBody">
+              <p class="p">Dentro de una pestaña, la información suele estar organizada en grupos de campos.</p>
+              <p class="p" style="margin-bottom:6px;"><b>Por ejemplo:</b></p>
+              <ul class="list">
+                <li>Información del cliente</li>
+                <li>Datos de facturación</li>
+                <li>Información logística</li>
+                <li>Datos contables</li>
+              </ul>
+              <div class="note">👉 Los grupos ayudan a entender qué tipo de información estás llenando.</div>
+            </div>
+          </div>
+
+          <div class="media">
+            <div class="mediaTop"><b>Imagen/clip sugerido: secciones / grupos</b><span class="mini">zoom</span></div>
+            <div class="shotWrap">
+              <div class="zoomLayer">
+                <div class="mockShot"></div>
+                <div class="nsBar">
+                  <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
+                  <div class="nsTitle">Cliente · ACME S.A.S</div>
+                  <div class="nsRight">
+                    <span class="nsPill">Editar</span>
+                    <span class="nsPill">Imprimir</span>
+                  </div>
+                </div>
+                <div class="nsBody">
+                  <div class="nsTabs">
+                    <span class="nsTab active">General</span>
+                    <span class="nsTab">Finanzas</span>
+                    <span class="nsTab">Direcciones</span>
+                  </div>
+                  <div class="nsFields">
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                    <div class="nsField"></div><div class="nsField"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="spot">
+                <div class="spotLabel"><span class="spark"></span> Grupos/Secciones</div>
+              </div>
+            </div>
+            <div class="cap"><b>Idea:</b> “títulos internos” = te guían sobre qué estás completando.</div>
+          </div>
+        </div>
+
+        <!-- 8 alertas -->
+        <div class="card" style="margin-top:14px;">
+          <div class="stepBlockHead">
+            <div class="bigN">8</div>
+            <div>
+              <div class="stepTitle">Mensajes y alertas (léelos siempre)</div>
+              <div class="stepSub">Déjalo: es clave y sirve para todos los casos.</div>
+            </div>
+          </div>
+          <div class="cardBody">
+            <p class="p">Cuando algo falta o está mal:</p>
+            <ul class="list">
+              <li>NetSuite te lo dice</li>
+              <li>El mensaje suele aparecer arriba del formulario</li>
+            </ul>
+            <p class="p" style="margin-bottom:6px;"><b>Puede indicar:</b></p>
+            <ul class="list">
+              <li>Campos obligatorios faltantes</li>
+              <li>Inconsistencias</li>
+              <li>Restricciones del proceso</li>
+            </ul>
+            <div class="warning">
+              <b>📌 Tip:</b> leer el mensaje casi siempre te dice qué hacer.
+            </div>
+
+            <div class="note" style="margin-top:12px;">
+              <b>Idea clave para cerrar esta sección</b><br/>
+              En NetSuite no se “llenan pantallas”. Se completa información que otras áreas van a usar después.<br/><br/>
+              Si entiendes: qué formulario es · en qué modo estás · qué campos son obligatorios · qué botones estás usando<br/>
+              👉 ya tienes la base para trabajar bien en el sistema, incluso si es tu primera vez.
             </div>
           </div>
         </div>
 
-        <div class="note" style="margin-top:14px;">
-          <b>Idea clave para cerrar esta sección</b><br/>
-          En NetSuite no se “llenan pantallas”. Se completa información que otras áreas van a usar después.<br/><br/>
-          Si entiendes: qué formulario es · en qué modo estás · qué campos son obligatorios · qué botones estás usando<br/>
-          👉 ya tienes la base para trabajar bien en el sistema, incluso si es tu primera vez.
-        </div>
       </section>
 
       <!-- TAB 2: TRANSFORMACIONES -->
@@ -685,7 +884,13 @@
 
         <div class="grid">
           <div class="card">
-            <div class="cardHead"><b>Ejemplos típicos</b></div>
+            <div class="stepBlockHead">
+              <div class="bigN">1</div>
+              <div>
+                <div class="stepTitle">Ejemplos típicos</div>
+                <div class="stepSub">Los flujos más comunes en TMC.</div>
+              </div>
+            </div>
             <div class="cardBody">
               <ul class="list">
                 <li><b>Compras:</b> Orden de compra → Recepción (Item Receipt) → Factura proveedor (Vendor Bill)</li>
@@ -693,20 +898,16 @@
                 <li><b>Devolución:</b> Factura → Return Authorization → Nota crédito</li>
               </ul>
               <div class="warning">
-                <b>Tip:</b> si el documento “base” está mal, el nuevo hereda el problema. Revisa antes de crear.
+                <b>Tip:</b> si el documento base está mal, el nuevo hereda el problema. Revisa antes de crear.
               </div>
             </div>
           </div>
 
           <div class="media">
-            <div class="mediaTop">
-              <b>Demo pro: botón “Crear”</b>
-              <span class="mini">spotlight</span>
-            </div>
+            <div class="mediaTop"><b>Demo pro: botón “Crear”</b><span class="mini">spotlight</span></div>
             <div class="shotWrap">
               <div class="zoomLayer">
                 <div class="mockShot"></div>
-
                 <div class="nsBar">
                   <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
                   <div class="nsTitle">Orden de compra · PO9876</div>
@@ -716,7 +917,6 @@
                     <span class="nsPill">Acciones</span>
                   </div>
                 </div>
-
                 <div class="nsBody">
                   <div class="nsTabs">
                     <span class="nsTab active">General</span>
@@ -730,7 +930,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="spot s3">
                 <div class="spotLabel"><span class="spark"></span> Crear = siguiente paso</div>
               </div>
@@ -750,7 +949,13 @@
 
         <div class="grid">
           <div class="card">
-            <div class="cardHead"><b>Cómo reconocerlos</b></div>
+            <div class="stepBlockHead">
+              <div class="bigN">1</div>
+              <div>
+                <div class="stepTitle">Cómo reconocerlos</div>
+                <div class="stepSub">Pistas visuales típicas de informe.</div>
+              </div>
+            </div>
             <div class="cardBody">
               <ul class="list">
                 <li>Estructura tipo “reporte”</li>
@@ -764,14 +969,10 @@
           </div>
 
           <div class="media">
-            <div class="mediaTop">
-              <b>Demo pro: Actualizar</b>
-              <span class="mini">spotlight</span>
-            </div>
+            <div class="mediaTop"><b>Demo pro: Actualizar</b><span class="mini">spotlight</span></div>
             <div class="shotWrap">
               <div class="zoomLayer">
                 <div class="mockShot"></div>
-
                 <div class="nsBar">
                   <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
                   <div class="nsTitle">Informe · Resumen</div>
@@ -780,7 +981,6 @@
                     <span class="nsPill">Actualizar</span>
                   </div>
                 </div>
-
                 <div class="nsBody">
                   <div class="nsTabs">
                     <span class="nsTab active">Reporte</span>
@@ -793,7 +993,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="spot s4">
                 <div class="spotLabel"><span class="spark"></span> Actualizar</div>
               </div>
@@ -813,7 +1012,13 @@
 
         <div class="grid">
           <div class="card">
-            <div class="cardHead"><b>Cómo funcionan</b></div>
+            <div class="stepBlockHead">
+              <div class="bigN">1</div>
+              <div>
+                <div class="stepTitle">Cómo funcionan</div>
+                <div class="stepSub">Pistas visuales típicas de búsqueda.</div>
+              </div>
+            </div>
             <div class="cardBody">
               <ul class="list">
                 <li>Filtros arriba</li>
@@ -829,14 +1034,10 @@
           </div>
 
           <div class="media">
-            <div class="mediaTop">
-              <b>Demo pro: filtros arriba</b>
-              <span class="mini">spotlight</span>
-            </div>
+            <div class="mediaTop"><b>Demo pro: filtros arriba</b><span class="mini">spotlight</span></div>
             <div class="shotWrap">
               <div class="zoomLayer">
                 <div class="mockShot"></div>
-
                 <div class="nsBar">
                   <div class="nsDot"></div><div class="nsDot"></div><div class="nsDot"></div>
                   <div class="nsTitle">Búsqueda · Resultados</div>
@@ -845,7 +1046,6 @@
                     <span class="nsPill">Editar</span>
                   </div>
                 </div>
-
                 <div class="nsBody">
                   <div class="nsTabs">
                     <span class="nsTab active">Filtros</span>
@@ -858,7 +1058,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="spot s2">
                 <div class="spotLabel"><span class="spark"></span> Filtros arriba</div>
               </div>
@@ -874,20 +1073,18 @@
   </div>
 
   <script>
-    // Tabs (simple + video-friendly)
+    // Tabs
     document.querySelectorAll('.tabBtn').forEach(btn=>{
       btn.addEventListener('click', ()=>{
         const target = btn.dataset.tab;
-
         document.querySelectorAll('.tabBtn').forEach(b=>b.classList.remove('active'));
         document.querySelectorAll('.tabPanel').forEach(p=>p.classList.remove('active'));
-
         btn.classList.add('active');
         document.getElementById(target).classList.add('active');
-
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
   </script>
 </body>
 </html>
+
