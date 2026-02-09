@@ -73,6 +73,55 @@
       flex-wrap:wrap;
       justify-content:flex-end;
     }
+    .transfRow{
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:16px;
+  align-items:center;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  margin-top:12px;
+}
+
+.transfRow img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#f1f5f9;
+}
+
+.transfRow h4{
+  margin:0 0 6px;
+  font-size:15px;
+  font-weight:900;
+}
+
+.transfRow p{
+  margin:0 0 6px;
+  font-size:14px;
+  line-height:1.6;
+  color:#334155;
+}
+
+.transfRow .hint{
+  font-size:12.5px;
+  color:#64748b;
+  font-weight:600;
+}
+
+/* Responsive */
+@media (max-width: 860px){
+  .transfRow{
+    grid-template-columns: 1fr;
+  }
+  .transfRow img{
+    height:180px;
+  }
+}
+
     .btn{
       display:inline-flex;
       align-items:center;
@@ -388,104 +437,74 @@
   <h2 class="panelTitle">Transformaciones</h2>
 
   <p class="p">
-    En NetSuite, una <b>transformación</b> ocurre cuando un documento continúa su proceso
-    y genera otro documento relacionado. No se empieza desde cero: el nuevo registro
-    nace desde el anterior.
+    En NetSuite, una <b>transformación</b> ocurre cuando un documento genera otro
+    para continuar el proceso. El nuevo documento nace conectado al anterior.
   </p>
 
-  <div class="callout" style="margin-top:10px;">
-    <b>Idea clave:</b> si el sistema te ofrece una acción para continuar el proceso,
+  <div class="callout" style="margin-top:8px;">
+    <b>Idea clave:</b> si el sistema te ofrece una acción para continuar,
     estás frente a una transformación.
   </div>
 
-  <!-- ===== 1. Oportunidad → Cotización ===== -->
-  <div class="media">
-    <div class="mediaTop">
-      <b>Oportunidad → Cotización</b>
-    </div>
-
-    <div class="shotWrap" style="aspect-ratio:16/9;">
-      <img src="img/transf_oportunidad_cotizacion.png" alt="Oportunidad a Cotización">
-    </div>
-
-    <div class="cap">
-      Desde la <b>Oportunidad</b>, usa <b>Acciones (📄)</b> y selecciona
-      <b>Crear cotización</b>. La cotización hereda cliente e información comercial.
+  <!-- ===== ITEM ===== -->
+  <div class="transfRow">
+    <img src="img/transf_oportunidad_cotizacion.png" alt="Oportunidad a Cotización">
+    <div>
+      <h4>Oportunidad → Cotización</h4>
+      <p>
+        Desde la <b>Oportunidad</b>, usa <b>Acciones (📄)</b> y selecciona
+        <b>Crear cotización</b>.
+      </p>
+      <span class="hint">La cotización hereda cliente e información comercial.</span>
     </div>
   </div>
 
-  <!-- ===== 2. Cotización → Orden de Venta ===== -->
-  <div class="media">
-    <div class="mediaTop">
-      <b>Cotización → Orden de Venta</b>
-    </div>
-
-    <div class="shotWrap" style="aspect-ratio:16/9;">
-      <img src="img/transf_cotizacion_orden_venta.png" alt="Cotización a Orden de Venta">
-    </div>
-
-    <div class="cap">
-      Desde la <b>Cotización</b>, el sistema muestra la opción
-      <b>Crear orden de venta</b> (botón o menú de acciones).
+  <div class="transfRow">
+    <img src="img/transf_cotizacion_orden_venta.png" alt="Cotización a Orden de Venta">
+    <div>
+      <h4>Cotización → Orden de Venta</h4>
+      <p>
+        En la <b>Cotización</b>, el sistema permite
+        <b>Crear orden de venta</b> (botón o acciones).
+      </p>
     </div>
   </div>
 
-  <!-- ===== 3. Orden de Venta → Factura ===== -->
-  <div class="media">
-    <div class="mediaTop">
-      <b>Orden de Venta → Factura</b>
-    </div>
-
-    <div class="shotWrap" style="aspect-ratio:16/9;">
-      <img src="img/transf_orden_venta_factura.png" alt="Orden de Venta a Factura">
-    </div>
-
-    <div class="cap">
-      Desde la <b>Orden de Venta</b>, usa el botón <b>Facturar</b>.
-      La factura nace ligada a la orden.
+  <div class="transfRow">
+    <img src="img/transf_orden_venta_factura.png" alt="Orden de Venta a Factura">
+    <div>
+      <h4>Orden de Venta → Factura</h4>
+      <p>
+        Desde la <b>Orden de Venta</b>, usa el botón <b>Facturar</b>.
+      </p>
     </div>
   </div>
 
-  <!-- ===== 4. Orden de Compra → Recibo ===== -->
-  <div class="media">
-    <div class="mediaTop">
-      <b>Orden de Compra → Recibo</b>
-    </div>
-
-    <div class="shotWrap" style="aspect-ratio:16/9;">
-      <img src="img/transf_orden_compra_recibo.png" alt="Orden de Compra a Recibo">
-    </div>
-
-    <div class="cap">
-      Desde la <b>Orden de Compra</b>, selecciona <b>Recibir</b>.
-      Aquí se registra la entrada de inventario.
+  <div class="transfRow">
+    <img src="img/transf_orden_compra_recibo.png" alt="Orden de Compra a Recibo">
+    <div>
+      <h4>Orden de Compra → Recibo</h4>
+      <p>
+        En la <b>Orden de Compra</b>, selecciona <b>Recibir</b>
+        para ingresar inventario.
+      </p>
     </div>
   </div>
 
-  <!-- ===== 5. Orden de Traslado → Ejecución / Recibo ===== -->
-  <div class="media">
-    <div class="mediaTop">
-      <b>Orden de Traslado → Ejecución / Recibo</b>
-    </div>
-
-    <div class="shotWrap" style="aspect-ratio:16/9;">
-      <img src="img/transf_orden_traslado.png" alt="Orden de Traslado">
-    </div>
-
-    <div class="cap">
-      En la <b>Orden de Traslado</b> aparecen los botones
-      <b>Ejecutar traslado</b> (sale inventario) y
-      <b>Recibir traslado</b> (entra inventario).
+  <div class="transfRow">
+    <img src="img/transf_orden_traslado.png" alt="Orden de Traslado">
+    <div>
+      <h4>Orden de Traslado → Ejecución / Recibo</h4>
+      <p>
+        La <b>Orden de Traslado</b> tiene botones visibles:
+        <b>Ejecutar traslado</b> y <b>Recibir traslado</b>.
+      </p>
+      <span class="hint">Aquí sí hay botones directos, no menú.</span>
     </div>
   </div>
 
-  <!-- ===== NO ES TRANSFORMACIÓN ===== -->
-  <div class="callout" style="margin-top:14px;">
-    <b>No son transformaciones:</b><br/>
-    Ajustes de inventario y documentos creados sin un registro previo.
-    Si no hay documento origen, no hay transformación.
-  </div>
 </section>
+
 
 
       
