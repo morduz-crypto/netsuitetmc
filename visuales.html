@@ -281,6 +281,7 @@
       <!-- TAB 3: INFORMES -->
 <section class="tabPanel" id="tabReports">
   <h2 class="panelTitle">Informes</h2>
+
   <p class="p">
     Un <b>informe</b> es para analizar resultados (ventas, cartera, inventario, etc.).
     Se reconoce porque tiene <b>tabla de resultados</b>, <b>filtros</b> y un botón de <b>Actualizar</b>.
@@ -297,7 +298,6 @@
       <img
         src="img/reporte_inventario.png"
         alt="Reporte NetSuite - ejemplo"
-        style="width:100%;height:100%;object-fit:cover;display:block;"
       />
 
       <!-- Hotspots (posiciones en %) -->
@@ -337,11 +337,11 @@
         6
       </button>
 
-      <!-- Tooltip -->
-      <div class="hsTip" id="hsTip" aria-hidden="true">
-        <div class="hsTipTitle" id="hsTipTitle"></div>
-        <div class="hsTipText" id="hsTipText"></div>
-        <div class="hsTipHint">Clic afuera para cerrar</div>
+      <!-- Tooltip (SOLO para este tab) -->
+      <div class="hsTip" id="hsTipReports" aria-hidden="true">
+        <div class="hsTipTitle" id="hsTipReportsTitle"></div>
+        <div class="hsTipText" id="hsTipReportsText"></div>
+        <div class="hsTipHint">Clic afuera o ESC para cerrar</div>
       </div>
     </div>
 
@@ -361,10 +361,9 @@
       <img
         src="img/reporte_toolbar.png"
         alt="Toolbar del reporte - exportar"
-        style="width:100%;height:100%;object-fit:contain;display:block;background:#fff;"
+        style="object-fit:contain;background:#fff;"
       />
 
-      <!-- Exportar: Excel/PDF (ajusta la posición según tu recorte) -->
       <button class="hsDot small" data-title="⑦ Exportar"
         data-text="Descarga el reporte con los filtros aplicados (Excel o PDF)."
         style="left: 60%; top: 52%;">
@@ -394,8 +393,23 @@
   </div>
 </section>
 
+<!-- ===================== ESTILOS (PARA INFORMES) ===================== -->
 <style>
-  /* Hotspots */
+  /* si ya tienes .media/.mediaTop/.cap/.card/.cardBody/.list en tu CSS general,
+     no pasa nada; estos son SOLO los críticos para hotspots y la imagen */
+
+  .shotWrap{
+    position: relative;   /* CLAVE */
+    overflow: hidden;     /* CLAVE */
+    border-radius: 14px;
+  }
+  .shotWrap img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .hsDot{
     position:absolute;
     width:40px; height:40px;
@@ -410,17 +424,20 @@
     box-shadow: 0 14px 30px rgba(0,0,0,.25);
     transform: translate(-50%,-50%);
     user-select:none;
+    z-index: 5;
   }
-  .hsDot:hover{ filter: brightness(1.02); transform: translate(-50%,-50%) scale(1.03); }
-
+  .hsDot:hover{
+    filter: brightness(1.02);
+    transform: translate(-50%,-50%) scale(1.03);
+  }
   .hsDot.small{ width:34px; height:34px; font-size:13px; }
 
   .hsTip{
     position:absolute;
     min-width: 260px;
     max-width: 340px;
-    right: 14px;
-    top: 14px;
+    left: 12px;
+    top: 12px;
     background: rgba(15,23,42,.92);
     color:#fff;
     border:1px solid rgba(255,255,255,.14);
@@ -447,47 +464,90 @@
     color: rgba(255,255,255,.70);
     font-weight:800;
   }
+
+  /* por si tu CSS global tiene botones raros */
+  .hsDot{ -webkit-tap-highlight-color: transparent; }
 </style>
 
+<!-- ===================== SCRIPT (SOLO INFORMES) ===================== -->
 <script>
-  (function(){
-    const tip = document.getElementById('hsTip');
-    const tipTitle = document.getElementById('hsTipTitle');
-    const tipText = document.getElementById('hsTipText');
+(function(){
+  const scope = document.getElementById('tabReports');
+  if(!scope) return;
 
-    function openTip(btn){
-      tipTitle.textContent = btn.getAttribute('data-title') || '';
-      tipText.textContent  = btn.getAttribute('data-text')  || '';
-      tip.style.display = 'block';
-      tip.setAttribute('aria-hidden', 'false');
+  const tip = document.getElementById('hsTipReports');
+  const tipTitle = document.getElementById('hsTipReportsTitle');
+  const tipText = document.getElementById('hsTipReportsText');
+
+  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+  function openTip(btn){
+    const wrap = btn.closest('.shotWrap');
+    if(!wrap) return;
+
+    tipTitle.textContent = btn.getAttribute('data-title') || '';
+    tipText.textContent  = btn.getAttribute('data-text')  || '';
+    tip.style.display = 'block';
+    tip.setAttribute('aria-hidden', 'false');
+
+    const wrapRect = wrap.getBoundingClientRect();
+    const btnRect  = btn.getBoundingClientRect();
+
+    const x = (btnRect.left - wrapRect.left) + (btnRect.width / 2);
+    const y = (btnRect.top  - wrapRect.top)  + (btnRect.height / 2);
+
+    // set inicial para medir tamaño real
+    tip.style.left = '12px';
+    tip.style.top  = '12px';
+
+    const tipRect = tip.getBoundingClientRect();
+    const tipW = tipRect.width;
+    const tipH = tipRect.height;
+
+    // preferimos derecha del punto
+    let left = x + 14;
+    let top  = y - (tipH / 2);
+
+    // si se sale por la derecha -> izquierda
+    if(left + tipW > wrapRect.width - 10){
+      left = x - tipW - 14;
     }
 
-    function closeTip(){
-      tip.style.display = 'none';
-      tip.setAttribute('aria-hidden', 'true');
+    // clamp para que quede siempre dentro de la imagen
+    left = clamp(left, 10, wrapRect.width - tipW - 10);
+    top  = clamp(top, 10, wrapRect.height - tipH - 10);
+
+    tip.style.left = left + 'px';
+    tip.style.top  = top  + 'px';
+  }
+
+  function closeTip(){
+    tip.style.display = 'none';
+    tip.setAttribute('aria-hidden', 'true');
+  }
+
+  // Click en dots SOLO dentro de Informes
+  scope.querySelectorAll('.hsDot').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      openTip(btn);
+    });
+  });
+
+  // click afuera cierra (pero si clic dentro del tip, no cierres)
+  document.addEventListener('click', (e)=>{
+    if(tip.style.display === 'block'){
+      if(e.target.closest('#hsTipReports')) return;
+      closeTip();
     }
+  });
 
-    document.querySelectorAll('.hsDot').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        e.stopPropagation();
-        openTip(btn);
-      });
-
-      // opcional: tooltip también en hover
-      btn.addEventListener('mouseenter', ()=>{
-        openTip(btn);
-      });
-    });
-
-    // clic afuera cierra
-    document.addEventListener('click', closeTip);
-
-    // ESC cierra
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape') closeTip();
-    });
-  })();
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeTip();
+  });
+})();
 </script>
+
 
         </div>
       </section>
