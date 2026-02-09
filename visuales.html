@@ -42,7 +42,7 @@
       padding:44px 22px 56px;
     }
 
-    /* ===== TOPBAR: MISMA FILA (título + botones) ===== */
+    /* ===== TOPBAR ===== */
     .topbar{
       display:flex;
       align-items:center;
@@ -51,7 +51,6 @@
       flex-wrap:wrap;
       margin-bottom:12px;
     }
-
     .titleRow{
       display:flex;
       align-items:center;
@@ -59,7 +58,6 @@
       flex-wrap:wrap;
       min-width: 260px;
     }
-
     h1{
       font-size:30px;
       font-weight:900;
@@ -109,15 +107,7 @@
       white-space:nowrap;
     }
 
-    .meta{
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.6;
-      max-width:920px;
-      margin: 4px 0 0;
-    }
-
-    /* ===== CALLOUT ===== */
+    /* ===== CALLOUT (AZUL) ===== */
     .callout{
       background: var(--info-bg);
       border: 1px solid var(--info-bd);
@@ -190,7 +180,6 @@
       font-size:14px;
     }
 
-    /* Placeholder simple (para trabajar pestaña por pestaña) */
     .placeholder{
       border:1px dashed rgba(15,23,42,.18);
       border-radius:16px;
@@ -201,6 +190,131 @@
       font-size:13.5px;
     }
     .placeholder b{ color:#0f172a; }
+
+    /* ===== MEDIA (para Informes) ===== */
+    .media{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow: 0 10px 22px rgba(0,0,0,.03);
+    }
+    .mediaTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 14px;
+      border-bottom:1px solid var(--border);
+      background: rgba(15,23,42,.01);
+      flex-wrap:wrap;
+    }
+    .mediaTop b{ font-weight:950; }
+    .mediaTop .mini{
+      color:#64748b;
+      font-weight:900;
+      font-size:12px;
+    }
+    .cap{
+      padding:12px 14px 14px;
+      color:#475569;
+      line-height:1.65;
+      font-size:13.5px;
+    }
+    .cap b{ color:#0f172a; }
+
+    /* ===== Card simple ===== */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .cardBody{
+      padding:14px 18px 18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+    .list{
+      margin:0 0 0 18px;
+      padding:0;
+      color:#334155;
+      line-height:1.65;
+    }
+    .list li{ margin:7px 0; }
+
+    /* ===== HOTSPOTS ===== */
+    .shotWrap{
+      position: relative;      /* CLAVE */
+      overflow: hidden;        /* CLAVE: nada se sale */
+      border-radius: 14px;
+      border:1px solid rgba(15,23,42,.08);
+      background:#0b1220;
+    }
+    .shotWrap img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position:relative;
+      z-index:1;
+    }
+    .toolbarWrap{
+      background:#fff;
+    }
+
+    .hsDot{
+      position:absolute;
+      width:40px; height:40px;
+      border-radius:999px;
+      border:2px solid rgba(37,99,235,.75);
+      background: rgba(255,255,255,.92);
+      color:#1d4ed8;
+      font-weight:950;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      box-shadow: 0 14px 30px rgba(0,0,0,.25);
+      transform: translate(-50%,-50%);
+      user-select:none;
+      z-index: 5;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hsDot:hover{ transform: translate(-50%,-50%) scale(1.03); }
+    .hsDot.small{ width:34px; height:34px; font-size:13px; }
+
+    .hsTip{
+      position:absolute;
+      min-width: 260px;
+      max-width: 340px;
+      background: rgba(15,23,42,.92);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:16px;
+      padding:12px 12px 10px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      display:none;
+      z-index:10;
+    }
+    .hsTipTitle{
+      font-weight:950;
+      font-size:13.5px;
+      letter-spacing:-.01em;
+      margin-bottom:6px;
+    }
+    .hsTipText{
+      font-size:12.8px;
+      line-height:1.55;
+      color: rgba(255,255,255,.92);
+    }
+    .hsTipHint{
+      margin-top:8px;
+      font-size:11.5px;
+      color: rgba(255,255,255,.70);
+      font-weight:800;
+    }
 
     .small{
       font-size:12px;
@@ -213,35 +327,34 @@
 <body>
   <div class="container">
 
-<!-- TOP: TÍTULO + BOTONES AL LADO (MISMA FILA) -->
-<div class="topbar">
-  <div class="titleRow">
-    <h1>Pantallas y vistas</h1>
-  </div>
+    <!-- TOP -->
+    <div class="topbar">
+      <div class="titleRow">
+        <h1>Pantallas y vistas</h1>
+      </div>
 
-  <div class="topActions">
-    <a class="btn" href="index.html">← Volver al Home</a>
-    <a class="btn" href="home_guia.html">← Anterior</a>
-    <a class="btn primary" href="areas.html">Siguiente →</a>
-    <span class="pill">Sección 4 de 6</span>
-  </div>
-</div>
+      <div class="topActions">
+        <a class="btn" href="index.html">← Volver al Home</a>
+        <a class="btn" href="home_guia.html">← Anterior</a>
+        <a class="btn primary" href="areas.html">Siguiente →</a>
+        <span class="pill">Sección 4 de 6</span>
+      </div>
+    </div>
 
-<!-- TODO dentro del callout azul -->
-<div class="callout">
-  <p style="margin:0 0 10px;color:#334155;line-height:1.65;">
-    Esta sección es para que no te pierdas.
-    Aquí vas a aprender a reconocer si estás en un <b>formulario</b>, una <b>búsqueda</b>, un <b>informe</b>
-    o si estás creando algo por <b>transformación</b> (cuando un documento nace desde otro).
-    No es un paso a paso: es una vista general para ubicarse rápido.
-  </p>
+    <!-- TODO dentro del callout azul (como pediste) -->
+    <div class="callout">
+      <p style="margin:0 0 10px;color:#334155;line-height:1.65;">
+        Esta sección es para que no te pierdas.
+        Aquí vas a aprender a reconocer si estás en un <b>formulario</b>, una <b>búsqueda</b>, un <b>informe</b>
+        o si estás creando algo por <b>transformación</b> (cuando un documento nace desde otro).
+        No es un paso a paso: es una vista general para ubicarse rápido.
+      </p>
 
-  <p style="margin:0;color:#334155;line-height:1.65;">
-    <b>Idea clave:</b> antes de hacer clic en Guardar, Editar o Crear… primero identifica <b>dónde estás</b>.
-    <span class="mini">Si sabes reconocer la pantalla, evitas errores y avanzas más rápido.</span>
-  </p>
-</div>
-
+      <p style="margin:0;color:#334155;line-height:1.65;">
+        <b>Idea clave:</b> antes de hacer clic en Guardar, Editar o Crear… primero identifica <b>dónde estás</b>.
+        <span class="mini">Si sabes reconocer la pantalla, evitas errores y avanzas más rápido.</span>
+      </p>
+    </div>
 
     <div class="tabs">
       <div class="tabBar">
@@ -251,11 +364,10 @@
         <button class="tabBtn" data-tab="tabSearch">🔎 Búsquedas</button>
       </div>
 
-      <!-- TAB 1: FORMULARIOS -->
+      <!-- TAB 1 -->
       <section class="tabPanel active" id="tabForms">
         <h2 class="panelTitle">Formularios</h2>
 
-        <!-- AQUÍ sí va lo de “¿Cómo funciona un formulario?” -->
         <div class="callout" style="margin-top:0;">
           <b>¿Cómo funciona un formulario en NetSuite?</b><br/>
           En NetSuite, todo se maneja a través de formularios.
@@ -269,7 +381,7 @@
         </div>
       </section>
 
-      <!-- TAB 2: TRANSFORMACIONES -->
+      <!-- TAB 2 -->
       <section class="tabPanel" id="tabTransf">
         <h2 class="panelTitle">Transformaciones</h2>
         <div class="placeholder">
@@ -277,282 +389,108 @@
           con ejemplos típicos (Compras y Ventas).
         </div>
       </section>
-          
-      <!-- TAB 3: INFORMES -->
-<section class="tabPanel" id="tabReports">
-  <h2 class="panelTitle">Informes</h2>
 
-  <p class="p">
-    Un <b>informe</b> es para analizar resultados (ventas, cartera, inventario, etc.).
-    Se reconoce porque tiene <b>tabla de resultados</b>, <b>filtros</b> y un botón de <b>Actualizar</b>.
-  </p>
+      <!-- TAB 3: INFORMES (FUNCIONA + tooltip dentro de la imagen) -->
+      <section class="tabPanel" id="tabReports">
+        <h2 class="panelTitle">Informes</h2>
 
-  <!-- ===== Imagen 1: Reporte completo con hotspots ===== -->
-  <div class="media" style="margin-top:12px;">
-    <div class="mediaTop">
-      <b>Ejemplo real: Reporte en NetSuite</b>
-      <span class="mini">toca los puntos</span>
-    </div>
+        <p class="p">
+          Un <b>informe</b> es para analizar resultados (ventas, cartera, inventario, etc.).
+          Se reconoce porque tiene <b>tabla de resultados</b>, <b>filtros</b> y un botón de <b>Actualizar</b>.
+        </p>
 
-    <div class="shotWrap" style="aspect-ratio: 16/9; background:#0b1220;">
-      <img
-        src="img/reporte_inventario.png"
-        alt="Reporte NetSuite - ejemplo"
-      />
+        <!-- Imagen 1 -->
+        <div class="media" style="margin-top:12px;">
+          <div class="mediaTop">
+            <b>Ejemplo real: Reporte en NetSuite</b>
+            <span class="mini">toca los puntos</span>
+          </div>
 
-      <!-- Hotspots (posiciones en %) -->
-      <button class="hsDot" data-title="① Título del reporte"
-        data-text="Indica qué información estás consultando."
-        style="left: 9%; top: 8%;">
-        1
-      </button>
+          <div class="shotWrap" style="aspect-ratio:16/9;">
+            <!-- NOMBRES REALES -->
+            <img src="imgreporte_inventario.png" alt="Reporte NetSuite - ejemplo"/>
 
-      <button class="hsDot" data-title="② Ver detalle / Ver resumen"
-        data-text="Cambia el nivel de información (resumen vs detalle). No cambia los datos, solo la vista."
-        style="left: 20.5%; top: 8.5%;">
-        2
-      </button>
+            <button class="hsDot" data-title="① Título del reporte"
+              data-text="Indica qué información estás consultando."
+              style="left:9%; top:8%;">1</button>
 
-      <button class="hsDot" data-title="③ Tabla de resultados"
-        data-text="Aquí ves la información del reporte. Es solo consulta: no modifica nada."
-        style="left: 16%; top: 22%;">
-        3
-      </button>
+            <button class="hsDot" data-title="② Ver detalle / Ver resumen"
+              data-text="Cambia el nivel de información (resumen vs detalle). No cambia los datos, solo la vista."
+              style="left:20.5%; top:8.5%;">2</button>
 
-      <button class="hsDot" data-title="④ Filtros (parte inferior)"
-        data-text="Aquí defines qué quieres ver: fecha, subsidiaria, libro contable, etc."
-        style="left: 14%; top: 90%;">
-        4
-      </button>
+            <button class="hsDot" data-title="③ Tabla de resultados"
+              data-text="Aquí ves la información del reporte. Es solo consulta: no modifica nada."
+              style="left:16%; top:22%;">3</button>
 
-      <button class="hsDot" data-title="⑤ Botón “Más”"
-        data-text="Hay más filtros disponibles, pero están ocultos."
-        style="left: 63%; top: 90%;">
-        5
-      </button>
+            <button class="hsDot" data-title="④ Filtros (parte inferior)"
+              data-text="Aquí defines qué quieres ver: fecha, subsidiaria, libro contable, etc."
+              style="left:14%; top:90%;">4</button>
 
-      <button class="hsDot" data-title="⑥ Botón “Actualizar”"
-        data-text="Aplica los filtros. Si no haces clic aquí, el reporte no cambia."
-        style="left: 3.8%; top: 94.2%;">
-        6
-      </button>
+            <button class="hsDot" data-title="⑤ Botón “Más”"
+              data-text="Hay más filtros disponibles, pero están ocultos."
+              style="left:63%; top:90%;">5</button>
 
-      <!-- Tooltip (SOLO para este tab) -->
-      <div class="hsTip" id="hsTipReports" aria-hidden="true">
-        <div class="hsTipTitle" id="hsTipReportsTitle"></div>
-        <div class="hsTipText" id="hsTipReportsText"></div>
-        <div class="hsTipHint">Clic afuera o ESC para cerrar</div>
-      </div>
-    </div>
+            <button class="hsDot" data-title="⑥ Botón “Actualizar”"
+              data-text="Aplica los filtros. Si no haces clic aquí, el reporte no cambia."
+              style="left:3.8%; top:94.2%;">6</button>
 
-    <div class="cap">
-      <b>Tip:</b> la mayoría de errores en reportes pasa por esto: cambiar filtros y no dar <b>Actualizar</b>.
-    </div>
-  </div>
+            <!-- Tooltip ÚNICO (se re-inserta dentro de cada imagen al abrir) -->
+            <div class="hsTip" id="hsTipReports" aria-hidden="true">
+              <div class="hsTipTitle" id="hsTipReportsTitle"></div>
+              <div class="hsTipText" id="hsTipReportsText"></div>
+              <div class="hsTipHint">Clic afuera o ESC para cerrar</div>
+            </div>
+          </div>
 
-  <!-- ===== Imagen 2: Toolbar (Exportar, PDF, Excel, etc.) ===== -->
-  <div class="media" style="margin-top:14px;">
-    <div class="mediaTop">
-      <b>Barra de acciones (Exportar)</b>
-      <span class="mini">toca los puntos</span>
-    </div>
+          <div class="cap">
+            <b>Tip:</b> la mayoría de errores en reportes pasa por esto: cambiar filtros y no dar <b>Actualizar</b>.
+          </div>
+        </div>
 
-    <div class="shotWrap" style="aspect-ratio: 16/3; background:#0b1220;">
-      <img
-        src="img/reporte_toolbar.png"
-        alt="Toolbar del reporte - exportar"
-        style="object-fit:contain;background:#fff;"
-      />
+        <!-- Imagen 2: Toolbar -->
+        <div class="media" style="margin-top:14px;">
+          <div class="mediaTop">
+            <b>Barra de acciones (Exportar)</b>
+            <span class="mini">toca los puntos</span>
+          </div>
 
-      <button class="hsDot small" data-title="⑦ Exportar"
-        data-text="Descarga el reporte con los filtros aplicados (Excel o PDF)."
-        style="left: 60%; top: 52%;">
-        7
-      </button>
-    </div>
+          <div class="shotWrap toolbarWrap" style="aspect-ratio:16/3;">
+            <!-- NOMBRE REAL -->
+            <img
+              src="imgreporte_toolbar.png"
+              alt="Toolbar del reporte - exportar"
+              style="object-fit:contain;background:#fff;"
+            />
 
-    <div class="cap">
-      <b>Clave:</b> exporta después de filtrar y actualizar, así te baja el reporte correcto.
-    </div>
-  </div>
+            <!-- Puntico 7 (AJUSTA left/top según tu recorte) -->
+            <button class="hsDot small" data-title="⑦ Exportar"
+              data-text="Descarga el reporte con los filtros aplicados (Excel o PDF)."
+              style="left:78%; top:55%;">7</button>
+          </div>
 
-  <!-- ===== Texto corto debajo ===== -->
-  <div class="card" style="margin-top:14px;">
-    <div class="cardBody">
-      <p class="p" style="margin-bottom:8px;"><b>¿Cómo leer un reporte en NetSuite?</b></p>
-      <ul class="list" style="margin-top:0;">
-        <li><b>① Título del reporte:</b> indica qué estás consultando.</li>
-        <li><b>② Ver detalle / Ver resumen:</b> cambia el nivel de vista (no los datos).</li>
-        <li><b>③ Tabla:</b> resultados del reporte (solo consulta).</li>
-        <li><b>④ Filtros abajo:</b> define fecha, subsidiaria, etc.</li>
-        <li><b>⑤ “Más”:</b> hay filtros ocultos.</li>
-        <li><b>⑥ Actualizar:</b> aplica filtros (si no, no cambia).</li>
-        <li><b>⑦ Exportar:</b> descarga Excel/PDF con filtros aplicados.</li>
-      </ul>
-    </div>
-  </div>
-</section>
+          <div class="cap">
+            <b>Clave:</b> exporta después de filtrar y actualizar, así te baja el reporte correcto.
+          </div>
+        </div>
 
-<!-- ===================== ESTILOS (PARA INFORMES) ===================== -->
-<style>
-  /* si ya tienes .media/.mediaTop/.cap/.card/.cardBody/.list en tu CSS general,
-     no pasa nada; estos son SOLO los críticos para hotspots y la imagen */
-
-  .shotWrap{
-    position: relative;   /* CLAVE */
-    overflow: hidden;     /* CLAVE */
-    border-radius: 14px;
-  }
-  .shotWrap img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .hsDot{
-    position:absolute;
-    width:40px; height:40px;
-    border-radius:999px;
-    border:2px solid rgba(37,99,235,.75);
-    background: rgba(255,255,255,.92);
-    color:#1d4ed8;
-    font-weight:950;
-    display:grid;
-    place-items:center;
-    cursor:pointer;
-    box-shadow: 0 14px 30px rgba(0,0,0,.25);
-    transform: translate(-50%,-50%);
-    user-select:none;
-    z-index: 5;
-  }
-  .hsDot:hover{
-    filter: brightness(1.02);
-    transform: translate(-50%,-50%) scale(1.03);
-  }
-  .hsDot.small{ width:34px; height:34px; font-size:13px; }
-
-  .hsTip{
-    position:absolute;
-    min-width: 260px;
-    max-width: 340px;
-    left: 12px;
-    top: 12px;
-    background: rgba(15,23,42,.92);
-    color:#fff;
-    border:1px solid rgba(255,255,255,.14);
-    border-radius:16px;
-    padding:12px 12px 10px;
-    box-shadow: 0 18px 40px rgba(0,0,0,.35);
-    display:none;
-    z-index:10;
-  }
-  .hsTipTitle{
-    font-weight:950;
-    font-size:13.5px;
-    letter-spacing:-.01em;
-    margin-bottom:6px;
-  }
-  .hsTipText{
-    font-size:12.8px;
-    line-height:1.55;
-    color: rgba(255,255,255,.92);
-  }
-  .hsTipHint{
-    margin-top:8px;
-    font-size:11.5px;
-    color: rgba(255,255,255,.70);
-    font-weight:800;
-  }
-
-  /* por si tu CSS global tiene botones raros */
-  .hsDot{ -webkit-tap-highlight-color: transparent; }
-</style>
-
-<!-- ===================== SCRIPT (SOLO INFORMES) ===================== -->
-<script>
-(function(){
-  const scope = document.getElementById('tabReports');
-  if(!scope) return;
-
-  const tip = document.getElementById('hsTipReports');
-  const tipTitle = document.getElementById('hsTipReportsTitle');
-  const tipText = document.getElementById('hsTipReportsText');
-
-  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
-
-  function openTip(btn){
-    const wrap = btn.closest('.shotWrap');
-    if(!wrap) return;
-
-    tipTitle.textContent = btn.getAttribute('data-title') || '';
-    tipText.textContent  = btn.getAttribute('data-text')  || '';
-    tip.style.display = 'block';
-    tip.setAttribute('aria-hidden', 'false');
-
-    const wrapRect = wrap.getBoundingClientRect();
-    const btnRect  = btn.getBoundingClientRect();
-
-    const x = (btnRect.left - wrapRect.left) + (btnRect.width / 2);
-    const y = (btnRect.top  - wrapRect.top)  + (btnRect.height / 2);
-
-    // set inicial para medir tamaño real
-    tip.style.left = '12px';
-    tip.style.top  = '12px';
-
-    const tipRect = tip.getBoundingClientRect();
-    const tipW = tipRect.width;
-    const tipH = tipRect.height;
-
-    // preferimos derecha del punto
-    let left = x + 14;
-    let top  = y - (tipH / 2);
-
-    // si se sale por la derecha -> izquierda
-    if(left + tipW > wrapRect.width - 10){
-      left = x - tipW - 14;
-    }
-
-    // clamp para que quede siempre dentro de la imagen
-    left = clamp(left, 10, wrapRect.width - tipW - 10);
-    top  = clamp(top, 10, wrapRect.height - tipH - 10);
-
-    tip.style.left = left + 'px';
-    tip.style.top  = top  + 'px';
-  }
-
-  function closeTip(){
-    tip.style.display = 'none';
-    tip.setAttribute('aria-hidden', 'true');
-  }
-
-  // Click en dots SOLO dentro de Informes
-  scope.querySelectorAll('.hsDot').forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
-      e.stopPropagation();
-      openTip(btn);
-    });
-  });
-
-  // click afuera cierra (pero si clic dentro del tip, no cierres)
-  document.addEventListener('click', (e)=>{
-    if(tip.style.display === 'block'){
-      if(e.target.closest('#hsTipReports')) return;
-      closeTip();
-    }
-  });
-
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape') closeTip();
-  });
-})();
-</script>
-
-
+        <!-- Resumen -->
+        <div class="card" style="margin-top:14px;">
+          <div class="cardBody">
+            <p class="p" style="margin-bottom:8px;"><b>¿Cómo leer un reporte en NetSuite?</b></p>
+            <ul class="list" style="margin-top:0;">
+              <li><b>① Título:</b> qué estás consultando.</li>
+              <li><b>② Detalle / Resumen:</b> cambia la vista, no los datos.</li>
+              <li><b>③ Tabla:</b> solo consulta.</li>
+              <li><b>④ Filtros:</b> define el alcance.</li>
+              <li><b>⑤ Más:</b> filtros ocultos.</li>
+              <li><b>⑥ Actualizar:</b> aplica filtros.</li>
+              <li><b>⑦ Exportar:</b> baja Excel/PDF con filtros.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      <!-- TAB 4: BÚSQUEDAS -->
+      <!-- TAB 4 -->
       <section class="tabPanel" id="tabSearch">
         <h2 class="panelTitle">Búsquedas</h2>
         <div class="placeholder">
@@ -577,8 +515,81 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
+
+    // Hotspots (solo dentro de Informes)
+    (function(){
+      const tab = document.getElementById('tabReports');
+      if(!tab) return;
+
+      const tip = document.getElementById('hsTipReports');
+      const tipTitle = document.getElementById('hsTipReportsTitle');
+      const tipText  = document.getElementById('hsTipReportsText');
+
+      function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+
+      function openTip(btn){
+        const wrap = btn.closest('.shotWrap');
+        if(!wrap) return;
+
+        // CLAVE: el tooltip vive dentro del mismo wrap (imagen) del puntico
+        if(tip.parentElement !== wrap) wrap.appendChild(tip);
+
+        tipTitle.textContent = btn.getAttribute('data-title') || '';
+        tipText.textContent  = btn.getAttribute('data-text')  || '';
+        tip.style.display = 'block';
+        tip.setAttribute('aria-hidden','false');
+
+        const wr = wrap.getBoundingClientRect();
+        const br = btn.getBoundingClientRect();
+
+        const x = (br.left - wr.left) + br.width/2;
+        const y = (br.top  - wr.top ) + br.height/2;
+
+        // Medimos tip
+        tip.style.left = '10px';
+        tip.style.top  = '10px';
+        const tr = tip.getBoundingClientRect();
+
+        // Preferimos derecha del punto
+        let left = x + 14;
+        let top  = y - (tr.height/2);
+
+        // Si se sale por la derecha, lo ponemos a la izquierda
+        if(left + tr.width > wr.width - 10){
+          left = x - tr.width - 14;
+        }
+
+        // Clamp para que SIEMPRE quede dentro de la imagen
+        left = clamp(left, 10, wr.width  - tr.width  - 10);
+        top  = clamp(top,  10, wr.height - tr.height - 10);
+
+        tip.style.left = left + 'px';
+        tip.style.top  = top  + 'px';
+      }
+
+      function closeTip(){
+        tip.style.display = 'none';
+        tip.setAttribute('aria-hidden','true');
+      }
+
+      tab.querySelectorAll('.hsDot').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          openTip(btn);
+        });
+      });
+
+      document.addEventListener('click', (e)=>{
+        if(tip.style.display === 'block'){
+          if(e.target.closest('#hsTipReports')) return;
+          closeTip();
+        }
+      });
+
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape') closeTip();
+      });
+    })();
   </script>
 </body>
 </html>
-
-
