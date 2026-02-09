@@ -171,6 +171,7 @@
       align-items:center;
       gap:10px;
       margin-bottom:6px;
+      flex-wrap:wrap;
     }
 
     .chip{
@@ -180,6 +181,7 @@
       border:1px solid var(--chip-bd);
       font-weight:900;
       font-size:11.5px;
+      white-space:nowrap;
     }
 
     .steps{ margin:10px 0 0 18px; }
@@ -192,8 +194,9 @@
       border:1px dashed rgba(37,99,235,.35);
       font-weight:900;
       font-size:12.5px;
+      line-height:1.45;
     }
-    .linkBox span{ display:block; color:#475569; }
+    .linkBox span{ display:block; color:#475569; font-weight:800; margin-top:4px; }
 
     /* ===== RECOMENDACIONES ===== */
     .note{
@@ -233,7 +236,7 @@
 
   <!-- INTRO -->
   <div class="callout">
-    <b>En esta sección aprenderás:</b>
+    <b>En esta sección aprenderás a:</b>
     <ul>
       <li>Configurar tu contraseña por primera vez.</li>
       <li>Ingresar a NetSuite en el día a día.</li>
@@ -252,38 +255,47 @@
       <div class="player">
         <video controls preload="metadata">
           <source src="ingresons.mp4" type="video/mp4"/>
+          Tu navegador no soporta video HTML5.
         </video>
       </div>
 
       <div class="grid">
+        <!-- Ruta 1 -->
         <div class="miniCard">
           <div class="miniCardTop">
-            <h3>Ruta 1 — Desde el correo</h3>
+            <h3>Ruta 1 — Desde el correo (la más segura)</h3>
             <span class="chip">Recomendada</span>
           </div>
+
           <ol class="steps">
-            <li>Abre el correo <b>“¡Bienvenido a NetSuite con TMC!”</b>.</li>
-            <li>Haz clic en <b>“Ingresa al sistema”</b>.</li>
-            <li>Crea tu contraseña e ingresa.</li>
+            <li>Revisa tu correo de bienvenida: <b>“¡Bienvenido a NetSuite con TMC!”</b>.</li>
+            <li>Dentro del correo, abre el link para <b>configurar tu contraseña</b> (primera vez).</li>
+            <li>Cuando ya tengas la contraseña creada, en ese mismo correo verás el link de ingreso
+              (normalmente dice <b>“Ingresa al sistema”</b>).</li>
+            <li>Entra y escribe: <b>Usuario</b> (tu correo) + <b>Contraseña</b> (la que acabas de crear).</li>
           </ol>
+
           <div class="linkBox">
-            Link de acceso:
+            Link de ingreso (NetSuite TMC):
             <span>https://5055913.app.netsuite.com</span>
           </div>
         </div>
 
+        <!-- Ruta 2 -->
         <div class="miniCard">
           <div class="miniCardTop">
-            <h3>Ruta 2 — Acceso directo</h3>
-            <span class="chip">Si no tienes el correo</span>
+            <h3>Ruta 2 — Buscando el login en Google</h3>
+            <span class="chip">Si no encuentras el correo</span>
           </div>
+
           <ol class="steps">
-            <li>Entra directamente al link.</li>
-            <li>Usuario: tu correo.</li>
-            <li>Contraseña: la que configuraste.</li>
+            <li>En Google busca: <b>netsuite login</b>.</li>
+            <li>Abre el resultado oficial que dice: <b>“NetSuite – Customer Login”</b>.</li>
+            <li>Luego ingresa con: <b>Usuario</b> (tu correo) + <b>Contraseña</b> (la que ya configuraste).</li>
           </ol>
+
           <div class="linkBox">
-            Link directo:
+            Link de ingreso (si ya lo tienes guardado):
             <span>https://5055913.app.netsuite.com</span>
           </div>
         </div>
@@ -294,12 +306,10 @@
         <b>Recomendaciones importantes:</b>
         <ul>
           <li>
-            NetSuite permite <b>5 intentos</b> de ingreso.
-            Si los superas, el acceso se <b>bloquea por 30 minutos</b>.
+            NetSuite permite <b>5 intentos</b> de ingreso. Si los superas, el acceso se <b>bloquea por 30 minutos</b>.
           </li>
           <li>
-            Si al <b>tercer intento</b> no recuerdas la contraseña,
-            usa <b>“Olvidé mi contraseña”</b> antes de que se bloquee.
+            Si al <b>tercer intento</b> no recuerdas la contraseña, usa <b>“Olvidé mi contraseña”</b> antes de que se bloquee.
           </li>
         </ul>
       </div>
@@ -311,3 +321,4 @@
 </div>
 </body>
 </html>
+
