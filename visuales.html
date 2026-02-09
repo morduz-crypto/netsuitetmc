@@ -432,30 +432,29 @@
 
 
       <!-- TAB 2: TRANSFORMACIONES -->
-
 <section class="tabPanel" id="tabTransf">
   <h2 class="panelTitle">Transformaciones</h2>
 
   <p class="p">
-    En NetSuite, una <b>transformación</b> ocurre cuando un documento genera otro
-    para continuar el proceso. El nuevo documento nace conectado al anterior.
+    En NetSuite, una <b>transformación</b> es cuando un documento genera otro para continuar el proceso.
+    El nuevo documento queda conectado al anterior (trazabilidad).
   </p>
 
   <div class="callout" style="margin-top:8px;">
-    <b>Idea clave:</b> si el sistema te ofrece una acción para continuar,
-    estás frente a una transformación.
+    <b>Importante:</b> al transformar, el sistema <b>hereda algunos campos</b> (cliente/proveedor, artículos, cantidades, etc.).
+    Pero cada transacción tiene <b>campos propios</b> y obligatorios.<br/>
+    <span class="mini">Recomendación: transforma para mantener trazabilidad, pero <b>revisa el formulario</b> y llena lo que haga falta en cada etapa.</span>
   </div>
 
-  <!-- ===== ITEM ===== -->
+  <!-- Ventas -->
   <div class="transfRow">
     <img src="img/transf_oportunidad_cotizacion.png" alt="Oportunidad a Cotización">
     <div>
       <h4>Oportunidad → Cotización</h4>
       <p>
-        Desde la <b>Oportunidad</b>, usa <b>Acciones (📄)</b> y selecciona
-        <b>Crear cotización</b>.
+        Desde la <b>Oportunidad</b>, usa <b>Acciones (📄)</b> o el botón visible y selecciona <b>Crear cotización</b>.
       </p>
-      <span class="hint">La cotización hereda cliente e información comercial.</span>
+      <span class="hint">Hereda cliente y contexto comercial. Revisa términos, vigencia, detalles de líneas.</span>
     </div>
   </div>
 
@@ -464,9 +463,9 @@
     <div>
       <h4>Cotización → Orden de Venta</h4>
       <p>
-        En la <b>Cotización</b>, el sistema permite
-        <b>Crear orden de venta</b> (botón o acciones).
+        En la <b>Cotización</b>, selecciona <b>Crear orden de venta</b> (botón o Acciones).
       </p>
+      <span class="hint">Revisa dirección, condiciones, fechas y datos de logística si aplican.</span>
     </div>
   </div>
 
@@ -475,31 +474,55 @@
     <div>
       <h4>Orden de Venta → Factura</h4>
       <p>
-        Desde la <b>Orden de Venta</b>, usa el botón <b>Facturar</b>.
+        Desde la <b>Orden de Venta</b>, usa el botón <b>Facturar</b> (o la opción equivalente).
       </p>
+      <span class="hint">La factura puede requerir campos fiscales/contables propios (según configuración).</span>
+    </div>
+  </div>
+
+  <!-- Compras -->
+  <div class="transfRow">
+    <img src="img/transf_orden_compra_recibo.png" alt="Orden de Compra a Recibo">
+    <div>
+      <h4>Orden de Compra → Recibo (Item Receipt)</h4>
+      <p>
+        En la <b>Orden de Compra</b>, selecciona <b>Recibir</b> para registrar la entrada de inventario.
+      </p>
+      <span class="hint">Revisa cantidades recibidas, ubicación y si hay backorders/pendientes.</span>
     </div>
   </div>
 
   <div class="transfRow">
-    <img src="img/transf_orden_compra_recibo.png" alt="Orden de Compra a Recibo">
+    <img src="img/transf_oc_factura_proveedor.png" alt="Orden de compra a Factura proveedor">
     <div>
-      <h4>Orden de Compra → Recibo</h4>
+      <h4>Orden de Compra → Factura proveedor (Vendor Bill)</h4>
       <p>
-        En la <b>Orden de Compra</b>, selecciona <b>Recibir</b>
-        para ingresar inventario.
+        En algunos casos, desde la <b>Orden de Compra</b> también puedes <b>Crear factura proveedor</b>.
       </p>
+      <span class="hint">Ojo: la factura tiene datos propios (cuentas, impuestos, fechas). Revisa antes de guardar.</span>
     </div>
   </div>
 
+  <div class="transfRow">
+    <img src="img/transf_recibo_factura_proveedor.png" alt="Recibo a Factura proveedor">
+    <div>
+      <h4>Recibo (Item Receipt) → Factura proveedor (Vendor Bill)</h4>
+      <p>
+        Después de recibir, el siguiente paso típico es generar la <b>Factura proveedor</b> para registrar la compra contable.
+      </p>
+      <span class="hint">Hereda líneas/cantidades, pero la factura exige campos contables propios.</span>
+    </div>
+  </div>
+
+  <!-- Traslados -->
   <div class="transfRow">
     <img src="img/transf_orden_traslado.png" alt="Orden de Traslado">
     <div>
       <h4>Orden de Traslado → Ejecución / Recibo</h4>
       <p>
-        La <b>Orden de Traslado</b> tiene botones visibles:
-        <b>Ejecutar traslado</b> y <b>Recibir traslado</b>.
+        La <b>Orden de Traslado</b> tiene acciones como <b>Ejecutar traslado</b> y <b>Recibir traslado</b>.
       </p>
-      <span class="hint">Aquí sí hay botones directos, no menú.</span>
+      <span class="hint">Estos pasos confirman salida y entrada entre ubicaciones.</span>
     </div>
   </div>
 
