@@ -45,16 +45,25 @@
       padding:44px 22px 56px;
     }
 
-    /* ===== TOPBAR (título + botones al lado) ===== */
+    /* ===== TOPBAR (título + botones AL LADO) ===== */
     .topbar{
       display:flex;
       align-items:flex-start;
-      justify-content:space-between;
       gap:14px;
       flex-wrap:wrap;
       margin-bottom:12px;
     }
-    .titleBlock{ min-width: 260px; }
+    /* cambia: ahora titleBlock es una fila: título + acciones */
+    .titleBlock{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+      width:100%;
+    }
+    .titleText{
+      min-width:260px;
+    }
     h1{
       font-size:30px;
       font-weight:900;
@@ -74,7 +83,8 @@
       gap:10px;
       align-items:center;
       flex-wrap:wrap;
-      justify-content:flex-end;
+      justify-content:flex-start; /* al lado del título, no pegado a la derecha */
+      margin-top:2px;
     }
     .btn{
       display:inline-flex;
@@ -273,27 +283,29 @@
 <body>
   <div class="container">
 
-    <!-- TOP: título + botones al lado -->
+    <!-- TOP: título + botones AL LADO -->
     <div class="topbar">
       <div class="titleBlock">
-        <h1>Ingreso a NetSuite</h1>
-        <div class="meta">
-          Cómo entrar por primera vez y cómo dejar el acceso guardado para que no te enredes.
-          (Sección <b>2 de 6</b>)
+        <div class="titleText">
+          <h1>Ingreso a NetSuite</h1>
+          <div class="meta">
+            Cómo entrar por primera vez y cómo dejar el acceso guardado para que no te enredes.
+            (Sección <b>2 de 6</b>)
+          </div>
         </div>
-      </div>
 
-      <div class="topActions">
-        <a class="btn" href="index.html">🏠 Ir al Home</a>
-        <a class="btn" href="glosario.html">← Anterior (Glosario)</a>
-        <a class="btn primary" href="navegacion.html">Siguiente (Navegación) →</a>
-        <span class="pill">Sección 2 de 6</span>
+        <div class="topActions">
+          <a class="btn" href="index.html">Ir al HOME</a>
+          <a class="btn" href="glosario.html">← Anterior (Glosario)</a>
+          <a class="btn primary" href="navegacion.html">Siguiente (Navegación) →</a>
+          <span class="pill">Sección 2 de 6</span>
+        </div>
       </div>
     </div>
 
     <div class="callout">
       En tu correo te llegará un mensaje con asunto similar a <b>“¡Bienvenido a NetSuite con TMC!”</b>.
-      Desde ahí defines tu contraseña y ya puedes iniciar sesión.
+      <b>Dentro de ese correo viene un link</b> para crear tu contraseña y entrar al sistema.
       <span class="mini">Tip: usa <b>Google Chrome</b> para mejor compatibilidad y rendimiento.</span>
     </div>
 
@@ -321,7 +333,7 @@
             <p>La más fácil para la primera vez.</p>
             <ol class="steps">
               <li>Abre el correo <b>“¡Bienvenido a NetSuite con TMC!”</b>.</li>
-              <li>Haz clic en el link para <b>crear tu contraseña</b>.</li>
+              <li>Ahí encontrarás un <b>link dentro del correo</b> para <b>crear tu contraseña</b>.</li>
               <li>Guarda la contraseña y vuelve a iniciar sesión con tu <b>correo</b> como usuario.</li>
             </ol>
           </div>
@@ -332,7 +344,7 @@
             <ol class="steps">
               <li>En Google busca: <span class="kbd">netsuite login</span></li>
               <li>Entra al login y escribe:</li>
-              <li><b>Usuario:</b> tu correo · <b>Contraseña:</b> la que acabas de crear.</li>
+              <li><b>Usuario:</b> tu correo · <b>Contraseña:</b> la que creaste desde el <b>link del correo</b>.</li>
               <li>Haz clic en <b>Log In</b>.</li>
             </ol>
           </div>
@@ -354,3 +366,4 @@
   </div>
 </body>
 </html>
+
