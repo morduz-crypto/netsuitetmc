@@ -583,11 +583,33 @@ La mayoría de ventas de equipos, ventas directas de consumibles y procesos con 
   <div class="transfRow">
     <img src="img/transf_recibo_factura_proveedor.png" alt="Recibo a Factura proveedor">
     <div>
-      <h4>Recibo (Item Receipt) → Factura proveedor (Vendor Bill)</h4>
-      <p>
-        Después de recibir, el siguiente paso típico es generar la <b>Factura proveedor</b> para registrar la compra contable.
-      </p>
-      <span class="hint">Hereda líneas/cantidades, pero la factura exige campos contables propios.</span>
+   <h4>Recibo (Item Receipt) → Factura proveedor (Vendor Bill)</h4>
+
+<p class="p">
+  Después de registrar el <b>Recibo (Item Receipt)</b>, puedes crear la <b>Factura de proveedor (Vendor Bill)</b>
+  directamente desde ese recibo. Este es el flujo más común cuando ya se confirmó la <b>entrada física del inventario</b>
+  y ahora se debe registrar la <b>cuenta por pagar</b> al proveedor.
+</p>
+
+<ul class="list" style="margin-top:0;">
+  <li>
+    La factura <b>hereda</b> automáticamente los artículos y cantidades que fueron recibidas,
+    asegurando que solo se facture lo que realmente <b>entró a inventario</b>.
+  </li>
+  <li>
+    En la factura debes completar y validar campos propios como:
+    <b>fecha</b>, <b>cuentas contables</b>, <b>impuestos</b> y <b>condiciones de pago</b>.
+  </li>
+  <li>
+    Este flujo ayuda a evitar errores cuando hay <b>entregas parciales</b> o diferencias entre lo ordenado y lo recibido.
+  </li>
+</ul>
+
+<p class="p" style="margin-bottom:0;">
+  <b>Tip práctico:</b> si hubo varios recibos para una misma Orden de Compra,
+  genera la factura desde el <b>recibo correcto</b> para que los valores coincidan exactamente con lo entregado.
+</p>
+
     </div>
   </div>
 
