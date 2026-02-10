@@ -310,21 +310,31 @@
       position:relative;
       z-index:1;
     }
-    <style>
-  .shotWrap{
-    position:relative;
-    overflow:hidden;
-    border-radius:14px;
-    background:#0b1220;
-  }
+/* ===== HOTSPOTS ===== */
+.shotWrap{
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border:1px solid rgba(15,23,42,.08);
+  background:#0b1220;
+}
 
-  /* 👇 clave: alto automático (no recorta) */
-  .shotWrap.shotAuto img{
-    width:100%;
-    height:auto;
-    display:block;
-  }
-</style>
+/* DEFAULT (si usas aspect-ratio y quieres “llenar”) */
+.shotWrap img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position:relative;
+  z-index:1;
+}
+
+/* ✅ MODO “NO RECORTAR”: la imagen se ve completa */
+.shotWrap.shotAuto img{
+  height: auto;          /* clave */
+  object-fit: contain;   /* clave: no recorta */
+}
+
 
     .toolbarWrap{
       background:#fff;
