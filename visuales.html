@@ -440,326 +440,333 @@
       </div>
 
       <!-- TAB 1 -->
-      <section class="tabPanel active" id="tabForms">
+     <!-- TAB 1 -->
+<section class="tabPanel active" id="tabForms">
   <h2 class="panelTitle">Formularios</h2>
 
-  <div class="callout" style="margin-top:0;">
-    <b>¿Cómo funciona un formulario en NetSuite?</b><br/>
-    En NetSuite, todo se maneja a través de formularios.
-    No importa si estás creando un cliente, un artículo, una orden o un caso: siempre estás dentro de un formulario.
-    <span class="mini">Lo importante es entender <b>qué tipo de formulario es</b> y <b>en qué modo estás</b>.</span>
+  <!-- CSS local (solo para esta sección) -->
+  <style>
+    .formsWrap{ display:grid; gap:14px; }
+
+    /* 3 tipos compactos */
+    .formsTypes{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    @media (max-width:980px){ .formsTypes{ grid-template-columns:1fr; } }
+
+    .typeCard{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      padding:14px 14px 12px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      min-height:132px;
+    }
+    .typeIcon{
+      width:38px;height:38px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(15,23,42,.03);
+      border:1px solid var(--border);
+      font-size:18px; flex:0 0 auto;
+    }
+    .typeTitle{ margin:0; font-size:14px; font-weight:900; color:var(--text); line-height:1.2; }
+    .typeDesc{ margin:6px 0 0; color:#64748b; font-weight:800; font-size:12.5px; line-height:1.45; }
+    .typePills{ margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; }
+    .typePill{
+      display:inline-flex; align-items:center;
+      padding:6px 10px; border-radius:999px;
+      background:rgba(15,23,42,.03);
+      border:1px solid var(--border);
+      color:#334155; font-weight:900; font-size:11px;
+      white-space:nowrap;
+    }
+
+    /* Bloque ejemplo (imagen + explicación al lado) */
+    .exampleCard{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .exampleHead{
+      padding:16px 18px 12px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .exampleTitle{ margin:0; font-size:16px; font-weight:900; letter-spacing:-.01em; }
+    .exampleSub{ margin-top:6px; color:#64748b; font-weight:800; font-size:12.5px; line-height:1.45; }
+
+    .badgeRow{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      background:rgba(37,99,235,.06);
+      border:1px solid rgba(37,99,235,.18);
+      color:var(--accent2);
+      font-weight:900; font-size:12px;
+      white-space:nowrap;
+    }
+
+    .exampleBody{
+      padding:14px 18px 18px;
+      display:grid;
+      grid-template-columns: 1.25fr .95fr;
+      gap:14px;
+      align-items:start;
+    }
+    @media (max-width:980px){ .exampleBody{ grid-template-columns:1fr; } }
+
+    /* Imagen con hotspots */
+    .imgHotspotWrap{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(15,23,42,.10);
+      box-shadow:0 10px 22px rgba(0,0,0,.04);
+      background:#fff;
+    }
+    .imgHotspotWrap img{ width:100%; display:block; height:auto; }
+
+    .hotspot{
+      position:absolute;
+      width:26px; height:26px;
+      border-radius:50%;
+      background:var(--accent);
+      color:#fff;
+      font-weight:900;
+      font-size:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 8px 18px rgba(37,99,235,.35);
+      border:2px solid rgba(255,255,255,.85);
+      user-select:none;
+    }
+
+    /* Lista compacta (cero “huecos”) */
+    .miniList{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 12px;
+      background:rgba(15,23,42,.02);
+    }
+    .miniItem{
+      display:flex;
+      gap:10px;
+      padding:10px 8px;
+      border-radius:12px;
+    }
+    .miniItem + .miniItem{ border-top:1px solid rgba(15,23,42,.08); }
+    .miniNum{
+      width:26px; height:26px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(37,99,235,.10);
+      border:1px solid rgba(37,99,235,.22);
+      color:var(--accent2);
+      font-weight:900;
+      font-size:12px;
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+    .miniTxt b{ color:var(--text); }
+    .miniTxt{
+      color:#334155;
+      font-size:13px;
+      line-height:1.45;
+      font-weight:800;
+    }
+    .miniHint{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(16,185,129,.10);
+      border:1px solid rgba(16,185,129,.22);
+      color:#064e3b;
+      font-weight:900;
+      font-size:12.5px;
+      line-height:1.45;
+    }
+  </style>
+
+  <div class="formsWrap">
+
+    <!-- Intro compacta -->
+    <div class="callout" style="margin-top:0;">
+      <b>¿Cómo funciona un formulario en NetSuite?</b><br/>
+      En NetSuite, todo se hace en formularios: ver, crear o editar información.
+      <span class="mini">Lo clave: entender <b>qué tipo</b> es (Maestro/Transacción/Registro) y <b>en qué modo</b> estás (Vista/Edición).</span>
+    </div>
+
+    <!-- 1) 3 tipos (compacto y pro) -->
+    <div class="formsTypes">
+      <div class="typeCard">
+        <div class="typeIcon">🗂️</div>
+        <div>
+          <p class="typeTitle">Maestros</p>
+          <p class="typeDesc">Información base del sistema (fichas).</p>
+          <div class="typePills">
+            <span class="typePill">Cliente</span>
+            <span class="typePill">Proveedor</span>
+            <span class="typePill">Artículo</span>
+            <span class="typePill">Ubicación</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="typeCard">
+        <div class="typeIcon">🔄</div>
+        <div>
+          <p class="typeTitle">Transacciones</p>
+          <p class="typeDesc">Operaciones del negocio (movimientos reales).</p>
+          <div class="typePills">
+            <span class="typePill">Cotización</span>
+            <span class="typePill">Orden</span>
+            <span class="typePill">Factura</span>
+            <span class="typePill">Pago</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="typeCard">
+        <div class="typeIcon">🧩</div>
+        <div>
+          <p class="typeTitle">Registros</p>
+          <p class="typeDesc">Seguimiento y control (trazabilidad).</p>
+          <div class="typePills">
+            <span class="typePill">Caso</span>
+            <span class="typePill">Tarea</span>
+            <span class="typePill">Proyecto</span>
+            <span class="typePill">Custom</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2) Ejemplo Maestro -->
+    <div class="exampleCard">
+      <div class="exampleHead">
+        <div class="left">
+          <p class="exampleTitle">Ejemplo 1: Maestro en modo Vista (Artículo)</p>
+          <div class="exampleSub">
+            Este es un <b>Maestro</b>. Si ves <b>Editar</b>, estás en <b>Vista</b> (aún no puedes cambiar campos).
+          </div>
+        </div>
+        <div class="badgeRow">
+          <span class="badge">🗂️ Maestro</span>
+          <span class="badge">👀 Vista</span>
+          <span class="badge">✏️ Editar</span>
+        </div>
+      </div>
+
+      <div class="exampleBody">
+        <div class="imgHotspotWrap">
+          <img src="assets/img/forms_maestro_item_vista.png" alt="Maestro: Item en Vista"/>
+
+          <!-- Hotspots (ajusta top/left una vez según tu imagen) -->
+          <div class="hotspot" style="top:14px; left:16px;">1</div>
+          <div class="hotspot" style="top:92px; left:16px;">2</div>
+          <div class="hotspot" style="top:210px; left:16px;">3</div>
+          <div class="hotspot" style="bottom:118px; left:16px;">4</div>
+        </div>
+
+        <div>
+          <div class="miniList">
+            <div class="miniItem">
+              <div class="miniNum">1</div>
+              <div class="miniTxt"><b>Título:</b> te confirma qué registro es (ej. “Artículo de inventario”).</div>
+            </div>
+            <div class="miniItem">
+              <div class="miniNum">2</div>
+              <div class="miniTxt"><b>Botón Editar:</b> indica que estás en <b>Vista</b> (no editable todavía).</div>
+            </div>
+            <div class="miniItem">
+              <div class="miniNum">3</div>
+              <div class="miniTxt"><b>Secciones:</b> bloques como “Información primaria”, “Clasificación”, etc.</div>
+            </div>
+            <div class="miniItem">
+              <div class="miniNum">4</div>
+              <div class="miniTxt"><b>Pestañas:</b> donde se organiza la info (Compras/Inventario, Contabilidad…).</div>
+            </div>
+          </div>
+
+          <div class="miniHint">Regla rápida: <b>Editar = Vista</b> · <b>Guardar = Edición</b>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3) Ejemplo Transacción -->
+    <div class="exampleCard">
+      <div class="exampleHead">
+        <div class="left">
+          <p class="exampleTitle">Ejemplo 2: Transacción (Orden de traslado)</p>
+          <div class="exampleSub">
+            En transacciones, mira siempre: <b>título + estado</b> arriba, y la <b>sublista de líneas</b> abajo.
+          </div>
+        </div>
+        <div class="badgeRow">
+          <span class="badge">🔄 Transacción</span>
+          <span class="badge">✅ Estado</span>
+          <span class="badge">📋 Líneas</span>
+        </div>
+      </div>
+
+      <div class="exampleBody">
+        <div class="imgHotspotWrap">
+          <img src="assets/img/forms_transaccion_transfer.png" alt="Transacción: Transfer Order"/>
+
+          <!-- Hotspots (ajusta top/left una vez según tu imagen) -->
+          <div class="hotspot" style="top:14px; left:16px;">1</div>
+          <div class="hotspot" style="top:38px; left:380px;">2</div>
+          <div class="hotspot" style="top:78px; left:16px;">3</div>
+          <div class="hotspot" style="bottom:90px; right:16px;">4</div>
+        </div>
+
+        <div>
+          <div class="miniList">
+            <div class="miniItem">
+              <div class="miniNum">1</div>
+              <div class="miniTxt"><b>Título + #:</b> qué transacción es (ej. “Orden de traslado #…”).</div>
+            </div>
+            <div class="miniItem">
+              <div class="miniNum">2</div>
+              <div class="miniTxt"><b>Estado:</b> cambia lo que puedes hacer (botones/acciones disponibles).</div>
+            </div>
+            <div class="miniItem">
+              <div class="miniNum">3</div>
+              <div class="miniTxt"><b>Botones:</b> acciones principales (editar, aprobar, recibir, etc.).</div>
+            </div>
+            <div class="miniItem">
+              <div class="miniNum">4</div>
+              <div class="miniTxt"><b>Sublista:</b> líneas (artículos/cantidades). Aquí ocurre “lo importante”.</div>
+            </div>
+          </div>
+
+          <div class="miniHint">Antes de clic: confirma <b>tipo de formulario</b> + <b>estado</b> + <b>modo</b>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cierre corto -->
+    <div class="callout">
+      <b>Idea clave para cerrar</b><br/>
+      En NetSuite no se “llenan pantallas”. Se registra información que otras áreas van a usar después.
+      Si dominas <b>tipo + modo + pestañas + sublistas</b>, ya estás del otro lado.
+    </div>
+
   </div>
-
-  <!-- 1) LOS 3 TIPOS (visual, corto) -->
-  <div class="card" style="margin-top:14px;">
-    <div class="cardHeader">
-      <div>
-        <p class="cardTitle">1️⃣ Los 3 tipos de formularios (los que debes recordar)</p>
-        <div style="margin-top:6px;color:#64748b;font-weight:800;font-size:12.5px;line-height:1.45;">
-          Se ven parecidos, pero no significan lo mismo.
-        </div>
-      </div>
-    </div>
-
-    <div class="cardBody">
-      <div class="areas" style="margin-top:0;">
-
-        <!-- Maestros -->
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">🗂️</div>
-              <div>
-                <h3>Maestros</h3>
-                <div class="sub">Información base del sistema</div>
-                <div class="tagRow">
-                  <span class="tag">Cliente</span>
-                  <span class="tag">Proveedor</span>
-                  <span class="tag">Artículo (Item)</span>
-                  <span class="tag">Empleado</span>
-                  <span class="tag">Ubicación</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver">
-              <b>Idea rápida:</b> son “fichas” de info. No es venta/compra, pero habilita procesos.
-            </div>
-          </div>
-        </div>
-
-        <!-- Transacciones -->
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">🔄</div>
-              <div>
-                <h3>Transacciones</h3>
-                <div class="sub">Operaciones del negocio</div>
-                <div class="tagRow">
-                  <span class="tag">Cotización</span>
-                  <span class="tag">Orden de venta</span>
-                  <span class="tag">Factura</span>
-                  <span class="tag">Orden de compra</span>
-                  <span class="tag">Pago</span>
-                  <span class="tag">Traslado</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver">
-              <b>Idea rápida:</b> registran un movimiento real. Algunas impactan contabilidad.
-            </div>
-          </div>
-        </div>
-
-        <!-- Registros -->
-        <div class="areaCard" style="grid-column:1 / -1;">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">🧩</div>
-              <div>
-                <h3>Registros</h3>
-                <div class="sub">Seguimiento y control interno</div>
-                <div class="tagRow">
-                  <span class="tag">Caso</span>
-                  <span class="tag">Tarea</span>
-                  <span class="tag">Proyecto</span>
-                  <span class="tag">Registros personalizados</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver">
-              <b>Idea rápida:</b> dan trazabilidad (qué pasó, quién, estado) y conectan procesos.
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="note" style="margin-top:14px;">
-        <b>Truco mental:</b> Maestros = base · Transacciones = operación · Registros = seguimiento.
-      </div>
-    </div>
-  </div>
-
-
-  <!-- 2) EJEMPLO 1: MAESTRO (Item) EN VISTA -->
-  <div class="card" style="margin-top:14px;">
-    <div class="cardHeader">
-      <div>
-        <p class="cardTitle">2️⃣ Ejemplo real: un Maestro (Artículo) en modo Vista</p>
-        <div style="margin-top:6px;color:#64748b;font-weight:800;font-size:12.5px;line-height:1.45;">
-          Este formulario se usa para consultar datos del artículo. Para cambiar algo, debes pasar a edición.
-        </div>
-      </div>
-      <div class="chips">
-        <span class="chip">🗂️ Maestro</span>
-        <span class="chip">👀 Vista</span>
-        <span class="chip">✏️ Editar para modificar</span>
-      </div>
-    </div>
-
-    <div class="cardBody">
-      <img
-        src="formulario_maestro_item_vista_anotado.png"
-        alt="Artículo de inventario (vista)"
-        style="width:100%;height:auto;display:block;border-radius:14px;border:1px solid rgba(15,23,42,.10);box-shadow: 0 10px 22px rgba(0,0,0,.04);"
-      />
-
-      <div class="areas" style="margin-top:12px;">
-
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">①</div>
-              <div>
-                <h3>Título (arriba)</h3>
-                <div class="sub">Te dice qué registro es</div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver"><b>Artículo de inventario</b> → es un <b>Maestro</b>.</div>
-          </div>
-        </div>
-
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">②</div>
-              <div>
-                <h3>Botón “Editar”</h3>
-                <div class="sub">Te confirma el modo</div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver">Si ves <b>Editar</b>, estás en <b>Vista</b> (no puedes escribir aún).</div>
-          </div>
-        </div>
-
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">③</div>
-              <div>
-                <h3>Secciones plegables</h3>
-                <div class="sub">Bloques de información</div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver">Ej: <b>Información primaria</b>, <b>Clasificación</b>, <b>TMC</b>.</div>
-          </div>
-        </div>
-
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">④</div>
-              <div>
-                <h3>Pestañas</h3>
-                <div class="sub">Organizan dónde está cada cosa</div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver">Compras/Inventario · Ventas/Precios · Contabilidad · etc.</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-  <!-- 3) EJEMPLO 2: TRANSACCIÓN (Transfer) -->
-  <div class="card" style="margin-top:14px;">
-    <div class="cardHeader">
-      <div>
-        <p class="cardTitle">3️⃣ Ejemplo real: una Transacción (Orden de traslado)</p>
-        <div style="margin-top:6px;color:#64748b;font-weight:800;font-size:12.5px;line-height:1.45;">
-          En transacciones, la clave es mirar arriba (título/estado) y abajo (líneas).
-        </div>
-      </div>
-      <div class="chips">
-        <span class="chip">🔄 Transacción</span>
-        <span class="chip">📌 Título</span>
-        <span class="chip">✅ Estado</span>
-        <span class="chip">📋 Líneas</span>
-      </div>
-    </div>
-
-    <div class="cardBody">
-      <img
-        src="form_transaccion_transfer.png"
-        alt="Orden de traslado (transacción)"
-        style="width:100%;height:auto;display:block;border-radius:14px;border:1px solid rgba(15,23,42,.10);box-shadow: 0 10px 22px rgba(0,0,0,.04);"
-      />
-
-      <div class="areas" style="margin-top:12px;">
-
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">①</div>
-              <div>
-                <h3>Título + número</h3>
-                <div class="sub">Qué transacción es</div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver">“Orden de traslado #…” → es una <b>Transacción</b>.</div>
-          </div>
-        </div>
-
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">②</div>
-              <div>
-                <h3>Estado</h3>
-                <div class="sub">Cambia lo que puedes hacer</div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver">Ej: recibida / pendiente / aprobada → cambian botones y acciones.</div>
-          </div>
-        </div>
-
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">③</div>
-              <div>
-                <h3>Pestañas + sublistas</h3>
-                <div class="sub">Donde están las líneas</div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver">La sublista (artículos/líneas) es donde ocurren la mayoría de validaciones.</div>
-          </div>
-        </div>
-
-        <div class="areaCard">
-          <div class="areaTop">
-            <div class="left">
-              <div class="emoji">④</div>
-              <div>
-                <h3>Obligatorios (*)</h3>
-                <div class="sub">Si falta, no guarda</div>
-              </div>
-            </div>
-          </div>
-          <div class="areaBody">
-            <div class="deliver"><b>No llenes por llenar</b>. Esa info impacta procesos posteriores.</div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="note" style="margin-top:12px;">
-        <b>Regla de oro:</b> antes de hacer clic, confirma <b>formulario</b> + <b>estado</b> + <b>modo</b>.
-      </div>
-    </div>
-  </div>
-
-
-  <!-- 4) VISTA VS EDICIÓN (simple y memorable) -->
-  <div class="card" style="margin-top:14px;">
-    <div class="cardHeader">
-      <div>
-        <p class="cardTitle">4️⃣ Vista vs Edición (la regla más importante)</p>
-        <div style="margin-top:6px;color:#64748b;font-weight:800;font-size:12.5px;line-height:1.45;">
-          <b>Si puedes escribir en los campos → estás en Edición.</b> Si no, estás en Vista.
-        </div>
-      </div>
-    </div>
-
-    <div class="cardBody">
-      <div class="chips">
-        <span class="chip">👀 Vista: ves <b>Editar</b></span>
-        <span class="chip">✏️ Edición: ves <b>Guardar</b></span>
-        <span class="chip">🗂️ Si no encuentras algo: revisa <b>pestañas</b></span>
-        <span class="chip">⚠️ Si no te deja: lee el <b>mensaje</b> de arriba</span>
-      </div>
-
-      <div class="callout" style="margin-top:12px;">
-        <b>Cierre:</b><br/>
-        En NetSuite no se “llenan pantallas”. Se completa información que otras áreas van a usar después.
-        Si entiendes el formulario, trabajas bien incluso si es tu primera vez.
-      </div>
-    </div>
-  </div>
-
 </section>
 
 
