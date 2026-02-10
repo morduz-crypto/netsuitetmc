@@ -500,10 +500,28 @@ La mayoría de ventas de equipos, ventas directas de consumibles y procesos con 
     <img src="img/transf_orden_compra_recibo.png" alt="Orden de Compra a Recibo">
     <div>
       <h4>Orden de Compra → Recibo (Item Receipt)</h4>
-      <p>
-        En la <b>Orden de Compra</b>, selecciona <b>Recibir</b> para registrar la entrada de inventario.
-      </p>
-      <span class="hint">Revisa cantidades recibidas, ubicación y si hay backorders/pendientes.</span>
+<p class="p">
+  La transformación <b>Orden de Venta → Factura</b> se usa cuando la venta
+  ya está confirmada y corresponde <b>facturar lo que se despachó o se va a facturar</b>.
+  Desde la <b>Orden de Venta</b>, usa el botón <b>Facturar</b> (o la opción equivalente).
+</p>
+
+<ul class="list" style="margin-top:0;">
+  <li>
+    La factura <b>hereda información clave</b> de la orden (cliente, artículos, cantidades, precios),
+    pero <b>no todo queda completo automáticamente</b>.
+  </li>
+  <li>
+    Es normal que debas revisar o completar <b>campos fiscales y contables</b>
+    (impuestos, cuentas, fechas, documento fiscal, etc.), según la configuración.
+  </li>
+</ul>
+
+<p class="p" style="margin-bottom:0;">
+  <b>Recomendación:</b> transforma la orden, pero <b>revisa siempre la factura antes de guardar</b>,
+  para asegurar que la información contable y fiscal quede correcta en esta etapa.
+</p>
+
     </div>
   </div>
 
@@ -551,6 +569,7 @@ La mayoría de ventas de equipos, ventas directas de consumibles y procesos con 
   </div>
 
   <div>
+        <h4>Orden de traslado → Ejecución(Item Fulfillment)/Recibo (Item Receipt)</h4>
     <p class="p">
       La <b>Orden de Traslado</b> es el documento que controla un movimiento de inventario
       de una <b>ubicación origen</b> a una <b>ubicación destino</b>. Por eso normalmente tiene dos acciones clave:
