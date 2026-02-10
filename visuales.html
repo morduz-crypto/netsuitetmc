@@ -836,6 +836,7 @@ La mayoría de ventas de equipos, ventas directas de consumibles y procesos con 
       </section>
 
       <!-- TAB 4 -->
+<!-- ===================== TAB: BÚSQUEDAS (BLOQUE COMPLETO PEGABLE) ===================== -->
 <section class="tabPanel" id="tabSearch">
   <h2 class="panelTitle">Búsquedas</h2>
 
@@ -846,13 +847,18 @@ La mayoría de ventas de equipos, ventas directas de consumibles y procesos con 
   </p>
 
   <p class="p" style="margin-top:-2px;">
-    Se usa para <b>monitorear pendientes</b>, <b>priorizar trabajo</b>, <b>exportar</b> información y
-    (según permisos/configuración) <b>compartir</b> vistas o <b>enviar resultados</b> por correo.
+    Se usa para <b>monitorear pendientes</b>, <b>priorizar trabajo</b> y <b>exportar</b> información.
+    (Según permisos/configuración también puedes <b>compartir</b> o <b>enviar resultados</b> por correo).
+  </p>
+
+  <p class="p" style="margin-top:-2px;">
+    <b>Clave operativa:</b> a diferencia de los <b>informes</b>, aquí normalmente <b>no hay botón “Actualizar”</b>.
+    En búsquedas, los filtros se aplican al <b>salir del campo</b> (TAB o clic afuera) o con <b>Enter</b> (según el filtro).
+    <b>Si exportas sin aplicar,</b> es común que te descargue el archivo con la lista <b>sin esos cambios</b>.
   </p>
 
   <p class="p">
-    <b>Diferencia clave:</b>
-    informe = análisis · búsqueda = trabajo operativo.
+    <b>Diferencia clave:</b> informe = análisis · búsqueda = trabajo operativo.
   </p>
 
   <!-- Imagen con hotspots -->
@@ -862,35 +868,138 @@ La mayoría de ventas de equipos, ventas directas de consumibles y procesos con 
       <span class="mini">toca los puntos</span>
     </div>
 
-    <div class="shotWrap" style="aspect-ratio:16/9;">
+    <!-- ✅ IMPORTANTE: sin aspect-ratio para NO recortar -->
+    <div class="shotWrap shotAuto">
       <img
         src="imgbusqueda_cotizaciones.png"
         alt="Búsqueda NetSuite - Cotizaciones"
       />
 
-      <button class="hsDot" style="left:1%;top:9%;" data-title="① Título de la búsqueda"
-        data-text="Indica qué tipo de registros estás viendo.">1</button>
+      <!-- Hotspots (posiciones en %) -->
+      <button class="hsDot"
+        style="left:12%; top:12%;"
+        data-title="① Título de la búsqueda"
+        data-text="Te dice qué lista estás viendo (qué registros o pendientes estás consultando).">1</button>
 
-      <button class="hsDot" style="left:15%;top:14%;" data-title="② Volver a criterios"
-        data-text="Permite cambiar filtros o condiciones (según permisos).">2</button>
+      <button class="hsDot"
+        style="left:16%; top:18%;"
+        data-title="② Volver a criterios / Editar búsqueda"
+        data-text="Permite ajustar criterios o la definición de la búsqueda (según permisos).">2</button>
 
-      <button class="hsDot" style="left:8%;top:22%;" data-title="③ Filtros"
-        data-text="Definen qué registros aparecen en la lista.">3</button>
+      <button class="hsDot"
+        style="left:11%; top:29%;"
+        data-title="③ Filtros"
+        data-text="Definen qué registros aparecen. Tip: aplica el filtro saliendo del campo (TAB/clic afuera) o con Enter (según el filtro).">3</button>
 
-      <button class="hsDot" style="left:6%;top:38%;" data-title="④ Editar / Ver"
-        data-text="Desde aquí entras directamente al registro.">4</button>
+      <button class="hsDot"
+        style="left:10%; top:52%;"
+        data-title="④ Acciones por fila (Editar / Ver)"
+        data-text="Desde aquí entras directo al registro de esa fila.">4</button>
 
-      <button class="hsDot" style="left:45%;top:45%;" data-title="⑤ Tabla de resultados"
-        data-text="Cada fila es un registro real del sistema.">5</button>
+      <button class="hsDot"
+        style="left:48%; top:52%;"
+        data-title="⑤ Resultados (tabla)"
+        data-text="Cada fila es un registro real del sistema. Esta lista es de consulta/gestión.">5</button>
 
-      <button class="hsDot" style="left:92%;top:18%;" data-title="⑥ Exportar"
-        data-text="Descarga la lista en Excel o PDF.">6</button>
+      <button class="hsDot"
+        style="left:88%; top:30%;"
+        data-title="⑥ Exportar"
+        data-text="Descarga la lista (Excel/PDF). Primero aplica filtros (TAB/Enter) y luego exporta para que salga correcto.">6</button>
 
-      <!-- tooltip reutiliza el mismo script de Informes -->
-      <div class="hsTip" id="hsTipSearch"></div>
+      <!-- Tooltip (solo para Búsquedas) -->
+      <div class="hsTip" id="hsTipSearch" aria-hidden="true">
+        <div class="hsTipTitle" id="hsTipSearchTitle"></div>
+        <div class="hsTipText" id="hsTipSearchText"></div>
+        <div class="hsTipHint">Clic afuera o ESC para cerrar</div>
+      </div>
+    </div>
+
+    <div class="cap">
+      <b>Tip:</b> si al exportar “no sale como esperabas”, revisa que el filtro haya quedado aplicado (TAB/Enter) antes de descargar.
     </div>
   </div>
 </section>
+
+
+<!-- ===================== SCRIPT (tooltip SOLO Búsquedas) ===================== -->
+<script>
+(function(){
+  const scope = document.getElementById('tabSearch');
+  if(!scope) return;
+
+  const tip = document.getElementById('hsTipSearch');
+  const tipTitle = document.getElementById('hsTipSearchTitle');
+  const tipText = document.getElementById('hsTipSearchText');
+
+  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+  function openTip(btn){
+    const wrap = btn.closest('.shotWrap');
+    if(!wrap) return;
+
+    tipTitle.textContent = btn.getAttribute('data-title') || '';
+    tipText.textContent  = btn.getAttribute('data-text')  || '';
+    tip.style.display = 'block';
+    tip.setAttribute('aria-hidden', 'false');
+
+    const wrapRect = wrap.getBoundingClientRect();
+    const btnRect  = btn.getBoundingClientRect();
+
+    const x = (btnRect.left - wrapRect.left) + (btnRect.width / 2);
+    const y = (btnRect.top  - wrapRect.top)  + (btnRect.height / 2);
+
+    // set inicial para medir tamaño real
+    tip.style.left = '12px';
+    tip.style.top  = '12px';
+
+    const tipRect = tip.getBoundingClientRect();
+    const tipW = tipRect.width;
+    const tipH = tipRect.height;
+
+    // preferimos derecha del punto
+    let left = x + 14;
+    let top  = y - (tipH / 2);
+
+    // si se sale por la derecha -> izquierda
+    if(left + tipW > wrapRect.width - 10){
+      left = x - tipW - 14;
+    }
+
+    // clamp para que quede siempre dentro de la imagen
+    left = clamp(left, 10, wrapRect.width - tipW - 10);
+    top  = clamp(top, 10, wrapRect.height - tipH - 10);
+
+    tip.style.left = left + 'px';
+    tip.style.top  = top  + 'px';
+  }
+
+  function closeTip(){
+    tip.style.display = 'none';
+    tip.setAttribute('aria-hidden', 'true');
+  }
+
+  // Click en dots SOLO dentro de Búsquedas
+  scope.querySelectorAll('.hsDot').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      openTip(btn);
+    });
+  });
+
+  // click afuera cierra (pero si clic dentro del tip, no cierres)
+  document.addEventListener('click', (e)=>{
+    if(tip.style.display === 'block'){
+      if(e.target.closest('#hsTipSearch')) return;
+      closeTip();
+    }
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeTip();
+  });
+})();
+</script>
+
 
     </div>
 
