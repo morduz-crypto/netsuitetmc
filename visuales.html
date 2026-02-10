@@ -450,10 +450,378 @@
           Un formulario es simplemente la pantalla donde ves, editas o creas información.
         </div>
 
-        <div class="placeholder">
-          <b>En construcción:</b> aquí vamos a armar la sección de formularios completa (con el flujo y los demos pro).<br/>
-          Lo haremos en este orden: <b>Tipos → ¿Qué formulario es? → Vista vs Edición → Obligatorios → Pestañas → Grupos → Alertas</b>.
+<!-- ===== FORMULARIOS: CONTENIDO REAL (reemplaza el placeholder) ===== -->
+<div class="card" style="margin-top:14px;">
+  <div class="cardHeader">
+    <div>
+      <p class="cardTitle">1️⃣ Tipos de formularios que existen</p>
+      <div style="margin-top:6px; color:#64748b; font-weight:800; font-size:12.5px; line-height:1.45;">
+        Aunque se ven parecidos, no todos los formularios son lo mismo. Estos son los 3 grandes grupos.
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBody">
+    <div class="areas" style="margin-top:0;">
+
+      <!-- Maestros -->
+      <div class="areaCard">
+        <div class="areaTop">
+          <div class="left">
+            <div class="emoji">🗂️</div>
+            <div>
+              <h3>Formularios de Maestros</h3>
+              <div class="sub">Información base del sistema</div>
+              <div class="tagRow">
+                <span class="tag">Cliente (Customer)</span>
+                <span class="tag">Proveedor (Vendor)</span>
+                <span class="tag">Artículo (Item)</span>
+                <span class="tag">Empleado (Employee)</span>
+                <span class="tag">Ubicación (Location)</span>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="areaBody">
+          <ul>
+            <li>Son “fichas” de información que el resto de procesos necesitan para funcionar.</li>
+            <li><b>No mueven dinero</b> directamente, pero <b>sí habilitan</b> ventas, compras, inventario, cartera, etc.</li>
+            <li><b>Regla práctica:</b> si el maestro está mal, el problema se “hereda” a todas las transacciones.</li>
+          </ul>
+
+          <div class="deliver">
+            <b>Clave:</b> información completa y consistente (nombre, impuestos, direcciones, condiciones, etc.).
+          </div>
+        </div>
+      </div>
+
+      <!-- Transacciones -->
+      <div class="areaCard">
+        <div class="areaTop">
+          <div class="left">
+            <div class="emoji">🔄</div>
+            <div>
+              <h3>Formularios de Transacciones</h3>
+              <div class="sub">Operaciones del negocio (venta, compra, pago, movimientos)</div>
+              <div class="tagRow">
+                <span class="tag">Oportunidad (Opportunity)</span>
+                <span class="tag">Cotización (Estimate)</span>
+                <span class="tag">Orden de venta (Sales Order)</span>
+                <span class="tag">Factura (Invoice)</span>
+                <span class="tag">Orden de compra (Purchase Order)</span>
+                <span class="tag">Pago (Payment)</span>
+                <span class="tag">Traslado (Transfer Order)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="areaBody">
+          <ul>
+            <li>Registran una operación real: <b>lo que pasó</b> (o lo que está por pasar) en el negocio.</li>
+            <li>Algunas transacciones <b>impactan contabilidad</b> y otras hacen parte del flujo antes de contabilidad.</li>
+            <li><b>Regla práctica:</b> una transacción se conecta con otras (ej. Cotización → Orden de venta → Factura).</li>
+          </ul>
+
+          <div class="deliver">
+            <b>Clave:</b> datos correctos (cliente, artículos, precios, impuestos, ubicación, fechas, soportes).
+          </div>
+        </div>
+      </div>
+
+      <!-- Registros -->
+      <div class="areaCard" style="grid-column: 1 / -1;">
+        <div class="areaTop">
+          <div class="left">
+            <div class="emoji">🧩</div>
+            <div>
+              <h3>Formularios de Registros</h3>
+              <div class="sub">Control, seguimiento y organización interna</div>
+              <div class="tagRow">
+                <span class="tag">Caso (Support Case)</span>
+                <span class="tag">Proyecto (Project)</span>
+                <span class="tag">Tarea (Task)</span>
+                <span class="tag">Registros personalizados</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="areaBody">
+          <ul>
+            <li>Sirven para <b>trazabilidad</b>: quién pidió qué, qué se hizo, en qué estado va y qué falta.</li>
+            <li>No son ventas ni compras, pero <b>conectan procesos</b> entre áreas (SAC, técnico, comercial, etc.).</li>
+            <li><b>Regla práctica:</b> cuando hay seguimiento, casi siempre hay un “registro” detrás.</li>
+          </ul>
+
+          <div class="deliver">
+            <b>Clave:</b> documentación clara + estado actualizado + responsables definidos.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note" style="margin-top:14px;">
+      <b>Idea rápida:</b> Maestros = base · Transacciones = operaciones · Registros = seguimiento.
+    </div>
+  </div>
+</div>
+
+
+<div class="card" style="margin-top:14px;">
+  <div class="cardHeader">
+    <div>
+      <p class="cardTitle">2️⃣ Cómo saber en qué formulario estás</p>
+      <div style="margin-top:6px; color:#64748b; font-weight:800; font-size:12.5px; line-height:1.45;">
+        Tu “brújula” es la parte superior del formulario: el título siempre te ubica.
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBody">
+    <div class="chips" style="margin-bottom:10px;">
+      <span class="chip">📌 Mira el <b>título</b> arriba</span>
+      <span class="chip">🔎 Identifica el <b>tipo de registro</b></span>
+      <span class="chip">🧾 Revisa el <b>número</b> si aplica (SO/INV/etc.)</span>
+      <span class="chip">✅ Valida el <b>estado</b> (pendiente, aprobado, etc.)</span>
+    </div>
+
+    <div class="callout" style="margin:0;">
+      <b>Ejemplos comunes:</b><br/>
+      “Cliente” · “Cotización” · “Orden de venta #SO12345” · “Caso #CS000123”<br/>
+      <span class="mini">Ese título es tu punto de referencia principal para saber dónde estás y qué puedes hacer.</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="card" style="margin-top:14px;">
+  <div class="cardHeader">
+    <div>
+      <p class="cardTitle">3️⃣ Modo Vista vs Modo Edición</p>
+      <div style="margin-top:6px; color:#64748b; font-weight:800; font-size:12.5px; line-height:1.45;">
+        Un mismo formulario puede estar en “solo mirar” o en “editar y guardar”.
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBody">
+    <div class="areas" style="margin-top:0;">
+
+      <div class="areaCard">
+        <div class="areaTop">
+          <div class="left">
+            <div class="emoji">👀</div>
+            <div>
+              <h3>Modo Vista</h3>
+              <div class="sub">Solo estás consultando información</div>
+              <div class="tagRow">
+                <span class="tag">Editar</span>
+                <span class="tag">Imprimir</span>
+                <span class="tag">Crear a partir de esto</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="areaBody">
+          <ul>
+            <li>No puedes escribir ni cambiar campos.</li>
+            <li>Ves botones de consulta/acciones (editar, imprimir, transformar).</li>
+            <li><b>Señal rápida:</b> si no puedes escribir, estás en vista.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="areaCard">
+        <div class="areaTop">
+          <div class="left">
+            <div class="emoji">✏️</div>
+            <div>
+              <h3>Modo Edición</h3>
+              <div class="sub">Puedes cambiar datos y guardar</div>
+              <div class="tagRow">
+                <span class="tag">Guardar</span>
+                <span class="tag">Guardar y cerrar</span>
+                <span class="tag">Cancelar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="areaBody">
+          <ul>
+            <li>Puedes digitar, seleccionar y modificar campos.</li>
+            <li>Aparecen botones orientados a guardar cambios.</li>
+            <li><b>Señal rápida:</b> si puedes escribir, estás en edición.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="warning">
+      <b>Regla práctica:</b> antes de dar clic en cualquier botón, confirma <b>qué formulario es</b> y <b>en qué modo estás</b>.
+    </div>
+  </div>
+</div>
+
+
+<div class="card" style="margin-top:14px;">
+  <div class="cardHeader">
+    <div>
+      <p class="cardTitle">4️⃣ Acciones y botones (casi siempre arriba)</p>
+      <div style="margin-top:6px; color:#64748b; font-weight:800; font-size:12.5px; line-height:1.45;">
+        Los botones cambian según el estado del registro y tu rol/permisos.
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBody">
+    <div class="chips">
+      <span class="chip">💾 Guardar</span>
+      <span class="chip">🧠 Guardar y cerrar</span>
+      <span class="chip">✏️ Editar</span>
+      <span class="chip">✅ Aprobar</span>
+      <span class="chip">🔁 Crear / Transformar</span>
+      <span class="chip">⋯ Más acciones</span>
+    </div>
+
+    <div class="callout" style="margin:12px 0 0;">
+      <b>Tip de seguridad:</b><br/>
+      Si el registro está en un estado que no esperabas, <b>no des clic a ciegas</b>.
+      Revisa el título y el estado primero.
+    </div>
+  </div>
+</div>
+
+
+<div class="card" style="margin-top:14px;">
+  <div class="cardHeader">
+    <div>
+      <p class="cardTitle">5️⃣ Campos obligatorios</p>
+      <div style="margin-top:6px; color:#64748b; font-weight:800; font-size:12.5px; line-height:1.45;">
+        Si falta un obligatorio, NetSuite no te deja guardar (y te lo dice).
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBody">
+    <ul style="margin:0 0 10px 18px; padding:0; color:#334155; line-height:1.65;">
+      <li>El sistema muestra un mensaje de alerta.</li>
+      <li>El campo suele quedar marcado o resaltado.</li>
+      <li>Arriba aparece qué falta completar.</li>
+    </ul>
+
+    <div class="warning">
+      <b>Importante:</b> no llenes campos “por llenar”. Esa información la usan otras áreas después.
+    </div>
+  </div>
+</div>
+
+
+<div class="card" style="margin-top:14px;">
+  <div class="cardHeader">
+    <div>
+      <p class="cardTitle">6️⃣ Pestañas y 7️⃣ Grupos de campos</p>
+      <div style="margin-top:6px; color:#64748b; font-weight:800; font-size:12.5px; line-height:1.45;">
+        Las pestañas organizan; los grupos te dan contexto de lo que estás llenando.
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBody">
+    <div class="areas" style="margin-top:0;">
+
+      <div class="areaCard">
+        <div class="areaTop">
+          <div class="left">
+            <div class="emoji">🗂️</div>
+            <div>
+              <h3>Pestañas (Tabs)</h3>
+              <div class="sub">General, Finanzas, Dirección, Artículos…</div>
+              <div class="tagRow">
+                <span class="tag">General</span>
+                <span class="tag">Finanzas</span>
+                <span class="tag">Dirección</span>
+                <span class="tag">Artículos</span>
+                <span class="tag">Comunicación</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="areaBody">
+          <ul>
+            <li>Sirven para ordenar información en secciones.</li>
+            <li><b>No son formularios distintos</b>: es el mismo registro.</li>
+            <li><b>Tip:</b> si no encuentras algo, revisa las pestañas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="areaCard">
+        <div class="areaTop">
+          <div class="left">
+            <div class="emoji">🧱</div>
+            <div>
+              <h3>Grupos de campos</h3>
+              <div class="sub">Bloques dentro de la pestaña</div>
+              <div class="tagRow">
+                <span class="tag">Información del cliente</span>
+                <span class="tag">Datos de facturación</span>
+                <span class="tag">Información logística</span>
+                <span class="tag">Datos contables</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="areaBody">
+          <ul>
+            <li>Ayudan a entender qué tipo de datos estás llenando.</li>
+            <li>Pueden estar tanto en pestañas como en la parte principal del formulario.</li>
+            <li><b>Tip:</b> si entiendes el grupo, reduces errores.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="card" style="margin-top:14px;">
+  <div class="cardHeader">
+    <div>
+      <p class="cardTitle">8️⃣ Mensajes y alertas (léelos siempre)</p>
+      <div style="margin-top:6px; color:#64748b; font-weight:800; font-size:12.5px; line-height:1.45;">
+        NetSuite casi siempre te dice exactamente qué falta o qué está bloqueando el proceso.
+      </div>
+    </div>
+  </div>
+
+  <div class="cardBody">
+    <ul style="margin:0 0 10px 18px; padding:0; color:#334155; line-height:1.65;">
+      <li>Campos obligatorios faltantes</li>
+      <li>Inconsistencias (ej. fechas, ubicaciones, cantidades)</li>
+      <li>Restricciones del proceso (según estado o permisos)</li>
+    </ul>
+
+    <div class="note">
+      <b>Tip:</b> leer el mensaje arriba del formulario te ahorra tiempo.
+      Normalmente ahí está la instrucción para resolverlo.
+    </div>
+  </div>
+</div>
+
+
+<div class="callout" style="margin-top:14px;">
+  <b>Idea clave para cerrar esta sección</b><br/>
+  En NetSuite no se “llenan pantallas”. Se completa información que otras áreas van a usar después.<br/>
+  Si entiendes: <b>qué formulario es</b>, <b>en qué modo estás</b>, <b>qué campos son obligatorios</b> y <b>qué botones estás usando</b>,
+  ya tienes la base para trabajar bien en el sistema, incluso si es tu primera vez.
+</div>
+<!-- ===== FIN FORMULARIOS ===== -->
+
       </section>
 
 
