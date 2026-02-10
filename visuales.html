@@ -488,18 +488,6 @@ La mayoría de ventas de equipos, ventas directas de consumibles y procesos con 
     <img src="transf_orden_venta_factura.png" alt="Orden de Venta a Factura">
     <div>
       <h4>Orden de Venta → Factura</h4>
-      <p>
-        Desde la <b>Orden de Venta</b>, usa el botón <b>Facturar</b> (o la opción equivalente).
-      </p>
-      <span class="hint">La factura puede requerir campos fiscales/contables propios (según configuración).</span>
-    </div>
-  </div>
-
-  <!-- Compras -->
-  <div class="transfRow">
-    <img src="img/transf_orden_compra_recibo.png" alt="Orden de Compra a Recibo">
-    <div>
-      <h4>Orden de Compra → Recibo (Item Receipt)</h4>
 <p class="p">
   La transformación <b>Orden de Venta → Factura</b> se usa cuando la venta
   ya está confirmada y corresponde <b>facturar lo que se despachó o se va a facturar</b>.
@@ -521,18 +509,74 @@ La mayoría de ventas de equipos, ventas directas de consumibles y procesos con 
   <b>Recomendación:</b> transforma la orden, pero <b>revisa siempre la factura antes de guardar</b>,
   para asegurar que la información contable y fiscal quede correcta en esta etapa.
 </p>
+    </div>
+  </div>
+
+  <!-- Compras -->
+  <div class="transfRow">
+    <img src="transf_oc_recibo.png" alt="Orden de Compra a Recibo">
+    <div>
+<h4>Orden de Compra → Recibo (Item Receipt)</h4>
+
+<p class="p">
+  La transformación <b>Orden de Compra → Recibo</b> se usa cuando la mercancía
+  <b>llega físicamente</b> y debe registrarse su ingreso al inventario.
+  Desde la <b>Orden de Compra</b>, se utiliza la acción <b>Recibir</b>.
+</p>
+
+<ul class="list" style="margin-top:0;">
+  <li>
+    El <b>Recibo</b> hereda la información de la orden (proveedor, artículos, cantidades),
+    pero confirma lo que <b>realmente llegó</b>.
+  </li>
+  <li>
+    Puedes recibir <b>total o parcialmente</b> una orden, según lo entregado por el proveedor.
+  </li>
+  <li>
+    Al guardar el recibo, el inventario <b>aumenta</b> en la ubicación correspondiente.
+  </li>
+</ul>
+
+<p class="p" style="margin-bottom:0;">
+  <b>Importante:</b> este paso <b>no genera la factura del proveedor</b>.
+  Solo registra la recepción física; la factura se registra después en su documento correspondiente.
+</p>
+
+
 
     </div>
   </div>
 
   <div class="transfRow">
-    <img src="img/transf_oc_factura_proveedor.png" alt="Orden de compra a Factura proveedor">
+    <img src="transf_oc_factura.png" alt="Orden de compra a Factura proveedor">
     <div>
-      <h4>Orden de Compra → Factura proveedor (Vendor Bill)</h4>
-      <p>
-        En algunos casos, desde la <b>Orden de Compra</b> también puedes <b>Crear factura proveedor</b>.
-      </p>
-      <span class="hint">Ojo: la factura tiene datos propios (cuentas, impuestos, fechas). Revisa antes de guardar.</span>
+     <h4>Orden de Compra → Factura proveedor (Vendor Bill)</h4>
+
+<p class="p">
+  En algunos casos, desde la <b>Orden de Compra</b> puedes crear la <b>Factura de proveedor (Vendor Bill)</b>.
+  Esta transformación se usa cuando ya tienes el documento del proveedor y necesitas registrar la <b>obligación de pago</b>
+  (cuentas por pagar), aunque la recepción física se maneje aparte según el proceso.
+</p>
+
+<ul class="list" style="margin-top:0;">
+  <li>
+    La factura <b>hereda</b> proveedor, artículos y cantidades de la OC, pero requiere validar datos propios:
+    <b>fecha</b>, <b>cuentas contables</b>, <b>impuestos</b> y <b>términos</b>.
+  </li>
+  <li>
+    Si el proceso exige recepción, normalmente el flujo correcto es:
+    <b>OC → Recibo (Item Receipt) → Factura proveedor</b>.
+  </li>
+  <li>
+    Si el proveedor factura por <b>parcialidades</b>, revisa que cantidades y valores correspondan a lo facturado.
+  </li>
+</ul>
+
+<p class="p" style="margin-bottom:0;">
+  <b>Tip práctico:</b> transforma para ahorrar tiempo, pero antes de guardar revisa los campos “propios” de la factura
+  (cuentas e impuestos). Ahí es donde más se cometen errores.
+</p>
+
     </div>
   </div>
 
