@@ -310,6 +310,22 @@
       position:relative;
       z-index:1;
     }
+    <style>
+  .shotWrap{
+    position:relative;
+    overflow:hidden;
+    border-radius:14px;
+    background:#0b1220;
+  }
+
+  /* 👇 clave: alto automático (no recorta) */
+  .shotWrap.shotAuto img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+</style>
+
     .toolbarWrap{
       background:#fff;
     }
@@ -691,58 +707,58 @@ La mayoría de ventas de equipos, ventas directas de consumibles y procesos con 
       <section class="tabPanel" id="tabReports">
         <h2 class="panelTitle">Informes</h2>
 
-        <p class="p">
-          Un <b>informe</b> es para analizar resultados (ventas, cartera, inventario, etc.).
-          Se reconoce porque tiene <b>tabla de resultados</b>, <b>filtros</b> y un botón de <b>Actualizar</b>.
-        </p>
+    <p class="p">
+  Un <b>informe (Report)</b> en NetSuite es una pantalla de <b>consulta</b> que muestra resultados ya calculados
+  (ventas, cartera, inventario, compras) en forma de <b>tabla</b>, para que puedas <b>analizar y filtrar</b> la información
+  sin modificar datos. Normalmente lo identificas porque trae <b>filtros</b> (fechas, subsidiaria, etc.), un botón de
+  <b>Actualizar</b> para aplicar esos filtros, opciones de <b>Ver resumen / Ver detalle</b> para cambiar el nivel de información,
+  y la opción de <b>Exportar</b> (Excel/PDF) el resultado con los filtros aplicados.
+</p>
 
-        <!-- Imagen 1 -->
-        <div class="media" style="margin-top:12px;">
-          <div class="mediaTop">
-            <b>Ejemplo real: Reporte en NetSuite</b>
-            <span class="mini">toca los puntos</span>
-          </div>
+<!-- Imagen 1 -->
+<div class="media" style="margin-top:12px;">
+  <div class="mediaTop">
+    <b>Ejemplo real: Reporte en NetSuite</b>
+    <span class="mini">toca los puntos</span>
+  </div>
 
-          <div class="shotWrap" style="aspect-ratio:16/9;">
-            <!-- NOMBRES REALES -->
-            <img src="imgreporte_inventario.png" alt="Reporte NetSuite - ejemplo"/>
+  <!-- 👇 IMPORTANTE: sin aspect-ratio -->
+  <div class="shotWrap shotAuto">
+    <img src="imgreporte_inventario.png" alt="Reporte NetSuite - ejemplo"/>
 
-            <button class="hsDot" data-title="① Título del reporte"
-              data-text="Indica qué información estás consultando."
-              style="left:9%; top:8%;">1</button>
+    <button class="hsDot" data-title="① Título del reporte"
+      data-text="Indica qué información estás consultando."
+      style="left:9%; top:8%;">1</button>
 
-            <button class="hsDot" data-title="② Ver detalle / Ver resumen"
-              data-text="Cambia el nivel de información (resumen vs detalle). No cambia los datos, solo la vista."
-              style="left:20.5%; top:8.5%;">2</button>
+    <button class="hsDot" data-title="② Ver detalle / Ver resumen"
+      data-text="Cambia el nivel de información (resumen vs detalle). No cambia los datos, solo la vista."
+      style="left:20.5%; top:8.5%;">2</button>
 
-            <button class="hsDot" data-title="③ Tabla de resultados"
-              data-text="Aquí ves la información del reporte. Es solo consulta: no modifica nada."
-              style="left:16%; top:22%;">3</button>
+    <button class="hsDot" data-title="③ Tabla de resultados"
+      data-text="Aquí ves la información del reporte. Es solo consulta: no modifica nada."
+      style="left:16%; top:22%;">3</button>
 
-            <button class="hsDot" data-title="④ Filtros (parte inferior)"
-              data-text="Aquí defines qué quieres ver: fecha, subsidiaria, libro contable, etc."
-              style="left:14%; top:90%;">4</button>
+    <button class="hsDot" data-title="④ Filtros (parte inferior)"
+      data-text="Aquí defines qué quieres ver: fecha, subsidiaria, libro contable, etc."
+      style="left:14%; top:90%;">4</button>
 
-            <button class="hsDot" data-title="⑤ Botón “Más”"
-              data-text="Hay más filtros disponibles, pero están ocultos."
-              style="left:63%; top:90%;">5</button>
+    <button class="hsDot" data-title="⑤ Botón “Más”"
+      data-text="Hay más filtros disponibles, pero están ocultos."
+      style="left:63%; top:90%;">5</button>
 
-            <button class="hsDot" data-title="⑥ Botón “Actualizar”"
-              data-text="Aplica los filtros. Si no haces clic aquí, el reporte no cambia."
-              style="left:3.8%; top:94.2%;">6</button>
+    <button class="hsDot" data-title="⑥ Botón “Actualizar”"
+      data-text="Aplica los filtros. Si no haces clic aquí, el reporte no cambia."
+      style="left:3.8%; top:94.2%;">6</button>
 
-            <!-- Tooltip ÚNICO (se re-inserta dentro de cada imagen al abrir) -->
-            <div class="hsTip" id="hsTipReports" aria-hidden="true">
-              <div class="hsTipTitle" id="hsTipReportsTitle"></div>
-              <div class="hsTipText" id="hsTipReportsText"></div>
-              <div class="hsTipHint">Clic afuera o ESC para cerrar</div>
-            </div>
-          </div>
+    <!-- Tooltip -->
+    <div class="hsTip" id="hsTipReports" aria-hidden="true">
+      <div class="hsTipTitle" id="hsTipReportsTitle"></div>
+      <div class="hsTipText" id="hsTipReportsText"></div>
+      <div class="hsTipHint">Clic afuera o ESC para cerrar</div>
+    </div>
+  </div>
+</div>
 
-          <div class="cap">
-            <b>Tip:</b> la mayoría de errores en reportes pasa por esto: cambiar filtros y no dar <b>Actualizar</b>.
-          </div>
-        </div>
 
         <!-- Imagen 2: Toolbar -->
         <div class="media" style="margin-top:14px;">
