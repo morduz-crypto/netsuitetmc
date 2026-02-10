@@ -460,7 +460,10 @@
     <div>
       <h4>Cotización → Orden de Venta</h4>
       <p>
-        En la <b>Cotización</b>, selecciona <b>Orden de venta</b> (botón).
+        En la <b>Cotización</b>, selecciona <b>Orden de venta</b> (botón). La Orden de Venta es el documento operativo
+coordina inventario, despacho y ejecución.</p>
+<p>En TMC:
+La mayoría de ventas de equipos, ventas directas de consumibles y procesos con logística deben pasar por Orden de Venta.
       </p>
       <span class="hint">Revisa dirección, condiciones, fechas y datos de logística si aplican.</span>
     </div>
@@ -470,15 +473,19 @@
     <img src="transf_cotizacion_factura.png" alt="Cotización a Factura">
     <div>
       <h4>Cotización → Factura</h4>
-      <p>
-        En la <b>Cotización</b>, selecciona <b>Factura</b> (botón).
+      <p><p class="p">
+  En la <b>Cotización</b>, usa la opción <b>Factura</b> (botón) cuando vas a
+  <b>facturar directo</b> sin pasar por <b>Orden de venta</b>.
+  En TMC esto se usa principalmente para <b>legalizaciones</b> donde
+  <b>no hay movimientos físicos de inventario</b> (no despacho, no ingreso, no traslado).
+</p>
       </p>
       <span class="hint">Revisa dirección, condiciones, fechas y datos de logística si aplican.</span>
     </div>
   </div>
 
   <div class="transfRow">
-    <img src="img/transf_orden_venta_factura.png" alt="Orden de Venta a Factura">
+    <img src="transf_orden_venta_factura.png" alt="Orden de Venta a Factura">
     <div>
       <h4>Orden de Venta → Factura</h4>
       <p>
@@ -523,16 +530,53 @@
   </div>
 
   <!-- Traslados -->
-  <div class="transfRow">
-    <img src="img/transf_orden_traslado.png" alt="Orden de Traslado">
-    <div>
-      <h4>Orden de Traslado → Ejecución / Recibo</h4>
-      <p>
-        La <b>Orden de Traslado</b> tiene acciones como <b>Ejecutar traslado</b> y <b>Recibir traslado</b>.
-      </p>
-      <span class="hint">Estos pasos confirman salida y entrada entre ubicaciones.</span>
-    </div>
+<div class="transfRow">
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+    <figure style="margin:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--shadow);">
+      <img src="img/transf_ot_ejecutar.png" alt="Orden de Traslado · Acción Ejecutar traslado"
+           style="width:100%;height:120px;object-fit:cover;display:block;">
+      <figcaption style="padding:8px 10px;font-size:12px;font-weight:900;color:#334155;border-top:1px solid var(--border);background:rgba(15,23,42,.02);">
+        Ejecutar traslado
+      </figcaption>
+    </figure>
+
+    <figure style="margin:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--shadow);">
+      <img src="img/transf_ot_recibir.png" alt="Orden de Traslado · Acción Recibir traslado"
+           style="width:100%;height:120px;object-fit:cover;display:block;">
+      <figcaption style="padding:8px 10px;font-size:12px;font-weight:900;color:#334155;border-top:1px solid var(--border);background:rgba(15,23,42,.02);">
+        Recibir traslado
+      </figcaption>
+    </figure>
   </div>
+
+  <div>
+    <p class="p">
+      La <b>Orden de Traslado</b> es el documento que controla un movimiento de inventario
+      de una <b>ubicación origen</b> a una <b>ubicación destino</b>. Por eso normalmente tiene dos acciones clave:
+    </p>
+
+    <ul class="list" style="margin-top:0;">
+      <li>
+        <b>Ejecutar traslado</b>: confirma la salida desde la <b>ubicación origen</b>.
+        En esta etapa el inventario <b>sale</b> del origen (queda “en tránsito” o en proceso según el flujo),
+        y la orden queda lista para ser recibida.
+      </li>
+      <li>
+        <b>Recibir traslado</b>: confirma la llegada a la <b>ubicación destino</b>.
+        Aquí es cuando el inventario <b>entra</b> al destino y el traslado queda completado.
+      </li>
+    </ul>
+
+    <p class="p" style="margin-bottom:0;">
+      <b>Tip práctico:</b> si ya ejecutaste pero no has recibido, es normal que el stock
+      aún <b>no aparezca</b> disponible en la ubicación destino (porque todavía no ha sido recibido).
+    </p>
+  </div>
+
+</div>
+
+  
 
 </section>
 
