@@ -99,9 +99,38 @@
 
     .hint{
       color:var(--muted);
-      margin:0 0 14px;
+      margin:0 0 12px;
       line-height:1.65;
       max-width:900px;
+    }
+
+    /* extra instruction chips */
+    .chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:10px 0 14px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+      box-shadow:var(--shadow);
+    }
+    .chip.soft{
+      background:rgba(15,23,42,.03);
+      border:1px solid rgba(15,23,42,.08);
+      color:#0f172a;
+    }
+    .chip.primary{
+      background:rgba(37,99,235,.08);
+      border:1px solid rgba(37,99,235,.18);
+      color:var(--accent2);
     }
 
     /* card/stage */
@@ -119,6 +148,23 @@
       display:block;
       user-select:none;
       -webkit-user-drag:none;
+    }
+
+    /* small hint over the image */
+    .stageHint{
+      position:absolute;
+      right:12px;
+      top:12px;
+      z-index:5;
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      font-weight:900;
+      color:#334155;
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+      pointer-events:none;
     }
 
     .hotspot{
@@ -156,6 +202,12 @@
     }
     .tooltip .t{ font-weight:900; margin-bottom:4px; font-size:13px; color:var(--text); }
     .tooltip .d{ font-size:12px; line-height:1.45; color:#334155; }
+    .tooltip .action{
+      margin-top:6px;
+      color:var(--accent2);
+      font-weight:900;
+      font-size:12px;
+    }
 
     .callout{
       margin-top:14px;
@@ -197,14 +249,20 @@
     <p class="hint">
       Al ingresar a NetSuite desde
       <a href="https://5055913.app.netsuite.com/" target="_blank" rel="noopener noreferrer">https://5055913.app.netsuite.com/</a>,
-      la primera pantalla que verás es el <b>Home</b>.
-      Esta vista se organiza en <b>tres zonas principales</b>.
-      Pasa el mouse por encima para ver una explicación rápida y haz clic para ir al detalle.
+      la primera pantalla que verás es el <b>Home</b>. Esta vista se organiza en <b>tres zonas principales</b>.
+      <b>Pasa el mouse por encima</b> para ver una explicación corta y <b>haz clic</b> para ir al detalle.
     </p>
+
+    <div class="chips">
+      <span class="chip soft">🖱️ Pasa el mouse = explicación corta</span>
+      <span class="chip primary">👆 Haz clic = explicación completa</span>
+    </div>
 
     <div class="card">
       <div class="stage">
         <img src="netsuite_home.png" alt="Captura Home NetSuite"/>
+
+        <div class="stageHint">🖱️ Pasa el mouse · 👆 Haz clic</div>
 
         <div class="hotspot"
              style="left:0%; top:0%; width:100%; height:9%;"
@@ -236,6 +294,7 @@
   <div class="tooltip" id="tooltip" role="tooltip">
     <div class="t" id="ttTitle"></div>
     <div class="d" id="ttDesc"></div>
+    <div class="action">Haz clic para ver el detalle →</div>
   </div>
 
   <script>
