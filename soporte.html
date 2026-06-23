@@ -118,7 +118,6 @@
       max-width:950px;
     }
 
-    /* ✅ 1 columna */
     .grid{
       display:grid;
       grid-template-columns: 1fr;
@@ -219,25 +218,6 @@
     }
     .list li{ margin:6px 0; }
 
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:10px;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      background:var(--chip-bg);
-      border:1px solid var(--border);
-      color:#334155;
-      font-weight:900;
-      font-size:12px;
-    }
-
     .speechWrap{
       margin-top:12px;
       border:1px solid var(--border);
@@ -286,7 +266,6 @@
       font-weight:800;
     }
 
-    /* ✅ CTA ancho */
     .ctaRow{
       display:flex;
       gap:12px;
@@ -300,7 +279,52 @@
       min-width: 320px;
       justify-content:center;
     }
-    @media (max-width: 520px){
+
+    .leadForm{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .field.full{
+      grid-column:1 / -1;
+    }
+    .field label{
+      color:var(--text);
+      font-weight:900;
+      font-size:12px;
+    }
+    .field input,
+    .field textarea,
+    .field select{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 12px;
+      outline:none;
+      font:inherit;
+      background:#fff;
+      color:var(--text);
+    }
+    .field textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+    .statusMsg{
+      font-size:12px;
+      font-weight:900;
+      color:#64748b;
+    }
+
+    @media (max-width: 700px){
+      .leadForm{
+        grid-template-columns:1fr;
+      }
       .ctaBtn{ min-width: 100%; }
     }
 
@@ -448,7 +472,7 @@
         </div>
       </div>
 
-      <!-- ✅ FINALIZAR ONBOARDING (FULL WIDTH) -->
+      <!-- CONFIRMACIÓN ONBOARDING -->
       <div class="card">
         <div class="cardHeader">
           <p class="cardTitle">Finalizar onboarding</p>
@@ -457,21 +481,31 @@
         <div class="cardBody">
           <p style="margin:0;">
             Si llegaste hasta acá, ya terminaste la guía general 🎉
-            Para dejar el registro interno, confirma acá:
+            Para dejar el registro interno, confirma tu correo:
           </p>
 
-          <div class="ctaRow">
-            <a class="btn primary ctaBtn" id="confirmBtn" target="_blank" rel="noopener" href="#">
-              Confirmar finalización de onboarding →
-            </a>
+          <form id="onboardingForm" class="leadForm">
+            <div class="field full">
+              <label for="emailConfirm">Correo corporativo *</label>
+              <input id="emailConfirm" name="email" type="email" placeholder="correo@tm-colombia.com" required>
+            </div>
 
-  
-          </div>
+            <input type="hidden" name="source" value="Confirmación onboarding GitHub">
+
+            <div class="field full">
+              <div class="ctaRow">
+                <button class="btn primary ctaBtn" id="submitOnboardingBtn" type="submit">
+                  Confirmar finalización de onboarding →
+                </button>
+                <span class="statusMsg" id="onboardingStatus">Pendiente de confirmación</span>
+              </div>
+            </div>
+          </form>
 
           <div class="divider"></div>
 
           <p style="margin:0;">
-        
+            Esta confirmación se enviará a la API de Vercel para registrar el correo.
           </p>
         </div>
       </div>
@@ -487,14 +521,17 @@
     const EMAIL = 'morduz@tm-colombia.com';
     const WAPP  = '3102465773';
 
-    const CONFIRM_URL = 'https://5055913.extforms.netsuite.com/app/site/crm/externalcustrecordpage.nl?compid=5055913&formid=1&h=AAFdikaIkeAA-TvlLFZXaXlxHaRPBDxNkw3COQDmufmdHuCq6N4';
+    // IMPORTANTE:
+    // Cambia esta URL cuando tengas tu proyecto desplegado en Vercel.
+    // Ejemplo: https://tmc-onboarding-test.vercel.app/api/confirm-onboarding
+    const ONBOARDING_API_URL = 'https://TU-PROYECTO.vercel.app/api/confirm-onboarding';
 
     const toast = document.getElementById('toast');
 
     function showToast(msg){
       toast.textContent = msg || 'Copiado ✅';
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 1400);
+      setTimeout(() => toast.classList.remove('show'), 1600);
     }
 
     async function copyToClipboard(text){
@@ -511,9 +548,6 @@
         showToast('Copiado ✅');
       }
     }
-
-    // Confirm button (new tab)
-    document.getElementById('confirmBtn').href = CONFIRM_URL;
 
     // ====== SPEECH ======
     const speechText = document.getElementById('speechText');
@@ -553,33 +587,32 @@ Gracias`
 
     speechText.value = buildSpeech();
 
-    // Copy speech
     document.getElementById('copySpeechBtn').addEventListener('click', () => {
       copyToClipboard(speechText.value);
     });
 
-    // Copy channel data
     document.getElementById('copyEmailBtn').addEventListener('click', () => copyToClipboard(EMAIL));
     document.getElementById('copyWappBtn').addEventListener('click', () => copyToClipboard(WAPP));
 
-    // mailto from speech
     const mailBtn = document.getElementById('mailBtn');
+
     function mailtoFromSpeech(){
       const subject = encodeURIComponent('Soporte NetSuite - Solicitud');
       const body = encodeURIComponent(speechText.value);
       return `mailto:${EMAIL}?subject=${subject}&body=${body}`;
     }
+
     mailBtn.href = mailtoFromSpeech();
 
-    // WhatsApp from speech
     const waBtn = document.getElementById('waBtn');
+
     function waFromSpeech(){
       const waMsg = encodeURIComponent(speechText.value);
       return `https://wa.me/57${WAPP}?text=${waMsg}`;
     }
+
     waBtn.href = waFromSpeech();
 
-    // Send buttons
     document.getElementById('sendMailFromSpeechBtn').addEventListener('click', () => {
       window.location.href = mailtoFromSpeech();
     });
@@ -588,10 +621,66 @@ Gracias`
       window.open(waFromSpeech(), '_blank', 'noopener');
     });
 
-    // keep icon links updated if they edit the speech
     speechText.addEventListener('input', () => {
       mailBtn.href = mailtoFromSpeech();
       waBtn.href = waFromSpeech();
+    });
+
+    // ====== CONFIRMACIÓN ONBOARDING A VERCEL ======
+    const onboardingForm = document.getElementById('onboardingForm');
+    const submitOnboardingBtn = document.getElementById('submitOnboardingBtn');
+    const onboardingStatus = document.getElementById('onboardingStatus');
+
+    onboardingForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+
+      const formData = new FormData(onboardingForm);
+
+      const payload = {
+        email: formData.get('email')?.trim(),
+        source: formData.get('source') || 'Confirmación onboarding GitHub',
+        confirmedAt: new Date().toISOString()
+      };
+
+      if (!payload.email) {
+        showToast('Debes escribir el correo ❌');
+        return;
+      }
+
+      submitOnboardingBtn.disabled = true;
+      submitOnboardingBtn.textContent = 'Confirmando...';
+      onboardingStatus.textContent = 'Enviando confirmación...';
+
+      try {
+        const response = await fetch(ONBOARDING_API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        let result = {};
+        try {
+          result = await response.json();
+        } catch (_) {}
+
+        if (!response.ok || result.success === false) {
+          throw new Error(result.message || 'No se pudo registrar la confirmación');
+        }
+
+        showToast('Onboarding confirmado ✅');
+        onboardingStatus.textContent = 'Onboarding confirmado correctamente ✅';
+        onboardingForm.reset();
+
+      } catch (error) {
+        console.error('Error confirmando onboarding:', error);
+        showToast('Error confirmando ❌');
+        onboardingStatus.textContent = 'Error confirmando. Revisa la URL de Vercel o la consola.';
+      } finally {
+        submitOnboardingBtn.disabled = false;
+        submitOnboardingBtn.textContent = 'Confirmar finalización de onboarding →';
+      }
     });
   </script>
 </body>
