@@ -1,6 +1,9 @@
 export default function handler(req, res) {
-  res.status(200).json({
+  const { email } = req.body || {};
+
+  return res.status(200).json({
     success: true,
-    message: 'Hola, Vercel funciona'
+    message: 'Correo recibido',
+    email: email || null
   });
 }
